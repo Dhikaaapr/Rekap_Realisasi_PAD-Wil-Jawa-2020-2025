@@ -121,8 +121,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
         ],
       ),
-      body: StreamBuilder<List<DaerahDataGroup>>(
-        stream: _firestoreService.streamGroupedData(),
+      body: StreamBuilder<List<PADData>>(
+        stream: _firestoreService.streamAllData(),
         builder: (context, snapshot) {
           // Loading state
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -183,32 +183,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
           }
 
           // Filter by selected year if needed
-          List<DaerahDataGroup> filteredData = snapshot.data!;
+          List<PADData> filteredData = snapshot.data!;
 
           // 1. Filter by Year
           if (_selectedYear != null) {
-            filteredData = filteredData
-                .map((group) {
-                  final filtered = group.dataPerTahun
-                      .where((d) => d.tahun == _selectedYear)
-                      .toList();
-                  if (filtered.isEmpty) return null;
-                  return DaerahDataGroup(
-                    daerah: group.daerah,
-                    namaClean: group.namaClean,
-                    tipe: group.tipe,
-                    dataPerTahun: filtered,
-                  );
-                })
-                .whereType<DaerahDataGroup>()
-                .toList();
+            filteredData = filteredData.where((d) => d.tahun == _selectedYear).toList();
           }
 
           // 2. Filter by Search Query
           if (_searchQuery.isNotEmpty) {
-            filteredData = filteredData.where((group) {
-              return group.daerah.toLowerCase().contains(_searchQuery) ||
-                  group.namaClean.toLowerCase().contains(_searchQuery);
+            filteredData = filteredData.where((item) {
+              return item.daerah.toLowerCase().contains(_searchQuery) ||
+                  item.namaClean.toLowerCase().contains(_searchQuery);
             }).toList();
           }
 
@@ -225,7 +211,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   itemCount: filteredData.length,
                   itemBuilder: (context, index) {
                     final item = filteredData[index];
-                    final latest = item.dataPerTahun.last;
 
                     return Card(
                       margin: const EdgeInsets.only(bottom: 12),
@@ -235,10 +220,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                       child: InkWell(
                         onTap: () {
+                          // Construct a basic group to pass to DetailScreen
+                          // DetailScreen will fetch the full stream for this region
+                          final group = DaerahDataGroup(
+                            daerah: item.daerah,
+                            namaClean: item.namaClean,
+                            tipe: item.tipe,
+                            dataPerTahun: [item], 
+                          );
+                          
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => DetailScreen(daerahGroup: item),
+                              builder: (_) => DetailScreen(
+                                daerahGroup: group,
+                                selectedYear: _selectedYear, // Pass strict filter
+                              ),
                             ),
                           );
                         },
@@ -251,7 +248,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               CircleAvatar(
                                 backgroundColor: _getTipeColor(item.tipe),
                                 child: Text(
-                                  item.namaClean.substring(0, 1),
+                                  item.namaClean.isNotEmpty ? item.namaClean.substring(0, 1) : '?',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -265,23 +262,44 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      item.daerah,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            item.daerah,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF1A237E).withValues(alpha: 0.1),
+                                            borderRadius: BorderRadius.circular(4),
+                                          ),
+                                          child: Text(
+                                            '${item.tahun}',
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xFF1A237E),
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      'PAD ${latest.tahun}: ${_formatMoney(latest.totalRealisasi)}',
+                                      'PAD Realisasi: ${_formatMoney(item.totalRealisasi)}',
                                       style: const TextStyle(
                                         color: Colors.green,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
-                                      'Target: ${_formatMoney(latest.totalAnggaran)} • ${latest.totalPersentase.toStringAsFixed(1)}%',
+                                      'Target: ${_formatMoney(item.totalAnggaran)} • ${item.totalPersentase.toStringAsFixed(1)}%',
                                       style: TextStyle(
                                         color: Colors.grey[600],
                                         fontSize: 12,
@@ -324,22 +342,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildStatsCard(List<DaerahDataGroup> data) {
+  Widget _buildStatsCard(List<PADData> data) {
     double totalAnggaran = 0;
     double totalRealisasi = 0;
-    int totalRecords = 0;
+    int totalRecords = data.length;
 
-    for (var group in data) {
-      for (var item in group.dataPerTahun) {
-        totalAnggaran += item.totalAnggaran;
-        totalRealisasi += item.totalRealisasi;
-        totalRecords++;
-      }
+    for (var item in data) {
+      totalAnggaran += item.totalAnggaran;
+      totalRealisasi += item.totalRealisasi;
     }
 
-    double persentase = totalAnggaran > 0
-        ? (totalRealisasi / totalAnggaran) * 100
-        : 0;
+    double persentase = totalAnggaran > 0 ? (totalRealisasi / totalAnggaran) * 100 : 0;
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -365,11 +378,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildStatItem(
-                'Total Records',
+                'Total Baris',
                 '$totalRecords',
                 Icons.description,
               ),
-              _buildStatItem('Daerah', '${data.length}', Icons.location_on),
+              // Unique regions count
+              _buildStatItem('Daerah', '${data.map((e) => e.daerah).toSet().length}', Icons.location_on),
             ],
           ),
           const Divider(color: Colors.white30, height: 24),
@@ -382,7 +396,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Icons.account_balance_wallet,
               ),
               _buildStatItem(
-                'Realis asi',
+                'Realisasi',
                 _formatMoney(totalRealisasi),
                 Icons.trending_up,
               ),

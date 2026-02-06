@@ -6,8 +6,13 @@ import 'input_data_screen.dart';
 
 class DetailScreen extends StatefulWidget {
   final DaerahDataGroup daerahGroup;
+  final int? selectedYear;
 
-  const DetailScreen({super.key, required this.daerahGroup});
+  const DetailScreen({
+    super.key, 
+    required this.daerahGroup,
+    this.selectedYear,
+  });
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -37,7 +42,10 @@ class _DetailScreenState extends State<DetailScreen> {
         label: const Text('Tambah Tahun'),
       ),
       body: StreamBuilder<List<PADData>>(
-        stream: _db.streamAllData(daerah: widget.daerahGroup.daerah),
+        stream: _db.streamAllData(
+          daerah: widget.daerahGroup.daerah,
+          tahun: widget.selectedYear, // Apply strict year filter if provided
+        ),
         builder: (context, snapshot) {
           if (snapshot.hasError) return Center(child: Text('Error: ${snapshot.error}'));
           
@@ -517,6 +525,35 @@ class _DetailScreenState extends State<DetailScreen> {
                                 builder: (_) => InputDataScreen(data: item),
                               ),
                             );
+                          },
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.delete_outline, color: Colors.redAccent, size: 20),
+                          tooltip: 'Hapus Tahun Ini',
+                          onPressed: () async {
+                            final confirm = await showDialog<bool>(
+                              context: context,
+                              builder: (ctx) => AlertDialog(
+                                title: const Text('Hapus Data Tahun ini?'),
+                                content: Text('Hapus data ${item.daerah} tahun ${item.tahun}?'),
+                                actions: [
+                                  TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Batal')),
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(ctx, true),
+                                    child: const Text('Hapus', style: TextStyle(color: Colors.red)),
+                                  ),
+                                ],
+                              ),
+                            );
+
+                            if (confirm == true && item.docId != null) {
+                              await _db.deleteData(item.docId!);
+                              if (context.mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('Data ${item.tahun} berhasil dihapus')),
+                                );
+                              }
+                            }
                           },
                         ),
                       ],

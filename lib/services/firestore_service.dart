@@ -18,14 +18,22 @@ class FirestoreService {
       query = query.where('daerah', isEqualTo: daerah);
     }
 
-    // Order by
-    query = query.orderBy('tahun', descending: false);
-    query = query.orderBy('daerah', descending: false);
+    // Note: Removed server-side properties ordering to avoid "Composite Index" requirements errors.
+    // We will sort client-side instead.
 
     return query.snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) {
+      var list = snapshot.docs.map((doc) {
         return PADData.fromFirestore(doc.data() as Map<String, dynamic>, doc.id);
       }).toList();
+
+      // Client-side sorting
+      list.sort((a, b) {
+        int yearComp = b.tahun.compareTo(a.tahun); // Descending year
+        if (yearComp != 0) return yearComp;
+        return a.daerah.compareTo(b.daerah); // Ascending daerah
+      });
+
+      return list;
     });
   }
 
