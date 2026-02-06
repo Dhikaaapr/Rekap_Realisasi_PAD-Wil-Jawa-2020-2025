@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import '../models/pad_model.dart';
 import '../services/firestore_service.dart';
+import '../services/auth_service.dart';
 import 'detail_screen.dart';
 import 'input_data_screen.dart';
+import 'import_data_screen.dart';
+import 'login_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -13,6 +16,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   final FirestoreService _firestoreService = FirestoreService();
+  final AuthService _authService = AuthService();
 
   int? _selectedYear;
   List<int> _availableYears = [];
@@ -119,6 +123,96 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
               ),
             ),
+          
+          // User Profile Menu
+          PopupMenuButton<String>(
+            icon: CircleAvatar(
+              radius: 16,
+              backgroundColor: Colors.white24,
+              backgroundImage: _authService.photoURL != null
+                  ? NetworkImage(_authService.photoURL!)
+                  : null,
+              child: _authService.photoURL == null
+                  ? Icon(
+                      _authService.isLoggedIn ? Icons.person : Icons.person_outline,
+                      color: Colors.white,
+                      size: 20,
+                    )
+                  : null,
+            ),
+            onSelected: (value) async {
+              if (value == 'logout') {
+                await _authService.signOut();
+                if (context.mounted) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (_) => const LoginScreen()),
+                    (route) => false,
+                  );
+                }
+              } else if (value == 'import_data') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ImportDataScreen()),
+                );
+              }
+            },
+            itemBuilder: (context) => [
+              if (_authService.isLoggedIn) ...[
+                PopupMenuItem<String>(
+                  enabled: false,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _authService.displayName ?? 'User',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      Text(
+                        _authService.email ?? '',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const PopupMenuDivider(),
+                const PopupMenuItem<String>(
+                  value: 'import_data',
+                  child: Row(
+                    children: [
+                      Icon(Icons.cloud_upload, color: Color(0xFF1A237E)),
+                      SizedBox(width: 8),
+                      Text('Import Data 2025'),
+                    ],
+                  ),
+                ),
+                const PopupMenuDivider(),
+                const PopupMenuItem<String>(
+                  value: 'logout',
+                  child: Row(
+                    children: [
+                      Icon(Icons.logout, color: Colors.red),
+                      SizedBox(width: 8),
+                      Text('Logout', style: TextStyle(color: Colors.red)),
+                    ],
+                  ),
+                ),
+              ] else ...[
+                PopupMenuItem<String>(
+                  enabled: false,
+                  child: Text(
+                    'Mode Tamu',
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
+                ),
+              ],
+            ],
+          ),
         ],
       ),
       body: StreamBuilder<List<PADData>>(

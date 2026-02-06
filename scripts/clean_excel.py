@@ -21,22 +21,30 @@ def extract_pad_data(input_file, output_file):
     
     all_data = []
     
-    # Process each year sheet
-    years = ['2021', '2022', '2023', '2024', '2025']
+    # Process 2025 data from specific sheet
+    sheet_mapping = {
+        'LRA (sort) (2)': 2025
+    }
     
-    for year in years:
-        if year not in wb.sheetnames:
-            print(f"⚠️  Sheet {year} not found, skipping...")
-            continue
+    for sheet_name, year_val in sheet_mapping.items():
+        if sheet_name not in wb.sheetnames:
+            print(f"⚠️  Sheet {sheet_name} not found, checking alternatives...")
+            # Fallback check
+            if '2025' in wb.sheetnames:
+                sheet_name = '2025'
+            else:
+                print(f"❌ No valid sheet found for 2025")
+                continue
             
-        print(f"📊 Processing year {year}...")
-        sheet = wb[year]
+        print(f"📊 Processing {sheet_name} as year {year_val}...")
+        sheet = wb[sheet_name]
+        year = str(year_val) # converting to string to match rest of logic if needed, or int usage below
         
         # Find data start row (biasanya row 7 atau 8)
         # Look for row with "XI" or "XII" or numeric NO
         data_start_row = None
         for row_idx in range(1, 20):
-            cell_value = sheet.cell(row_idx, 2).value  # Column B (NO)
+            cell_value = sheet.cell(row_idx, 1).value  # Column A (NO)
             if cell_value and str(cell_value).strip() in ['XI', 'XII', '1']:
                 data_start_row = row_idx
                 break
@@ -50,19 +58,19 @@ def extract_pad_data(input_file, output_file):
         # Extract data rows
         for row_idx in range(data_start_row, sheet.max_row + 1):
             # Column mapping (adjust based on excel_structure.txt)
-            # [1]: NO (XI, XII, 1, 2, ...)
-            # [2]: DAERAH
-            # [3]: PAJAK ANGGARAN
-            # [4]: PAJAK REALISASI
-            # [6]: RETRIBUSI ANGGARAN
-            # [7]: RETRIBUSI REALISASI
-            # [9]: KEKAYAAN ANGGARAN
-            # [10]: KEKAYAAN REALISASI
-            # [12]: LAIN PAD ANGGARAN
-            # [13]: LAIN PAD REALISASI
+            # [0]: NO (XI, XII, 1, 2, ...) -> Col A (1)
+            # [1]: DAERAH -> Col B (2)
+            # [2]: PAJAK ANGGARAN -> Col C (3)
+            # [3]: PAJAK REALISASI -> Col D (4)
+            # [5]: RETRIBUSI ANGGARAN -> Col F (6)
+            # [6]: RETRIBUSI REALISASI -> Col G (7)
+            # [8]: KEKAYAAN ANGGARAN -> Col I (9)
+            # [9]: KEKAYAAN REALISASI -> Col J (10)
+            # [11]: LAIN PAD ANGGARAN -> Col L (12)
+            # [12]: LAIN PAD REALISASI -> Col M (13)
             
-            nomor_urut = sheet.cell(row_idx, 2).value
-            daerah = sheet.cell(row_idx, 3).value
+            nomor_urut = sheet.cell(row_idx, 1).value
+            daerah = sheet.cell(row_idx, 2).value
             
             # Skip jika daerah kosong atau bukan valid data row
             if not daerah or daerah == '' or 'DAERAH' in str(daerah).upper():
@@ -76,14 +84,14 @@ def extract_pad_data(input_file, output_file):
                 'TAHUN': int(year),
                 'NOMOR_URUT': str(nomor_urut).strip() if nomor_urut else '',
                 'DAERAH': str(daerah).strip(),
-                'PAJAK_ANGGARAN': safe_number(sheet.cell(row_idx, 4).value),
-                'PAJAK_REALISASI': safe_number(sheet.cell(row_idx, 5).value),
-                'RETRIBUSI_ANGGARAN': safe_number(sheet.cell(row_idx, 7).value),
-                'RETRIBUSI_REALISASI': safe_number(sheet.cell(row_idx, 8).value),
-                'KEKAYAAN_ANGGARAN': safe_number(sheet.cell(row_idx, 10).value),
-                'KEKAYAAN_REALISASI': safe_number(sheet.cell(row_idx, 11).value),
-                'LAIN_ANGGARAN': safe_number(sheet.cell(row_idx, 13).value),
-                'LAIN_REALISASI': safe_number(sheet.cell(row_idx, 14).value),
+                'PAJAK_ANGGARAN': safe_number(sheet.cell(row_idx, 3).value),
+                'PAJAK_REALISASI': safe_number(sheet.cell(row_idx, 4).value),
+                'RETRIBUSI_ANGGARAN': safe_number(sheet.cell(row_idx, 6).value),
+                'RETRIBUSI_REALISASI': safe_number(sheet.cell(row_idx, 7).value),
+                'KEKAYAAN_ANGGARAN': safe_number(sheet.cell(row_idx, 9).value),
+                'KEKAYAAN_REALISASI': safe_number(sheet.cell(row_idx, 10).value),
+                'LAIN_ANGGARAN': safe_number(sheet.cell(row_idx, 12).value),
+                'LAIN_REALISASI': safe_number(sheet.cell(row_idx, 13).value),
             }
             
             # Validasi: skip jika semua data numeric = 0
@@ -177,7 +185,7 @@ def generate_sql_insert(df, output_sql_file):
 if __name__ == "__main__":
     # Paths
     base_dir = Path(__file__).parent.parent
-    input_excel = base_dir / "assets" / "datarekap.xlsx"
+    input_excel = base_dir / "assets" / "datarekaprealisasi.xlsx"
     output_excel = base_dir / "assets" / "datarekap_clean.xlsx"
     output_sql = base_dir / "scripts" / "insert_pad_data.sql"
     

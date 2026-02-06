@@ -51,7 +51,7 @@ class FirestoreService {
       Map<String, List<PADData>> grouped = {};
       for (var doc in snapshot.docs) {
         final data = PADData.fromFirestore(
-          doc.data() as Map<String, dynamic>,
+          doc.data(),
           doc.id,
         );
         
@@ -100,7 +100,7 @@ class FirestoreService {
       Map<String, List<PADData>> grouped = {};
       for (var doc in snapshot.docs) {
         final data = PADData.fromFirestore(
-          doc.data() as Map<String, dynamic>,
+          doc.data(),
           doc.id,
         );
         
