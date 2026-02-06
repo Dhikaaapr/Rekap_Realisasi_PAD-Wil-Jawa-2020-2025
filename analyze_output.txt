@@ -1,0 +1,21 @@
+﻿Analyzing Rekap Realisasi PAD WIL JAWA 2021-2025...             
+
+   info - Use interpolation to compose strings and values - inspect_excel.dart:28:36 - prefer_interpolation_to_compose_strings
+   info - Don't invoke 'print' in production code - inspect_excel.dart:40:3 - avoid_print
+   info - Statements in an if should be enclosed in a block - lib\services\excel_service.dart:59:42 - curly_braces_in_flow_control_structures
+
+flutter : 3 issues found. 
+(ran in 2.1s)
+At line:1 char:1
++ flutter analyze 2>&1 | 
+Out-File -Encoding UTF8 
+analyze_output.txt; Ge ...
++ ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (3 iss  
+  ues found. (ran in 2.1s   
+ ):String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
