@@ -187,7 +187,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     children: [
                       Icon(Icons.cloud_upload, color: Color(0xFF1A237E)),
                       SizedBox(width: 8),
-                      Text('Import Data 2025'),
+                      Text('Import Data CSV'),
                     ],
                   ),
                 ),
@@ -314,13 +314,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          // Construct a basic group to pass to DetailScreen
-                          // DetailScreen will fetch the full stream for this region
+                          // Get full history for this region
+                          final fullHistory = snapshot.data!
+                              .where((d) => d.daerah == item.daerah)
+                              .toList();
+
                           final group = DaerahDataGroup(
                             daerah: item.daerah,
                             namaClean: item.namaClean,
                             tipe: item.tipe,
-                            dataPerTahun: [item], 
+                            dataPerTahun: fullHistory,
                           );
                           
                           Navigator.push(

@@ -9,11 +9,24 @@ void main() async {
   try {
     await Firebase.initializeApp();
     debugPrint('✅ Firebase initialized successfully');
+    runApp(const MyApp());
   } catch (e) {
     debugPrint('❌ Firebase initialization error: $e');
+    runApp(MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Text(
+              'Firebase Initialization Failed:\n$e', 
+              style: const TextStyle(color: Colors.red, fontSize: 16),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ),
+    ));
   }
-
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

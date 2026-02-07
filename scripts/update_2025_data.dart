@@ -18,52 +18,38 @@ void main() async {
   const collection = 'pad_data';
 
   // Read CSV file
-  final csvFile = File('assets/datarekap_clean.csv');
+  final csvFile = File('assets/datarekap_2025_clean.csv');
   if (!csvFile.existsSync()) {
-    print('❌ ERROR: File assets/datarekap_clean.csv tidak ditemukan!');
+    print('❌ ERROR: File assets/datarekap_2025_clean.csv tidak ditemukan!');
     exit(1);
   }
 
   final lines = csvFile.readAsLinesSync();
   print('📖 Total baris di CSV: ${lines.length}');
 
-  // Parse header
-  final headers = lines[0].split(',');
-  print('📋 Headers: $headers');
-
-  // Filter data 2025 only
+  // Filter data 2025
   List<Map<String, dynamic>> data2025 = [];
 
   for (int i = 1; i < lines.length; i++) {
     final values = _parseCSVLine(lines[i]);
-    if (values.isEmpty) continue;
-
-    final tahun = int.tryParse(values[0]) ?? 0;
-    if (tahun != 2025) continue;
+    if (values.length < 10) continue;
 
     final daerah = values[2].trim();
     
     data2025.add({
       'tahun': 2025,
+      'nomorUrut': values[1].trim(),
       'daerah': daerah,
       'namaClean': _cleanName(daerah),
       'tipe': _determineType(daerah),
-      'pajak': {
-        'anggaran': _parseNumber(values[3]),
-        'realisasi': _parseNumber(values[4]),
-      },
-      'retribusi': {
-        'anggaran': _parseNumber(values[5]),
-        'realisasi': _parseNumber(values[6]),
-      },
-      'kekayaan': {
-        'anggaran': _parseNumber(values[7]),
-        'realisasi': _parseNumber(values[8]),
-      },
-      'lainLain': {
-        'anggaran': _parseNumber(values[9]),
-        'realisasi': _parseNumber(values[10]),
-      },
+      'pajakAnggaran': _parseNumber(values[3]),
+      'pajakRealisasi': _parseNumber(values[4]),
+      'retribusiAnggaran': _parseNumber(values[5]),
+      'retribusiRealisasi': _parseNumber(values[6]),
+      'pengelolaanAnggaran': _parseNumber(values[7]),
+      'pengelolaanRealisasi': _parseNumber(values[8]),
+      'lainPadAnggaran': _parseNumber(values[9]),
+      'lainPadRealisasi': _parseNumber(values[10]),
       'createdAt': FieldValue.serverTimestamp(),
       'updatedAt': FieldValue.serverTimestamp(),
     });

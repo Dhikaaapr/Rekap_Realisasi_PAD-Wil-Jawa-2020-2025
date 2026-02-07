@@ -1,11 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import '../models/rekap_data.dart';
+import '../models/pad_model.dart';
 
 class DetailScreen extends StatefulWidget {
   final DaerahDataGroup daerahGroup;
+  final int? selectedYear;
 
-  const DetailScreen({super.key, required this.daerahGroup});
+  const DetailScreen({super.key, required this.daerahGroup, this.selectedYear});
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();

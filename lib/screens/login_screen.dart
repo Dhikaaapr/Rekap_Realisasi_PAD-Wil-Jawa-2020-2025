@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
 import '../services/auth_service.dart';
 import 'dashboard_screen.dart';
@@ -12,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
   final AuthService _authService = AuthService();
+  StreamSubscription<User?>? _authSubscription;
   bool _isLoading = false;
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -44,23 +47,29 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     
     _animationController.forward();
     
-    // Check if user already logged in
-    _checkCurrentUser();
+    // Subscribe to auth state changes for robust auto-login
+    _authSubscription = _authService.authStateChanges.listen((user) {
+      if (user != null) {
+        debugPrint('[Login] Auth state changed: User logged in, navigating...');
+        _navigateToDashboard();
+      }
+    });
   }
   
-  Future<void> _checkCurrentUser() async {
-    if (_authService.isLoggedIn) {
-      // User already logged in, navigate to dashboard
+  void _navigateToDashboard() {
+    // Use Future.delayed to ensure we are not in a build phase
+    Future.delayed(Duration.zero, () {
       if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (_) => const DashboardScreen()),
         );
       }
-    }
+    });
   }
 
   @override
   void dispose() {
+    _authSubscription?.cancel();
     _animationController.dispose();
     super.dispose();
   }
@@ -71,10 +80,9 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     try {
       final userCredential = await _authService.signInWithGoogle();
       
-      if (userCredential != null && mounted) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const DashboardScreen()),
-        );
+      if (userCredential != null) {
+        debugPrint('[Login] Google Sign-In success. Waiting for auth state listener to navigate...');
+        // Navigation is handled by _authSubscription
       }
     } catch (e) {
       if (mounted) {
@@ -96,9 +104,8 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
   
   // Skip login for guest access
   void _handleSkipLogin() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const DashboardScreen()),
-    );
+    debugPrint('[Login] Skip login invoked.');
+    _navigateToDashboard();
   }
 
   @override
