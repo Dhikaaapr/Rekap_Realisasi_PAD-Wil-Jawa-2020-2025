@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 import 'package:google_fonts/google_fonts.dart';
 import '../services/auth_service.dart';
-import 'dashboard_screen.dart';
+import 'main_container.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
     Future.delayed(Duration.zero, () {
       if (mounted) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const DashboardScreen()),
+          MaterialPageRoute(builder: (_) => const MainContainer()),
         );
       }
     });

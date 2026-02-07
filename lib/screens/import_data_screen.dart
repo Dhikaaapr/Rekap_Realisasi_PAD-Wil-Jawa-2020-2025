@@ -645,6 +645,7 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
                 ),
               ),
             ),
+            const SizedBox(height: 100), // Space for floating nav bar
           ],
         ),
       ),

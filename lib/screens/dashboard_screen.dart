@@ -301,7 +301,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               // Data list
               Expanded(
                 child: ListView.builder(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 100),
                   itemCount: filteredData.length,
                   itemBuilder: (context, index) {
                     final item = filteredData[index];
@@ -424,7 +424,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 80),
+        child: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
             context,
@@ -435,6 +437,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         foregroundColor: Colors.white,
         icon: const Icon(Icons.add),
         label: const Text('Tambah Data'),
+        ),
       ),
     );
   }
