@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import '../models/pad_model.dart';
 import '../models/klaster_model.dart';
 import '../services/firestore_service.dart';
+import 'detail_screen.dart';
+
 
 class KlasterScreen extends StatefulWidget {
   const KlasterScreen({super.key});
@@ -533,64 +535,90 @@ class _KlasterScreenState extends State<KlasterScreen> with SingleTickerProvider
             ),
             
             // Daftar daerah (sorted by persentase tertinggi)
-            ...summary.daftarDaerah.take(15).map((daerah) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey[200]!),
+            ...summary.daftarDaerah.take(15).map((daerah) {
+              // Find the corresponding group to pass to DetailScreen
+              final group = _groupedData.firstWhere(
+                (g) => g.daerah == daerah.daerah,
+                orElse: () => DaerahDataGroup(
+                  daerah: daerah.daerah,
+                  namaClean: daerah.namaClean,
+                  tipe: daerah.tipe,
+                  dataPerTahun: [],
                 ),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              );
+
+              return Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: group.dataPerTahun.isEmpty ? null : () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => DetailScreen(daerahGroup: group),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(color: Colors.grey[200]!),
+                      ),
+                    ),
+                    child: Row(
                       children: [
-                        Text(
-                          daerah.namaClean,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 13,
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                daerah.namaClean,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 13,
+                                ),
+                              ),
+                              Text(
+                                daerah.tipe,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Text(
-                          daerah.tipe,
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: Colors.grey[500],
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            _formatMoney(daerah.totalRealisasi / (_allYears.isNotEmpty ? _allYears.length : 1)),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Colors.green,
+                            ),
+                            textAlign: TextAlign.right,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            '${daerah.persentaseRealisasi.toStringAsFixed(1)}%',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              color: _getPersentaseColor(daerah.persentaseRealisasi),
+                            ),
+                            textAlign: TextAlign.right,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Text(
-                      _formatMoney(daerah.totalRealisasi / (_allYears.isNotEmpty ? _allYears.length : 1)),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 12,
-                        color: Colors.green,
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Text(
-                      '${daerah.persentaseRealisasi.toStringAsFixed(1)}%',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                        color: _getPersentaseColor(daerah.persentaseRealisasi),
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
-                  ),
-                ],
-              ),
-            )),
+                ),
+              );
+            }),
             
             // Show more indicator if more than 15
             if (summary.daftarDaerah.length > 15)

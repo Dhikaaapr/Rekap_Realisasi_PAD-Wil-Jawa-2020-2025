@@ -1,6 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../models/pad_model.dart';
+import '../services/firestore_service.dart';
+import '../services/auth_service.dart';
+import 'input_data_screen.dart';
+
 
 /// Enum untuk kategori chart yang tersedia
 enum ChartCategory {
@@ -87,6 +91,9 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMixin {
   // Currently featured chart (displayed large at top)
   ChartCategory _featuredChart = ChartCategory.totalPAD;
+  
+  final AuthService _authService = AuthService();
+  final FirestoreService _firestoreService = FirestoreService();
   
   // Animation controller for smooth transitions
   late AnimationController _swapAnimationController;
@@ -237,6 +244,27 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
           ),
         ],
       ),
+      floatingActionButton: _authService.isLoggedIn 
+        ? FloatingActionButton.extended(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => InputDataScreen(
+                    initialDaerah: widget.daerahGroup.daerah,
+                    initialNomorUrut: widget.daerahGroup.dataPerTahun.isNotEmpty 
+                      ? widget.daerahGroup.dataPerTahun.first.nomorUrut 
+                      : '1',
+                  ),
+                ),
+              );
+            },
+            backgroundColor: const Color(0xFF1A237E),
+            foregroundColor: Colors.white,
+            icon: const Icon(Icons.add),
+            label: const Text('Tambah Data Tahun'),
+          )
+        : null,
     );
   }
 
@@ -734,31 +762,38 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
             child: DataTable(
               headingRowColor: WidgetStateProperty.all(const Color(0xFFF5F7FA)),
               columnSpacing: 20,
-              columns: const [
+              columns: [
                 DataColumn(
-                  label: Text(
+                  label: const Text(
                     'Tahun',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 DataColumn(
-                  label: Text(
+                  label: const Text(
                     'Total Anggaran',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 DataColumn(
-                  label: Text(
+                  label: const Text(
                     'Total Realisasi',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 DataColumn(
-                  label: Text(
+                  label: const Text(
                     '%',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
+                if (_authService.isLoggedIn)
+                  DataColumn(
+                    label: const Text(
+                      'Aksi',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
               ],
               rows: widget.daerahGroup.dataPerTahun.map((data) {
                 return DataRow(
@@ -789,6 +824,60 @@ class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMix
                         ),
                       ),
                     ),
+                    if (_authService.isLoggedIn)
+                      DataCell(
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.edit, color: Colors.blue, size: 20),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => InputDataScreen(data: data),
+                                  ),
+                                );
+                              },
+                              constraints: const BoxConstraints(),
+                              padding: const EdgeInsets.symmetric(horizontal: 4),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red, size: 20),
+                              onPressed: () async {
+                                final confirm = await showDialog<bool>(
+                                  context: context,
+                                  builder: (ctx) => AlertDialog(
+                                    title: const Text('Hapus Data?'),
+                                    content: Text('Hapus data PAD ${widget.daerahGroup.namaClean} tahun ${data.tahun}?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(ctx, false),
+                                        child: const Text('Batal'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(ctx, true),
+                                        child: const Text('Hapus', style: TextStyle(color: Colors.red)),
+                                      ),
+                                    ],
+                                  ),
+                                );
+
+                                if (confirm == true && data.docId != null) {
+                                  await _firestoreService.deleteData(data.docId!);
+                                  if (mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('Data berhasil dihapus')),
+                                    );
+                                  }
+                                }
+                              },
+                              constraints: const BoxConstraints(),
+                              padding: const EdgeInsets.symmetric(horizontal: 4),
+                            ),
+                          ],
+                        ),
+                      ),
                   ],
                 );
               }).toList(),

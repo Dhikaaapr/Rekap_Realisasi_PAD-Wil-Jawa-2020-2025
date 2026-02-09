@@ -6,8 +6,9 @@ import '../services/firestore_service.dart';
 class InputDataScreen extends StatefulWidget {
   final PADData? data; // If null = Add Mode, if exists = Edit Mode
   final String? initialDaerah; // Pre-fill region name
+  final String? initialNomorUrut; // Pre-fill sequence number
 
-  const InputDataScreen({super.key, this.data, this.initialDaerah});
+  const InputDataScreen({super.key, this.data, this.initialDaerah, this.initialNomorUrut});
 
   @override
   State<InputDataScreen> createState() => _InputDataScreenState();
@@ -74,7 +75,7 @@ class _InputDataScreenState extends State<InputDataScreen> {
       final newData = PADData(
         daerah: _daerahController.text.trim(),
         tahun: int.parse(_tahunController.text),
-        nomorUrut: widget.data?.nomorUrut ?? '1',
+        nomorUrut: widget.data?.nomorUrut ?? widget.initialNomorUrut ?? '1',
         pajakAnggaran: _parseDouble(_pajakAngController.text),
         pajakRealisasi: _parseDouble(_pajakRealController.text),
         retribusiAnggaran: _parseDouble(_retribusiAngController.text),
