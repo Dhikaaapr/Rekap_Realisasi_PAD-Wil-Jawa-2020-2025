@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'dashboard_screen.dart';
+import 'klaster_screen.dart';
 import 'import_data_screen.dart';
 import 'profile_screen.dart';
 
@@ -16,6 +17,7 @@ class _MainContainerState extends State<MainContainer> {
   
   final List<Widget> _screens = [
     const DashboardScreen(),
+    const KlasterScreen(),
     const ImportDataScreen(),
     const ProfileScreen(),
   ];
@@ -35,7 +37,7 @@ class _MainContainerState extends State<MainContainer> {
   Widget _buildFloatingNavBar() {
     return SafeArea(
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
         height: 65,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(35),
@@ -58,8 +60,9 @@ class _MainContainerState extends State<MainContainer> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _buildNavItem(0, Icons.home_rounded, 'Dashboard'),
-                  _buildNavItem(1, Icons.cloud_upload_rounded, 'Import'),
-                  _buildNavItem(2, Icons.person_rounded, 'Profil'),
+                  _buildNavItem(1, Icons.pie_chart_rounded, 'Klaster'),
+                  _buildNavItem(2, Icons.cloud_upload_rounded, 'Import'),
+                  _buildNavItem(3, Icons.person_rounded, 'Profil'),
                 ],
               ),
             ),

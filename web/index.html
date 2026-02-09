@@ -30,9 +30,51 @@
   <link rel="icon" type="image/png" href="favicon.png"/>
 
   <title>rekap_pad_flutter</title>
-  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      background-color: #1A237E;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+    }
+    .loading-logo {
+      width: 120px;
+      height: 120px;
+      background-color: white;
+      border-radius: 50%;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: scale 1.5s ease-out;
+    }
+    .loading-text {
+      margin-top: 30px;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    @keyframes scale {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
 </head>
 <body>
+  <div class="loading">
+    <div class="loading-logo">
+      <img src="assets/assets/logokemendagri.png" width="120" height="120" alt="Kemendagri Logo">
+    </div>
+    <div class="loading-text">REKAP PAD</div>
+  </div>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

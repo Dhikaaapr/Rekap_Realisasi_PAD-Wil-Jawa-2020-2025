@@ -2,6 +2,78 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../models/pad_model.dart';
 
+/// Enum untuk kategori chart yang tersedia
+enum ChartCategory {
+  totalPAD,
+  pajak,
+  retribusi,
+  pengelolaan,
+  lainPAD,
+}
+
+/// Extension untuk ChartCategory
+extension ChartCategoryExtension on ChartCategory {
+  String get title {
+    switch (this) {
+      case ChartCategory.totalPAD:
+        return 'TOTAL PAD';
+      case ChartCategory.pajak:
+        return 'PAJAK DAERAH';
+      case ChartCategory.retribusi:
+        return 'RETRIBUSI';
+      case ChartCategory.pengelolaan:
+        return 'PENGELOLAAN KEKAYAAN';
+      case ChartCategory.lainPAD:
+        return 'LAIN PAD';
+    }
+  }
+
+  String get shortTitle {
+    switch (this) {
+      case ChartCategory.totalPAD:
+        return 'TOTAL PAD';
+      case ChartCategory.pajak:
+        return 'PAJAK';
+      case ChartCategory.retribusi:
+        return 'RETRIBUSI';
+      case ChartCategory.pengelolaan:
+        return 'PENGELOLAAN';
+      case ChartCategory.lainPAD:
+        return 'LAIN PAD';
+    }
+  }
+
+  Color get color {
+    switch (this) {
+      case ChartCategory.totalPAD:
+        return const Color(0xFF1A237E);
+      case ChartCategory.pajak:
+        return Colors.blue;
+      case ChartCategory.retribusi:
+        return Colors.teal;
+      case ChartCategory.pengelolaan:
+        return Colors.purple;
+      case ChartCategory.lainPAD:
+        return Colors.orange;
+    }
+  }
+
+  IconData get icon {
+    switch (this) {
+      case ChartCategory.totalPAD:
+        return Icons.account_balance;
+      case ChartCategory.pajak:
+        return Icons.receipt_long;
+      case ChartCategory.retribusi:
+        return Icons.payments;
+      case ChartCategory.pengelolaan:
+        return Icons.business;
+      case ChartCategory.lainPAD:
+        return Icons.more_horiz;
+    }
+  }
+}
+
 class DetailScreen extends StatefulWidget {
   final DaerahDataGroup daerahGroup;
   final int? selectedYear;
@@ -12,7 +84,89 @@ class DetailScreen extends StatefulWidget {
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
-class _DetailScreenState extends State<DetailScreen> {
+class _DetailScreenState extends State<DetailScreen> with TickerProviderStateMixin {
+  // Currently featured chart (displayed large at top)
+  ChartCategory _featuredChart = ChartCategory.totalPAD;
+  
+  // Animation controller for smooth transitions
+  late AnimationController _swapAnimationController;
+  late Animation<double> _swapAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _swapAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 400),
+      vsync: this,
+    );
+    _swapAnimation = CurvedAnimation(
+      parent: _swapAnimationController,
+      curve: Curves.easeInOutCubic,
+    );
+    _swapAnimationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _swapAnimationController.dispose();
+    super.dispose();
+  }
+
+  /// Swap the featured chart with a small chart
+  void _swapChart(ChartCategory newFeatured) {
+    if (newFeatured == _featuredChart) return;
+    
+    _swapAnimationController.reverse().then((_) {
+      setState(() {
+        _featuredChart = newFeatured;
+      });
+      _swapAnimationController.forward();
+    });
+  }
+
+  /// Get chart data points for a given category
+  List<ChartDataPoint> _getChartData(ChartCategory category) {
+    return widget.daerahGroup.dataPerTahun.map((d) {
+      switch (category) {
+        case ChartCategory.totalPAD:
+          return ChartDataPoint(
+            tahun: d.tahun,
+            anggaran: d.totalAnggaran,
+            realisasi: d.totalRealisasi,
+          );
+        case ChartCategory.pajak:
+          return ChartDataPoint(
+            tahun: d.tahun,
+            anggaran: d.pajakAnggaran,
+            realisasi: d.pajakRealisasi,
+          );
+        case ChartCategory.retribusi:
+          return ChartDataPoint(
+            tahun: d.tahun,
+            anggaran: d.retribusiAnggaran,
+            realisasi: d.retribusiRealisasi,
+          );
+        case ChartCategory.pengelolaan:
+          return ChartDataPoint(
+            tahun: d.tahun,
+            anggaran: d.pengelolaanAnggaran,
+            realisasi: d.pengelolaanRealisasi,
+          );
+        case ChartCategory.lainPAD:
+          return ChartDataPoint(
+            tahun: d.tahun,
+            anggaran: d.lainPadAnggaran,
+            realisasi: d.lainPadRealisasi,
+          );
+      }
+    }).toList();
+  }
+
+  /// Get all categories except the featured one (for small charts)
+  List<ChartCategory> get _smallChartCategories {
+    return ChartCategory.values.where((c) => c != _featuredChart).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,12 +210,22 @@ class _DetailScreenState extends State<DetailScreen> {
                   _buildInfoCards(),
                   const SizedBox(height: 24),
 
-                  // Main PAD Chart
-                  _buildMainChart(),
+                  // Featured Chart (Large - Can be swapped)
+                  FadeTransition(
+                    opacity: _swapAnimation,
+                    child: ScaleTransition(
+                      scale: _swapAnimation,
+                      child: _buildFeaturedChart(),
+                    ),
+                  ),
                   const SizedBox(height: 24),
 
-                  // Category Charts
-                  _buildCategoryCharts(),
+                  // Category Selector Chips
+                  _buildCategorySelector(),
+                  const SizedBox(height: 16),
+
+                  // Small Charts (4 remaining categories)
+                  _buildSmallCharts(),
                   const SizedBox(height: 24),
 
                   // Data Table
@@ -146,32 +310,94 @@ class _DetailScreenState extends State<DetailScreen> {
     return '${years.first}-${years.last}';
   }
 
-  Widget _buildMainChart() {
+  /// Build the featured (large) chart at the top
+  Widget _buildFeaturedChart() {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: _featuredChart.color.withValues(alpha: 0.3),
+          width: 2,
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+            color: _featuredChart.color.withValues(alpha: 0.1),
+            blurRadius: 15,
+            offset: const Offset(0, 6),
           ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'TOTAL PAD ${widget.daerahGroup.tipe.toUpperCase()} ${widget.daerahGroup.namaClean.toUpperCase()}',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: Color(0xFF1A237E),
-            ),
+          // Header with icon
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: _featuredChart.color.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(
+                  _featuredChart.icon,
+                  color: _featuredChart.color,
+                  size: 24,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${_featuredChart.title} ${widget.daerahGroup.tipe.toUpperCase()}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: _featuredChart.color,
+                      ),
+                    ),
+                    Text(
+                      widget.daerahGroup.namaClean.toUpperCase(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Featured badge
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  color: _featuredChart.color,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.star, color: Colors.white, size: 14),
+                    SizedBox(width: 4),
+                    Text(
+                      'Featured',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
+
           // Legend
           Row(
             children: [
@@ -183,21 +409,158 @@ class _DetailScreenState extends State<DetailScreen> {
             ],
           ),
           const SizedBox(height: 20),
+          
+          // Chart
           SizedBox(
-            height: 250,
+            height: 280,
             child: _buildBarLineChart(
-              dataPoints: widget.daerahGroup.dataPerTahun
-                  .map(
-                    (d) => ChartDataPoint(
-                      tahun: d.tahun,
-                      anggaran: d.totalAnggaran,
-                      realisasi: d.totalRealisasi,
-                    ),
-                  )
-                  .toList(),
+              dataPoints: _getChartData(_featuredChart),
+              isSmall: false,
+              accentColor: _featuredChart.color,
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// Build category selector chips
+  Widget _buildCategorySelector() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(Icons.touch_app, color: Colors.grey[600], size: 18),
+            const SizedBox(width: 8),
+            Text(
+              'Klik grafik di bawah untuk tukar posisi',
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 13,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  /// Build small charts section
+  Widget _buildSmallCharts() {
+    final categories = _smallChartCategories;
+    
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(child: _buildClickableSmallChart(categories[0])),
+            const SizedBox(width: 12),
+            Expanded(child: _buildClickableSmallChart(categories[1])),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            Expanded(child: _buildClickableSmallChart(categories[2])),
+            const SizedBox(width: 12),
+            Expanded(child: _buildClickableSmallChart(categories[3])),
+          ],
+        ),
+      ],
+    );
+  }
+
+  /// Build a clickable small chart that swaps with featured when tapped
+  Widget _buildClickableSmallChart(ChartCategory category) {
+    return GestureDetector(
+      onTap: () => _swapChart(category),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: category.color.withValues(alpha: 0.2),
+            width: 1,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header with tap indicator
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: category.color.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Icon(
+                    category.icon,
+                    color: category.color,
+                    size: 16,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    '${category.shortTitle} ${widget.daerahGroup.tipe.toUpperCase()}.',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 10,
+                      color: category.color,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                // Tap to swap indicator
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[100],
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.swap_vert,
+                    size: 12,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              widget.daerahGroup.namaClean.toUpperCase(),
+              style: TextStyle(
+                fontSize: 9,
+                color: Colors.grey[500],
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 100,
+              child: _buildBarLineChart(
+                dataPoints: _getChartData(category),
+                isSmall: true,
+                accentColor: category.color,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -223,115 +586,10 @@ class _DetailScreenState extends State<DetailScreen> {
     );
   }
 
-  Widget _buildCategoryCharts() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: _buildSmallChart(
-                'PAJAK',
-                Colors.blue,
-                (d) => ChartDataPoint(
-                  tahun: d.tahun,
-                  anggaran: d.pajakAnggaran,
-                  realisasi: d.pajakRealisasi,
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildSmallChart(
-                'RETRIBUSI',
-                Colors.teal,
-                (d) => ChartDataPoint(
-                  tahun: d.tahun,
-                  anggaran: d.retribusiAnggaran,
-                  realisasi: d.retribusiRealisasi,
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(
-              child: _buildSmallChart(
-                'PENGELOLAAN KEKAYAAN',
-                Colors.purple,
-                (d) => ChartDataPoint(
-                  tahun: d.tahun,
-                  anggaran: d.pengelolaanAnggaran,
-                  realisasi: d.pengelolaanRealisasi,
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildSmallChart(
-                'LAIN PAD',
-                Colors.orange,
-                (d) => ChartDataPoint(
-                  tahun: d.tahun,
-                  anggaran: d.lainPadAnggaran,
-                  realisasi: d.lainPadRealisasi,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSmallChart(
-    String title,
-    Color accentColor,
-    ChartDataPoint Function(PADData) mapper,
-  ) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '$title ${widget.daerahGroup.tipe.toUpperCase()}. ${widget.daerahGroup.namaClean.toUpperCase()}',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 10,
-              color: accentColor,
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            height: 120,
-            child: _buildBarLineChart(
-              dataPoints: widget.daerahGroup.dataPerTahun.map(mapper).toList(),
-              isSmall: true,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildBarLineChart({
     required List<ChartDataPoint> dataPoints,
     bool isSmall = false,
+    Color accentColor = Colors.blue,
   }) {
     if (dataPoints.isEmpty) {
       return const Center(child: Text('Data tidak tersedia'));

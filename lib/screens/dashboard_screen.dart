@@ -18,8 +18,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final FirestoreService _firestoreService = FirestoreService();
   final AuthService _authService = AuthService();
 
-  int? _selectedYear;
-  List<int> _availableYears = [];
   bool _isSearching = false;
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
@@ -27,7 +25,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    _loadAvailableYears();
     _searchController.addListener(() {
       setState(() {
         _searchQuery = _searchController.text.toLowerCase();
@@ -39,16 +36,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void dispose() {
     _searchController.dispose();
     super.dispose();
-  }
-
-  Future<void> _loadAvailableYears() async {
-    final years = await _firestoreService.getAvailableYears();
-    setState(() {
-      _availableYears = years;
-      if (years.isNotEmpty) {
-        _selectedYear = years.last; // Default to latest year
-      }
-    });
   }
 
   @override
@@ -68,7 +55,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               )
             : const Text(
-                'Rekap PAD Jawa',
+                'Rekap PAD Jawa 2021-2025',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
         backgroundColor: const Color(0xFF1A237E),
@@ -87,42 +74,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             },
             icon: Icon(_isSearching ? Icons.close : Icons.search),
           ),
-
-          // Year filter dropdown (only show if not searching)
-          if (!_isSearching && _availableYears.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: DropdownButton<int?>(
-                value: _selectedYear,
-                dropdownColor: const Color(0xFF1A237E),
-                style: const TextStyle(color: Colors.white),
-                underline: Container(),
-                icon: const Icon(Icons.filter_list, color: Colors.white),
-                items: [
-                  const DropdownMenuItem<int?>(
-                    value: null,
-                    child: Text(
-                      'Semua Tahun',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  ..._availableYears.map((year) {
-                    return DropdownMenuItem<int?>(
-                      value: year,
-                      child: Text(
-                        '$year',
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    );
-                  }),
-                ],
-                onChanged: (value) {
-                  setState(() {
-                    _selectedYear = value;
-                  });
-                },
-              ),
-            ),
           
           // User Profile Menu
           PopupMenuButton<String>(
@@ -215,8 +166,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ],
       ),
-      body: StreamBuilder<List<PADData>>(
-        stream: _firestoreService.streamAllData(),
+      body: StreamBuilder<List<DaerahDataGroup>>(
+        stream: _firestoreService.streamGroupedData(),
         builder: (context, snapshot) {
           // Loading state
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -276,15 +227,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             );
           }
 
-          // Filter by selected year if needed
-          List<PADData> filteredData = snapshot.data!;
-
-          // 1. Filter by Year
-          if (_selectedYear != null) {
-            filteredData = filteredData.where((d) => d.tahun == _selectedYear).toList();
-          }
-
-          // 2. Filter by Search Query
+          // Filter by Search Query
+          List<DaerahDataGroup> filteredData = snapshot.data!;
+          
           if (_searchQuery.isNotEmpty) {
             filteredData = filteredData.where((item) {
               return item.daerah.toLowerCase().contains(_searchQuery) ||
@@ -298,13 +243,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
               // Stats summary card
               _buildStatsCard(filteredData),
 
-              // Data list
+              // Data list (grouped by daerah)
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 100),
                   itemCount: filteredData.length,
                   itemBuilder: (context, index) {
-                    final item = filteredData[index];
+                    final group = filteredData[index];
 
                     return Card(
                       margin: const EdgeInsets.only(bottom: 12),
@@ -314,24 +259,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          // Get full history for this region
-                          final fullHistory = snapshot.data!
-                              .where((d) => d.daerah == item.daerah)
-                              .toList();
-
-                          final group = DaerahDataGroup(
-                            daerah: item.daerah,
-                            namaClean: item.namaClean,
-                            tipe: item.tipe,
-                            dataPerTahun: fullHistory,
-                          );
-                          
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (_) => DetailScreen(
                                 daerahGroup: group,
-                                selectedYear: _selectedYear, // Pass strict filter
                               ),
                             ),
                           );
@@ -343,9 +275,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             children: [
                               // Icon/Avatar
                               CircleAvatar(
-                                backgroundColor: _getTipeColor(item.tipe),
+                                backgroundColor: _getTipeColor(group.tipe),
                                 child: Text(
-                                  item.namaClean.isNotEmpty ? item.namaClean.substring(0, 1) : '?',
+                                  group.namaClean.isNotEmpty ? group.namaClean.substring(0, 1) : '?',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -363,7 +295,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            item.daerah,
+                                            group.daerah,
                                             style: const TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16,
@@ -377,7 +309,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                             borderRadius: BorderRadius.circular(4),
                                           ),
                                           child: Text(
-                                            '${item.tahun}',
+                                            '${group.tahunList.length} Thn',
                                             style: const TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: Color(0xFF1A237E),
@@ -389,14 +321,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      'PAD Realisasi: ${_formatMoney(item.totalRealisasi)}',
+                                      'Rata-rata PAD: ${_formatMoney(group.rataRataPAD)}',
                                       style: const TextStyle(
                                         color: Colors.green,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     Text(
-                                      'Target: ${_formatMoney(item.totalAnggaran)} • ${item.totalPersentase.toStringAsFixed(1)}%',
+                                      'Data: ${_getYearRange(group.tahunList)} • ${group.tipe}',
                                       style: TextStyle(
                                         color: Colors.grey[600],
                                         fontSize: 12,
@@ -442,14 +374,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildStatsCard(List<PADData> data) {
+  Widget _buildStatsCard(List<DaerahDataGroup> data) {
+    // Calculate totals from all years across all regions
     double totalAnggaran = 0;
     double totalRealisasi = 0;
-    int totalRecords = data.length;
+    int totalDaerah = data.length;
+    Set<int> allYears = {};
 
-    for (var item in data) {
-      totalAnggaran += item.totalAnggaran;
-      totalRealisasi += item.totalRealisasi;
+    for (var group in data) {
+      for (var padData in group.dataPerTahun) {
+        totalAnggaran += padData.totalAnggaran;
+        totalRealisasi += padData.totalRealisasi;
+        allYears.add(padData.tahun);
+      }
     }
 
     double persentase = totalAnggaran > 0 ? (totalRealisasi / totalAnggaran) * 100 : 0;
@@ -474,16 +411,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       child: Column(
         children: [
+          // Title
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              'Rekap PAD Wilayah Jawa ${_getYearRangeFromSet(allYears)}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 13,
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildStatItem(
-                'Total Baris',
-                '$totalRecords',
-                Icons.description,
+                'Total Daerah',
+                '$totalDaerah',
+                Icons.location_on,
               ),
-              // Unique regions count
-              _buildStatItem('Daerah', '${data.map((e) => e.daerah).toSet().length}', Icons.location_on),
+              _buildStatItem(
+                'Periode',
+                '${allYears.length} Tahun',
+                Icons.calendar_month,
+              ),
             ],
           ),
           const Divider(color: Colors.white30, height: 24),
@@ -491,12 +448,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildStatItem(
-                'Anggaran',
+                'Total Anggaran',
                 _formatMoney(totalAnggaran),
                 Icons.account_balance_wallet,
               ),
               _buildStatItem(
-                'Realisasi',
+                'Total Realisasi',
                 _formatMoney(totalRealisasi),
                 Icons.trending_up,
               ),
@@ -515,7 +472,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 const Icon(Icons.percent, color: Colors.white, size: 20),
                 const SizedBox(width: 8),
                 Text(
-                  'Capaian: ${persentase.toStringAsFixed(2)}%',
+                  'Rata-rata Capaian: ${persentase.toStringAsFixed(2)}%',
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -576,5 +533,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
       return 'Rp ${(val / 1000000000).toStringAsFixed(1)} M';
     }
     return 'Rp ${(val / 1000000).toStringAsFixed(1)} Jt';
+  }
+
+  String _getYearRange(List<int> years) {
+    if (years.isEmpty) return '-';
+    if (years.length == 1) return years.first.toString();
+    final sorted = years.toList()..sort();
+    return '${sorted.first}-${sorted.last}';
+  }
+
+  String _getYearRangeFromSet(Set<int> years) {
+    if (years.isEmpty) return '';
+    final sorted = years.toList()..sort();
+    return '${sorted.first}-${sorted.last}';
   }
 }
