@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:excel/excel.dart' as excel_pkg;
+import 'package:path/path.dart' as p;
 
 /// Screen untuk import/update data PAD ke Firebase secara dynamic
 /// Mendukung Format CSV Clean (Header Lengkap) maupun Format Excel Export (Header Merged)
@@ -55,12 +57,13 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
       // Pick file
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
-        allowedExtensions: ['csv'],
+        allowedExtensions: ['csv', 'xlsx', 'xls'],
       );
 
       if (result != null && result.files.single.path != null) {
         final path = result.files.single.path!;
         final file = File(path);
+        final ext = p.extension(path).toLowerCase();
         
         setState(() {
           _selectedFileName = result.files.single.name;
@@ -71,7 +74,11 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
         _log('🎯 Target Tahun: $_targetYear');
         _log('🔍 Menganalisis isi file...');
         
-        await _analyzeFile(file);
+        if (ext == '.csv') {
+          await _analyzeCSV(file);
+        } else {
+          await _analyzeExcel(file);
+        }
         
         setState(() => _isAnalyzing = false);
       } else {
@@ -84,7 +91,7 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
   }
 
   /// 2. Parse CSV content
-  Future<void> _analyzeFile(File file) async {
+  Future<void> _analyzeCSV(File file) async {
     try {
       final lines = await file.readAsLines();
       _log('Total baris di file: ${lines.length}');
@@ -98,7 +105,6 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
       int headerRowIndex = -1;
       String delimiter = ',';
       
-      // Keywords to identify header row
       final keywords = ['daerah', 'kabupaten', 'kota', 'nama', 'pajak', 'no.'];
       
       for (int i = 0; i < lines.length; i++) {
@@ -108,199 +114,171 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
           if (lineLower.contains(k)) matches++;
         }
         
-        if (matches >= 1) { // Relaxed to 1 keyword to be easier
+        if (matches >= 1) {
           headerRowIndex = i;
-          
           if (lines[i].split(';').length > lines[i].split(',').length) {
             delimiter = ';';
-            _log('ℹ️ Mendeteksi delimiter: TITIK KOMA (;) di baris ${i+1}');
-          } else {
-            _log('ℹ️ Mendeteksi delimiter: KOMA (,) di baris ${i+1}');
           }
           break;
         }
       }
 
-      if (headerRowIndex == -1) {
-        _log('⚠️ Tidak dapat menemukan baris Header otomatis.');
-        headerRowIndex = 0;
-        if (lines[0].split(';').length > lines[0].split(',').length) delimiter = ';';
-      } else {
-        _log('✅ Header ditemukan di baris ${headerRowIndex + 1}');
-      }
-
-      final headerLine = lines[headerRowIndex];
-      final headers = _parseCSVLine(headerLine, delimiter).map((e) => e.trim().toUpperCase()).toList();
-      _log('Kolom Header: $headers');
+      headerRowIndex = headerRowIndex == -1 ? 0 : headerRowIndex;
+      final headers = _parseCSVLine(lines[headerRowIndex], delimiter)
+          .map((e) => e.trim().toUpperCase())
+          .toList();
       
-      // --- HEADER MAPPING STRATEGY ---
-      // Check for CLEAN CSV keys first (e.g. PAJAK_ANGGARAN)
-      // Map: KeyName -> ColumnIndex
-      Map<String, int> colMap = {};
-      
-      void mapCol(String key, List<String> possibilities) {
-         for (int i = 0; i < headers.length; i++) {
-            if (possibilities.any((p) => headers[i].contains(p))) {
-               if (!colMap.containsKey(key)) colMap[key] = i; // First match wins
-            }
-         }
-      }
-
-      // Definition of keys we look for
-      mapCol('DAERAH', ['DAERAH', 'NAMA PEMDA', 'KABUPATEN/KOTA']);
-      mapCol('NO', ['NOMOR_URUT', 'NO.', 'NO']);
-      
-      // Financial Columns search
-      mapCol('P_ANGG', ['PAJAK_ANGGARAN', 'PAJAK DAERAH_ANGGARAN', 'PENDAPATAN PAJAK_ANGGARAN']);
-      mapCol('P_REAL', ['PAJAK_REALISASI', 'PAJAK DAERAH_REALISASI', 'PENDAPATAN PAJAK_REALISASI']);
-      
-      mapCol('R_ANGG', ['RETRIBUSI_ANGGARAN', 'RETRIBUSI DAERAH_ANGGARAN']);
-      mapCol('R_REAL', ['RETRIBUSI_REALISASI', 'RETRIBUSI DAERAH_REALISASI']);
-      
-      mapCol('K_ANGG', ['KEKAYAAN_ANGGARAN', 'PENGELOLAAN_ANGGARAN', 'HASIL PENGELOLAAN_ANGGARAN']);
-      mapCol('K_REAL', ['KEKAYAAN_REALISASI', 'PENGELOLAAN_REALISASI', 'HASIL PENGELOLAAN_REALISASI']);
-      
-      mapCol('L_ANGG', ['LAIN_ANGGARAN', 'LAIN-LAIN_ANGGARAN', 'LAIN PAD_ANGGARAN']);
-      mapCol('L_REAL', ['LAIN_REALISASI', 'LAIN-LAIN_REALISASI', 'LAIN PAD_REALISASI']);
-
-      // Check if we found enough columns for Direct Mapping
-      bool useDirectMapping = colMap.containsKey('DAERAH') && colMap.containsKey('P_ANGG');
-      
-      if (useDirectMapping) {
-         _log('✅ METODE MAPPING: Header Column Name (Akurat)');
-         _log('   Daerah di index: ${colMap['DAERAH']}');
-         _log('   Pajak Anggaran di index: ${colMap['P_ANGG']}');
-      } else {
-         _log('⚠️ METODE MAPPING: Fallback Index (Menebak posisi kolom)');
-         // Fallback logic remains: Find 'Daerah', then +1, +2...
-         int dIdx = -1;
-         for (int i = 0; i < headers.length; i++) {
-           if (headers[i].contains('DAERAH')) { dIdx = i; break; }
-         }
-         colMap['DAERAH'] = (dIdx != -1) ? dIdx : 1;
-         
-         // Assume standard offset
-         int base = colMap['DAERAH']! + 1;
-         colMap['P_ANGG'] = base;
-         colMap['P_REAL'] = base + 1;
-         colMap['R_ANGG'] = base + 2;
-         colMap['R_REAL'] = base + 3;
-         colMap['K_ANGG'] = base + 4;
-         colMap['K_REAL'] = base + 5;
-         colMap['L_ANGG'] = base + 6;
-         colMap['L_REAL'] = base + 7;
-      }
-
-      Map<int, List<Map<String, dynamic>>> groupedData = {};
-      int totalRecords = 0;
-      int skippedCount = 0;
-
-      // Start parsing from the line AFTER header
-      for (int i = headerRowIndex + 1; i < lines.length; i++) {
-        if (lines[i].trim().isEmpty) continue;
-
-        // Skip total lines
-        if (lines[i].toLowerCase().contains('jumlah') || lines[i].toLowerCase().contains('total')) {
-          continue; 
-        }
-
-        final values = _parseCSVLine(lines[i], delimiter);
-        
-        // Validation check for column count
-        if (values.length < 5) continue;
-        
-        // --- DATA EXTRACTION ---
-        // Using User Selected Year
-        final int tahun = _targetYear;
-        
-        // Get Daerah
-        int idxDaerah = colMap['DAERAH'] ?? 1;
-        String daerah = "Unknown";
-        if (idxDaerah < values.length) {
-           daerah = values[idxDaerah].trim();
-        }
-        
-        // Use clean name to check validity
-        if (daerah.isEmpty || daerah.toLowerCase() == 'null' || daerah.length < 3) {
-           skippedCount++;
-           continue; 
-        }
-        
-        // Skip sub-headers where 'daerah' is valid but 'pajak' is text (e.g. "Anggaran")
-        int idxCheck = colMap['P_ANGG'] ?? (idxDaerah + 1);
-        if (idxCheck < values.length) {
-           final checkVal = values[idxCheck].trim().replaceAll('.', '').replaceAll(',', '');
-           if (RegExp(r'[a-zA-Z]').hasMatch(checkVal)) {
-              continue; // Skip sub-header
-           }
-        }
-        
-        // Get Nomor Urut
-        String nomorUrut = "";
-        int idxNo = colMap['NO'] ?? (idxDaerah > 0 ? idxDaerah - 1 : 0);
-        if (idxNo < values.length && idxNo >= 0) {
-           nomorUrut = values[idxNo].trim();
-        }
-
-        double getVal(String key) {
-           int? idx = colMap[key];
-           if (idx != null && idx < values.length) {
-              return _parseNumber(values[idx]);
-           }
-           return 0.0;
-        }
-
-        final record = {
-          'tahun': tahun,
-          'nomorUrut': nomorUrut, 
-          'daerah': daerah,
-          'namaClean': _cleanName(daerah),
-          'tipe': _determineType(daerah),
-          
-          'pajakAnggaran': getVal('P_ANGG'),
-          'pajakRealisasi': getVal('P_REAL'),
-          'retribusiAnggaran': getVal('R_ANGG'),
-          'retribusiRealisasi': getVal('R_REAL'),
-          
-          // Map both Kekayaan and Pengelolaan (aliases)
-          'pengelolaanAnggaran': getVal('K_ANGG'), 
-          'pengelolaanRealisasi': getVal('K_REAL'), 
-          'kekayaanAnggaran': getVal('K_ANGG'), 
-          'kekayaanRealisasi': getVal('K_REAL'), 
-          
-          'lainPadAnggaran': getVal('L_ANGG'),
-          'lainPadRealisasi': getVal('L_REAL'),
-          
-          'createdAt': FieldValue.serverTimestamp(),
-          'updatedAt': FieldValue.serverTimestamp(),
-        };
-
-        if (!groupedData.containsKey(tahun)) {
-          groupedData[tahun] = [];
-        }
-        groupedData[tahun]!.add(record);
-        totalRecords++;
-      }
-
-      setState(() {
-        _parsedData = groupedData;
-        _total = totalRecords;
-      });
-
-      if (totalRecords == 0) {
-         _log('❌ Tidak ada data valid ditemukan.');
-         if (skippedCount > 0) _log('⚠️ Total baris dilewati: $skippedCount');
-         
-         if (skippedCount > 0 && !useDirectMapping) {
-           _log('💡 Saran: Pastikan format CSV bersih atau gunakan format standar:');
-           _log('   [NO, DAERAH, PAJAK_ANGGARAN, PAJAK_REALISASI, ...]');
-         }
-      } else {
-        _log('✅ Analisis selesai. Ditemukan $totalRecords data untuk tahun $_targetYear.');
-      }
-
+      Map<String, int> colMap = _mapHeaders(headers);
+      _processRows(lines.sublist(headerRowIndex + 1), colMap, delimiter: delimiter);
     } catch (e) {
-      _log('❌ ERROR saat analisis file: $e');
+      _log('❌ ERROR saat analisis CSV: $e');
+    }
+  }
+
+  /// 2b. Parse Excel content
+  Future<void> _analyzeExcel(File file) async {
+    try {
+      var bytes = file.readAsBytesSync();
+      var excel = excel_pkg.Excel.decodeBytes(bytes);
+      
+      // Use first sheet
+      var sheetName = excel.tables.keys.first;
+      var sheet = excel.tables[sheetName]!;
+      _log('Sheet: $sheetName, Baris: ${sheet.maxRows}');
+
+      // Find header row
+      int headerRowIndex = -1;
+      final keywords = ['daerah', 'kabupaten', 'kota', 'nama', 'pajak'];
+      
+      for (int i = 0; i < 10 && i < sheet.maxRows; i++) {
+        final row = sheet.rows[i];
+        int matches = 0;
+        for (var cell in row) {
+          final val = cell?.value?.toString().toLowerCase() ?? '';
+          if (keywords.any((k) => val.contains(k))) matches++;
+        }
+        if (matches >= 1) {
+          headerRowIndex = i;
+          break;
+        }
+      }
+
+      headerRowIndex = headerRowIndex == -1 ? 0 : headerRowIndex;
+      final headerRow = sheet.rows[headerRowIndex];
+      final headers = headerRow.map((cell) => cell?.value?.toString().trim().toUpperCase() ?? '').toList();
+      
+      Map<String, int> colMap = _mapHeaders(headers);
+      
+      List<List<String>> listRows = [];
+      for (int i = headerRowIndex + 1; i < sheet.maxRows; i++) {
+        listRows.add(sheet.rows[i].map((c) => c?.value?.toString() ?? '').toList());
+      }
+      
+      _processRows(listRows, colMap);
+    } catch (e) {
+      _log('❌ ERROR saat analisis Excel: $e');
+    }
+  }
+
+  Map<String, int> _mapHeaders(List<String> headers) {
+    Map<String, int> colMap = {};
+    
+    void mapCol(String key, List<String> possibilities) {
+      for (int i = 0; i < headers.length; i++) {
+        if (possibilities.any((p) => headers[i].contains(p))) {
+          if (!colMap.containsKey(key)) colMap[key] = i;
+        }
+      }
+    }
+
+    mapCol('DAERAH', ['DAERAH', 'NAMA PEMDA', 'KABUPATEN/KOTA']);
+    mapCol('NO', ['NOMOR_URUT', 'NO.', 'NO']);
+    mapCol('P_ANGG', ['PAJAK_ANGGARAN', 'PAJAK DAERAH_ANGGARAN', 'PENDAPATAN PAJAK_ANGGARAN']);
+    mapCol('P_REAL', ['PAJAK_REALISASI', 'PAJAK DAERAH_REALISASI', 'PENDAPATAN PAJAK_REALISASI']);
+    mapCol('R_ANGG', ['RETRIBUSI_ANGGARAN', 'RETRIBUSI DAERAH_ANGGARAN']);
+    mapCol('R_REAL', ['RETRIBUSI_REALISASI', 'RETRIBUSI DAERAH_REALISASI']);
+    mapCol('K_ANGG', ['KEKAYAAN_ANGGARAN', 'PENGELOLAAN_ANGGARAN', 'HASIL PENGELOLAAN_ANGGARAN']);
+    mapCol('K_REAL', ['KEKAYAAN_REALISASI', 'PENGELOLAAN_REALISASI', 'HASIL PENGELOLAAN_REALISASI']);
+    mapCol('L_ANGG', ['LAIN_ANGGARAN', 'LAIN-LAIN_ANGGARAN', 'LAIN PAD_ANGGARAN']);
+    mapCol('L_REAL', ['LAIN_REALISASI', 'LAIN-LAIN_REALISASI', 'LAIN PAD_REALISASI']);
+
+    // Fallback if not mapping found
+    if (!colMap.containsKey('DAERAH')) {
+      int dIdx = headers.indexWhere((h) => h.contains('DAERAH'));
+      colMap['DAERAH'] = dIdx != -1 ? dIdx : 1;
+    }
+    
+    return colMap;
+  }
+
+  void _processRows(List<dynamic> rows, Map<String, int> colMap, {String? delimiter}) {
+    Map<int, List<Map<String, dynamic>>> groupedData = {};
+    int totalRecords = 0;
+
+    for (var rawRow in rows) {
+      List<String> values = [];
+      if (rawRow is String) {
+        values = _parseCSVLine(rawRow, delimiter ?? ',');
+      } else if (rawRow is List<String>) {
+        values = rawRow;
+      }
+
+      if (values.isEmpty) continue;
+      
+      // Filter out empty rows or summary rows
+      String daerahRaw = values[colMap['DAERAH'] ?? 0].trim();
+      if (daerahRaw.isEmpty || daerahRaw.toLowerCase().contains('jumlah') || daerahRaw.toLowerCase().contains('total')) {
+        continue;
+      }
+
+      double getVal(String key, {int? offset}) {
+        int? idx = colMap[key];
+        if (idx == null && offset != null) idx = (colMap['DAERAH'] ?? 0) + offset;
+        if (idx != null && idx < values.length) {
+          return _parseNumber(values[idx]);
+        }
+        return 0.0;
+      }
+
+      final record = {
+        'tahun': _targetYear,
+        'nomorUrut': colMap['NO'] != null && colMap['NO']! < values.length ? values[colMap['NO']!].trim() : '',
+        'daerah': daerahRaw,
+        'namaClean': _cleanName(daerahRaw),
+        'tipe': _determineType(daerahRaw),
+        
+        // Base index is the region name column
+        // Standard report format: Name, P_Angg, P_Real, P_%, R_Angg, R_Real, R_%, ...
+        'pajakAnggaran': getVal('P_ANGG', offset: 1),
+        'pajakRealisasi': getVal('P_REAL', offset: 2),
+        
+        'retribusiAnggaran': getVal('R_ANGG', offset: 4),
+        'retribusiRealisasi': getVal('R_REAL', offset: 5),
+        
+        'pengelolaanAnggaran': getVal('K_ANGG', offset: 7),
+        'pengelolaanRealisasi': getVal('K_REAL', offset: 8),
+        
+        'lainPadAnggaran': getVal('L_ANGG', offset: 10),
+        'lainPadRealisasi': getVal('L_REAL', offset: 11),
+        
+        'createdAt': FieldValue.serverTimestamp(),
+        'updatedAt': FieldValue.serverTimestamp(),
+      };
+
+      if (!groupedData.containsKey(_targetYear)) groupedData[_targetYear] = [];
+      groupedData[_targetYear]!.add(record);
+      totalRecords++;
+    }
+
+    setState(() {
+      _parsedData = groupedData;
+      _total = totalRecords;
+    });
+    
+    if (totalRecords > 0) {
+      _log('✅ Berhasil membersihkan $totalRecords data.');
+    } else {
+      _log('⚠️ Tidak ada data valid yang bisa diambil.');
     }
   }
 
@@ -447,11 +425,19 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
   }
 
   String _cleanName(String daerah) {
-    String name = daerah;
-    const prefixes = ['Prov. ', 'Kab. ', 'Kota ', 'DI ', 'DKI '];
+    String name = daerah.trim();
+    // Prefix cleaning (handle both Lower and Upper Case)
+    final prefixes = [
+      'Prov. ', 'PROV. ', 
+      'Kab. ', 'KAB. ', 
+      'Kota ', 'KOTA ', 
+      'DI ', 'DKI ', 
+      'KABUPATEN ', 'PROVINSI '
+    ];
+    
     for (var prefix in prefixes) {
-      if (name.startsWith(prefix)) {
-        name = name.substring(prefix.length);
+      if (name.toUpperCase().startsWith(prefix.toUpperCase())) {
+        name = name.substring(prefix.length).trim();
         break;
       }
     }
@@ -462,7 +448,7 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Import Data CSV'),
+        title: const Text('Import Data (Excel/CSV)'),
         backgroundColor: const Color(0xFF1A237E),
         foregroundColor: Colors.white,
       ),
@@ -513,12 +499,12 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
                     
                     const SizedBox(height: 16),
                     const Text(
-                      '2. Pilih File CSV',
+                      '2. Pilih File (Excel/CSV)',
                       style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xFF1A237E)),
                     ),
                     const SizedBox(height: 4),
                      const Text(
-                      'Format yang disarankan: Header ada (DAERAH, PAJAK_ANGGARAN, dll)',
+                      'Mendukung format .xlsx, .xls, dan .csv',
                       style: TextStyle(fontSize: 12, color: Colors.grey, fontStyle: FontStyle.italic),
                     ),
                     const SizedBox(height: 8),
@@ -550,7 +536,7 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
                             icon: _isAnalyzing 
                                 ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)) 
                                 : const Icon(Icons.folder_open),
-                            label: Text(_isAnalyzing ? 'Analyzing...' : 'Pilih CSV'),
+                            label: Text(_isAnalyzing ? 'Analyzing...' : 'Pilih File'),
                             style: OutlinedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 12),
                             ),
@@ -566,7 +552,15 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
                     ),
                     const SizedBox(height: 8),
                     
-                    if (_parsedData.isNotEmpty)
+                    if (_parsedData.isNotEmpty) ...[
+                      const SizedBox(height: 16),
+                      Text(
+                        '🔍 Preview Data (Hanya 3 pertama):',
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey[700]),
+                      ),
+                      const SizedBox(height: 8),
+                      _buildPreviewTable(),
+                      const SizedBox(height: 16),
                       Container(
                         margin: const EdgeInsets.only(bottom: 12),
                         padding: const EdgeInsets.all(12),
@@ -577,18 +571,19 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
                         ),
                         child: Row(
                           children: [
-                             const Icon(Icons.warning_amber, color: Colors.orange),
-                             const SizedBox(width: 12),
-                             Expanded(
-                               child: Text(
-                                  'Siap MENGGANTI data tahun $_targetYear?\n(${_parsedData[_targetYear]?.length} data terdeteksi)',
-                                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrange),
-                               ),
-                             ),
+                            const Icon(Icons.warning_amber, color: Colors.orange),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                'Siap MENGGANTI data tahun $_targetYear?\n(${_parsedData[_targetYear]?.length} data akan dikirim)',
+                                style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.deepOrange, fontSize: 13),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      
+                    ],
+                    
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton.icon(
@@ -601,6 +596,7 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
                           backgroundColor: Colors.green[700],
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         ),
                       ),
                     ),
@@ -650,5 +646,50 @@ class _ImportDataScreenState extends State<ImportDataScreen> {
         ),
       ),
     );
+  }
+
+  Widget _buildPreviewTable() {
+    final yearData = _parsedData[_targetYear] ?? [];
+    if (yearData.isEmpty) return const SizedBox.shrink();
+    
+    final previewData = yearData.take(3).toList();
+    
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[100],
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: Colors.grey[300]!),
+      ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: DataTable(
+          headingRowHeight: 30,
+          dataRowMinHeight: 30,
+          dataRowMaxHeight: 40,
+          columnSpacing: 16,
+          columns: const [
+            DataColumn(label: Text('Daerah', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold))),
+            DataColumn(label: Text('Pajak Angg', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold))),
+            DataColumn(label: Text('Retribusi Angg', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold))),
+          ],
+          rows: previewData.map((d) {
+            return DataRow(cells: [
+              DataCell(Text(d['namaClean'].toString(), style: const TextStyle(fontSize: 10))),
+              DataCell(Text(_formatShort(d['pajakAnggaran']), style: const TextStyle(fontSize: 10))),
+              DataCell(Text(_formatShort(d['retribusiAnggaran']), style: const TextStyle(fontSize: 10))),
+            ]);
+          }).toList(),
+        ),
+      ),
+    );
+  }
+
+  String _formatShort(dynamic val) {
+    if (val == null) return '0';
+    double d = val is double ? val : (double.tryParse(val.toString()) ?? 0.0);
+    if (d >= 1000000000000) return '${(d / 1000000000000).toStringAsFixed(1)}T';
+    if (d >= 1000000000) return '${(d / 1000000000).toStringAsFixed(1)}M';
+    if (d >= 1000000) return '${(d / 1000000).toStringAsFixed(0)}Jt';
+    return d.toStringAsFixed(0);
   }
 }
