@@ -18,6 +18,7 @@ class _InputDataScreenState extends State<InputDataScreen> {
   final _formKey = GlobalKey<FormState>();
   final FirestoreService _firestoreService = FirestoreService();
   bool _isLoading = false;
+  List<String> _existingRegions = [];
 
   // Controllers
   late TextEditingController _tahunController;
@@ -49,6 +50,21 @@ class _InputDataScreenState extends State<InputDataScreen> {
     _kekayaanRealController = TextEditingController(text: fmt(d?.pengelolaanRealisasi));
     _lainAngController = TextEditingController(text: fmt(d?.lainPadAnggaran));
     _lainRealController = TextEditingController(text: fmt(d?.lainPadRealisasi));
+    
+    _fetchRegions();
+  }
+
+  Future<void> _fetchRegions() async {
+    try {
+      final regions = await _firestoreService.getDaerahList();
+      if (mounted) {
+        setState(() {
+          _existingRegions = regions;
+        });
+      }
+    } catch (e) {
+      debugPrint('Error fetching regions: $e');
+    }
   }
 
   @override
@@ -136,7 +152,7 @@ class _InputDataScreenState extends State<InputDataScreen> {
                     const SizedBox(width: 16),
                     Expanded(
                       flex: 2,
-                      child: _buildTextField(_daerahController, 'Nama Daerah (Prov/Kab/Kota)'),
+                      child: _buildDaerahField(),
                     ),
                   ],
                 ),
@@ -232,6 +248,50 @@ class _InputDataScreenState extends State<InputDataScreen> {
       validator: (val) {
         if (val == null || val.isEmpty) return 'Wajib diisi';
         return null;
+      },
+    );
+  }
+
+  Widget _buildDaerahField() {
+    return Autocomplete<String>(
+      optionsBuilder: (TextEditingValue textEditingValue) {
+        if (textEditingValue.text == '') {
+          return const Iterable<String>.empty();
+        }
+        return _existingRegions.where((String option) {
+          return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+        });
+      },
+      initialValue: TextEditingValue(text: _daerahController.text),
+      onSelected: (String selection) {
+        _daerahController.text = selection;
+      },
+      fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) {
+        // Sync our controller with autocomplete's controller
+        textEditingController.addListener(() {
+          _daerahController.text = textEditingController.text;
+        });
+        
+        // Handle pre-fill
+        if (textEditingController.text.isEmpty && _daerahController.text.isNotEmpty) {
+          textEditingController.text = _daerahController.text;
+        }
+
+        return TextFormField(
+          controller: textEditingController,
+          focusNode: focusNode,
+          decoration: const InputDecoration(
+            labelText: 'Nama Daerah (Prov/Kab/Kota)',
+            border: OutlineInputBorder(),
+            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            isDense: true,
+            suffixIcon: Icon(Icons.search, size: 20),
+          ),
+          validator: (val) {
+            if (val == null || val.isEmpty) return 'Wajib diisi';
+            return null;
+          },
+        );
       },
     );
   }
