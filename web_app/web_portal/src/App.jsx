@@ -770,6 +770,16 @@ function App() {
   // =====================
   // MAIN LAYOUT
   // =====================
+  const getCategoryLabel = useCallback((codes) => {
+    if (!codes || codes === 'all') return METRICS.find(m => m.id === activeMetric)?.label || 'PAD Total';
+    if (Array.isArray(codes)) {
+      if (codes.length === 0) return 'Tidak ada komponen';
+      if (codes.length === 1) return categories.find(c => c.kode === codes[0])?.nama || codes[0];
+      return `${codes.length} Komponen Terpilih`;
+    }
+    return categories.find(c => c.kode === codes)?.nama || codes;
+  }, [categories, activeMetric]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0c1427] via-[#020617] to-[#01030e] flex flex-col lg:flex-row relative">
       
@@ -1451,25 +1461,9 @@ function App() {
                               </div>
                               <h3 
                                 className="text-white font-black text-xs uppercase tracking-widest truncate"
-                                title={activeSubMetric !== 'all' 
-                                  ? `Ranking 6 Provinsi: ${
-                                      Array.isArray(activeSubMetric) 
-                                        ? (activeSubMetric.length === 1 
-                                            ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0])
-                                            : `${activeSubMetric.length} Komponen Terpilih`)
-                                        : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)
-                                    }` 
-                                  : `Ranking 6 Provinsi: ${METRICS.find(m => m.id === activeMetric)?.label || 'PAD'}`}
+                                title={`Ranking 6 Provinsi: ${getCategoryLabel(activeSubMetric)}`}
                               >
-                                {activeSubMetric !== 'all' 
-                                  ? `Ranking 6 Provinsi: ${
-                                      Array.isArray(activeSubMetric) 
-                                        ? (activeSubMetric.length === 1 
-                                            ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0])
-                                            : `${activeSubMetric.length} Komponen Terpilih`)
-                                        : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)
-                                    }` 
-                                  : `Ranking 6 Provinsi: ${METRICS.find(m => m.id === activeMetric)?.label || 'PAD'}`}
+                                Ranking 6 Provinsi: {getCategoryLabel(activeSubMetric)}
                               </h3>
                             </div>
 
@@ -1529,7 +1523,15 @@ function App() {
                             <AlertTriangle size={32} className="text-amber-500 mb-4 opacity-50" />
                             <h3 className="text-white font-black text-xs uppercase tracking-widest mb-2">Data Tidak Tersedia</h3>
                             <p className="text-slate-400 text-[10px] uppercase font-bold leading-relaxed px-4">
-                              Kategori ini mungkin tidak tersedia untuk level Provinsi.
+                              {activeSubMetric !== 'all' ? (
+                                Array.isArray(activeSubMetric)
+                                  ? activeSubMetric.every(code => code.startsWith('PAJ-KK'))
+                                    ? `Kategori pajak yang Anda pilih merupakan kewenangan pemerintah Kabupaten/Kota.`
+                                    : `Kategori ini tidak tersedia untuk level Provinsi.`
+                                  : activeSubMetric.startsWith('PAJ-KK')
+                                    ? `Kategori "${categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric}" merupakan kewenangan Kabupaten/Kota.`
+                                    : `Data tidak ditemukan untuk kategori ini.`
+                              ) : `Belum ada data yang dapat ditampilkan untuk kriteria ini.`}
                             </p>
                           </motion.div>
                         )}
@@ -1554,25 +1556,9 @@ function App() {
                                 </div>
                                 <h3 
                                   className="text-white font-black text-sm uppercase tracking-widest truncate max-w-[250px] md:max-w-md"
-                                  title={activeSubMetric !== 'all' 
-                                    ? `Analisis Performa: ${
-                                        Array.isArray(activeSubMetric)
-                                          ? (activeSubMetric.length === 1
-                                              ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0])
-                                              : `${activeSubMetric.length} Komponen Terpilih`)
-                                          : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)
-                                      }`
-                                    : `Analisis Performa Kab/Kota`}
+                                  title={`Analisis Performa: ${getCategoryLabel(activeSubMetric)}`}
                                 >
-                                  {activeSubMetric !== 'all' 
-                                    ? `Analisis Performa: ${
-                                        Array.isArray(activeSubMetric)
-                                          ? (activeSubMetric.length === 1
-                                              ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0])
-                                              : `${activeSubMetric.length} Komponen Terpilih`)
-                                          : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)
-                                      }`
-                                    : `Analisis Performa Kab/Kota`}
+                                  Analisis Performa: {getCategoryLabel(activeSubMetric)}
                                 </h3>
                               </div>
                               <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
@@ -1664,7 +1650,15 @@ function App() {
                             </div>
                             <h3 className="text-white font-black text-lg uppercase tracking-widest mb-4">Analisis Performa Tidak Tersedia</h3>
                             <p className="text-slate-400 text-sm font-bold leading-relaxed max-w-md mx-auto">
-                              Kategori {activeSubMetric !== 'all' ? `"${categories.find(c => c.kode === activeSubMetric)?.nama}"` : ''} merupakan kewenangan khusus level Provinsi. Data untuk Kabupaten/Kota pada sektor ini tidak ditemukan.
+                              {activeSubMetric !== 'all' ? (
+                                Array.isArray(activeSubMetric)
+                                  ? activeSubMetric.every(code => code.startsWith('PAJ-PROV'))
+                                    ? `Kategori yang Anda pilih merupakan kewenangan khusus level Provinsi. Data untuk Kabupaten/Kota pada sektor ini tidak ditemukan.`
+                                    : `Data rincian tidak tersedia untuk wilayah Kabupaten/Kota pada periode ini.`
+                                  : activeSubMetric.startsWith('PAJ-PROV')
+                                    ? `Kategori "${getCategoryLabel(activeSubMetric)}" merupakan kewenangan khusus level Provinsi.`
+                                    : `Data tidak ditemukan untuk kategori ini.`
+                              ) : `Belum ada data rincian yang dipilih atau tersedia untuk ditampilkan.`}
                             </p>
                             <button 
                               onClick={() => {
@@ -2027,7 +2021,7 @@ function App() {
                 onRegionClick={setSelectedRegion} 
                 activeMetric={activeMetric} 
                 subDataLookup={regionalSubData} 
-                metricLabel={activeSubMetric !== 'all' ? categories.find(c => c.kode === activeSubMetric)?.nama : METRICS.find(m => m.id === activeMetric)?.label}
+                metricLabel={getCategoryLabel(activeSubMetric)}
               />
             </motion.div>
           )}
@@ -2045,7 +2039,7 @@ function App() {
               selectedYear={selectedYear}
               activeMetric={activeMetric}
               activeSubMetric={activeSubMetric}
-              metricLabel={activeSubMetric !== 'all' ? categories.find(c => c.kode === activeSubMetric)?.nama : METRICS.find(m => m.id === activeMetric)?.label}
+              metricLabel={getCategoryLabel(activeSubMetric)}
             />
           )}
         </div>
