@@ -725,7 +725,7 @@ function App() {
                   <motion.div key={i} animate={{ scaleY: [1, 2.5, 1] }} transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.2 }} className="w-1.5 h-5 bg-brand-400 rounded-full" />
                 ))}
               </div>
-              <p className="text-brand-300 text-xs font-black uppercase tracking-widest">Menghubungkan ke Supabase...</p>
+              <p className="text-brand-300 text-xs font-black uppercase tracking-widest">Sinkronisasi Pusat Data Analitik...</p>
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="mt-10 flex gap-3 text-[10px] text-brand-500 uppercase tracking-widest">
