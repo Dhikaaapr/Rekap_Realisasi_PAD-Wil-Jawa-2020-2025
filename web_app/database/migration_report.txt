@@ -1,0 +1,9 @@
+MIGRATION STATUS SUMMARY
+------------------------------
+Year 2021: Main=128, Details=3470
+Year 2022: Main=128, Details=3426
+Year 2023: Main=128, Details=3422
+Year 2024: Main=135, Details=4463
+Year 2025: Main=550, Details=2437
+
+Total Reference Categories: 432

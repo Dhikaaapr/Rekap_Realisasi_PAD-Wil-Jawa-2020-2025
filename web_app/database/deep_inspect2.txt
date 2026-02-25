@@ -1,0 +1,102 @@
+=== DB 2021: All header rows (row 4, 7, 8) - ALL cols ===
+Row 4: ['NO.', 'DAERAH', 'PENDAPATAN ASLI DAERAH', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'TOTAL PENDAPATAN ASLI DAERAH', 'nan', 'nan', 'TOTAL PENDAPATAN DAERAH', 'nan', 'nan', 'nan', 'BELANJA DAERAH', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'TOTAL BELANJA DAERAH', 'nan', 'nan']
+
+Row 7: ['nan', 'nan', 'PAJAK', 'nan', 'nan', 'RETRIBUSI', 'nan', 'nan', 'PENGELOLAAN KEKAYAAN', 'nan', 'nan', 'LAIN PAD', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'PEGAWAI', 'nan', 'nan', 'BARANG DAN JASA', 'nan', 'nan', 'BUNGA', 'nan', 'nan', 'SUBSIDI', 'nan', 'nan', 'HIBAH', 'nan', 'nan', 'BANTUAN SOSIAL', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+
+Row 8: ['nan', 'nan', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'nan', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%']
+
+Total rows: 558, Total cols: 54
+Found region at row 174: Prov. DKI Jakarta
+Found region at row 175: Prov. Jawa Barat
+
+
+=== DB 2023: Header rows ===
+Row 0: ['REKAPITULASI PENDAPATAN DAN BELANJA', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+Row 1: ['PROVINSI, KAB/KOTA', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+Row 2: ['TAHUN ANGGARAN 2023', 'nan', 'nan', '                                                                                                                                                                                                                ', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+Row 3: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+Row 4: ['NO.', 'DAERAH', 'PENDAPATAN', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+Row 5: ['nan', 'nan', 'PENDAPATAN ASLI DAERAH', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'TOTAL PENDAPATAN ASLI DAERAH', 'nan', 'nan', 'PENDAPATAN TRANSFER', 'nan', 'nan']
+Row 6: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'TRANSFER PEMERINTAH PUSAT', 'nan', 'nan']
+Row 7: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'DANA PERIMBANGAN', 'nan', 'nan']
+Row 8: ['nan', 'nan', 'PAJAK', 'nan', 'nan', 'RETRIBUSI', 'nan', 'nan', 'PENGELOLAAN KEKAYAAN', 'nan', 'nan', 'LAIN PAD', 'nan', 'nan', 'nan', 'nan', 'nan', 'DANA BAGI HASIL', 'nan', 'nan']
+Row 9: ['nan', 'nan', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%']
+Total rows: 562, Total cols: 166
+
+
+=== DB 2022: Header rows ===
+Sheets: ['LRA', 'Sheet1']
+Sheet [LRA]: rows=574, cols=132
+  Row 0: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 1: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 2: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 3: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 4: ['NO.', 'DAERAH', 'PENDAPATAN DAERAH', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 5: ['nan', 'nan', 'PENDAPATAN ASLI DAERAH', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'TOTAL PENDAPATAN ASLI DAERAH']
+  Row 6: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 7: ['nan', 'nan', 'PAJAK', 'nan', 'nan', 'RETRIBUSI', 'nan', 'nan', 'PENGELOLAAN KEKAYAAN', 'nan', 'nan', 'LAIN PAD', 'nan', 'nan', 'nan']
+  Row 8: ['nan', 'nan', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN']
+  Row 9: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+Sheet [Sheet1]: rows=557, cols=1
+  Row 0: ['nan']
+  Row 1: ['nan']
+  Row 2: ['nan']
+  Row 3: ['DAERAH']
+  Row 4: ['nan']
+  Row 5: ['nan']
+  Row 6: ['nan']
+  Row 7: ['nan']
+  Row 8: ['-2']
+  Row 9: ['nan']
+
+
+=== REKAP 2025: Header rows ===
+Sheets: ['LRA (sort) (2)', 'LRA (sort)', 'LRA']
+Sheet [LRA (sort) (2)]: rows=16, cols=75
+  Row 0: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 1: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 2: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 3: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 4: ['NO.', 'DAERAH', 'PENDAPATAN', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 5: ['nan', 'nan', 'PENDAPATAN ASLI DAERAH', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 6: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 7: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 8: ['nan', 'nan', 'PAJAK', 'nan', 'nan', 'RETRIBUSI', 'nan', 'nan', 'PENGELOLAAN KEKAYAAN', 'nan', 'nan', 'LAIN PAD', 'nan', 'nan', 'nan']
+  Row 9: ['nan', 'nan', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'nan']
+  Row 10: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 11: ['nan', 'Total Provinsi', '159524654688049.47', '141542566077737.16', '88.72770566689124', '14956989189432.67', '15034449640043.309', '100.51788798955184', '6020364641258.561', '4553953757389.23', '75.64249059235097', '12313694676796.809', '11725419569835.479', '95.22259466064365', 'nan']
+  Row 12: ['nan', 'Total Kabupaten', '77443512641916.34', '67045301421196.164', '86.57316685930883', '40723539824556.805', '33926741856195.008', '83.30990381080959', '5107508280329.02', '4445462343585.803', '87.03779024122173', '18639631692804.047', '15350731228902.389', '82.35533556614556', 'nan']
+  Row 13: ['nan', 'Total Kota', '55425873069394.086', '48638602471618.42', '87.7543280386799', '10601652974702.04', '8686588996724.47', '81.93617558934113', '1512168095931.8599', '1352896946227.8098', '89.4673647637103', '6400553913497.619', '5716314945287.979', '89.30969135707609', 'nan']
+  Row 14: ['nan', 'Total Kabupaten/Kota', '132869385711310.44', '115683903892814.6', '87.06588298990462', '51325192799258.84', '42613330852919.48', '83.02614861981547', '6619676376260.879', '5798359289813.612', '87.59279094983211', '25040185606301.664', '21067046174190.367', '84.13294735678234', 'nan']
+Sheet [LRA (sort)]: rows=577, cols=157
+  Row 0: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 1: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 2: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 3: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 4: ['NO.', 'DAERAH', 'PENDAPATAN', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 5: ['nan', 'nan', 'PENDAPATAN ASLI DAERAH', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'TOTAL PENDAPATAN ASLI DAERAH']
+  Row 6: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 7: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 8: ['nan', 'nan', 'PAJAK', 'nan', 'nan', 'RETRIBUSI', 'nan', 'nan', 'PENGELOLAAN KEKAYAAN', 'nan', 'nan', 'LAIN PAD', 'nan', 'nan', 'nan']
+  Row 9: ['nan', 'nan', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN']
+  Row 10: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 11: ['II', 'Prov. Sumatera Utara', '5605254375313', '4663685203040.09', '83.2', '192531703635', '182761841779.52', '94.93', '353166995232', '329075868190', '93.18', '268348553574', '75128465319.93', '28', '6419301627754']
+  Row 12: ['VIII', 'Prov. Sumatera Selatan', '3833367486607', '3748186761393.68', '97.78', '5110991800', '5227615402', '102.28', '173213785434', '106316886488.21', '61.38', '826594890750', '501956906938.43', '60.73', '4838287154591']
+  Row 13: ['III', 'Prov. Sumatera Barat', '2118471018085', '1874949026022.5', '88.5', '386624597307', '382608734891.01', '98.96', '139682145880', '126838893909', '90.81', '162665402244', '125491878303.8', '77.15', '2807443163516']
+  Row 14: ['XXIV', 'Prov. Sulawesi Utara', '1143261370444', '1030773281505', '90.16', '248879815140', '189669086202', '76.21', '71294004424', '71294004424', '100', '49549990152', '20780667980', '41.94', '1512985180160']
+Sheet [LRA]: rows=575, cols=157
+  Row 0: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 1: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 2: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 3: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 4: ['NO.', 'DAERAH', 'PENDAPATAN', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 5: ['nan', 'nan', 'PENDAPATAN ASLI DAERAH', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'TOTAL PENDAPATAN ASLI DAERAH']
+  Row 6: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 7: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 8: ['nan', 'nan', 'PAJAK', 'nan', 'nan', 'RETRIBUSI', 'nan', 'nan', 'PENGELOLAAN KEKAYAAN', 'nan', 'nan', 'LAIN PAD', 'nan', 'nan', 'nan']
+  Row 9: ['nan', 'nan', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN', 'REALISASI', '%', 'ANGGARAN']
+  Row 10: ['nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan', 'nan']
+  Row 11: ['I', 'Prov. Aceh', '1552776409674', '1375597590280.18', '88.59', '708333834165', '574955694563.81', '81.17', '267905085228', '270253493775', '100.88', '178532808280', '216496374122.1', '121.26', '2707548137347']
+  Row 12: ['1', 'Kab. Aceh Barat Daya', '30904567724', '15196637398', '49.17', '92208384460', '66513503587.99', '72.13', '2580274392', '2580274392', '100', '7483414511', '9460273368.43', '126.42', '133176641087']
+  Row 13: ['2', 'Kab. Aceh Barat', '49712540645', '48595456162.1', '97.75', '14712302000', '8438192552.58', '57.35', '4000000000', '3783983684', '94.6', '122269476078.32', '104144487361.95', '85.18', '190694318723.32']
+  Row 14: ['3', 'Kab. Aceh Besar', '126547602550', '112588723422.8', '88.97', '29122000000', '25074137151', '86.1', '5916175578', '5916175578', '100', '26891921872', '8109504982.43', '30.16', '188477700000']

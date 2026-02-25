@@ -1,0 +1,38 @@
+Total 2024 rows: 0-0/4463
+
+Regions in pad_data: 547
+  pad_data: 'JUMLAH'
+  pad_data: 'Kab. Aceh Barat'
+  pad_data: 'Kab. Aceh Barat Daya'
+  pad_data: 'Kab. Aceh Besar'
+  pad_data: 'Kab. Aceh Jaya'
+
+Regions in detail_pad_data (2025): 263
+  detail: 'Kab. Lombok Timur'
+  detail: 'Kab. Lombok Utara'
+  detail: 'Kab. Luwu'
+  detail: 'Kab. Luwu Timur'
+  detail: 'Kab. Luwu Utara'
+  detail: 'Kab. Mahakam Ulu'
+  detail: 'Kab. Majene'
+  detail: 'Kab. Malaka'
+  detail: 'Kab. Malinau'
+  detail: 'Kab. Maluku Barat Daya'
+
+Kab. Bangkalan 2025 detail count: 4
+  [4.1.01] Pajak Daerah
+  [4.1.02] Retribusi Daerah
+  [4.1.03] Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan
+  [4.1.04] Lain-lain PAD yang Sah
+
+Regions in detail 2021: 45
+  'Kab. Bandung': 30 rows
+  'Kab. Bandung Barat': 23 rows
+  'Kab. Bekasi': 32 rows
+  'Kab. Bogor': 18 rows
+  'Kab. Ciamis': 29 rows
+  'Kab. Cianjur': 32 rows
+  'Kab. Cilacap': 1 rows
+  'Kab. Cirebon': 17 rows
+  'Kab. Demak': 4 rows
+  'Kab. Garut': 33 rows

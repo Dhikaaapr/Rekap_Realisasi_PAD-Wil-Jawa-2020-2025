@@ -1,0 +1,26 @@
+
+--- Checking Sukoharjo 2024 in Database ---
+Total Rows: 247
+Max depth level: 9
+Segments distribution:
+segments
+1      1
+3      3
+5      7
+7     32
+9    204
+Name: count, dtype: int64
+PBJT related rows: 17
+
+--- Checking Sukoharjo 2025 in Database ---
+Total Rows: 105
+Max depth level: 9
+Segments distribution:
+segments
+1     1
+3     1
+5     3
+7    13
+9    87
+Name: count, dtype: int64
+PBJT related rows: 17

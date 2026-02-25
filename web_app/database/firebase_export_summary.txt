@@ -1,0 +1,142 @@
+============================================================
+FIREBASE EXPORT SUMMARY
+============================================================
+Timestamp: 2026-02-18 10:36:53
+Source: Firebase Firestore (rekap-pad)
+
+Total pad_data records: 595
+Total users records: 0
+Total daerah unik: 119
+
+Distribusi per Tahun:
+  2021: 119 records
+  2022: 119 records
+  2023: 119 records
+  2024: 119 records
+  2025: 119 records
+
+Fields yang ditemukan:
+  ['_firebase_doc_id', 'daerah', 'lainPadAnggaran', 'lainPadRealisasi', 'nomorUrut', 'pajakAnggaran', 'pajakRealisasi', 'pengelolaanAnggaran', 'pengelolaanRealisasi', 'retribusiAnggaran', 'retribusiRealisasi', 'tahun']
+
+Daerah yang ditemukan:
+  - Kab. Bandung
+  - Kab. Bandung Barat
+  - Kab. Bangkalan
+  - Kab. Banjarnegara
+  - Kab. Bantul
+  - Kab. Banyumas
+  - Kab. Banyuwangi
+  - Kab. Batang
+  - Kab. Bekasi
+  - Kab. Blitar
+  - Kab. Blora
+  - Kab. Bogor
+  - Kab. Bojonegoro
+  - Kab. Bondowoso
+  - Kab. Boyolali
+  - Kab. Brebes
+  - Kab. Ciamis
+  - Kab. Cianjur
+  - Kab. Cilacap
+  - Kab. Cirebon
+  - Kab. Demak
+  - Kab. Garut
+  - Kab. Gresik
+  - Kab. Grobogan
+  - Kab. Gunung Kidul
+  - Kab. Indramayu
+  - Kab. Jember
+  - Kab. Jepara
+  - Kab. Jombang
+  - Kab. Karanganyar
+  - Kab. Karawang
+  - Kab. Kebumen
+  - Kab. Kediri
+  - Kab. Kendal
+  - Kab. Klaten
+  - Kab. Kudus
+  - Kab. Kulon Progo
+  - Kab. Kuningan
+  - Kab. Lamongan
+  - Kab. Lebak
+  - Kab. Lumajang
+  - Kab. Madiun
+  - Kab. Magelang
+  - Kab. Magetan
+  - Kab. Majalengka
+  - Kab. Malang
+  - Kab. Mojokerto
+  - Kab. Nganjuk
+  - Kab. Ngawi
+  - Kab. Pacitan
+  - Kab. Pamekasan
+  - Kab. Pandeglang
+  - Kab. Pangandaran
+  - Kab. Pasuruan
+  - Kab. Pati
+  - Kab. Pekalongan
+  - Kab. Pemalang
+  - Kab. Ponorogo
+  - Kab. Probolinggo
+  - Kab. Purbalingga
+  - Kab. Purwakarta
+  - Kab. Purworejo
+  - Kab. Rembang
+  - Kab. Sampang
+  - Kab. Semarang
+  - Kab. Serang
+  - Kab. Sidoarjo
+  - Kab. Situbondo
+  - Kab. Sleman
+  - Kab. Sragen
+  - Kab. Subang
+  - Kab. Sukabumi
+  - Kab. Sukoharjo
+  - Kab. Sumedang
+  - Kab. Sumenep
+  - Kab. Tangerang
+  - Kab. Tasikmalaya
+  - Kab. Tegal
+  - Kab. Temanggung
+  - Kab. Trenggalek
+  - Kab. Tuban
+  - Kab. Tulungagung
+  - Kab. Wonogiri
+  - Kab. Wonosobo
+  - Kota Bandung
+  - Kota Banjar
+  - Kota Batu
+  - Kota Bekasi
+  - Kota Blitar
+  - Kota Bogor
+  - Kota Cilegon
+  - Kota Cimahi
+  - Kota Cirebon
+  - Kota Depok
+  - Kota Kediri
+  - Kota Madiun
+  - Kota Magelang
+  - Kota Malang
+  - Kota Mojokerto
+  - Kota Pasuruan
+  - Kota Pekalongan
+  - Kota Probolinggo
+  - Kota Salatiga
+  - Kota Semarang
+  - Kota Serang
+  - Kota Sukabumi
+  - Kota Surabaya
+  - Kota Surakarta
+  - Kota Tangerang
+  - Kota Tangerang Selatan
+  - Kota Tasikmalaya
+  - Kota Tegal
+  - Kota Yogyakarta
+  - Prov. Banten
+  - Prov. DI Yogyakarta
+  - Prov. DKI Jakarta
+  - Prov. Jawa Barat
+  - Prov. Jawa Tengah
+  - Prov. Jawa Timur
+
+============================================================

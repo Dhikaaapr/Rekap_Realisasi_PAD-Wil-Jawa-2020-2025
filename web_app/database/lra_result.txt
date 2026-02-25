@@ -1,0 +1,7 @@
+2021: 3470 rows, 125 regions, 113 granular, 12 basic
+2022: 3426 rows, 125 regions, 113 granular, 12 basic
+2023: 3422 rows, 125 regions, 113 granular, 12 basic
+2024: 4463 rows, 132 regions, 120 granular, 12 basic
+2025: 2437 rows, 546 regions, 1 granular, 545 basic
+KABKOTA.xlsx sheets: ['2020', '2021', '2022', '2023', '2024']
+PROVINSI.xlsx sheets: ['2020', '2021', '2022', '2023', '2024']

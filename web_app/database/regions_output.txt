@@ -1,0 +1,41 @@
+Total detail rows for 2024: 1000
+Distinct regions with detail in 2024: 14
+  Kab. Bangkalan: 27 rows
+  Kab. Gresik: 25 rows
+  Kab. Labuhanbatu: 191 rows
+  Kab. Labuhanbatu Selatan: 191 rows
+  Kab. Labuhanbatu Utara: 191 rows
+  Kab. Pamekasan: 28 rows
+  Kab. Sampang: 26 rows
+  Kab. Solok: 191 rows
+  Kab. Solok Selatan: 9 rows
+  Kab. Sumenep: 29 rows
+
+====== SAMPLE: Kab. Bangkalan (2024) ======
+[4] PENDAPATAN DAERAH | A:Rp 2486.8M | R:Rp 2421.9M
+  [4.1] PENDAPATAN ASLI DAERAH (PAD) | A:Rp 407.0M | R:Rp 414.1M
+      [4.1.01.06] Pajak Hotel | A:Rp 450Jt | R:Rp 158Jt
+      [4.1.01.07] Pajak Restoran | A:Rp 11.4M | R:Rp 6.2M
+      [4.1.01.08] Pajak Hiburan | A:Rp 296Jt | R:Rp 129Jt
+      [4.1.01.09] Pajak Reklame | A:Rp 2.7M | R:Rp 2.0M
+      [4.1.01.10] Pajak Penerangan Jalan | A:Rp 35.3M | R:Rp 36.2M
+      [4.1.01.11] Pajak Parkir | A:Rp 450Jt | R:Rp 288Jt
+      [4.1.01.12] Pajak Air Tanah | A:Rp 350Jt | R:Rp 516Jt
+      [4.1.01.13] Pajak Sarang Burung Walet | A:Rp 4Jt | R:-
+      [4.1.01.14] Pajak Mineral Bukan Logam dan Batuan | A:Rp 100Jt | R:Rp 20Jt
+      [4.1.01.15] Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2) | A:Rp 9.4M | R:Rp 7.3M
+      [4.1.01.16] Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB) | A:Rp 17.5M | R:Rp 18.9M
+        [4.1.02.01.01] Retribusi Pelayanan Kesehatan | A:Rp 305.6M | R:Rp 317.6M
+        [4.1.02.01.02] Retribusi Pelayanan Persampahan/ Kebersihan | A:Rp 225Jt | R:Rp 225Jt
+        [4.1.02.01.04] Retribusi Pelayanan Parkir di Tepi Jalan Umum | A:Rp 5.7M | R:Rp 5.3M
+        [4.1.02.01.05] Retribusi Pelayanan Pasar | A:Rp 5.8M | R:Rp 4.8M
+        [4.1.02.02.01] Retribusi Pemakaian Kekayaan Daerah | A:Rp 462Jt | R:Rp 508Jt
+        [4.1.02.02.02] Retribusi Pasar Grosir dan/atau Pertokoan | A:Rp 33Jt | R:Rp 17Jt
+        [4.1.02.02.03] Retribusi Tempat Pelelangan | A:Rp 15Jt | R:Rp 16Jt
+        [4.1.02.02.04] Retribusi Terminal | A:Rp 5Jt | R:-
+        [4.1.02.02.05] Retribusi Tempat Khusus Parkir | A:Rp 1.4M | R:Rp 1.1M
+        [4.1.02.02.07] Retribusi Rumah Potong Hewan | A:Rp 300Jt | R:Rp 225Jt
+        [4.1.02.02.09] Retribusi Tempat Rekreasi dan Olahraga | A:Rp 406Jt | R:Rp 614Jt
+        [4.1.02.02.11] Retribusi Penjualan Produksi Usaha Daerah | A:Rp 12Jt | R:Rp 12Jt
+        [4.1.02.03.07] Retribusi Persetujuan Bangunan Gedung | A:Rp 1000Jt | R:Rp 1.0M
+  [4.2] PENDAPATAN TRANSFER | A:Rp 2079.7M | R:Rp 2007.8M

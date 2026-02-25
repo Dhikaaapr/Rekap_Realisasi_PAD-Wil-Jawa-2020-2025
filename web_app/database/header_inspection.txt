@@ -1,0 +1,66 @@
+
+==================== REALISASI PENDAPATAN TA 2023.xlsx ====================
+Row 0: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 1: REALISASI PENDAPATAN DAERAH KABUPATEN SUKOHARJO TAHUN ANGGARAN 2023 | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 3222037197 | nan | 666719895.0 | 57469021.0 | 0.0 | 1530077938.0 | 727516272.0 | 879792669.0 | 861390055.0
+Row 2: BULAN DESEMBER 2023 | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 742938511.0 | 88455193.0 | nan | 1617731132.0 | 924932394.0 | 1020027387.0 | 1058097732.0
+Row 3: KODE REKENING | nan | nan | nan | nan | nan | URAIAN | ANGGARAN  | ANGGARAN PERUBAHAN | REALISASI S/D BLN LALU | REALISASI BLN INI | REALISASI S/D BLN INI | % REALISASI | 1.0 | 2.0 | 3.0 | 4.0 | 5.0 | 6.0 | 7.0
+Row 4: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 5: nan | nan | nan | nan | nan | nan | nan |   | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 6: 4 | nan | nan | nan | nan | nan | PENDAPATAN | 1938312553712 | 2032501407587 | 1985614972323 | 175391761546 | 2161006733869 | 106.32252089973026 | 742938511.0 | 88455193.0 | 0.0 | 1617731132.0 | 924932394.0 | 1015527387.0 | 1045348123.0
+Row 7: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 8: 4 | 1.0 | nan | nan | nan | nan | PENDAPATAN ASLI DAERAH | 367639216712 | 453319631218 | 489949824607 | 47191365017 | 537141189624 | 118.49060853172946 | 742938511.0 | 88455193.0 | 0.0 | 1617731132.0 | 924932394.0 | 1015527387.0 | 1045348123.0
+Row 9: 4 | 1.0 | 1.0 | nan | nan | nan | Pajak Daerah | 189300000000 | 257350000000 | 291753672356 | 30452087256 | 322205759612 | 125.20138317932776 | 680739892.0 | 58627700.0 | 0.0 | 1555943233.0 | 771921297.0 | 908754542.0 | 972911236.0
+Row 10: 4 | 1.0 | 1.0 | 6.0 | nan | nan | Pajak Hotel | 5000000000 | 9500000000 | 11228669230 | 183039208 | 11411708438 | 120.12324671578946 | 2300000.0 | 0.0 | 0.0 | 37756876.0 | 11017152.0 | 21205770.0 | 85930025.0
+Row 11: 4 | 1.0 | 1.0 | 6.0 | 1.0 | nan | Pajak Hotel | 5000000000 | 9500000000 | 11228669230 | 183039208 | 11411708438 | 120.12324671578946 | 2300000.0 | 0.0 | 0.0 | 37756876.0 | 11017152.0 | 21205770.0 | 85930025.0
+Row 12: 4 | 1.0 | 1.0 | 6.0 | 1.0 | 1.0 | Pajak Hotel | 5000000000 | 9500000000 | 11228669230 | 183039208 | 11411708438 | 120.12324671578946 | 2300000.0 | 0.0 | 0.0 | 37756876.0 | 11017152.0 | 21205770.0 | 85930025.0
+Row 13: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 14: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 666719895.0 | 57469021.0 | nan | nan | nan | nan | nan
+Row 15: 4 | 1.0 | 1.0 | 7.0 | nan | nan | Pajak Restoran | 15000000000 | 19250000000 | 23307981340 | 1306186061 | 24614167401 | 127.86580468051949 | 3218600.0 | 0.0 | 0.0 | 2300759.0 | 100295815.0 | 62138346.0 | 98559279.0
+Row 16: 4 | 1.0 | 1.0 | 7.0 | 1.0 | nan | Pajak Restoran dan Sejenisnya | 15000000000 | 19250000000 | 23307981340 | 1306186061 | 24614167401 | 127.86580468051949 | 3218600.0 | 0.0 | 0.0 | 2300759.0 | 100295815.0 | 62138346.0 | 98559279.0
+Row 17: 4 | 1.0 | 1.0 | 7.0 | 1.0 | 1.0 | Pajak Restoran dan Sejenisnya | 15000000000 | 19250000000 | 23307981340 | 1306186061 | 24614167401 | 127.86580468051949 | 3218600.0 | 0.0 | 0.0 | 2300759.0 | 100295815.0 | 62138346.0 | 98559279.0
+Row 18: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 19: 4 | 1.0 | 1.0 | 8.0 | nan | nan | Pajak Hiburan | 3500000000 | 4000000000 | 4410080934 | 286023247 | 4696104181 | 117.402604525 | 0.0 | 0.0 | 0.0 | 5236000.0 | 0.0 | 250000.0 | 92897852.0
+
+==================== REALISASI PENDAPATAN TA 2024.xlsx ====================
+Row 0: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 0.0 | 13291025.0 | 13921400.0 | 12560200.0 | 12597025.0 | 8706750.0 | 8011650.0
+Row 1: REALISASI PENDAPATAN DAERAH KABUPATEN SUKOHARJO TAHUN ANGGARAN 2024 | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 0.0 | 563882416.0 | 681557364.0 | 805927063.0 | 779405208.0 | 910900494.0 | 57007948.0
+Row 2: BULAN DESEMBER | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 942058453.0 | 794107590.0 | 901898010.0 | 899418147.0 | 982905821.0 | 87139399.0
+Row 3: KODE REKENING | nan | nan | nan | nan | nan | URAIAN | ANGGARAN  | ANGGARAN PERUBAHAN | REALISASI S/D BLN LALU | REALISASI BLN INI | REALISASI S/D BLN INI | % REALISASI | 1.0 | 2.0 | 3.0 | 4.0 | 5.0 | 6.0 | 7.0
+Row 4: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 5: nan | nan | nan | nan | nan | nan | nan |   |   | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 6: 4 | nan | nan | nan | nan | nan | PENDAPATAN | 2032607162850 | 2190025468523 | 2107807042111 | 133613512434 | 2241420554545 | 102.34678028911975 | 0.0 | 942058453.0 | 793428374.0 | 901898010.0 | 898780647.0 | 982576009.0 | 87139399.0
+Row 7: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 8: 4 | 1.0 | nan | nan | nan | nan | PENDAPATAN ASLI DAERAH | 388781583850 | 486633326543 | 503508039710 | 50094888635 | 553602928345 | 113.76181986501955 | 0.0 | 702058453.0 | 793428374.0 | 901898010.0 | 898780647.0 | 982576009.0 | 87139399.0
+Row 9: 4 | 1.0 | 1.0 | nan | nan | nan | Pajak Daerah | 198600000000 | 275850000000 | 294386694960 | 31379748829 | 325766443789 | 118.09550255174915 | 0.0 | 605630199.0 | 704659509.0 | 815966473.0 | 798212130.0 | 927125881.0 | 59546749.0
+Row 10: 4 | 1.0 | 1.0 | 6.0 | nan | nan | Pajak Hotel | 6000000000 | 0 | 0 | 0 | 0 | nan | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 11: 4 | 1.0 | 1.0 | 6.0 | 1.0 | nan | Pajak Hotel | 6000000000 | 0 | 0 | 0 | 0 | nan | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 12: 4 | 1.0 | 1.0 | 6.0 | 1.0 | 1.0 | Pajak Hotel | 6000000000 | 0 | 0 | 0 | 0 | nan | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 13: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 14: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 15: 4 | 1.0 | 1.0 | 7.0 | nan | nan | Pajak Restoran | 16500000000 | 0 | 0 | 0 | 0 | nan | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 16: 4 | 1.0 | 1.0 | 7.0 | 1.0 | nan | Pajak Restoran dan Sejenisnya | 16500000000 | 0 | 0 | 0 | 0 | nan | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 17: 4 | 1.0 | 1.0 | 7.0 | 1.0 | 1.0 | Pajak Restoran dan Sejenisnya | 16500000000 | 0 | 0 | 0 | 0 | nan | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 18: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 19: 4 | 1.0 | 1.0 | 8.0 | nan | nan | Pajak Hiburan | 4000000000 | 0 | 0 | 0 | 0 | nan | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+
+==================== REALISASI PENDAPATAN TA 2025.xlsx ====================
+Row 0: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 15170900.0 | 10951050.0 | 8298100.0 | 13612150.0 | 9099625.0 | 6477950.0 | 0.0
+Row 1: REALISASI PENDAPATAN DAERAH KABUPATEN SUKOHARJO TAHUN ANGGARAN 2025 | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 83843608542 | nan | 1180112178.0 | 1471197572.0 | 1628968206.0 | 1422831992.0 | 941837662.0 | 621146428.0 | 0.0
+Row 2: BULAN DESEMBER | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | 7708180334.0 | 1706768172.0 | 1845772476.0 | 1576119666.0 | 1053075227.0 | 631717680.0 | nan
+Row 3: KODE REKENING | nan | nan | nan | nan | nan | URAIAN | ANGGARAN  | ANGGARAN  PERUBAHAN | REALISASI S/D BLN LALU | REALISASI BLN INI | REALISASI S/D BLN INI | % REALISASI | 1.0 | 2.0 | 3.0 | 4.0 | 5.0 | 6.0 | 7.0
+Row 4: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 5: nan | nan | nan | nan | nan | nan | nan |   | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 6: 4 | nan | nan | nan | nan | nan | PENDAPATAN | 2129806028009 | 2158768636464 | 2162300104934 | 172122745254 | 2334422850188 | 108.13677810382293 | 6914470378.0 | 1706768172.0 | 3477324253.0 | 1559582166.0 | 1024191227.0 | 631717680.0 | 0.0
+Row 7: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 8: 4 | 1.0 | nan | nan | nan | nan | PENDAPATAN ASLI DAERAH | 562314237237 | 584365277946 | 650851386731 | 75405236019 | 726256622750 | 124.28127579768898 | 1716249411.0 | 1706768172.0 | 1695423553.0 | 1559582166.0 | 1024191227.0 | 631717680.0 | 0.0
+Row 9: 4 | 1.0 | 1.0 | nan | nan | nan | Pajak Daerah | 355012627000 | 357200000000 | 419648259067 | 42554011423 | 462202270490 | 129.3959323880179 | 1203936543.0 | 1508823648.0 | 1646240707.0 | 1438009720.0 | 963584302.0 | 623400930.0 | 0.0
+Row 10: 4 | 1.0 | 1.0 | 9.0 | nan | nan | Pajak Reklame | 4600000000 | 5000000000 | 5851316324 | 307867463 | 6159183787 | 123.18367574 | 10625000.0 | 14709750.0 | 13735050.0 | 31264400.0 | 76029720.0 | 1366188.0 | 0.0
+Row 11: 4 | 1.0 | 1.0 | 9.0 | 1.0 | nan | Pajak Reklame Papan/Billboard/Videotron/ Megatron | 3900000000 | 4300000000 | 5542118324 | 292187463 | 5834305787 | 135.68152993023256 | 10625000.0 | 13869750.0 | 12925050.0 | 31264400.0 | 76029720.0 | 1366188.0 | 0.0
+Row 12: 4 | 1.0 | 1.0 | 9.0 | 1.0 | 1.0 | Pajak Reklame Papan/Billboard/Videotron/ Megatron | 3900000000 | 4300000000 | 5542118324 | 292187463 | 5834305787 | 135.68152993023256 | 10625000.0 | 13869750.0 | 12925050.0 | 31264400.0 | 76029720.0 | 1366188.0 | 0.0
+Row 13: nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan | nan
+Row 14: 4 | 1.0 | 1.0 | 9.0 | 2.0 | nan | Pajak Reklame Kain | 440000000 | 440000000 | 267581000 | 15680000 | 283261000 | 64.3775 | 0.0 | 840000.0 | 810000.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 15: 4 | 1.0 | 1.0 | 9.0 | 2.0 | 1.0 | Pajak Reklame Kain | 440000000 | 440000000 | 267581000 | 15680000 | 283261000 | 64.3775 | 0.0 | 840000.0 | 810000.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 16: 4 | 1.0 | 1.0 | 9.0 | 4.0 | nan | Pajak Reklame Selebaran | 10000000 | 10000000 | 1955000 | 0 | 1955000 | 19.55 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 17: 4 | 1.0 | 1.0 | 9.0 | 4.0 | 1.0 | Pajak Reklame Selebaran | 10000000 | 10000000 | 1955000 | 0 | 1955000 | 19.55 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 18: 4 | 1.0 | 1.0 | 9.0 | 9.0 | nan | Pajak Reklame Film/Slide | 250000000 | 250000000 | 39662000 | 0 | 39662000 | 15.8648 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0
+Row 19: 4 | 1.0 | 1.0 | 9.0 | 9.0 | 1.0 | Pajak Reklame Film/Slide | 250000000 | 250000000 | 39662000 | 0 | 39662000 | 15.8648 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0

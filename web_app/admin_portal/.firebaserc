@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "datapad-5d5ce"
+  },
+  "targets": {
+    "datapad-5d5ce": {
+      "hosting": {
+        "admin": [
+          "admin-datapad-5d5ce"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

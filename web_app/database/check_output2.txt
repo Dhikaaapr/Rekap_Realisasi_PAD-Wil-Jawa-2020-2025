@@ -1,0 +1,77 @@
+﻿============================================================
+CEK JUMLAH DATA PER TAHUN
+============================================================
+  Tahun 2021: pad_data= 128 | detail_pad_data=  3470
+  Tahun 2022: pad_data= 128 | detail_pad_data=  3426
+  Tahun 2023: pad_data= 128 | detail_pad_data=  3422
+  Tahun 2024: pad_data= 135 | detail_pad_data=  4463
+  Tahun 2025: pad_data= 550 | detail_pad_data=  2437
+
+============================================================
+CEK REFERENSI KATEGORI (ref_kategori_pad)
+============================================================
+  Total kategori referensi: 432
+
+  Sample kategori:
+    [4]   PENDAPATAN DAERAH (pad)
+    [4.1]     PENDAPATAN ASLI DAERAH (PAD) (pad)
+    [4.1.0]       PENDAPATAN ASLI DAERAH (pad)
+    [4.1.0.1.0]           Pajak Daerah (pad)
+    [4.1.0.1.0.10.0]               Pajak Penerangan Jalan (pad)
+    [4.1.0.1.0.10.0.2.0]                   Pajak Penerangan Jalan Sumber Lain (pad)
+    [4.1.0.1.0.11.0]               Pajak Parkir (pad)
+    [4.1.0.1.0.11.0.1.0]                   Pajak Parkir (pad)
+    [4.1.0.1.0.12.0]               Pajak Air Tanah (pad)
+    [4.1.0.1.0.12.0.1.0]                   Pajak Air Tanah (pad)
+    [4.1.0.1.0.14.0]               Pajak Mineral bukan Logam dan Batuan (pad)
+    [4.1.0.1.0.14.0.37.0]                   Pajak Mineral bukan Logam dan Batuan Lainnya (pad)
+    [4.1.0.1.0.15.0]               Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2) (pad)
+    [4.1.0.1.0.15.0.1.0]                   PBBP2 (pad)
+    [4.1.0.1.0.16.0]               Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB) (pad)
+    [4.1.0.1.0.16.0.2.0]                   BPHTB-Pemberian Hak Baru (pad)
+    [4.1.0.1.0.19.0]               Pajak barang dan Jasa Tertentu (PBJT) (pad)
+    [4.1.0.1.0.19.0.1.0]                   PBJT-Makanan dan/atau Minuman (pad)
+    [4.1.0.1.0.19.0.2.0]                   PBJT-Tenaga Listrik (pad)
+    [4.1.0.1.0.19.0.3.0]                   PBJT-Jasa Perhotelan (pad)
+    ... dan 412 kategori lainnya
+
+============================================================
+CEK SAMPLE DETAIL DATA (1 DAERAH, 1 TAHUN)
+============================================================
+
+  Daerah sample: Kab. Gresik, Tahun: 2024
+  Total baris: 25
+
+  Hierarki data:
+    4              PENDAPATAN DAERAH                                  | Ang: 3916.42M | Real: 3730.42M
+    4.1              PENDAPATAN ASLI DAERAH (PAD)                       | Ang: 1597.84M | Real: 1385.03M
+    4.1.01.06            Pajak Hotel                                        | Ang: 17.00M | Real: 12.97M
+    4.1.01.07            Pajak Restoran                                     | Ang: 42.00M | Real: 39.35M
+    4.1.01.08            Pajak Hiburan                                      | Ang: 4.50M | Real: 4.06M
+    4.1.01.09            Pajak Reklame                                      | Ang: 10.00M | Real: 7.78M
+    4.1.01.10            Pajak Penerangan Jalan                             | Ang: 260.00M | Real: 269.65M
+    4.1.01.11            Pajak Parkir                                       | Ang: 3.50M | Real: 3.35M
+    4.1.01.12            Pajak Air Tanah                                    | Ang: 8.70M | Real: 6.97M
+    4.1.01.14            Pajak Mineral Bukan Logam dan Batuan               | Ang: 8.00M | Real: 4.35M
+    4.1.01.15            Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (P | Ang: 250.00M | Real: 204.41M
+    4.1.01.16            Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)  | Ang: 435.00M | Real: 407.58M
+    4.1.02.01.01           Retribusi Pelayanan Kesehatan                      | Ang: 0.23M | Real: 283.70M
+    4.1.02.01.02           Retribusi Pelayanan Persampahan/ Kebersihan        | Ang: 7.50M | Real: 2.11M
+    4.1.02.01.04           Retribusi Pelayanan Parkir di Tepi Jalan Umum      | Ang: 15.00M | Real: 2.66M
+    4.1.02.01.05           Retribusi Pelayanan Pasar                          | Ang: 2.20M | Real: 1.70M
+    4.1.02.02.01           Retribusi Pemakaian Kekayaan Daerah                | Ang: 106.71M | Real: 56.63M
+    4.1.02.02.02           Retribusi Pasar Grosir dan/atau Pertokoan          | Ang: 0.30M | Real: 0.28M
+    4.1.02.02.05           Retribusi Tempat Khusus Parkir                     | Ang: 2.50M | Real: 2.68M
+    4.1.02.02.07           Retribusi Rumah Potong Hewan                       | Ang: 0.12M | Real: 0.18M
+    4.1.02.02.09           Retribusi Tempat Rekreasi dan Olahraga             | Ang: 0.85M | Real: 0.79M
+    4.1.02.02.10           Retribusi Penyeberangan di Air                     | Ang: 0.30M | Real: 0.38M
+    4.1.02.03.07           Retribusi Persetujuan Bangunan Gedung              | Ang: 95.80M | Real: 45.39M
+    4.1.02.03.08           Retribusi Penggunaan Tenaga Kerja Asing (TKA)      | Ang: 4.64M | Real: 4.99M
+    4.2              PENDAPATAN TRANSFER                                | Ang: 2318.57M | Real: 2345.21M
+
+============================================================
+CEK KEDALAMAN HIERARKI (max level)
+============================================================
+  Max depth level: 2
+  Level 1: 456 kode
+  Level 2: 44 kode

@@ -1,0 +1,198 @@
+
+=== Year 2021 ===
+Total unique regions with detail: 125
+Jawa-related regions with detail: 30
+  Kab. Bandung: 30 records
+  Kab. Bandung Barat: 23 records
+  Kab. Bekasi: 32 records
+  Kab. Bogor: 18 records
+  Kab. Malang: 30 records
+  Kab. Pemalang: 13 records
+  Kab. Semarang: 33 records
+  Kab. Tangerang: 29 records
+  Kota Bandung: 25 records
+  Kota Bekasi: 25 records
+  Kota Bogor: 30 records
+  Kota Depok: 28 records
+  Kota Malang: 28 records
+  Kota Semarang: 19 records
+  Kota Surabaya: 25 records
+  Kota Tangerang: 44 records
+  Kota Tangerang Selatan: 25 records
+  Kota Yogyakarta: 59 records
+  Prov. Banten: 4 records
+  Prov. DI Yogyakarta: 4 records
+  Prov. DKI Jakarta: 4 records
+  Prov. Jawa Barat: 4 records
+  Prov. Jawa Tengah: 4 records
+  Prov. Jawa Timur: 4 records
+  Provinsi Banten: 16 records
+  Provinsi DI Yogyakarta: 46 records
+  Provinsi DKI Jakarta: 63 records
+  Provinsi Jawa Barat: 18 records
+  Provinsi Jawa Tengah: 21 records
+  Provinsi Jawa Timur: 19 records
+
+  Regions with "Provinsi" prefix:
+    Provinsi Banten: 16
+    Provinsi DI Yogyakarta: 46
+    Provinsi DKI Jakarta: 63
+    Provinsi Jawa Barat: 18
+    Provinsi Jawa Tengah: 21
+    Provinsi Jawa Timur: 19
+
+=== Year 2022 ===
+Total unique regions with detail: 125
+Jawa-related regions with detail: 30
+  Kab. Bandung: 28 records
+  Kab. Bandung Barat: 28 records
+  Kab. Bekasi: 33 records
+  Kab. Bogor: 18 records
+  Kab. Malang: 30 records
+  Kab. Pemalang: 13 records
+  Kab. Semarang: 30 records
+  Kab. Tangerang: 26 records
+  Kota Bandung: 22 records
+  Kota Bekasi: 25 records
+  Kota Bogor: 30 records
+  Kota Depok: 27 records
+  Kota Malang: 29 records
+  Kota Semarang: 19 records
+  Kota Surabaya: 26 records
+  Kota Tangerang: 55 records
+  Kota Tangerang Selatan: 26 records
+  Kota Yogyakarta: 58 records
+  Prov. Banten: 4 records
+  Prov. DI Yogyakarta: 4 records
+  Prov. DKI Jakarta: 4 records
+  Prov. Jawa Barat: 4 records
+  Prov. Jawa Tengah: 4 records
+  Prov. Jawa Timur: 4 records
+  Provinsi Banten: 16 records
+  Provinsi DI Yogyakarta: 46 records
+  Provinsi DKI Jakarta: 63 records
+  Provinsi Jawa Barat: 17 records
+  Provinsi Jawa Tengah: 20 records
+  Provinsi Jawa Timur: 19 records
+
+  Regions with "Provinsi" prefix:
+    Provinsi Banten: 16
+    Provinsi DI Yogyakarta: 46
+    Provinsi DKI Jakarta: 63
+    Provinsi Jawa Barat: 17
+    Provinsi Jawa Tengah: 20
+    Provinsi Jawa Timur: 19
+
+=== Year 2023 ===
+Total unique regions with detail: 125
+Jawa-related regions with detail: 30
+  Kab. Bandung: 30 records
+  Kab. Bandung Barat: 26 records
+  Kab. Bekasi: 34 records
+  Kab. Bogor: 18 records
+  Kab. Malang: 29 records
+  Kab. Pemalang: 13 records
+  Kab. Semarang: 30 records
+  Kab. Tangerang: 26 records
+  Kota Bandung: 22 records
+  Kota Bekasi: 25 records
+  Kota Bogor: 31 records
+  Kota Depok: 25 records
+  Kota Malang: 27 records
+  Kota Semarang: 19 records
+  Kota Surabaya: 25 records
+  Kota Tangerang: 55 records
+  Kota Tangerang Selatan: 26 records
+  Kota Yogyakarta: 59 records
+  Prov. Banten: 4 records
+  Prov. DI Yogyakarta: 4 records
+  Prov. DKI Jakarta: 4 records
+  Prov. Jawa Barat: 4 records
+  Prov. Jawa Tengah: 4 records
+  Prov. Jawa Timur: 4 records
+  Provinsi Banten: 15 records
+  Provinsi DI Yogyakarta: 46 records
+  Provinsi DKI Jakarta: 61 records
+  Provinsi Jawa Barat: 17 records
+  Provinsi Jawa Tengah: 20 records
+  Provinsi Jawa Timur: 19 records
+
+  Regions with "Provinsi" prefix:
+    Provinsi Banten: 15
+    Provinsi DI Yogyakarta: 46
+    Provinsi DKI Jakarta: 61
+    Provinsi Jawa Barat: 17
+    Provinsi Jawa Tengah: 20
+    Provinsi Jawa Timur: 19
+
+=== Year 2024 ===
+Total unique regions with detail: 132
+Jawa-related regions with detail: 30
+  Kab. Bandung: 31 records
+  Kab. Bandung Barat: 24 records
+  Kab. Bekasi: 26 records
+  Kab. Bogor: 18 records
+  Kab. Malang: 27 records
+  Kab. Pemalang: 13 records
+  Kab. Semarang: 24 records
+  Kab. Tangerang: 20 records
+  Kota Bandung: 26 records
+  Kota Bekasi: 25 records
+  Kota Bogor: 25 records
+  Kota Depok: 24 records
+  Kota Malang: 25 records
+  Kota Semarang: 21 records
+  Kota Surabaya: 24 records
+  Kota Tangerang: 51 records
+  Kota Tangerang Selatan: 12 records
+  Kota Yogyakarta: 67 records
+  Prov. Banten: 4 records
+  Prov. DI Yogyakarta: 4 records
+  Prov. DKI Jakarta: 4 records
+  Prov. Jawa Barat: 4 records
+  Prov. Jawa Tengah: 4 records
+  Prov. Jawa Timur: 4 records
+  Provinsi Banten: 15 records
+  Provinsi DI Yogyakarta: 43 records
+  Provinsi DKI Jakarta: 80 records
+  Provinsi Jawa Barat: 15 records
+  Provinsi Jawa Tengah: 20 records
+  Provinsi Jawa Timur: 20 records
+
+  Regions with "Provinsi" prefix:
+    Provinsi Banten: 15
+    Provinsi DI Yogyakarta: 43
+    Provinsi DKI Jakarta: 80
+    Provinsi Jawa Barat: 15
+    Provinsi Jawa Tengah: 20
+    Provinsi Jawa Timur: 20
+
+=== Year 2025 ===
+Total unique regions with detail: 546
+Jawa-related regions with detail: 24
+  Kab. Bandung: 4 records
+  Kab. Bandung Barat: 4 records
+  Kab. Bekasi: 4 records
+  Kab. Bogor: 4 records
+  Kab. Malang: 4 records
+  Kab. Pemalang: 4 records
+  Kab. Semarang: 4 records
+  Kab. Tangerang: 4 records
+  Kota Bandung: 4 records
+  Kota Bekasi: 4 records
+  Kota Bogor: 4 records
+  Kota Depok: 4 records
+  Kota Malang: 4 records
+  Kota Semarang: 4 records
+  Kota Surabaya: 4 records
+  Kota Tangerang: 4 records
+  Kota Tangerang Selatan: 4 records
+  Kota Yogyakarta: 4 records
+  Prov. Banten: 4 records
+  Prov. DI Yogyakarta: 4 records
+  Prov. DKI Jakarta: 4 records
+  Prov. Jawa Barat: 4 records
+  Prov. Jawa Tengah: 4 records
+  Prov. Jawa Timur: 4 records
+
+=== Checking for LRA source files ===

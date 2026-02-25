@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-primary: #1e40af; /* Deep blue */
+  --brand-secondary: #3b82f6;
+  --bg-main: #f8fafc;
+  --sidebar-bg: #ffffff;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-light: #e2e8f0;
+}
+
+@layer base {
+  body {
+    @apply bg-[#f8fafc] text-slate-800 min-h-screen font-sans selection:bg-blue-500/10 overflow-x-hidden;
+    background: 
+      radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 85% 85%, rgba(99, 102, 241, 0.04) 0%, transparent 40%),
+      #f8fafc;
+    background-attachment: fixed;
+  }
+}
+
+/* Glassmorphism - Light Mode */
+.glass-panel {
+  @apply backdrop-blur-md bg-white border border-slate-200 shadow-[0_4px_24px_rgba(0,0,0,0.04)];
+}
+
+.glass-nav {
+  @apply backdrop-blur-md bg-white/80 border-b border-slate-200;
+}
+
+.neo-input {
+  @apply bg-white border border-slate-200 rounded-2xl px-5 py-4 text-sm font-bold text-slate-800 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all placeholder:text-slate-400 shadow-sm;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  @apply w-64 h-screen fixed left-0 top-0 border-r border-slate-200 bg-white z-[100] flex flex-col shadow-sm;
+}
+
+.sidebar-header {
+  @apply p-6 flex flex-col gap-1;
+}
+
+.sidebar-link {
+  @apply flex items-center gap-3 px-6 py-4 rounded-tr-2xl rounded-br-2xl mr-4 transition-all duration-300 text-slate-500 hover:text-blue-600 hover:bg-blue-50 font-bold tracking-tight;
+}
+
+.sidebar-link.active {
+  @apply bg-blue-50 text-blue-700 border-l-4 border-blue-600 shadow-none;
+}
+
+/* Buttons */
+.btn-primary {
+  @apply relative overflow-hidden px-6 py-3 rounded-xl font-black uppercase tracking-widest text-[10px] text-white transition-all duration-500 hover:scale-105 active:scale-95;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 24px rgba(30, 64, 175, 0.3);
+  filter: brightness(1.1);
+}
+
+/* Table */
+.tr-hover {
+  @apply hover:bg-slate-50 transition-all duration-200 cursor-default;
+}
+
+/* Stat Cards */
+.stat-card {
+  @apply bg-white border border-slate-200 rounded-[2rem] relative overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md;
+}
+
+.stat-card-glow {
+  @apply absolute -top-24 -right-24 w-64 h-64 rounded-full blur-[100px] opacity-10 pointer-events-none;
+  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+}
+
+/* Data Input Form */
+.data-table-input {
+  @apply bg-white/50 border border-slate-200 rounded-xl px-4 py-2 font-mono font-bold text-right outline-none transition-all focus:border-blue-500 focus:bg-white focus:shadow-sm;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400;
+}
+
+/* Global Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full border-4 border-slate-50 hover:bg-slate-300;
+}

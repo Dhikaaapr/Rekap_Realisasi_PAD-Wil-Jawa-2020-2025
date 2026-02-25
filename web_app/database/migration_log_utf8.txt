@@ -1,0 +1,69 @@
+﻿============================================================
+≡ƒôÑ MIGRATING REMAINING ASSET FILES TO SUPABASE
+============================================================
+
+≡ƒôä [1/5] Database TA 2021 Pendapatan Belanja.xlsx
+  Data starts at row 10, total rows: 558
+python : Traceback (most 
+recent call last):
+At line:1 char:32
++ ... ONIOENCODING='utf-8'; 
+python 
+migrate_remaining_assets.py 
+2>&1 | Tee-O ...
++                           
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (Trace  
+  back (most recent call    
+ last)::String) [], Remo    
+teException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+  File 
+"C:\laragon\www\Rekap 
+Realisasi PAD WIL JAWA 2021-
+2025\web_app\database\migrat
+e_remaining_assets.py", 
+line 273, in <module>
+    main()
+  File 
+"C:\laragon\www\Rekap 
+Realisasi PAD WIL JAWA 2021-
+2025\web_app\database\migrat
+e_remaining_assets.py", 
+line 212, in main
+    total += 
+migrate_fixed_layout(df, 
+2021, "DB_2021")
+  File 
+"C:\laragon\www\Rekap 
+Realisasi PAD WIL JAWA 2021-
+2025\web_app\database\migrat
+e_remaining_assets.py", 
+line 192, in 
+migrate_fixed_layout
+    supabase.table('detail_p
+ad_data').insert(detail_reco
+rds).execute()
+  File "C:\laragon\bin\pytho
+n\python-3.10\lib\site-packa
+ges\postgrest\_sync\request_
+builder.py", line 53, in 
+execute
+    raise 
+APIError(dict(json_obj))
+postgrest.exceptions.APIErro
+r: {'message': 'insert or 
+update on table 
+"detail_pad_data" violates 
+foreign key constraint "deta
+il_pad_data_kategori_kode_fk
+ey"', 'code': '23503', 
+'hint': None, 'details': 
+'Key 
+(kategori_kode)=(4.1.03) is 
+not present in table 
+"ref_kategori_pad".'}

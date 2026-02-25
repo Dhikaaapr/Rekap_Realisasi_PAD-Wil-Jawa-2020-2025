@@ -1,0 +1,683 @@
+=== detail_pad_data 2025: 263 unique regions ===
+  Kab. Lombok Timur: 4 records
+  Kab. Lombok Utara: 4 records
+  Kab. Luwu: 4 records
+  Kab. Luwu Timur: 4 records
+  Kab. Luwu Utara: 4 records
+  Kab. Mahakam Ulu: 4 records
+  Kab. Majene: 4 records
+  Kab. Malaka: 4 records
+  Kab. Malinau: 4 records
+  Kab. Maluku Barat Daya: 4 records
+  Kab. Maluku Tengah: 4 records
+  Kab. Maluku Tenggara: 4 records
+  Kab. Mamasa: 4 records
+  Kab. Mamberamo Raya: 4 records
+  Kab. Mamberamo Tengah: 4 records
+  Kab. Mamuju: 4 records
+  Kab. Mamuju Tengah: 4 records
+  Kab. Mandailing Natal: 4 records
+  Kab. Manggarai: 4 records
+  Kab. Manggarai Barat: 4 records
+  Kab. Manggarai Timur: 4 records
+  Kab. Manokwari: 4 records
+  Kab. Manokwari Selatan: 4 records
+  Kab. Mappi: 4 records
+  Kab. Maros: 4 records
+  Kab. Maybrat: 4 records
+  Kab. Melawi: 4 records
+  Kab. Mempawah: 4 records
+  Kab. Merangin: 4 records
+  Kab. Merauke: 4 records
+  Kab. Mesuji: 4 records
+  Kab. Mimika: 4 records
+  Kab. Minahasa: 4 records
+  Kab. Minahasa Selatan: 4 records
+  Kab. Minahasa Tenggara: 4 records
+  Kab. Minahasa Utara: 4 records
+  Kab. Morowali: 4 records
+  Kab. Morowali Utara: 4 records
+  Kab. Muara Enim: 4 records
+  Kab. Muaro Jambi: 4 records
+  Kab. Muko-Muko: 4 records
+  Kab. Muna: 4 records
+  Kab. Muna Barat: 4 records
+  Kab. Murung Raya: 4 records
+  Kab. Musi Banyuasin: 4 records
+  Kab. Musi Rawas: 4 records
+  Kab. Musi Rawas Utara: 4 records
+  Kab. Nabire: 4 records
+  Kab. Nagan Raya: 4 records
+  Kab. Nagekeo: 4 records
+  Kab. Natuna: 4 records
+  Kab. Nduga: 4 records
+  Kab. Ngada: 4 records
+  Kab. Nias: 4 records
+  Kab. Nias Barat: 4 records
+  Kab. Nias Selatan: 4 records
+  Kab. Nias Utara: 4 records
+  Kab. Nunukan: 4 records
+  Kab. Ogan Ilir: 4 records
+  Kab. Ogan Komering Ilir: 4 records
+  Kab. Ogan Komering Ulu: 4 records
+  Kab. Ogan Komering Ulu Selatan: 4 records
+  Kab. Ogan Komering Ulu Timur: 4 records
+  Kab. Padang Lawas: 4 records
+  Kab. Padang Lawas Utara: 4 records
+  Kab. Padang Pariaman: 4 records
+  Kab. Pakpak Bharat: 4 records
+  Kab. Pangkajene Kep.: 4 records
+  Kab. Paniai: 4 records
+  Kab. Parigi Moutong: 4 records
+  Kab. Pasaman: 4 records
+  Kab. Pasaman Barat: 4 records
+  Kab. Pasangkayu: 4 records
+  Kab. Paser: 4 records
+  Kab. Pegunungan Arfak: 4 records
+  Kab. Pegunungan Bintang: 4 records
+  Kab. Pelalawan: 4 records
+  Kab. Penajam Paser Utara: 4 records
+  Kab. Penukal Abab Lematang Ilir: 4 records
+  Kab. Pesawaran: 4 records
+  Kab. Pesisir Barat: 4 records
+  Kab. Pesisir Selatan: 4 records
+  Kab. Pidie: 4 records
+  Kab. Pidie Jaya: 4 records
+  Kab. Pinrang: 4 records
+  Kab. Pohuwato: 4 records
+  Kab. Polewali Mandar: 4 records
+  Kab. Poso: 4 records
+  Kab. Pringsewu: 4 records
+  Kab. Pulang Pisau: 4 records
+  Kab. Pulau Morotai: 4 records
+  Kab. Pulau Taliabu: 4 records
+  Kab. Puncak: 4 records
+  Kab. Puncak Jaya: 4 records
+  Kab. Raja Ampat: 4 records
+  Kab. Rejang Lebong: 4 records
+  Kab. Rokan Hilir: 4 records
+  Kab. Rokan Hulu: 4 records
+  Kab. Rote Ndao: 4 records
+  Kab. Sabu Raijua: 4 records
+  Kab. Sambas: 4 records
+  Kab. Samosir: 4 records
+  Kab. Sanggau: 4 records
+  Kab. Sarmi: 4 records
+  Kab. Sarolangun: 4 records
+  Kab. Sekadau: 4 records
+  Kab. Seluma: 4 records
+  Kab. Seram Bagian Barat: 4 records
+  Kab. Seram Bagian Timur: 4 records
+  Kab. Serdang Bedagai: 4 records
+  Kab. Seruyan: 4 records
+  Kab. Siak: 4 records
+  Kab. Siau Tagulandang Biaro: 4 records
+  Kab. Sidenreng Rappang: 4 records
+  Kab. Sigi: 4 records
+  Kab. Sijunjung: 4 records
+  Kab. Sikka: 4 records
+  Kab. Simalungun: 4 records
+  Kab. Simeulue: 4 records
+  Kab. Sinjai: 4 records
+  Kab. Sintang: 4 records
+  Kab. Solok: 4 records
+  Kab. Solok Selatan: 4 records
+  Kab. Soppeng: 4 records
+  Kab. Sorong: 4 records
+  Kab. Sorong Selatan: 4 records
+  Kab. Sukamara: 4 records
+  Kab. Sumba Barat: 4 records
+  Kab. Sumba Barat Daya: 4 records
+  Kab. Sumba Tengah: 4 records
+  Kab. Sumba Timur: 4 records
+  Kab. Sumbawa: 4 records
+  Kab. Sumbawa Barat: 4 records
+  Kab. Supiori: 4 records
+  Kab. Tabalong: 4 records
+  Kab. Tabanan: 4 records
+  Kab. Takalar: 4 records
+  Kab. Tambrauw: 4 records
+  Kab. Tana Tidung: 4 records
+  Kab. Tanah Bumbu: 4 records
+  Kab. Tanah Datar: 4 records
+  Kab. Tanah Laut: 4 records
+  Kab. Tanatoraja: 4 records
+  Kab. Tanggamus: 4 records
+  Kab. Tanjung Jabung Barat: 4 records
+  Kab. Tanjung Jabung Timur: 4 records
+  Kab. Tapanuli Selatan: 4 records
+  Kab. Tapanuli Tengah: 4 records
+  Kab. Tapanuli Utara: 4 records
+  Kab. Tapin: 4 records
+  Kab. Tebo: 4 records
+  Kab. Teluk Bintuni: 4 records
+  Kab. Teluk Wondama: 4 records
+  Kab. Timor Tengah Selatan: 4 records
+  Kab. Timor Tengah Utara: 4 records
+  Kab. Toba Samosir: 4 records
+  Kab. Tojo Una-Una: 4 records
+  Kab. Toli-Toli: 4 records
+  Kab. Tolikara: 4 records
+  Kab. Toraja Utara: 4 records
+  Kab. Tulang Bawang: 4 records
+  Kab. Tulang Bawang Barat: 4 records
+  Kab. Wajo: 4 records
+  Kab. Wakatobi: 4 records
+  Kab. Waropen: 4 records
+  Kab. Way Kanan: 4 records
+  Kab. Yahukimo: 4 records
+  Kab. Yalimo: 4 records
+  Kota Ambon: 4 records
+  Kota Balikpapan: 4 records
+  Kota Banda Aceh: 4 records
+  Kota Bandar Lampung: 4 records
+  Kota Banjarmasin: 4 records
+  Kota Batam: 4 records
+  Kota Bau-Bau: 4 records
+  Kota Bengkulu: 4 records
+  Kota Bima: 4 records
+  Kota Binjai: 4 records
+  Kota Bitung: 4 records
+  Kota Bontang: 4 records
+  Kota Bukit Tinggi: 4 records
+  Kota Denpasar: 4 records
+  Kota Dumai: 4 records
+  Kota Gorontalo: 4 records
+  Kota Gunung Sitoli: 4 records
+  Kota Jambi: 4 records
+  Kota Jayapura: 4 records
+  Kota Kendari: 4 records
+  Kota Kotamobagu: 4 records
+  Kota Kupang: 4 records
+  Kota Langsa: 4 records
+  Kota Lhokseumawe: 4 records
+  Kota Lubuk Linggau: 4 records
+  Kota Makassar: 4 records
+  Kota Manado: 4 records
+  Kota Mataram: 4 records
+  Kota Medan: 4 records
+  Kota Metro: 4 records
+  Kota Padang: 4 records
+  Kota Padang Panjang: 4 records
+  Kota Padang Sidempuan: 4 records
+  Kota Pagar Alam: 4 records
+  Kota Palangkaraya: 4 records
+  Kota Palembang: 4 records
+  Kota Palopo: 4 records
+  Kota Palu: 4 records
+  Kota Pangkalpinang: 4 records
+  Kota Pare-Pare: 4 records
+  Kota Pariaman: 4 records
+  Kota Payakumbuh: 4 records
+  Kota Pekanbaru: 4 records
+  Kota Pematang Siantar: 4 records
+  Kota Pontianak: 4 records
+  Kota Prabumulih: 4 records
+  Kota Sabang: 4 records
+  Kota Samarinda: 4 records
+  Kota Sawahlunto: 4 records
+  Kota Sibolga: 4 records
+  Kota Singkawang: 4 records
+  Kota Solok: 4 records
+  Kota Sorong: 4 records
+  Kota Subulussalam: 4 records
+  Kota Sungai Penuh: 4 records
+  Kota Tanjung Balai: 4 records
+  Kota Tanjung Pinang: 4 records
+  Kota Tarakan: 4 records
+  Kota Tebing Tinggi: 4 records
+  Kota Ternate: 4 records
+  Kota Tidore Kep.: 4 records
+  Kota Tomohon: 4 records
+  Kota Tual: 4 records
+  Prov. Aceh: 4 records
+  Prov. Bali: 4 records
+  Prov. Bengkulu: 4 records
+  Prov. Gorontalo: 4 records
+  Prov. Jambi: 4 records
+  Prov. Kalimantan Barat: 4 records
+  Prov. Kalimantan Selatan: 4 records
+  Prov. Kalimantan Tengah: 4 records
+  Prov. Kalimantan Timur: 4 records
+  Prov. Kalimantan Utara: 4 records
+  Prov. Kep. Bangka Belitung: 4 records
+  Prov. Kep. Riau: 4 records
+  Prov. Lampung: 4 records
+  Prov. Maluku: 4 records
+  Prov. Maluku Utara: 4 records
+  Prov. Nusa Tenggara Barat: 4 records
+  Prov. Nusa Tenggara Timur: 4 records
+  Prov. Papua: 4 records
+  Prov. Papua Barat: 4 records
+  Prov. Papua Barat Daya: 4 records
+  Prov. Papua Pegunungan: 4 records
+  Prov. Papua Selatan: 4 records
+  Prov. Papua Tengah: 4 records
+  Prov. Riau: 4 records
+  Prov. Sulawesi Barat: 4 records
+  Prov. Sulawesi Selatan: 4 records
+  Prov. Sulawesi Tengah: 4 records
+  Prov. Sulawesi Tenggara: 4 records
+  Prov. Sulawesi Utara: 4 records
+  Prov. Sumatera Barat: 4 records
+  Prov. Sumatera Selatan: 4 records
+  Prov. Sumatera Utara: 4 records
+
+=== DKI Jakarta detail across years ===
+  2021 "Prov. DKI Jakarta": 4 records
+  2021 "Provinsi DKI Jakarta": 63 records
+  2022 "Prov. DKI Jakarta": 4 records
+  2022 "Provinsi DKI Jakarta": 63 records
+  2023 "Prov. DKI Jakarta": 4 records
+  2023 "Provinsi DKI Jakarta": 61 records
+  2024 "Prov. DKI Jakarta": 4 records
+  2024 "Provinsi DKI Jakarta": 80 records
+  2025 "Prov. DKI Jakarta": 4 records
+
+=== Sample: Kab. Tangerang 2025 (first 20 kodes) ===
+  4.1.01: A=4123570000000 R=4207210955811
+  4.1.02: A=204203623497 R=219079248721
+  4.1.03: A=60739592373 R=60739592375
+  4.1.04: A=760205363844 R=757311426742.51
+
+=== DKI Jakarta 2025 detail ===
+  4.1.01: A=48000000000000 R=42714954906910
+  4.1.02: A=1396295297541 R=1270900854849
+  4.1.03: A=774000000000 R=484020829591
+  4.1.04: A=4028903045464 R=4547010403770
+
+=== pad_data 2025 regions ===
+Jawa pad_data 2025: 126 regions
+
+=== Regions WITHOUT detail_pad_data in 2025 ===
+  MISSING: Kab. Bandung
+  MISSING: Kab. Bandung Barat
+  MISSING: Kab. Bangkalan
+  MISSING: Kab. Banjar
+  MISSING: Kab. Banjarnegara
+  MISSING: Kab. Bantul
+  MISSING: Kab. Banyumas
+  MISSING: Kab. Banyuwangi
+  MISSING: Kab. Batang
+  MISSING: Kab. Batanghari
+  MISSING: Kab. Batubara
+  MISSING: Kab. Bekasi
+  MISSING: Kab. Blitar
+  MISSING: Kab. Blora
+  MISSING: Kab. Bogor
+  MISSING: Kab. Bojonegoro
+  MISSING: Kab. Bondowoso
+  MISSING: Kab. Boyolali
+  MISSING: Kab. Brebes
+  MISSING: Kab. Ciamis
+  MISSING: Kab. Cianjur
+  MISSING: Kab. Cilacap
+  MISSING: Kab. Cirebon
+  MISSING: Kab. Demak
+  MISSING: Kab. Garut
+  MISSING: Kab. Gresik
+  MISSING: Kab. Grobogan
+  MISSING: Kab. Gunung Kidul
+  MISSING: Kab. Indramayu
+  MISSING: Kab. Jember
+  MISSING: Kab. Jepara
+  MISSING: Kab. Jombang
+  MISSING: Kab. Karanganyar
+  MISSING: Kab. Karawang
+  MISSING: Kab. Kebumen
+  MISSING: Kab. Kediri
+  MISSING: Kab. Kendal
+  MISSING: Kab. Klaten
+  MISSING: Kab. Kudus
+  MISSING: Kab. Kulon Progo
+  MISSING: Kab. Kuningan
+  MISSING: Kab. Labuhanbatu
+  MISSING: Kab. Labuhanbatu Selatan
+  MISSING: Kab. Labuhanbatu Utara
+  MISSING: Kab. Lamongan
+  MISSING: Kab. Lebak
+  MISSING: Kab. Lumajang
+  MISSING: Kab. Madiun
+  MISSING: Kab. Magelang
+  MISSING: Kab. Magetan
+  MISSING: Kab. Majalengka
+  MISSING: Kab. Malang
+  MISSING: Kab. Mojokerto
+  MISSING: Kab. Nganjuk
+  MISSING: Kab. Ngawi
+  MISSING: Kab. Pacitan
+  MISSING: Kab. Pamekasan
+  MISSING: Kab. Pandeglang
+  MISSING: Kab. Pangandaran
+  MISSING: Kab. Pasuruan
+  MISSING: Kab. Pati
+  MISSING: Kab. Pekalongan
+  MISSING: Kab. Pemalang
+  MISSING: Kab. Ponorogo
+  MISSING: Kab. Probolinggo
+  MISSING: Kab. Purbalingga
+  MISSING: Kab. Purwakarta
+  MISSING: Kab. Purworejo
+  MISSING: Kab. Rembang
+  MISSING: Kab. Sampang
+  MISSING: Kab. Semarang
+  MISSING: Kab. Serang
+  MISSING: Kab. Sidoarjo
+  MISSING: Kab. Situbondo
+  MISSING: Kab. Sleman
+  MISSING: Kab. Sragen
+  MISSING: Kab. Subang
+  MISSING: Kab. Sukabumi
+  MISSING: Kab. Sukoharjo
+  MISSING: Kab. Sumedang
+  MISSING: Kab. Sumenep
+  MISSING: Kab. Tangerang
+  MISSING: Kab. Tasikmalaya
+  MISSING: Kab. Tegal
+  MISSING: Kab. Temanggung
+  MISSING: Kab. Trenggalek
+  MISSING: Kab. Tuban
+  MISSING: Kab. Tulungagung
+  MISSING: Kab. Wonogiri
+  MISSING: Kab. Wonosobo
+  MISSING: Kota Bandung
+  MISSING: Kota Banjar
+  MISSING: Kota Batu
+  MISSING: Kota Bekasi
+  MISSING: Kota Blitar
+  MISSING: Kota Bogor
+  MISSING: Kota Cilegon
+  MISSING: Kota Cimahi
+  MISSING: Kota Cirebon
+  MISSING: Kota Depok
+  MISSING: Kota Kediri
+  MISSING: Kota Madiun
+  MISSING: Kota Magelang
+  MISSING: Kota Malang
+  MISSING: Kota Mojokerto
+  MISSING: Kota Pasuruan
+  MISSING: Kota Pekalongan
+  MISSING: Kota Probolinggo
+  MISSING: Kota Salatiga
+  MISSING: Kota Semarang
+  MISSING: Kota Serang
+  MISSING: Kota Sukabumi
+  MISSING: Kota Surabaya
+  MISSING: Kota Surakarta
+  MISSING: Kota Tangerang
+  MISSING: Kota Tangerang Selatan
+  MISSING: Kota Tasikmalaya
+  MISSING: Kota Tegal
+  MISSING: Kota Yogyakarta
+  MISSING: Prov. Banten
+  MISSING: Prov. DI Yogyakarta
+  MISSING: Prov. DKI Jakarta
+  MISSING: Prov. Jawa Barat
+  MISSING: Prov. Jawa Tengah
+  MISSING: Prov. Jawa Timur
+Total missing: 125
+
+=== Regions with FEW detail records (<20) in 2025 ===
+  Kab. Lombok Timur: only 4 records
+  Kab. Lombok Utara: only 4 records
+  Kab. Luwu: only 4 records
+  Kab. Luwu Timur: only 4 records
+  Kab. Luwu Utara: only 4 records
+  Kab. Mahakam Ulu: only 4 records
+  Kab. Majene: only 4 records
+  Kab. Malaka: only 4 records
+  Kab. Malinau: only 4 records
+  Kab. Maluku Barat Daya: only 4 records
+  Kab. Maluku Tengah: only 4 records
+  Kab. Maluku Tenggara: only 4 records
+  Kab. Mamasa: only 4 records
+  Kab. Mamberamo Raya: only 4 records
+  Kab. Mamberamo Tengah: only 4 records
+  Kab. Mamuju: only 4 records
+  Kab. Mamuju Tengah: only 4 records
+  Kab. Mandailing Natal: only 4 records
+  Kab. Manggarai: only 4 records
+  Kab. Manggarai Barat: only 4 records
+  Kab. Manggarai Timur: only 4 records
+  Kab. Manokwari: only 4 records
+  Kab. Manokwari Selatan: only 4 records
+  Kab. Mappi: only 4 records
+  Kab. Maros: only 4 records
+  Kab. Maybrat: only 4 records
+  Kab. Melawi: only 4 records
+  Kab. Mempawah: only 4 records
+  Kab. Merangin: only 4 records
+  Kab. Merauke: only 4 records
+  Kab. Mesuji: only 4 records
+  Kab. Mimika: only 4 records
+  Kab. Minahasa: only 4 records
+  Kab. Minahasa Selatan: only 4 records
+  Kab. Minahasa Tenggara: only 4 records
+  Kab. Minahasa Utara: only 4 records
+  Kab. Morowali: only 4 records
+  Kab. Morowali Utara: only 4 records
+  Kab. Muara Enim: only 4 records
+  Kab. Muaro Jambi: only 4 records
+  Kab. Muko-Muko: only 4 records
+  Kab. Muna: only 4 records
+  Kab. Muna Barat: only 4 records
+  Kab. Murung Raya: only 4 records
+  Kab. Musi Banyuasin: only 4 records
+  Kab. Musi Rawas: only 4 records
+  Kab. Musi Rawas Utara: only 4 records
+  Kab. Nabire: only 4 records
+  Kab. Nagan Raya: only 4 records
+  Kab. Nagekeo: only 4 records
+  Kab. Natuna: only 4 records
+  Kab. Nduga: only 4 records
+  Kab. Ngada: only 4 records
+  Kab. Nias: only 4 records
+  Kab. Nias Barat: only 4 records
+  Kab. Nias Selatan: only 4 records
+  Kab. Nias Utara: only 4 records
+  Kab. Nunukan: only 4 records
+  Kab. Ogan Ilir: only 4 records
+  Kab. Ogan Komering Ilir: only 4 records
+  Kab. Ogan Komering Ulu: only 4 records
+  Kab. Ogan Komering Ulu Selatan: only 4 records
+  Kab. Ogan Komering Ulu Timur: only 4 records
+  Kab. Padang Lawas: only 4 records
+  Kab. Padang Lawas Utara: only 4 records
+  Kab. Padang Pariaman: only 4 records
+  Kab. Pakpak Bharat: only 4 records
+  Kab. Pangkajene Kep.: only 4 records
+  Kab. Paniai: only 4 records
+  Kab. Parigi Moutong: only 4 records
+  Kab. Pasaman: only 4 records
+  Kab. Pasaman Barat: only 4 records
+  Kab. Pasangkayu: only 4 records
+  Kab. Paser: only 4 records
+  Kab. Pegunungan Arfak: only 4 records
+  Kab. Pegunungan Bintang: only 4 records
+  Kab. Pelalawan: only 4 records
+  Kab. Penajam Paser Utara: only 4 records
+  Kab. Penukal Abab Lematang Ilir: only 4 records
+  Kab. Pesawaran: only 4 records
+  Kab. Pesisir Barat: only 4 records
+  Kab. Pesisir Selatan: only 4 records
+  Kab. Pidie: only 4 records
+  Kab. Pidie Jaya: only 4 records
+  Kab. Pinrang: only 4 records
+  Kab. Pohuwato: only 4 records
+  Kab. Polewali Mandar: only 4 records
+  Kab. Poso: only 4 records
+  Kab. Pringsewu: only 4 records
+  Kab. Pulang Pisau: only 4 records
+  Kab. Pulau Morotai: only 4 records
+  Kab. Pulau Taliabu: only 4 records
+  Kab. Puncak: only 4 records
+  Kab. Puncak Jaya: only 4 records
+  Kab. Raja Ampat: only 4 records
+  Kab. Rejang Lebong: only 4 records
+  Kab. Rokan Hilir: only 4 records
+  Kab. Rokan Hulu: only 4 records
+  Kab. Rote Ndao: only 4 records
+  Kab. Sabu Raijua: only 4 records
+  Kab. Sambas: only 4 records
+  Kab. Samosir: only 4 records
+  Kab. Sanggau: only 4 records
+  Kab. Sarmi: only 4 records
+  Kab. Sarolangun: only 4 records
+  Kab. Sekadau: only 4 records
+  Kab. Seluma: only 4 records
+  Kab. Seram Bagian Barat: only 4 records
+  Kab. Seram Bagian Timur: only 4 records
+  Kab. Serdang Bedagai: only 4 records
+  Kab. Seruyan: only 4 records
+  Kab. Siak: only 4 records
+  Kab. Siau Tagulandang Biaro: only 4 records
+  Kab. Sidenreng Rappang: only 4 records
+  Kab. Sigi: only 4 records
+  Kab. Sijunjung: only 4 records
+  Kab. Sikka: only 4 records
+  Kab. Simalungun: only 4 records
+  Kab. Simeulue: only 4 records
+  Kab. Sinjai: only 4 records
+  Kab. Sintang: only 4 records
+  Kab. Solok: only 4 records
+  Kab. Solok Selatan: only 4 records
+  Kab. Soppeng: only 4 records
+  Kab. Sorong: only 4 records
+  Kab. Sorong Selatan: only 4 records
+  Kab. Sukamara: only 4 records
+  Kab. Sumba Barat: only 4 records
+  Kab. Sumba Barat Daya: only 4 records
+  Kab. Sumba Tengah: only 4 records
+  Kab. Sumba Timur: only 4 records
+  Kab. Sumbawa: only 4 records
+  Kab. Sumbawa Barat: only 4 records
+  Kab. Supiori: only 4 records
+  Kab. Tabalong: only 4 records
+  Kab. Tabanan: only 4 records
+  Kab. Takalar: only 4 records
+  Kab. Tambrauw: only 4 records
+  Kab. Tana Tidung: only 4 records
+  Kab. Tanah Bumbu: only 4 records
+  Kab. Tanah Datar: only 4 records
+  Kab. Tanah Laut: only 4 records
+  Kab. Tanatoraja: only 4 records
+  Kab. Tanggamus: only 4 records
+  Kab. Tanjung Jabung Barat: only 4 records
+  Kab. Tanjung Jabung Timur: only 4 records
+  Kab. Tapanuli Selatan: only 4 records
+  Kab. Tapanuli Tengah: only 4 records
+  Kab. Tapanuli Utara: only 4 records
+  Kab. Tapin: only 4 records
+  Kab. Tebo: only 4 records
+  Kab. Teluk Bintuni: only 4 records
+  Kab. Teluk Wondama: only 4 records
+  Kab. Timor Tengah Selatan: only 4 records
+  Kab. Timor Tengah Utara: only 4 records
+  Kab. Toba Samosir: only 4 records
+  Kab. Tojo Una-Una: only 4 records
+  Kab. Toli-Toli: only 4 records
+  Kab. Tolikara: only 4 records
+  Kab. Toraja Utara: only 4 records
+  Kab. Tulang Bawang: only 4 records
+  Kab. Tulang Bawang Barat: only 4 records
+  Kab. Wajo: only 4 records
+  Kab. Wakatobi: only 4 records
+  Kab. Waropen: only 4 records
+  Kab. Way Kanan: only 4 records
+  Kab. Yahukimo: only 4 records
+  Kab. Yalimo: only 4 records
+  Kota Ambon: only 4 records
+  Kota Balikpapan: only 4 records
+  Kota Banda Aceh: only 4 records
+  Kota Bandar Lampung: only 4 records
+  Kota Banjarmasin: only 4 records
+  Kota Batam: only 4 records
+  Kota Bau-Bau: only 4 records
+  Kota Bengkulu: only 4 records
+  Kota Bima: only 4 records
+  Kota Binjai: only 4 records
+  Kota Bitung: only 4 records
+  Kota Bontang: only 4 records
+  Kota Bukit Tinggi: only 4 records
+  Kota Denpasar: only 4 records
+  Kota Dumai: only 4 records
+  Kota Gorontalo: only 4 records
+  Kota Gunung Sitoli: only 4 records
+  Kota Jambi: only 4 records
+  Kota Jayapura: only 4 records
+  Kota Kendari: only 4 records
+  Kota Kotamobagu: only 4 records
+  Kota Kupang: only 4 records
+  Kota Langsa: only 4 records
+  Kota Lhokseumawe: only 4 records
+  Kota Lubuk Linggau: only 4 records
+  Kota Makassar: only 4 records
+  Kota Manado: only 4 records
+  Kota Mataram: only 4 records
+  Kota Medan: only 4 records
+  Kota Metro: only 4 records
+  Kota Padang: only 4 records
+  Kota Padang Panjang: only 4 records
+  Kota Padang Sidempuan: only 4 records
+  Kota Pagar Alam: only 4 records
+  Kota Palangkaraya: only 4 records
+  Kota Palembang: only 4 records
+  Kota Palopo: only 4 records
+  Kota Palu: only 4 records
+  Kota Pangkalpinang: only 4 records
+  Kota Pare-Pare: only 4 records
+  Kota Pariaman: only 4 records
+  Kota Payakumbuh: only 4 records
+  Kota Pekanbaru: only 4 records
+  Kota Pematang Siantar: only 4 records
+  Kota Pontianak: only 4 records
+  Kota Prabumulih: only 4 records
+  Kota Sabang: only 4 records
+  Kota Samarinda: only 4 records
+  Kota Sawahlunto: only 4 records
+  Kota Sibolga: only 4 records
+  Kota Singkawang: only 4 records
+  Kota Solok: only 4 records
+  Kota Sorong: only 4 records
+  Kota Subulussalam: only 4 records
+  Kota Sungai Penuh: only 4 records
+  Kota Tanjung Balai: only 4 records
+  Kota Tanjung Pinang: only 4 records
+  Kota Tarakan: only 4 records
+  Kota Tebing Tinggi: only 4 records
+  Kota Ternate: only 4 records
+  Kota Tidore Kep.: only 4 records
+  Kota Tomohon: only 4 records
+  Kota Tual: only 4 records
+  Prov. Aceh: only 4 records
+  Prov. Bali: only 4 records
+  Prov. Bengkulu: only 4 records
+  Prov. Gorontalo: only 4 records
+  Prov. Jambi: only 4 records
+  Prov. Kalimantan Barat: only 4 records
+  Prov. Kalimantan Selatan: only 4 records
+  Prov. Kalimantan Tengah: only 4 records
+  Prov. Kalimantan Timur: only 4 records
+  Prov. Kalimantan Utara: only 4 records
+  Prov. Kep. Bangka Belitung: only 4 records
+  Prov. Kep. Riau: only 4 records
+  Prov. Lampung: only 4 records
+  Prov. Maluku: only 4 records
+  Prov. Maluku Utara: only 4 records
+  Prov. Nusa Tenggara Barat: only 4 records
+  Prov. Nusa Tenggara Timur: only 4 records
+  Prov. Papua: only 4 records
+  Prov. Papua Barat: only 4 records
+  Prov. Papua Barat Daya: only 4 records
+  Prov. Papua Pegunungan: only 4 records
+  Prov. Papua Selatan: only 4 records
+  Prov. Papua Tengah: only 4 records
+  Prov. Riau: only 4 records
+  Prov. Sulawesi Barat: only 4 records
+  Prov. Sulawesi Selatan: only 4 records
+  Prov. Sulawesi Tengah: only 4 records
+  Prov. Sulawesi Tenggara: only 4 records
+  Prov. Sulawesi Utara: only 4 records
+  Prov. Sumatera Barat: only 4 records
+  Prov. Sumatera Selatan: only 4 records
+  Prov. Sumatera Utara: only 4 records

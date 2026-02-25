@@ -1,0 +1,990 @@
+[
+  {
+    "kode": "4",
+    "nama": "PENDAPATAN DAERAH"
+  },
+  {
+    "kode": "4.1.0",
+    "nama": "PENDAPATAN ASLI DAERAH"
+  },
+  {
+    "kode": "4.1.0.1.0",
+    "nama": "Pajak Daerah"
+  },
+  {
+    "kode": "4.1.0.1.0.6.0",
+    "nama": "Pajak Hotel"
+  },
+  {
+    "kode": "4.1.0.1.0.6.0.1.0",
+    "nama": "Pajak Hotel"
+  },
+  {
+    "kode": "4.1.0.1.0.6.0.1.0",
+    "nama": "Pajak Hotel"
+  },
+  {
+    "kode": "4.1.0.1.0.7.0",
+    "nama": "Pajak Restoran"
+  },
+  {
+    "kode": "4.1.0.1.0.7.0.1.0",
+    "nama": "Pajak Restoran dan Sejenisnya"
+  },
+  {
+    "kode": "4.1.0.1.0.7.0.1.0",
+    "nama": "Pajak Restoran dan Sejenisnya"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0",
+    "nama": "Pajak Hiburan"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.1.0",
+    "nama": "Pajak Tontonan Film"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.1.0",
+    "nama": "Pajak Tontonan Film"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.5.0",
+    "nama": "Pajak Diskotik, Karoke, Klub Malam, dan Sejenisnya"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.5.0",
+    "nama": "Pajak Diskotik, Karoke, Klub Malam, dan Sejenisnya"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.8.0",
+    "nama": "Pajak Pacuan Kuda, Kendaraan Bermotor, dan Permainan Ketangkasan"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.8.0",
+    "nama": "Pajak Pacuan Kuda, Kendaraan Bermotor, dan Permainan Ketangkasan"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.9.0",
+    "nama": "Pajak Panti Pijat, Refleksi, Mandi Uap/Spa dan Pusat Kebugaran (Fitness Center)"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.9.0",
+    "nama": "Pajak Panti Pijat, Refleksi, Mandi Uap/Spa dan Pusat Kebugaran (Fitness Center)"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.10.0",
+    "nama": "Pajak Pertandingan Olahraga"
+  },
+  {
+    "kode": "4.1.0.1.0.8.0.10.0",
+    "nama": "Pajak Pertandingan Olahraga"
+  },
+  {
+    "kode": "4.1.0.1.0.9.0",
+    "nama": "Pajak Reklame"
+  },
+  {
+    "kode": "4.1.0.1.0.9.0.1.0",
+    "nama": "Pajak Reklame Papan/Billboard/Videotron/ Megatron"
+  },
+  {
+    "kode": "4.1.0.1.0.9.0.1.0",
+    "nama": "Pajak Reklame Papan/Billboard/Videotron/ Megatron"
+  },
+  {
+    "kode": "4.1.0.1.0.9.0.2.0",
+    "nama": "Pajak Reklame Kain"
+  },
+  {
+    "kode": "4.1.0.1.0.9.0.2.0",
+    "nama": "Pajak Reklame Kain"
+  },
+  {
+    "kode": "4.1.0.1.0.9.0.4.0",
+    "nama": "Pajak Reklame Selebaran"
+  },
+  {
+    "kode": "4.1.0.1.0.9.0.4.0",
+    "nama": "Pajak Reklame Selebaran"
+  },
+  {
+    "kode": "4.1.0.1.0.9.0.9.0",
+    "nama": "Pajak Reklame Film/Slide"
+  },
+  {
+    "kode": "4.1.0.1.0.9.0.9.0",
+    "nama": "Pajak Reklame Film/Slide"
+  },
+  {
+    "kode": "4.1.0.1.0.10.0",
+    "nama": "Pajak Penerangan Jalan"
+  },
+  {
+    "kode": "4.1.0.1.0.10.0.2.0",
+    "nama": "Pajak Penerangan Jalan Sumber Lain"
+  },
+  {
+    "kode": "4.1.0.1.0.10.0.2.0",
+    "nama": "Pajak Penerangan Jalan Sumber Lain"
+  },
+  {
+    "kode": "4.1.0.1.0.11.0",
+    "nama": "Pajak Parkir"
+  },
+  {
+    "kode": "4.1.0.1.0.11.0.1.0",
+    "nama": "Pajak Parkir"
+  },
+  {
+    "kode": "4.1.0.1.0.11.0.1.0",
+    "nama": "Pajak Parkir"
+  },
+  {
+    "kode": "4.1.0.1.0.12.0",
+    "nama": "Pajak Air Tanah"
+  },
+  {
+    "kode": "4.1.0.1.0.12.0.1.0",
+    "nama": "Pajak Air Tanah"
+  },
+  {
+    "kode": "4.1.0.1.0.12.0.1.0",
+    "nama": "Pajak Air Tanah"
+  },
+  {
+    "kode": "4.1.0.1.0.14.0",
+    "nama": "Pajak Mineral bukan Logam dan Batuan"
+  },
+  {
+    "kode": "4.1.0.1.0.14.0.37.0",
+    "nama": "Pajak Mineral bukan Logam dan Batuan Lainnya"
+  },
+  {
+    "kode": "4.1.0.1.0.14.0.37.0",
+    "nama": "Pajak Mineral bukan Logam dan Batuan Lainnya"
+  },
+  {
+    "kode": "4.1.0.1.0.15.0",
+    "nama": "Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2)"
+  },
+  {
+    "kode": "4.1.0.1.0.15.0.1.0",
+    "nama": "PBBP2"
+  },
+  {
+    "kode": "4.1.0.1.0.15.0.1.0",
+    "nama": "PBBP2"
+  },
+  {
+    "kode": "4.1.0.1.0.16.0",
+    "nama": "Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)"
+  },
+  {
+    "kode": "4.1.0.1.0.16.0.2.0",
+    "nama": "BPHTB-Pemberian Hak Baru"
+  },
+  {
+    "kode": "4.1.0.1.0.16.0.2.0",
+    "nama": "BPHTB-Pemberian Hak Baru"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0",
+    "nama": "Pajak barang dan Jasa Tertentu (PBJT)"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.1.0",
+    "nama": "PBJT-Makanan dan/atau Minuman"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.1.0",
+    "nama": "PBJT-Makanan dan/atau Minuman"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.1.0",
+    "nama": "PBJT-Makanan dan/atau Minuman"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.2.0",
+    "nama": "PBJT-Tenaga Listrik"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.2.0",
+    "nama": "PBJT-Tenaga Listrik"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.3.0",
+    "nama": "PBJT-Jasa Perhotelan"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.3.0",
+    "nama": "PBJT-Jasa Perhotelan"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.4.0",
+    "nama": "PBJT-Jasa Parkir"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.4.0",
+    "nama": "PBJT-Jasa Parkir"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.5.0",
+    "nama": "PBJT-Jasa Kesenian dan Hiburan"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.5.0",
+    "nama": "PBJT-Jasa Kesenian dan Hiburan"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.5.0",
+    "nama": "PBJT-Jasa Kesenian dan Hiburan"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.5.0",
+    "nama": "PBJT-Jasa Kesenian dan Hiburan"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.3.0",
+    "nama": "PBJT-Jasa Perhotelan"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.5.0",
+    "nama": "PBJT-Jasa Kesenian dan Hiburan"
+  },
+  {
+    "kode": "4.1.0.1.0.19.0.5.0",
+    "nama": "PBJT-Jasa Kesenian dan Hiburan"
+  },
+  {
+    "kode": "4.1.0.1.0.20.0",
+    "nama": "Opsen Pajak Kendaraan Bermotor (PKB)"
+  },
+  {
+    "kode": "4.1.0.1.0.20.0.1.0",
+    "nama": "Opsen PKB"
+  },
+  {
+    "kode": "4.1.0.1.0.20.0.1.0",
+    "nama": "Opsen PKB"
+  },
+  {
+    "kode": "4.1.0.2.0",
+    "nama": "Retribusi Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0",
+    "nama": "Retribusi Jasa Umum"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.1.0",
+    "nama": "Retribusi Pelayanan Kesehatan"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.1.0",
+    "nama": "Retribusi Pelayanan Kesehatan"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.1.0",
+    "nama": "Retribusi Pelayanan Kesehatan"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.1.0",
+    "nama": "Retribusi Pelayanan Kesehatan"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.2.0",
+    "nama": "Retribusi Pelayanan Persampahan/ Kebersihan"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.2.0",
+    "nama": "Retribusi Pelayanan Persampahan/ Kebersihan"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.3.0",
+    "nama": "Retribusi Pelayanan Pemakaman dan Pengabuan Mayat"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.3.0",
+    "nama": "Retribusi Pelayanan Pemakaman dan Pengabuan Mayat"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.4.0",
+    "nama": "Retribusi Pelayanan Parkir di Tepi Jalan Umum"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.4.0",
+    "nama": "Retribusi Pelayanan Parkir di Tepi Jalan Umum"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.5.0",
+    "nama": "Retribusi Pelayanan Pasar"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.5.0",
+    "nama": "Retribusi Pelayanan Pasar"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.5.0",
+    "nama": "Retribusi Pelayanan Pasar"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.5.0",
+    "nama": "Retribusi Pelayanan Pasar"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.6.0",
+    "nama": "Retribusi Pengujian Kendaraan Bermotor"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.6.0",
+    "nama": "Retribusi Pengujian Kendaraan Bermotor"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.9.0",
+    "nama": "Retribusi Penyediaan dan/atau Penyedotan Kakus"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.9.0",
+    "nama": "Retribusi Penyediaan dan/atau Penyedotan Kakus"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.10.0",
+    "nama": "Retribusi Pengolahan Limbah Cair"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.10.0",
+    "nama": "Retribusi Pengolahan Limbah Cair"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.13.0",
+    "nama": "Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi"
+  },
+  {
+    "kode": "4.1.0.2.0.1.0.13.0",
+    "nama": "Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0",
+    "nama": "Retribusi Jasa Usaha"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.1.0",
+    "nama": "Retribusi Pemakaian Kekayaan Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.1.0",
+    "nama": "Retribusi Pemakaian Kekayaan Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.1.0",
+    "nama": "Retribusi Pemakaian Kekayaan Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.1.0",
+    "nama": "Retribusi Pemakaian Kekayaan Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.1.0",
+    "nama": "Retribusi Pemakaian Kekayaan Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.4.0",
+    "nama": "Retribusi Terminal"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.4.0",
+    "nama": "Retribusi Terminal"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.4.0",
+    "nama": "Retribusi Terminal"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.4.0",
+    "nama": "Retribusi Terminal"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.5.0",
+    "nama": "Retribusi Tempat Khusus Parkir"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.5.0",
+    "nama": "Retribusi Tempat Khusus Parkir"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.7.0",
+    "nama": "Retribusi Rumah Potong Hewan"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.7.0",
+    "nama": "Retribusi Rumah Potong Hewan"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.9.0",
+    "nama": "Retribusi Tempat Rekreasi dan Olahraga"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.9.0",
+    "nama": "Retribusi Tempat Rekreasi dan Olahraga"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.11.0",
+    "nama": "Retribusi Penjualan Produksi Usaha Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.11.0",
+    "nama": "Retribusi Penjualan Produksi Usaha Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.11.0",
+    "nama": "Retribusi Penjualan Produksi Usaha Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.11.0",
+    "nama": "Retribusi Penjualan Produksi Usaha Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.11.0",
+    "nama": "Retribusi Penjualan Produksi Usaha Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.14.0",
+    "nama": "Retribusi Penyediaan Tempat Khusus Parkir Diluar Badan Jalan"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.14.0",
+    "nama": "Retribusi Penyediaan Tempat Khusus Parkir Diluar Badan Jalan"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.20.0",
+    "nama": "Retribusi Pemanfaatan Aset Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.2.0.20.0",
+    "nama": "Retribusi Pemanfaatan Aset Daerah"
+  },
+  {
+    "kode": "4.1.0.2.0.3.0",
+    "nama": "Retribusi Perizinan Tertentu"
+  },
+  {
+    "kode": "4.1.0.2.0.3.0.3.0",
+    "nama": "Retribusi Izin Trayek untuk Menyediakan Pelayanan Angkutan Umum"
+  },
+  {
+    "kode": "4.1.0.2.0.3.0.3.0",
+    "nama": "Retribusi Izin Trayek untuk Menyediakan Pelayanan Angkutan Umum"
+  },
+  {
+    "kode": "4.1.0.2.0.3.0.7.0",
+    "nama": "Retribusi Persetujuan Bangunan Gedung"
+  },
+  {
+    "kode": "4.1.0.2.0.3.0.7.0",
+    "nama": "Retribusi Persetujuan Bangunan Gedung"
+  },
+  {
+    "kode": "4.1.0.2.0.3.0.8.0",
+    "nama": "Retribusi Penggunaan Tenaga Kerja Asing (TKA)"
+  },
+  {
+    "kode": "4.1.0.2.0.3.0.8.0",
+    "nama": "Retribusi Penggunaan Tenaga Kerja Asing (TKA)"
+  },
+  {
+    "kode": "4.1.0.3.0",
+    "nama": "Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan"
+  },
+  {
+    "kode": "4.1.0.3.0.2.0",
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD"
+  },
+  {
+    "kode": "4.1.0.3.0.2.0.1.0",
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Lembaga Keuangan)"
+  },
+  {
+    "kode": "4.1.0.3.0.2.0.1.0",
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Lembaga Keuangan)"
+  },
+  {
+    "kode": "4.1.0.3.0.2.0.2.0",
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Aneka Usaha)"
+  },
+  {
+    "kode": "4.1.0.3.0.2.0.2.0",
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Aneka Usaha)"
+  },
+  {
+    "kode": "4.1.0.3.0.2.0.3.0",
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Bidang Air Minum)"
+  },
+  {
+    "kode": "4.1.0.3.0.2.0.3.0",
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Bidang Air Minum)"
+  },
+  {
+    "kode": "4.1.0.4.0",
+    "nama": "Lain-lain PAD yang Sah"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0",
+    "nama": "Hasil Penjualan BMD yang Tidak Dipisahkan"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.2.0",
+    "nama": "Hasil Penjualan Peralatan dan Mesin"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.2.0",
+    "nama": "Hasil Penjualan Peralatan dan Mesin"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.2.0",
+    "nama": "Hasil Penjualan Peralatan dan Mesin"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.3.0",
+    "nama": "Hasil Penjualan Gedung dan Bangunan"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.3.0",
+    "nama": "Hasil Penjualan Gedung dan Bangunan"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.5.0",
+    "nama": "Hasil Penjualan Aset Tetap Lainnya"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.5.0",
+    "nama": "Hasil Penjualan Aset Tetap Lainnya"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.5.0",
+    "nama": "Hasil Penjualan Aset Tetap Lainnya"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.8.0",
+    "nama": "Hasil Penjualan Aset Lain-lain"
+  },
+  {
+    "kode": "4.1.0.4.0.1.0.8.0",
+    "nama": "Hasil Penjualan Aset Lain-lain"
+  },
+  {
+    "kode": "4.1.0.4.0.3.0",
+    "nama": "Hasil Pemanfaatan BMD yang Tidak Dipisahkan"
+  },
+  {
+    "kode": "4.1.0.4.0.3.0.1.0",
+    "nama": "Hasil Sewa BMD"
+  },
+  {
+    "kode": "4.1.0.4.0.3.0.1.0",
+    "nama": "Hasil Sewa BMD"
+  },
+  {
+    "kode": "4.1.0.4.0.5.0",
+    "nama": "Jasa Giro"
+  },
+  {
+    "kode": "4.1.0.4.0.5.0.1.0",
+    "nama": "Jasa Giro pada Kas Daerah"
+  },
+  {
+    "kode": "4.1.0.4.0.5.0.1.0",
+    "nama": "Jasa Giro pada Kas Daerah"
+  },
+  {
+    "kode": "4.1.0.4.0.5.0.2.0",
+    "nama": "Jasa Giro pada Kas di Bendahara"
+  },
+  {
+    "kode": "4.1.0.4.0.5.0.2.0",
+    "nama": "Jasa Giro pada Kas di Bendahara"
+  },
+  {
+    "kode": "4.1.0.4.0.5.0.3.0",
+    "nama": "Jasa Giro pada Rekening Dana Cadangan"
+  },
+  {
+    "kode": "4.1.0.4.0.5.0.3.0",
+    "nama": "Jasa Giro pada Rekening Dana Cadangan"
+  },
+  {
+    "kode": "4.1.0.4.0.7.0",
+    "nama": "Pendapatan Bunga"
+  },
+  {
+    "kode": "4.1.0.4.0.7.0.1.0",
+    "nama": "Pendapatan Bunga atas Penempatan Uang Pemerintah Daerah"
+  },
+  {
+    "kode": "4.1.0.4.0.7.0.1.0",
+    "nama": "Pendapatan Bunga atas Penempatan Uang Pemerintah Daerah"
+  },
+  {
+    "kode": "4.1.0.4.0.8.0",
+    "nama": "Penerimaan atas Tuntutan Ganti Kerugian Keuangan Daerah"
+  },
+  {
+    "kode": "4.1.0.4.0.8.0.1.0",
+    "nama": "Tuntutan Ganti Kerugian Daerah terhadap Bendahara"
+  },
+  {
+    "kode": "4.1.0.4.0.8.0.1.0",
+    "nama": "Tuntutan Ganti Kerugian Daerah terhadap Bendahara"
+  },
+  {
+    "kode": "4.1.0.4.0.9.0",
+    "nama": "Penerimaan Komisi, Potongan, atau Bentuk Lain"
+  },
+  {
+    "kode": "4.1.0.4.0.9.0.1.0",
+    "nama": "Penerimaan Komisi, Potongan, atau Bentuk Lain"
+  },
+  {
+    "kode": "4.1.0.4.0.9.0.1.0",
+    "nama": "Penerimaan Komisi, Potongan, atau Bentuk Lain"
+  },
+  {
+    "kode": "4.1.0.4.0.11.0",
+    "nama": "Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan"
+  },
+  {
+    "kode": "4.1.0.4.0.11.0.1.0",
+    "nama": "Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan"
+  },
+  {
+    "kode": "4.1.0.4.0.11.0.1.0",
+    "nama": "Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan"
+  },
+  {
+    "kode": "4.1.0.4.0.12.0",
+    "nama": "Pendapatan Denda Pajak Daerah"
+  },
+  {
+    "kode": "4.1.0.4.0.12.0.16.0",
+    "nama": "Pendapatan Denda Bea Perolehan Hak atas Tanah dan Bangunan (BPHTB)"
+  },
+  {
+    "kode": "4.1.0.4.0.12.0.16.0",
+    "nama": "Pendapatan Denda Bea Perolehan Hak atas Tanah dan Bangunan (BPHTB)"
+  },
+  {
+    "kode": "4.1.0.4.0.15.0",
+    "nama": "Pendapatan dari Pengembalian"
+  },
+  {
+    "kode": "4.1.0.4.0.15.0.4.0",
+    "nama": "Pendapatan dari Pengembalian Kelebihan Pembayaran Perjalanan Dinas"
+  },
+  {
+    "kode": "4.1.0.4.0.15.0.4.0",
+    "nama": "Pendapatan dari Pengembalian Kelebihan Pembayaran Perjalanan Dinas"
+  },
+  {
+    "kode": "4.1.0.4.0.15.0.8.0",
+    "nama": "Pendapatan dari Pengembalian Kelebihan Pembayaran Belanja Gaji Pokok ASN"
+  },
+  {
+    "kode": "4.1.0.4.0.15.0.8.0",
+    "nama": "Pendapatan dari Pengembalian Kelebihan Pembayaran Belanja Gaji Pokok ASN"
+  },
+  {
+    "kode": "4.1.0.4.0.16.0",
+    "nama": "Pendapatan BLUD"
+  },
+  {
+    "kode": "4.1.0.4.0.16.0.2.0",
+    "nama": "Pendapatan BLUD dari Jasa Layanan"
+  },
+  {
+    "kode": "4.1.0.4.0.16.0.2.0",
+    "nama": "Pendapatan BLUD dari Jasa Layanan"
+  },
+  {
+    "kode": "4.1.0.4.0.16.0.4.0",
+    "nama": "Pendapatan BLUD dari Hasil Kerja Sama dengan Pihak Lain"
+  },
+  {
+    "kode": "4.1.0.4.0.16.0.4.0",
+    "nama": "Pendapatan BLUD dari Hasil Kerja Sama dengan Pihak Lain"
+  },
+  {
+    "kode": "4.1.0.4.0.16.0.6.0",
+    "nama": "Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah"
+  },
+  {
+    "kode": "4.1.0.4.0.16.0.6.0",
+    "nama": "Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah"
+  },
+  {
+    "kode": "4.1.0.4.0.16.0.6.0",
+    "nama": "Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah"
+  },
+  {
+    "kode": "4.1.0.4.0.16.0.6.0",
+    "nama": "Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah"
+  },
+  {
+    "kode": "4.2.0",
+    "nama": "PENDAPATAN TRANSFER"
+  },
+  {
+    "kode": "4.2.0.1.0",
+    "nama": "Pendapatan Transfer Pemerintah Pusat"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0",
+    "nama": "Dana Perimbangan"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.2.0",
+    "nama": "Dana Transfer Umum-Dana Alokasi Umum (DAU)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.2.0",
+    "nama": "Dana Transfer Umum-Dana Alokasi Umum (DAU)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.2.0",
+    "nama": "Dana Transfer Umum-Dana Alokasi Umum (DAU)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.2.0",
+    "nama": "Dana Transfer Umum-Dana Alokasi Umum (DAU)"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik"
+  },
+  {
+    "kode": "4.2.0.1.0.5.0",
+    "nama": "Dana Desa"
+  },
+  {
+    "kode": "4.2.0.1.0.5.0.1.0",
+    "nama": "Dana Desa"
+  },
+  {
+    "kode": "4.2.0.1.0.5.0.1.0",
+    "nama": "Dana Desa"
+  },
+  {
+    "kode": "4.2.0.1.0.6.0",
+    "nama": "Insentif Fiskal"
+  },
+  {
+    "kode": "4.2.0.1.0.6.0.1.0",
+    "nama": "Insentif Fiskal"
+  },
+  {
+    "kode": "4.2.0.1.0.6.0.1.0",
+    "nama": "Insentif Fiskal"
+  },
+  {
+    "kode": "4.2.0.2.0",
+    "nama": "Pendapatan Transfer Antar Daerah"
+  },
+  {
+    "kode": "4.2.0.2.0.1.0",
+    "nama": "Pendapatan Bagi Hasil"
+  },
+  {
+    "kode": "4.2.0.2.0.1.0.1.0",
+    "nama": "Pendapatan Bagi Hasil Pajak"
+  },
+  {
+    "kode": "4.2.0.2.0.1.0.1.0",
+    "nama": "Pendapatan Bagi Hasil Pajak"
+  },
+  {
+    "kode": "4.2.0.2.0.1.0.1.0",
+    "nama": "Pendapatan Bagi Hasil Pajak"
+  },
+  {
+    "kode": "4.2.0.2.0.1.0.1.0",
+    "nama": "Pendapatan Bagi Hasil Pajak"
+  },
+  {
+    "kode": "4.2.0.2.0.1.0.1.0",
+    "nama": "Pendapatan Bagi Hasil Pajak"
+  },
+  {
+    "kode": "4.2.0.2.0.1.0.1.0",
+    "nama": "Pendapatan Bagi Hasil Pajak"
+  },
+  {
+    "kode": "4.2.0.2.0.2.0",
+    "nama": "Bantuan Keuangan"
+  },
+  {
+    "kode": "4.2.0.2.0.2.0.2.0",
+    "nama": "Bantuan Keuangan Khusus dari Pemerintah Provinsi"
+  },
+  {
+    "kode": "4.2.0.2.0.2.0.2.0",
+    "nama": "Bantuan Keuangan Khusus dari Pemerintah Provinsi"
+  },
+  {
+    "kode": "4.3.0",
+    "nama": "LAIN-LAIN PENDAPATAN DAERAH YANG SAH"
+  },
+  {
+    "kode": "4.3.0.1.0",
+    "nama": "Pendapatan Hibah"
+  },
+  {
+    "kode": "4.3.0.1.0.1.0",
+    "nama": "Pendapatan Hibah dari Pemerintah Pusat"
+  },
+  {
+    "kode": "4.3.0.1.0.1.0.1.0",
+    "nama": "Pendapatan Hibah dari Pemerintah Pusat"
+  },
+  {
+    "kode": "4.3.0.1.0.1.0.1.0",
+    "nama": "Pendapatan Hibah dari Pemerintah Pusat"
+  }
+]

@@ -1,0 +1,452 @@
+==========================================================================================
+REF_KATEGORI_PAD - Full Category Reference Tree
+==========================================================================================
+Total categories: 432
+
+[4] PENDAPATAN DAERAH
+  |- [4.1] PENDAPATAN ASLI DAERAH (PAD)
+    |- [4.1.0] PENDAPATAN ASLI DAERAH
+        |- [4.1.0.1.0] Pajak Daerah
+            |- [4.1.0.1.0.10.0] Pajak Penerangan Jalan
+                |- [4.1.0.1.0.10.0.2.0] Pajak Penerangan Jalan Sumber Lain
+            |- [4.1.0.1.0.11.0] Pajak Parkir
+                |- [4.1.0.1.0.11.0.1.0] Pajak Parkir
+            |- [4.1.0.1.0.12.0] Pajak Air Tanah
+                |- [4.1.0.1.0.12.0.1.0] Pajak Air Tanah
+            |- [4.1.0.1.0.14.0] Pajak Mineral bukan Logam dan Batuan
+                |- [4.1.0.1.0.14.0.37.0] Pajak Mineral bukan Logam dan Batuan Lainnya
+            |- [4.1.0.1.0.15.0] Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2)
+                |- [4.1.0.1.0.15.0.1.0] PBBP2
+            |- [4.1.0.1.0.16.0] Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)
+                |- [4.1.0.1.0.16.0.2.0] BPHTB-Pemberian Hak Baru
+            |- [4.1.0.1.0.19.0] Pajak barang dan Jasa Tertentu (PBJT)
+                |- [4.1.0.1.0.19.0.1.0] PBJT-Makanan dan/atau Minuman
+                |- [4.1.0.1.0.19.0.2.0] PBJT-Tenaga Listrik
+                |- [4.1.0.1.0.19.0.3.0] PBJT-Jasa Perhotelan
+                |- [4.1.0.1.0.19.0.4.0] PBJT-Jasa Parkir
+                |- [4.1.0.1.0.19.0.5.0] PBJT-Jasa Kesenian dan Hiburan
+            |- [4.1.0.1.0.20.0] Opsen Pajak Kendaraan Bermotor (PKB)
+                |- [4.1.0.1.0.20.0.1.0] Opsen PKB
+            |- [4.1.0.1.0.21.0] Opsen Bea Balik Nama Kendaraan Bermotor (BBNKB)
+                |- [4.1.0.1.0.21.0.1.0] Opsen BBNKB
+            |- [4.1.0.1.0.6.0] Pajak Hotel
+                |- [4.1.0.1.0.6.0.1.0] Pajak Hotel
+            |- [4.1.0.1.0.7.0] Pajak Restoran
+                |- [4.1.0.1.0.7.0.1.0] Pajak Restoran dan Sejenisnya
+            |- [4.1.0.1.0.8.0] Pajak Hiburan
+                |- [4.1.0.1.0.8.0.1.0] Pajak Tontonan Film
+                |- [4.1.0.1.0.8.0.10.0] Pajak Pertandingan Olahraga
+                |- [4.1.0.1.0.8.0.5.0] Pajak Diskotik, Karoke, Klub Malam, dan Sejenisnya
+                |- [4.1.0.1.0.8.0.8.0] Pajak Pacuan Kuda, Kendaraan Bermotor, dan Permainan Ketangkasan
+                |- [4.1.0.1.0.8.0.9.0] Pajak Panti Pijat, Refleksi, Mandi Uap/Spa dan Pusat Kebugaran (Fitness Center)
+            |- [4.1.0.1.0.9.0] Pajak Reklame
+                |- [4.1.0.1.0.9.0.1.0] Pajak Reklame Papan/Billboard/Videotron/ Megatron
+                |- [4.1.0.1.0.9.0.2.0] Pajak Reklame Kain
+                |- [4.1.0.1.0.9.0.4.0] Pajak Reklame Selebaran
+                |- [4.1.0.1.0.9.0.9.0] Pajak Reklame Film/Slide
+        |- [4.1.0.2.0] Retribusi Daerah
+            |- [4.1.0.2.0.1.0] Retribusi Jasa Umum
+                |- [4.1.0.2.0.1.0.1.0] Retribusi Pelayanan Kesehatan
+                |- [4.1.0.2.0.1.0.10.0] Retribusi Pengolahan Limbah Cair
+                |- [4.1.0.2.0.1.0.11.0] Retribusi Pelayanan Tera/Tera Ulang
+                |- [4.1.0.2.0.1.0.13.0] Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi
+                |- [4.1.0.2.0.1.0.2.0] Retribusi Pelayanan Persampahan/ Kebersihan
+                |- [4.1.0.2.0.1.0.3.0] Retribusi Pelayanan Pemakaman dan Pengabuan Mayat
+                |- [4.1.0.2.0.1.0.4.0] Retribusi Pelayanan Parkir di Tepi Jalan Umum
+                |- [4.1.0.2.0.1.0.5.0] Retribusi Pelayanan Pasar
+                |- [4.1.0.2.0.1.0.6.0] Retribusi Pengujian Kendaraan Bermotor
+                |- [4.1.0.2.0.1.0.9.0] Retribusi Penyediaan dan/atau Penyedotan Kakus
+            |- [4.1.0.2.0.2.0] Retribusi Jasa Usaha
+                |- [4.1.0.2.0.2.0.1.0] Retribusi Pemakaian Kekayaan Daerah
+                |- [4.1.0.2.0.2.0.10.0] Retribusi Penyeberangan di Air
+                |- [4.1.0.2.0.2.0.11.0] Retribusi Penjualan Produksi Usaha Daerah
+                |- [4.1.0.2.0.2.0.14.0] Retribusi Penyediaan Tempat Khusus Parkir Diluar Badan Jalan
+                |- [4.1.0.2.0.2.0.2.0] Retribusi Pasar Grosir dan/atau Pertokoan
+                |- [4.1.0.2.0.2.0.20.0] Retribusi Pemanfaatan Aset Daerah
+                |- [4.1.0.2.0.2.0.4.0] Retribusi Terminal
+                |- [4.1.0.2.0.2.0.5.0] Retribusi Tempat Khusus Parkir
+                |- [4.1.0.2.0.2.0.7.0] Retribusi Rumah Potong Hewan
+                |- [4.1.0.2.0.2.0.9.0] Retribusi Tempat Rekreasi dan Olahraga
+            |- [4.1.0.2.0.3.0] Retribusi Perizinan Tertentu
+                |- [4.1.0.2.0.3.0.1.0] Retribusi Izin Mendirikan Bangunan
+                |- [4.1.0.2.0.3.0.3.0] Retribusi Izin Trayek untuk Menyediakan Pelayanan Angkutan Umum
+                |- [4.1.0.2.0.3.0.6.0] Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA)
+                |- [4.1.0.2.0.3.0.7.0] Retribusi Persetujuan Bangunan Gedung
+                |- [4.1.0.2.0.3.0.8.0] Retribusi Penggunaan Tenaga Kerja Asing (TKA)
+        |- [4.1.0.3.0] Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan
+            |- [4.1.0.3.0.2.0] Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD
+                |- [4.1.0.3.0.2.0.1.0] Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Lembaga Keuangan)
+                |- [4.1.0.3.0.2.0.2.0] Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Aneka Usaha)
+                |- [4.1.0.3.0.2.0.3.0] Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Bidang Air Minum)
+        |- [4.1.0.4.0] Lain-lain PAD yang Sah
+            |- [4.1.0.4.0.1.0] Hasil Penjualan BMD yang Tidak Dipisahkan
+                |- [4.1.0.4.0.1.0.2.0] Hasil Penjualan Peralatan dan Mesin
+                |- [4.1.0.4.0.1.0.3.0] Hasil Penjualan Gedung dan Bangunan
+                |- [4.1.0.4.0.1.0.5.0] Hasil Penjualan Aset Tetap Lainnya
+                |- [4.1.0.4.0.1.0.6.0] Hasil Penjualan Aset Lainnya
+                |- [4.1.0.4.0.1.0.8.0] Hasil Penjualan Aset Lain-lain
+            |- [4.1.0.4.0.11.0] Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan
+                |- [4.1.0.4.0.11.0.1.0] Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan
+            |- [4.1.0.4.0.12.0] Pendapatan Denda Pajak Daerah
+                |- [4.1.0.4.0.12.0.16.0] Pendapatan Denda Bea Perolehan Hak atas Tanah dan Bangunan (BPHTB)
+            |- [4.1.0.4.0.15.0] Pendapatan dari Pengembalian
+                |- [4.1.0.4.0.15.0.3.0] Pendapatan dari Pengembalian Kelebihan Pembayaran Gaji dan Tunjangan
+                |- [4.1.0.4.0.15.0.4.0] Pendapatan dari Pengembalian Kelebihan Pembayaran Perjalanan Dinas
+                |- [4.1.0.4.0.15.0.8.0] Pendapatan dari Pengembalian Kelebihan Pembayaran Belanja Gaji Pokok ASN
+            |- [4.1.0.4.0.16.0] Pendapatan BLUD
+                |- [4.1.0.4.0.16.0.1.0] Pendapatan BLUD
+                |- [4.1.0.4.0.16.0.2.0] Pendapatan BLUD dari Jasa Layanan
+                |- [4.1.0.4.0.16.0.4.0] Pendapatan BLUD dari Hasil Kerja Sama dengan Pihak Lain
+                |- [4.1.0.4.0.16.0.6.0] Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah
+            |- [4.1.0.4.0.21.0] Pendapatan Denda atas Pelanggaran Peraturan Daerah
+                |- [4.1.0.4.0.21.0.1.0] Pendapatan Denda atas Pelanggaran Peraturan Daerah
+                |- [4.1.0.4.0.21.0.16.0] Pendapatan Denda atas Pelanggaran Peraturan Daerah
+            |- [4.1.0.4.0.3.0] Hasil Pemanfaatan BMD yang Tidak Dipisahkan
+                |- [4.1.0.4.0.3.0.1.0] Hasil Sewa BMD
+            |- [4.1.0.4.0.5.0] Jasa Giro
+                |- [4.1.0.4.0.5.0.1.0] Jasa Giro pada Kas Daerah
+                |- [4.1.0.4.0.5.0.2.0] Jasa Giro pada Kas di Bendahara
+                |- [4.1.0.4.0.5.0.3.0] Jasa Giro pada Rekening Dana Cadangan
+            |- [4.1.0.4.0.7.0] Pendapatan Bunga
+                |- [4.1.0.4.0.7.0.1.0] Pendapatan Bunga atas Penempatan Uang Pemerintah Daerah
+            |- [4.1.0.4.0.8.0] Penerimaan atas Tuntutan Ganti Kerugian Keuangan Daerah
+                |- [4.1.0.4.0.8.0.1.0] Tuntutan Ganti Kerugian Daerah terhadap Bendahara
+                |- [4.1.0.4.0.8.0.2.0] Tuntutan Ganti Kerugian Daerah terhadap Pegawai Negeri Bukan Bendahara atau Pejabat Lain
+            |- [4.1.0.4.0.9.0] Penerimaan Komisi, Potongan, atau Bentuk Lain
+                |- [4.1.0.4.0.9.0.1.0] Penerimaan Komisi, Potongan, atau Bentuk Lain
+    |- [4.1.01] Pajak Daerah
+      |- [4.1.01.01] Pajak Kendaraan Bermotor (PKB)
+        |- [4.1.01.01.01] PKB-Mobil Penumpang-Sedan
+        |- [4.1.01.01.02] PKB-Mobil Penumpang-Jeep
+        |- [4.1.01.01.03] PKB-Mobil Penumpang-Minibus
+        |- [4.1.01.01.04] PKB-Mobil Bus-Microbus
+        |- [4.1.01.01.05] PKB-Mobil Bus-Bus
+        |- [4.1.01.01.06] PKB-Mobil Barang/Beban-Pick Up
+        |- [4.1.01.01.07] PKB-Mobil Barang/Beban-Light Truck
+        |- [4.1.01.01.08] PKB-Mobil Barang/Beban-Truck
+        |- [4.1.01.01.09] PKB-Mobil Barang/Beban-Blind Van
+        |- [4.1.01.01.10] PKB-Sepeda Motor-Sepeda Motor Roda Dua
+        |- [4.1.01.01.11] PKB-Sepeda Motor-Sepeda Motor Roda Tiga
+        |- [4.1.01.01.12] PKB-Kendaraan Bermotor yang Dioperasikan di Air
+        |- [4.1.01.01.13] PKB-Kendaraan Khusus Alat Berat/Alat Besar
+        |- [4.1.01.01.14] PKB-Mobil Roda Tiga
+        |- [4.1.01.01.15] PKB-Mobil Penumpang-Roda Tiga
+        |- [4.1.01.01.16] PKB-Mobil Barang-Roda Tiga
+        |- [4.1.01.01.17] PKB-Mobil Barang/Beban-Pick Up Box
+        |- [4.1.01.01.18] PKB-Sepeda Motor-Sepeda Motor Roda Tiga Penumpang
+      |- [4.1.01.02] Bea Balik Nama Kendaraan Bermotor (BBNKB)
+        |- [4.1.01.02.01] BBNKB-Mobil Penumpang-Sedan
+        |- [4.1.01.02.02] BBNKB-Mobil Penumpang-Jeep
+        |- [4.1.01.02.03] BBNKB-Mobil Penumpang-Minibus
+        |- [4.1.01.02.04] BBNKB-Mobil Bus-Microbus
+        |- [4.1.01.02.05] BBNKB-Mobil Bus-Bus
+        |- [4.1.01.02.06] BBNKB-Mobil Barang/Beban-Pick Up
+        |- [4.1.01.02.07] BBNKB-Mobil Barang/Beban-Light Truck
+        |- [4.1.01.02.08] BBNKB-Mobil Barang/Beban-Truck
+        |- [4.1.01.02.09] BBNKB-Mobil Barang/Beban-Blind Van
+        |- [4.1.01.02.10] BBNKB-Sepeda Motor-Sepeda Motor Roda Dua
+        |- [4.1.01.02.11] BBNKB-Sepeda Motor-Sepeda Motor Roda Tiga
+        |- [4.1.01.02.12] BBNKB-Kendaraan Bermotor yang Dioperasikan di Air
+        |- [4.1.01.02.13] BBNKB-Kendaraan Khusus Alat Berat
+        |- [4.1.01.02.14] BBNKB-Mobil Roda Tiga
+        |- [4.1.01.02.15] BBNKB-Mobil Penumpang-Roda Tiga
+        |- [4.1.01.02.16] BBNKB-Mobil Barang-Roda Tiga
+        |- [4.1.01.02.17] BBNKB-Mobil Barang/Beban-Pick Up Box
+        |- [4.1.01.02.18] BBNKB-Sepeda Motor-Sepeda Motor Roda Tiga Penumpang
+      |- [4.1.01.03] Pajak Bahan Bakar Kendaraan Bermotor (PBBKB)
+        |- [4.1.01.03.01] PBBKB-Bahan Bakar Bensin
+        |- [4.1.01.03.02] PBBKB-Bahan Bakar Solar
+        |- [4.1.01.03.03] PBBKB-Bahan Bakar Gas
+        |- [4.1.01.03.04] PBBKB-Bahan Bakar Lainnya
+      |- [4.1.01.04] Pajak Air Permukaan
+        |- [4.1.01.04.01] Pajak Air Permukaan
+      |- [4.1.01.05] Pajak Rokok
+        |- [4.1.01.05.01] Pajak Rokok
+      |- [4.1.01.06] Pajak Hotel
+        |- [4.1.01.06.01] Pajak Hotel
+        |- [4.1.01.06.02] Pajak Motel
+        |- [4.1.01.06.03] Pajak Losmen
+        |- [4.1.01.06.04] Pajak Gubuk Pariwisata
+        |- [4.1.01.06.05] Pajak Wisma Pariwisata
+        |- [4.1.01.06.06] Pajak Pesanggrahan
+        |- [4.1.01.06.07] Pajak Rumah Penginapan dan Sejenisnya
+        |- [4.1.01.06.08] Pajak Rumah Kos dengan Jumlah Kamar Lebih dari 10 (Sepuluh)
+      |- [4.1.01.07] Pajak Restoran
+        |- [4.1.01.07.01] Pajak Restoran dan Sejenisnya
+        |- [4.1.01.07.02] Pajak Rumah Makan dan Sejenisnya
+        |- [4.1.01.07.03] Pajak Kafetaria dan Sejenisnya
+        |- [4.1.01.07.04] Pajak Kantin dan Sejenisnya
+        |- [4.1.01.07.05] Pajak Warung dan Sejenisnya
+        |- [4.1.01.07.06] Pajak Bar dan Sejenisnya
+        |- [4.1.01.07.07] Pajak Jasa Boga/Katering dan Sejenisnya
+      |- [4.1.01.08] Pajak Hiburan
+        |- [4.1.01.08.01] Pajak Tontonan Film
+        |- [4.1.01.08.02] Pajak Pagelaran Kesenian/Musik/Tari/ Busana
+        |- [4.1.01.08.03] Pajak Kontes Kecantikan, Binaraga, dan Sejenisnya
+        |- [4.1.01.08.04] Pajak Pameran
+        |- [4.1.01.08.05] Pajak Diskotik, Karaoke, Klub Malam, dan Sejenisnya
+        |- [4.1.01.08.06] Pajak Sirkus/Akrobat/Sulap
+        |- [4.1.01.08.07] Pajak Permainan Biliar dan Bowling
+        |- [4.1.01.08.08] Pajak Pacuan Kuda, Kendaraan Bermotor, dan Permainan Ketangkasan
+        |- [4.1.01.08.09] Pajak Panti Pijat, Refleksi, Mandi Uap/Spa dan Pusat Kebugaran (Fitness Center)
+        |- [4.1.01.08.10] Pajak Pertandingan Olahraga
+      |- [4.1.01.09] Pajak Reklame
+        |- [4.1.01.09.01] Pajak Reklame Papan/Billboard/Videotron/ Megatron
+        |- [4.1.01.09.02] Pajak Reklame Kain
+        |- [4.1.01.09.03] Pajak Reklame Melekat/Stiker
+        |- [4.1.01.09.04] Pajak Reklame Selebaran
+        |- [4.1.01.09.05] Pajak Reklame Berjalan
+        |- [4.1.01.09.06] Pajak Reklame Udara
+        |- [4.1.01.09.07] Pajak Reklame Apung
+        |- [4.1.01.09.08] Pajak Reklame Suara
+        |- [4.1.01.09.09] Pajak Reklame Film/Slide
+        |- [4.1.01.09.10] Pajak Reklame Peragaan
+      |- [4.1.01.10] Pajak Penerangan Jalan
+        |- [4.1.01.10.01] Pajak Penerangan Jalan Dihasilkan Sendiri
+        |- [4.1.01.10.02] Pajak Penerangan Jalan Sumber Lain
+      |- [4.1.01.11] Pajak Parkir
+        |- [4.1.01.11.01] Pajak Parkir
+      |- [4.1.01.12] Pajak Air Tanah
+        |- [4.1.01.12.01] Pajak Air Tanah
+      |- [4.1.01.13] Pajak Sarang Burung Walet
+        |- [4.1.01.13.01] Pajak Sarang Burung Walet
+      |- [4.1.01.14] Pajak Mineral Bukan Logam dan Batuan
+        |- [4.1.01.14.01] Pajak Asbes
+        |- [4.1.01.14.02] Pajak Batu Tulis
+        |- [4.1.01.14.03] Pajak Batu Setengah Permata
+        |- [4.1.01.14.04] Pajak Batu Kapur
+        |- [4.1.01.14.05] Pajak Batu Apung
+        |- [4.1.01.14.06] Pajak Batu Permata
+        |- [4.1.01.14.07] Pajak Bentonit
+        |- [4.1.01.14.08] Pajak Dolomit
+        |- [4.1.01.14.09] Pajak Felspar
+        |- [4.1.01.14.10] Pajak Garam Batu (Halite)
+        |- [4.1.01.14.11] Pajak Grafit
+        |- [4.1.01.14.12] Pajak Granit/Andesit
+        |- [4.1.01.14.13] Pajak Gips
+        |- [4.1.01.14.14] Pajak Kalsit
+        |- [4.1.01.14.15] Pajak Kaolin
+        |- [4.1.01.14.16] Pajak Leusit
+        |- [4.1.01.14.17] Pajak Magnesit
+        |- [4.1.01.14.18] Pajak Mika
+        |- [4.1.01.14.19] Pajak Marmer
+        |- [4.1.01.14.20] Pajak Nitrat
+        |- [4.1.01.14.21] Pajak Opsidien
+        |- [4.1.01.14.22] Pajak Oker
+        |- [4.1.01.14.23] Pajak Pasir dan Kerikil
+        |- [4.1.01.14.24] Pajak Pasir Kuarsa
+        |- [4.1.01.14.25] Pajak Perlit
+        |- [4.1.01.14.26] Pajak Phospat
+        |- [4.1.01.14.27] Pajak Talk
+        |- [4.1.01.14.28] Pajak Tanah Serap (Fullers Earth)
+        |- [4.1.01.14.29] Pajak Tanah Diatome
+        |- [4.1.01.14.30] Pajak Tanah Liat
+        |- [4.1.01.14.31] Pajak Tawas (Alum)
+        |- [4.1.01.14.32] Pajak Tras
+        |- [4.1.01.14.33] Pajak Yarosif
+        |- [4.1.01.14.34] Pajak Zeolit
+        |- [4.1.01.14.35] Pajak Basal
+        |- [4.1.01.14.36] Pajak Trakit
+        |- [4.1.01.14.37] Pajak Mineral bukan Logam dan Batuan Lainnya
+        |- [4.1.01.14.38] Pajak Belerang
+        |- [4.1.01.14.39] Pajak MBLB Ikutan Dalam Suatu Pertambangan Mineral
+      |- [4.1.01.15] Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2)
+        |- [4.1.01.15.01] PBBP2
+      |- [4.1.01.16] Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)
+        |- [4.1.01.16.01] BPHTB-Pemindahan Hak
+        |- [4.1.01.16.02] BPHTB-Pemberian Hak Baru
+      |- [4.1.01.17] Pajak Alat Berat
+        |- [4.1.01.17.01] Pajak Alat Berat
+      |- [4.1.01.18] Opsen Pajak Mineral Bukan Logam dan Batuan (MBLB)
+        |- [4.1.01.18.01] Opsen Pajak Mineral Bukan Logam dan Batuan (MBLB)
+      |- [4.1.01.19] Pajak Barang dan Jasa Tertentu (PBJT)
+        |- [4.1.01.19.01] PBJT-Makanan dan/atau Minuman
+        |- [4.1.01.19.02] PBJT-Tenaga Listrik
+        |- [4.1.01.19.03] PBJT-Jasa Perhotelan
+        |- [4.1.01.19.04] PBJT-Jasa Parkir
+        |- [4.1.01.19.05] PBJT-Jasa Kesenian dan Hiburan
+      |- [4.1.01.20] Opsen Pajak Kendaraan Bermotor (PKB)
+        |- [4.1.01.20.01] Opsen PKB
+      |- [4.1.01.21] Opsen Bea Balik Nama Kendaraan Bermotor (BBNKB)
+        |- [4.1.01.21.01] Opsen BBNKB
+    |- [4.1.02] Retribusi Daerah
+      |- [4.1.02.01] Retribusi Jasa Umum
+        |- [4.1.02.01.01] Retribusi Pelayanan Kesehatan
+        |- [4.1.02.01.02] Retribusi Pelayanan Persampahan/ Kebersihan
+        |- [4.1.02.01.03] Retribusi Pelayanan Pemakaman dan Pengabuan Mayat
+        |- [4.1.02.01.04] Retribusi Pelayanan Parkir di Tepi Jalan Umum
+        |- [4.1.02.01.05] Retribusi Pelayanan Pasar
+        |- [4.1.02.01.06] Retribusi Pengujian Kendaraan Bermotor
+        |- [4.1.02.01.07] Retribusi Pemeriksaan Alat Pemadam Kebakaran
+        |- [4.1.02.01.08] Retribusi Penggantian Biaya Cetak Peta
+        |- [4.1.02.01.09] Retribusi Penyediaan dan/atau Penyedotan Kakus
+        |- [4.1.02.01.10] Retribusi Pengolahan Limbah Cair
+        |- [4.1.02.01.11] Retribusi Pelayanan Tera/Tera Ulang
+        |- [4.1.02.01.12] Retribusi Pelayanan Pendidikan
+        |- [4.1.02.01.13] Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi
+        |- [4.1.02.01.14] Retribusi Pelayanan Kebersihan
+        |- [4.1.02.01.15] Retribusi Pengendalian Lalu Lintas
+      |- [4.1.02.02] Retribusi Jasa Usaha
+        |- [4.1.02.02.01] Retribusi Pemakaian Kekayaan Daerah
+        |- [4.1.02.02.02] Retribusi Pasar Grosir dan/atau Pertokoan
+        |- [4.1.02.02.03] Retribusi Tempat Pelelangan
+        |- [4.1.02.02.04] Retribusi Terminal
+        |- [4.1.02.02.05] Retribusi Tempat Khusus Parkir
+        |- [4.1.02.02.06] Retribusi Tempat Penginapan/Pesanggrahan/ Vila
+        |- [4.1.02.02.07] Retribusi Rumah Potong Hewan
+        |- [4.1.02.02.08] Retribusi Pelayanan Kepelabuhanan
+        |- [4.1.02.02.09] Retribusi Tempat Rekreasi dan Olahraga
+        |- [4.1.02.02.10] Retribusi Penyeberangan di Air
+        |- [4.1.02.02.11] Retribusi Penjualan Produksi Usaha Daerah
+        |- [4.1.02.02.12] Retribusi Penyediaan Tempat Kegiatan Usaha berupa Pasar, Grosir, Pertokoan, dan Tempat Kegiatan Usaha Lainnya
+        |- [4.1.02.02.13] Retribusi Penyediaan Tempat Pelelangan Ikan, Ternak, Hasil Bumi, dan Hasil Hutan Termasuk Fasilitas Lainnya dalam Lingkungan Tempat Pelelangan
+        |- [4.1.02.02.14] Retribusi Penyediaan Tempat Khusus Parkir Diluar Badan Jalan
+        |- [4.1.02.02.15] Retribusi Pelayanan Rumah Pemotongan Hewan Ternak
+        |- [4.1.02.02.16] Retribusi Pelayanan Jasa Kepelabuhanan
+        |- [4.1.02.02.17] Retribusi Pelayanan Tempat Rekreasi, Pariwisata, dan Olahraga
+        |- [4.1.02.02.18] Retribusi Pelayanan Penyeberangan Orang atau Barang dengan Menggunakan Kendaraan di Air
+        |- [4.1.02.02.19] Retribusi Penjualan Hasil Produksi Usaha Pemerintah Daerah
+        |- [4.1.02.02.20] Retribusi Pemanfaatan Aset Daerah
+      |- [4.1.02.03] Retribusi Perizinan Tertentu
+        |- [4.1.02.03.01] Retribusi Izin Mendirikan Bangunan
+        |- [4.1.02.03.02] Retribusi Izin Tempat Penjualan Minuman Beralkohol
+        |- [4.1.02.03.03] Retribusi Izin Trayek untuk Menyediakan Pelayanan Angkutan Umum
+        |- [4.1.02.03.04] Retribusi Izin Usaha Perikanan
+        |- [4.1.02.03.05] Retribusi Pengendalian Lalu Lintas
+        |- [4.1.02.03.06] Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA)
+        |- [4.1.02.03.07] Retribusi Persetujuan Bangunan Gedung
+        |- [4.1.02.03.08] Retribusi Penggunaan Tenaga Kerja Asing (TKA)
+        |- [4.1.02.03.09] Retribusi Pertambangan Rakyat
+    |- [4.1.03] Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan
+    |- [4.1.04] Lain-lain PAD yang Sah
+    |- [4.1.1] Pajak Daerah
+    |- [4.1.2] Retribusi Daerah
+      |- [4.1.2.01] Retribusi Jasa Umum
+        |- [4.1.2.01.01] Retribusi Pelayanan Kesehatan
+        |- [4.1.2.01.02] Retribusi Pelayanan Persampahan/ Kebersihan
+        |- [4.1.2.01.03] Retribusi Pelayanan Pemakaman dan Pengabuan Mayat
+        |- [4.1.2.01.04] Retribusi Pelayanan Parkir di Tepi Jalan Umum
+        |- [4.1.2.01.05] Retribusi Pelayanan Pasar
+        |- [4.1.2.01.06] Retribusi Pengujian Kendaraan Bermotor
+        |- [4.1.2.01.07] Retribusi Pemeriksaan Alat Pemadam Kebakaran
+        |- [4.1.2.01.08] Retribusi Penggantian Biaya Cetak Peta
+        |- [4.1.2.01.09] Retribusi Penyediaan dan/atau Penyedotan Kakus
+        |- [4.1.2.01.10] Retribusi Pengolahan Limbah Cair
+        |- [4.1.2.01.11] Retribusi Pelayanan Tera/Tera Ulang
+        |- [4.1.2.01.12] Retribusi Pelayanan Pendidikan
+        |- [4.1.2.01.13] Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi
+      |- [4.1.2.02] Retribusi Jasa Usaha
+        |- [4.1.2.02.01] Retribusi Pemakaian Kekayaan Daerah
+        |- [4.1.2.02.02] Retribusi Pasar Grosir dan/atau Pertokoan
+        |- [4.1.2.02.03] Retribusi Tempat Pelelangan
+        |- [4.1.2.02.04] Retribusi Terminal
+        |- [4.1.2.02.05] Retribusi Tempat Khusus Parkir
+        |- [4.1.2.02.06] Retribusi Tempat Penginapan/Pesanggrahan/ Vila
+        |- [4.1.2.02.07] Retribusi Rumah Potong Hewan
+        |- [4.1.2.02.08] Retribusi Pelayanan Kepelabuhanan
+        |- [4.1.2.02.09] Retribusi Tempat Rekreasi dan Olahraga
+        |- [4.1.2.02.10] Retribusi Penyeberangan di Air
+        |- [4.1.2.02.11] Retribusi Penjualan Produksi Usaha Daerah
+      |- [4.1.2.03] Retribusi Perizinan Tertentu
+        |- [4.1.2.03.01] Retribusi Izin Mendirikan Bangunan
+        |- [4.1.2.03.02] Retribusi Izin Tempat Penjualan Minuman Beralkohol
+        |- [4.1.2.03.03] Retribusi Izin Trayek untuk Menyediakan Pelayanan Angkutan Umum
+        |- [4.1.2.03.04] Retribusi Izin Usaha Perikanan
+        |- [4.1.2.03.05] Retribusi Pengendalian Lalu Lintas
+        |- [4.1.2.03.06] Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA)
+  |- [4.2] PENDAPATAN TRANSFER
+    |- [4.2.0] PENDAPATAN TRANSFER
+        |- [4.2.0.1.0] Pendapatan Transfer Pemerintah Pusat
+            |- [4.2.0.1.0.1.0] Dana Perimbangan
+                |- [4.2.0.1.0.1.0.1.0] Dana Transfer Umum-Dana Bagi Hasil (DBH)
+                |- [4.2.0.1.0.1.0.2.0] Dana Transfer Umum-Dana Alokasi Umum (DAU)
+                |- [4.2.0.1.0.1.0.3.0] Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik
+                |- [4.2.0.1.0.1.0.4.0] Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik
+            |- [4.2.0.1.0.2.0] Dana Insentif Daerah (DID)
+                |- [4.2.0.1.0.2.0.1.0] DID
+            |- [4.2.0.1.0.5.0] Dana Desa
+                |- [4.2.0.1.0.5.0.1.0] Dana Desa
+            |- [4.2.0.1.0.6.0] Insentif Fiskal
+                |- [4.2.0.1.0.6.0.1.0] Insentif Fiskal
+                |- [4.2.0.1.0.6.0.2.0] Insentif Fiskal Untuk Penghargaan Kinerja Tahun Sebelumnya
+            |- [4.2.0.1.0.7.0] Dana Bagi Hasil (DBH)
+                |- [4.2.0.1.0.7.0.1.0] DBH Pajak
+                |- [4.2.0.1.0.7.0.2.0] DBH Sumber Daya Alam (SDA)
+            |- [4.2.0.1.0.8.0] Dana Alokasi Umum (DAU)
+                |- [4.2.0.1.0.8.0.1.0] DAU yang Tidak Ditentukan Penggunaannya
+                |- [4.2.0.1.0.8.0.2.0] DAU yang Ditentukan Penggunaannya
+            |- [4.2.0.1.0.9.0] Dana Alokasi Khusus (DAK)
+                |- [4.2.0.1.0.9.0.1.0] DAK Fisik
+                |- [4.2.0.1.0.9.0.2.0] DAK Non Fisik
+        |- [4.2.0.2.0] Pendapatan Transfer Antar Daerah
+            |- [4.2.0.2.0.1.0] Pendapatan Bagi Hasil
+                |- [4.2.0.2.0.1.0.1.0] Pendapatan Bagi Hasil Pajak
+            |- [4.2.0.2.0.2.0] Bantuan Keuangan
+                |- [4.2.0.2.0.2.0.2.0] Bantuan Keuangan Khusus dari Pemerintah Provinsi
+    |- [4.3.0] LAIN-LAIN PENDAPATAN DAERAH YANG SAH
+        |- [4.3.0.1.0] Pendapatan Hibah
+            |- [4.3.0.1.0.1.0] Pendapatan Hibah dari Pemerintah Pusat
+                |- [4.3.0.1.0.1.0.1.0] Pendapatan Hibah dari Pemerintah Pusat
+[PAD-LAIN] Lain-lain PAD yang Sah
+[PAD-PAJAK] Pajak Daerah
+[PAD-PENGELOLAAN] Pengelolaan Kekayaan Daerah
+[PAD-RETRIBUSI] Retribusi Daerah
+[PAJ-KABKO] Pajak Kabupaten/Kota
+[PAJ-KK-BPHTB] BPHTB
+[PAJ-KK-MBLB] Pajak MBLB
+[PAJ-KK-OPSEN-BBNKB] Opsen BBNKB
+[PAJ-KK-OPSEN-PKB] Opsen PKB
+[PAJ-KK-PAT] PAT
+[PAJ-KK-PBBP2] PBB-P2
+[PAJ-KK-PBJT] PBJT
+[PAJ-KK-REKLAME] Pajak Reklame
+[PAJ-KK-WALET] Pajak Sarang Burung Walet
+[PAJ-PROV] Pajak Provinsi
+[PAJ-PROV-BBNKB] BBNKB
+[PAJ-PROV-OPSEN-MBLB] Opsen Pajak MBLB
+[PAJ-PROV-PAB] PAB
+[PAJ-PROV-PAP] PAP
+[PAJ-PROV-PBBKB] PBBKB
+[PAJ-PROV-PKB] PKB
+[PAJ-PROV-ROKOK] Pajak Rokok
+[PBJT-HIBURAN] Jasa Kesenian dan Hiburan
+[PBJT-HOTEL] Jasa Perhotelan
+[PBJT-LISTRIK] Tenaga Listrik
+[PBJT-MAKMIN] Makanan dan Minuman
+[PBJT-PARKIR] Jasa Parkir
+[RET-JU] Retribusi Jasa Umum
+[RET-JU-KEBERSIHAN] Pelayanan Kebersihan
+[RET-JU-KESEHATAN] Pelayanan Kesehatan
+[RET-JU-LALIN] Pengendalian Lalu Lintas
+[RET-JU-PARKIR] Pelayanan Parkir di Tepi Jalan Umum
+[RET-JU-PASAR] Pelayanan Pasar
+[RET-JUS] Retribusi Jasa Usaha
+[RET-JUS-ASET] Pemanfaatan Aset Daerah
+[RET-JUS-PARKIR] Tempat Parkir Khusus
+[RET-JUS-PELABUHAN] Jasa Kepelabuhanan
+[RET-JUS-PELELANGAN] Penyediaan Tempat Pelelangan
+[RET-JUS-PENGINAPAN] Tempat Penginapan/Vila
+[RET-JUS-PENYEBERANGAN] Penyeberangan Orang/Barang di Air
+[RET-JUS-PRODUK] Penjualan Produk Usaha Pemda
+[RET-JUS-REKREASI] Tempat Rekreasi/Pariwisata/Olahraga
+[RET-JUS-RPH] Rumah Pemotongan Hewan
+[RET-JUS-TEMPAT-USAHA] Penyediaan Tempat Usaha
+[RET-PT] Retribusi Perizinan Tertentu
+[RET-PT-PBG] Persetujuan Bangunan Gedung
+[RET-PT-TAMBANG] Pengelolaan Pertambangan Rakyat
+[RET-PT-TKA] Penggunaan Tenaga Kerja Asing
+
+==========================================================================================
+DETAIL_PAD_DATA - KOTA SEMARANG, 2024
+==========================================================================================
+Total detail rows: 0
+
+
+==========================================================================================
+DATA COUNT PER YEAR
+==========================================================================================
+  2021: 0-0/3470
+  2022: 0-0/3426
+  2023: 0-0/3422
+  2024: 0-0/4463
+  2025: 0-0/2437

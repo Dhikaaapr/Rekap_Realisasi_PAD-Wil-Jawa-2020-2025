@@ -1,5 +1,3 @@
-// File generated manually based on Firebase Console config.
-// ignore_for_file: type=lint
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
@@ -36,7 +34,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // Android config from google-services.json
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDLZijebabnW2jqIDLc6tqdBkenG_UIZT4',
     appId: '1:1043512873996:android:844d9c85520f67330f8a29',
@@ -45,7 +42,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'rekap-pad.firebasestorage.app',
   );
 
-  // Web config from Firebase Console
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyB8gx6JzexoivdbxCrv0AhpTCEhGqIuumA',
     appId: '1:1043512873996:web:b4469b951c7314d40f8a29',
@@ -56,7 +52,6 @@ class DefaultFirebaseOptions {
     measurementId: 'G-SHRDV9S4S3',
   );
 
-  // Windows uses the same config as Web
   static const FirebaseOptions windows = FirebaseOptions(
     apiKey: 'AIzaSyB8gx6JzexoivdbxCrv0AhpTCEhGqIuumA',
     appId: '1:1043512873996:web:b4469b951c7314d40f8a29',

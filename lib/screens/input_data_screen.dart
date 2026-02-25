@@ -5,8 +5,8 @@ import '../services/firestore_service.dart';
 
 class InputDataScreen extends StatefulWidget {
   final PADData? data; // If null = Add Mode, if exists = Edit Mode
-  final String? initialDaerah; // Pre-fill region name
-  final String? initialNomorUrut; // Pre-fill sequence number
+  final String? initialDaerah; 
+  final String? initialNomorUrut; 
 
   const InputDataScreen({super.key, this.data, this.initialDaerah, this.initialNomorUrut});
 
@@ -20,7 +20,7 @@ class _InputDataScreenState extends State<InputDataScreen> {
   bool _isLoading = false;
   List<String> _existingRegions = [];
 
-  // Controllers
+
   late TextEditingController _tahunController;
   late TextEditingController _daerahController;
   late TextEditingController _pajakAngController;

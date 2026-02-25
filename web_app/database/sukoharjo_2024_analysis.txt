@@ -1,0 +1,53 @@
+
+=== RAW CODES SAMPLE ===
+                   code                                               name      realisasi
+0                     4                                  PENDAPATAN DAERAH  2241420554545
+1                 4.1.0                             PENDAPATAN ASLI DAERAH   553602928345
+2             4.1.0.1.0                                       Pajak Daerah   325766443789
+29       4.1.0.1.0.10.0                             Pajak Penerangan Jalan              0
+31   4.1.0.1.0.10.0.2.0                 Pajak Penerangan Jalan Sumber Lain              0
+30   4.1.0.1.0.10.0.2.0                 Pajak Penerangan Jalan Sumber Lain              0
+32       4.1.0.1.0.11.0                                       Pajak Parkir              0
+33   4.1.0.1.0.11.0.1.0                                       Pajak Parkir              0
+34   4.1.0.1.0.11.0.1.0                                       Pajak Parkir              0
+35       4.1.0.1.0.12.0                                    Pajak Air Tanah     2697391327
+36   4.1.0.1.0.12.0.1.0                                    Pajak Air Tanah     2697391327
+37   4.1.0.1.0.12.0.1.0                                    Pajak Air Tanah     2697391327
+38       4.1.0.1.0.14.0               Pajak Mineral bukan Logam dan Batuan      693396714
+39  4.1.0.1.0.14.0.37.0       Pajak Mineral bukan Logam dan Batuan Lainnya      693396714
+40  4.1.0.1.0.14.0.37.0       Pajak Mineral bukan Logam dan Batuan Lainnya      693396714
+41       4.1.0.1.0.15.0  Pajak Bumi dan Bangunan Perdesaan dan Perkotaa...    47067496440
+43   4.1.0.1.0.15.0.1.0                                              PBBP2    47067496440
+42   4.1.0.1.0.15.0.1.0                                              PBBP2    47067496440
+44       4.1.0.1.0.16.0  Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)   110194825569
+45   4.1.0.1.0.16.0.2.0                           BPHTB-Pemberian Hak Baru   110194825569
+
+=== TOP LEVEL SUMMARY ===
+      code                                  name       anggaran      realisasi         pct
+0        4                     PENDAPATAN DAERAH  2032607162850  2241420554545  110.273180
+1    4.1.0                PENDAPATAN ASLI DAERAH   388781583850   553602928345  142.394329
+182  4.2.0                   PENDAPATAN TRANSFER  1640825579000  1687817626200  102.863927
+242  4.3.0  LAIN-LAIN PENDAPATAN DAERAH YANG SAH     3000000000              0    0.000000
+
+=== TOP 20 REVENUE SOURCES (REALISASI) ===
+                   code                                                      name      realisasi         pct
+0                     4                                         PENDAPATAN DAERAH  2241420554545  110.273180
+182               4.2.0                                       PENDAPATAN TRANSFER  1687817626200  102.863927
+183           4.2.0.1.0                      Pendapatan Transfer Pemerintah Pusat  1475220471981  101.332226
+184       4.2.0.1.0.1.0                                          Dana Perimbangan  1289812978981  100.728551
+196   4.2.0.1.0.1.0.2.0                Dana Transfer Umum-Dana Alokasi Umum (DAU)   934899291114  102.658674
+197   4.2.0.1.0.1.0.2.0                Dana Transfer Umum-Dana Alokasi Umum (DAU)   919375045000  102.865124
+1                 4.1.0                                    PENDAPATAN ASLI DAERAH   553602928345  142.394329
+2             4.1.0.1.0                                              Pajak Daerah   325766443789  164.031442
+211   4.2.0.1.0.1.0.4.0  Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik   273576984734   95.026618
+231           4.2.0.2.0                          Pendapatan Transfer Antar Daerah   212597154219  114.917381
+233   4.2.0.2.0.1.0.1.0                               Pendapatan Bagi Hasil Pajak   194613756219  105.196625
+232       4.2.0.2.0.1.0                                     Pendapatan Bagi Hasil   194613756219  105.196625
+227   4.2.0.1.0.5.0.1.0                                                 Dana Desa   162947477000  102.513220
+225       4.2.0.1.0.5.0                                                 Dana Desa   162947477000  102.513220
+226   4.2.0.1.0.5.0.1.0                                                 Dana Desa   162947477000  102.513220
+47       4.1.0.1.0.19.0                     Pajak barang dan Jasa Tertentu (PBJT)   158094552858    0.000000
+214   4.2.0.1.0.1.0.4.0  Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik   142824108380   92.695128
+131           4.1.0.4.0                                    Lain-lain PAD yang Sah   124427460695   91.941680
+46   4.1.0.1.0.16.0.2.0                                  BPHTB-Pemberian Hak Baru   110194825569  268.767867
+44       4.1.0.1.0.16.0         Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)   110194825569  268.767867

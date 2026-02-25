@@ -1,0 +1,199 @@
+Total PAD Realisasi: N/A
+
+=== DEBUG: ALL 4.1.0.1.0 CODES ===
+                   code                                                                             name     realisasi
+2             4.1.0.1.0                                                                     Pajak Daerah  325766443789
+29       4.1.0.1.0.10.0                                                           Pajak Penerangan Jalan             0
+31   4.1.0.1.0.10.0.2.0                                               Pajak Penerangan Jalan Sumber Lain             0
+30   4.1.0.1.0.10.0.2.0                                               Pajak Penerangan Jalan Sumber Lain             0
+32       4.1.0.1.0.11.0                                                                     Pajak Parkir             0
+33   4.1.0.1.0.11.0.1.0                                                                     Pajak Parkir             0
+34   4.1.0.1.0.11.0.1.0                                                                     Pajak Parkir             0
+35       4.1.0.1.0.12.0                                                                  Pajak Air Tanah    2697391327
+36   4.1.0.1.0.12.0.1.0                                                                  Pajak Air Tanah    2697391327
+37   4.1.0.1.0.12.0.1.0                                                                  Pajak Air Tanah    2697391327
+38       4.1.0.1.0.14.0                                             Pajak Mineral bukan Logam dan Batuan     693396714
+39  4.1.0.1.0.14.0.37.0                                     Pajak Mineral bukan Logam dan Batuan Lainnya     693396714
+40  4.1.0.1.0.14.0.37.0                                     Pajak Mineral bukan Logam dan Batuan Lainnya     693396714
+41       4.1.0.1.0.15.0                          Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2)   47067496440
+43   4.1.0.1.0.15.0.1.0                                                                            PBBP2   47067496440
+42   4.1.0.1.0.15.0.1.0                                                                            PBBP2   47067496440
+44       4.1.0.1.0.16.0                                Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)  110194825569
+45   4.1.0.1.0.16.0.2.0                                                         BPHTB-Pemberian Hak Baru  110194825569
+46   4.1.0.1.0.16.0.2.0                                                         BPHTB-Pemberian Hak Baru  110194825569
+47       4.1.0.1.0.19.0                                            Pajak barang dan Jasa Tertentu (PBJT)  158094552858
+48   4.1.0.1.0.19.0.1.0                                                    PBJT-Makanan dan/atau Minuman   31175378974
+49   4.1.0.1.0.19.0.1.0                                                    PBJT-Makanan dan/atau Minuman   30421021616
+50   4.1.0.1.0.19.0.1.0                                                    PBJT-Makanan dan/atau Minuman     754357358
+51   4.1.0.1.0.19.0.2.0                                                              PBJT-Tenaga Listrik  106824516156
+52   4.1.0.1.0.19.0.2.0                                                              PBJT-Tenaga Listrik  106824516156
+54   4.1.0.1.0.19.0.3.0                                                             PBJT-Jasa Perhotelan   13335099310
+53   4.1.0.1.0.19.0.3.0                                                             PBJT-Jasa Perhotelan   13335099310
+61   4.1.0.1.0.19.0.3.0                                                             PBJT-Jasa Perhotelan      45709900
+56   4.1.0.1.0.19.0.4.0                                                                 PBJT-Jasa Parkir    1676923248
+55   4.1.0.1.0.19.0.4.0                                                                 PBJT-Jasa Parkir    1676923248
+63   4.1.0.1.0.19.0.5.0                                                   PBJT-Jasa Kesenian dan Hiburan     591991231
+62   4.1.0.1.0.19.0.5.0                                                   PBJT-Jasa Kesenian dan Hiburan     255851473
+60   4.1.0.1.0.19.0.5.0                                                   PBJT-Jasa Kesenian dan Hiburan       6517000
+59   4.1.0.1.0.19.0.5.0                                                   PBJT-Jasa Kesenian dan Hiburan    1634890472
+58   4.1.0.1.0.19.0.5.0                                                   PBJT-Jasa Kesenian dan Hiburan    2547675094
+57   4.1.0.1.0.19.0.5.0                                                   PBJT-Jasa Kesenian dan Hiburan    5082635170
+64       4.1.0.1.0.20.0                                             Opsen Pajak Kendaraan Bermotor (PKB)     506022500
+65   4.1.0.1.0.20.0.1.0                                                                        Opsen PKB     506022500
+66   4.1.0.1.0.20.0.1.0                                                                        Opsen PKB     506022500
+3         4.1.0.1.0.6.0                                                                      Pajak Hotel             0
+4     4.1.0.1.0.6.0.1.0                                                                      Pajak Hotel             0
+5     4.1.0.1.0.6.0.1.0                                                                      Pajak Hotel             0
+6         4.1.0.1.0.7.0                                                                   Pajak Restoran             0
+7     4.1.0.1.0.7.0.1.0                                                    Pajak Restoran dan Sejenisnya             0
+8     4.1.0.1.0.7.0.1.0                                                    Pajak Restoran dan Sejenisnya             0
+9         4.1.0.1.0.8.0                                                                    Pajak Hiburan             0
+10    4.1.0.1.0.8.0.1.0                                                              Pajak Tontonan Film             0
+11    4.1.0.1.0.8.0.1.0                                                              Pajak Tontonan Film             0
+19   4.1.0.1.0.8.0.10.0                                                      Pajak Pertandingan Olahraga             0
+18   4.1.0.1.0.8.0.10.0                                                      Pajak Pertandingan Olahraga             0
+12    4.1.0.1.0.8.0.5.0                               Pajak Diskotik, Karoke, Klub Malam, dan Sejenisnya             0
+13    4.1.0.1.0.8.0.5.0                               Pajak Diskotik, Karoke, Klub Malam, dan Sejenisnya             0
+15    4.1.0.1.0.8.0.8.0                 Pajak Pacuan Kuda, Kendaraan Bermotor, dan Permainan Ketangkasan             0
+14    4.1.0.1.0.8.0.8.0                 Pajak Pacuan Kuda, Kendaraan Bermotor, dan Permainan Ketangkasan             0
+16    4.1.0.1.0.8.0.9.0  Pajak Panti Pijat, Refleksi, Mandi Uap/Spa dan Pusat Kebugaran (Fitness Center)             0
+17    4.1.0.1.0.8.0.9.0  Pajak Panti Pijat, Refleksi, Mandi Uap/Spa dan Pusat Kebugaran (Fitness Center)             0
+20        4.1.0.1.0.9.0                                                                    Pajak Reklame    6512758381
+21    4.1.0.1.0.9.0.1.0                                Pajak Reklame Papan/Billboard/Videotron/ Megatron    6080945631
+22    4.1.0.1.0.9.0.1.0                                Pajak Reklame Papan/Billboard/Videotron/ Megatron    6080945631
+23    4.1.0.1.0.9.0.2.0                                                               Pajak Reklame Kain     424505750
+24    4.1.0.1.0.9.0.2.0                                                               Pajak Reklame Kain     424505750
+25    4.1.0.1.0.9.0.4.0                                                          Pajak Reklame Selebaran       2107000
+26    4.1.0.1.0.9.0.4.0                                                          Pajak Reklame Selebaran       2107000
+28    4.1.0.1.0.9.0.9.0                                                         Pajak Reklame Film/Slide       5200000
+27    4.1.0.1.0.9.0.9.0                                                         Pajak Reklame Film/Slide       5200000
+
+=== DETAIL PAJAK DAERAH (4.1.0.1.0) ===
+                   code                                                     name     anggaran     realisasi         pct
+47       4.1.0.1.0.19.0                    Pajak barang dan Jasa Tertentu (PBJT)            0  158094552858    0.000000
+44       4.1.0.1.0.16.0        Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)  41000000000  110194825569  268.767867
+45   4.1.0.1.0.16.0.2.0                                 BPHTB-Pemberian Hak Baru  41000000000  110194825569  268.767867
+46   4.1.0.1.0.16.0.2.0                                 BPHTB-Pemberian Hak Baru  41000000000  110194825569  268.767867
+52   4.1.0.1.0.19.0.2.0                                      PBJT-Tenaga Listrik            0  106824516156    0.000000
+51   4.1.0.1.0.19.0.2.0                                      PBJT-Tenaga Listrik            0  106824516156    0.000000
+41       4.1.0.1.0.15.0  Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2)  36000000000   47067496440  130.743046
+43   4.1.0.1.0.15.0.1.0                                                    PBBP2  36000000000   47067496440  130.743046
+42   4.1.0.1.0.15.0.1.0                                                    PBBP2  36000000000   47067496440  130.743046
+48   4.1.0.1.0.19.0.1.0                            PBJT-Makanan dan/atau Minuman            0   31175378974    0.000000
+49   4.1.0.1.0.19.0.1.0                            PBJT-Makanan dan/atau Minuman            0   30421021616    0.000000
+53   4.1.0.1.0.19.0.3.0                                     PBJT-Jasa Perhotelan            0   13335099310    0.000000
+54   4.1.0.1.0.19.0.3.0                                     PBJT-Jasa Perhotelan            0   13335099310    0.000000
+20        4.1.0.1.0.9.0                                            Pajak Reklame   4500000000    6512758381  144.727964
+21    4.1.0.1.0.9.0.1.0        Pajak Reklame Papan/Billboard/Videotron/ Megatron   3800000000    6080945631  160.024885
+22    4.1.0.1.0.9.0.1.0        Pajak Reklame Papan/Billboard/Videotron/ Megatron   3800000000    6080945631  160.024885
+57   4.1.0.1.0.19.0.5.0                           PBJT-Jasa Kesenian dan Hiburan            0    5082635170    0.000000
+35       4.1.0.1.0.12.0                                          Pajak Air Tanah   2500000000    2697391327  107.895653
+37   4.1.0.1.0.12.0.1.0                                          Pajak Air Tanah   2500000000    2697391327  107.895653
+36   4.1.0.1.0.12.0.1.0                                          Pajak Air Tanah   2500000000    2697391327  107.895653
+58   4.1.0.1.0.19.0.5.0                           PBJT-Jasa Kesenian dan Hiburan            0    2547675094    0.000000
+56   4.1.0.1.0.19.0.4.0                                         PBJT-Jasa Parkir            0    1676923248    0.000000
+55   4.1.0.1.0.19.0.4.0                                         PBJT-Jasa Parkir            0    1676923248    0.000000
+59   4.1.0.1.0.19.0.5.0                           PBJT-Jasa Kesenian dan Hiburan            0    1634890472    0.000000
+50   4.1.0.1.0.19.0.1.0                            PBJT-Makanan dan/atau Minuman            0     754357358    0.000000
+39  4.1.0.1.0.14.0.37.0             Pajak Mineral bukan Logam dan Batuan Lainnya    600000000     693396714  115.566119
+38       4.1.0.1.0.14.0                     Pajak Mineral bukan Logam dan Batuan    600000000     693396714  115.566119
+40  4.1.0.1.0.14.0.37.0             Pajak Mineral bukan Logam dan Batuan Lainnya    600000000     693396714  115.566119
+63   4.1.0.1.0.19.0.5.0                           PBJT-Jasa Kesenian dan Hiburan            0     591991231    0.000000
+64       4.1.0.1.0.20.0                     Opsen Pajak Kendaraan Bermotor (PKB)            0     506022500    0.000000
+65   4.1.0.1.0.20.0.1.0                                                Opsen PKB            0     506022500    0.000000
+66   4.1.0.1.0.20.0.1.0                                                Opsen PKB            0     506022500    0.000000
+23    4.1.0.1.0.9.0.2.0                                       Pajak Reklame Kain    440000000     424505750   96.478580
+24    4.1.0.1.0.9.0.2.0                                       Pajak Reklame Kain    440000000     424505750   96.478580
+62   4.1.0.1.0.19.0.5.0                           PBJT-Jasa Kesenian dan Hiburan            0     255851473    0.000000
+61   4.1.0.1.0.19.0.3.0                                     PBJT-Jasa Perhotelan            0      45709900    0.000000
+60   4.1.0.1.0.19.0.5.0                           PBJT-Jasa Kesenian dan Hiburan            0       6517000    0.000000
+28    4.1.0.1.0.9.0.9.0                                 Pajak Reklame Film/Slide    250000000       5200000    2.080000
+27    4.1.0.1.0.9.0.9.0                                 Pajak Reklame Film/Slide    250000000       5200000    2.080000
+25    4.1.0.1.0.9.0.4.0                                  Pajak Reklame Selebaran     10000000       2107000   21.070000
+26    4.1.0.1.0.9.0.4.0                                  Pajak Reklame Selebaran     10000000       2107000   21.070000
+
+=== DETAIL RETRIBUSI (4.1.0.2.0) ===
+                   code                                                         name     anggaran    realisasi          pct
+67            4.1.0.2.0                                             Retribusi Daerah  22801112000  61110714225   268.016377
+68        4.1.0.2.0.1.0                                          Retribusi Jasa Umum   8760304000  46651654228   532.534650
+69    4.1.0.2.0.1.0.1.0                                Retribusi Pelayanan Kesehatan    600000000  39038362018  6506.393670
+71    4.1.0.2.0.1.0.1.0                                Retribusi Pelayanan Kesehatan            0  36922226425     0.000000
+91        4.1.0.2.0.2.0                                         Retribusi Jasa Usaha   7039808000   8631314589   122.607244
+116       4.1.0.2.0.3.0                                 Retribusi Perizinan Tertentu   7001000000   5827745408    83.241614
+92    4.1.0.2.0.2.0.1.0                          Retribusi Pemakaian Kekayaan Daerah   3672093000   5192148689   141.394804
+120   4.1.0.2.0.3.0.7.0                        Retribusi Persetujuan Bangunan Gedung   5000000000   4703887208    94.077744
+119   4.1.0.2.0.3.0.7.0                        Retribusi Persetujuan Bangunan Gedung   5000000000   4703887208    94.077744
+73    4.1.0.2.0.1.0.2.0                  Retribusi Pelayanan Persampahan/ Kebersihan   2253705000   3230406768   143.337605
+74    4.1.0.2.0.1.0.2.0                  Retribusi Pelayanan Persampahan/ Kebersihan   2253705000   3230406768   143.337605
+79    4.1.0.2.0.1.0.5.0                                    Retribusi Pelayanan Pasar   3495299000   2962293062    84.750777
+94    4.1.0.2.0.2.0.1.0                          Retribusi Pemakaian Kekayaan Daerah   2210593000   2579645189   116.694714
+82    4.1.0.2.0.1.0.5.0                                    Retribusi Pelayanan Pasar   2230972000   1745963700    78.260225
+93    4.1.0.2.0.2.0.1.0                          Retribusi Pemakaian Kekayaan Daerah    645500000   1697408345   262.960239
+102   4.1.0.2.0.2.0.5.0                               Retribusi Tempat Khusus Parkir   1500000000   1624060500   108.270700
+101   4.1.0.2.0.2.0.5.0                               Retribusi Tempat Khusus Parkir   1500000000   1624060500   108.270700
+70    4.1.0.2.0.1.0.1.0                                Retribusi Pelayanan Kesehatan            0   1380500093     0.000000
+78    4.1.0.2.0.1.0.4.0                Retribusi Pelayanan Parkir di Tepi Jalan Umum   1202300000   1202988300   100.057249
+77    4.1.0.2.0.1.0.4.0                Retribusi Pelayanan Parkir di Tepi Jalan Umum   1202300000   1202988300   100.057249
+122   4.1.0.2.0.3.0.8.0                Retribusi Penggunaan Tenaga Kerja Asing (TKA)   2000000000   1123858200    56.192910
+121   4.1.0.2.0.3.0.8.0                Retribusi Penggunaan Tenaga Kerja Asing (TKA)   2000000000   1123858200    56.192910
+107  4.1.0.2.0.2.0.11.0                    Retribusi Penjualan Produksi Usaha Daerah   1011145000    914095400    90.402010
+106   4.1.0.2.0.2.0.9.0                       Retribusi Tempat Rekreasi dan Olahraga    700000000    759756100   108.536586
+105   4.1.0.2.0.2.0.9.0                       Retribusi Tempat Rekreasi dan Olahraga    700000000    759756100   108.536586
+81    4.1.0.2.0.1.0.5.0                                    Retribusi Pelayanan Pasar    879559000    754088262    85.734813
+72    4.1.0.2.0.1.0.1.0                                Retribusi Pelayanan Kesehatan    600000000    735635500   122.605917
+96    4.1.0.2.0.2.0.1.0                          Retribusi Pemakaian Kekayaan Daerah    600000000    542895155    90.482526
+108  4.1.0.2.0.2.0.11.0                    Retribusi Penjualan Produksi Usaha Daerah    505365000    505679400   100.062212
+80    4.1.0.2.0.1.0.5.0                                    Retribusi Pelayanan Pasar    384768000    462241100   120.135016
+95    4.1.0.2.0.2.0.1.0                          Retribusi Pemakaian Kekayaan Daerah    216000000    372200000   172.314815
+110  4.1.0.2.0.2.0.11.0                    Retribusi Penjualan Produksi Usaha Daerah    400000000    300376000    75.094000
+89   4.1.0.2.0.1.0.13.0  Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi            0    204600680     0.000000
+90   4.1.0.2.0.1.0.13.0  Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi            0    204600680     0.000000
+109  4.1.0.2.0.2.0.11.0                    Retribusi Penjualan Produksi Usaha Daerah     97000000     99100000   102.164948
+114  4.1.0.2.0.2.0.20.0                            Retribusi Pemanfaatan Aset Daerah            0     57324500     0.000000
+115  4.1.0.2.0.2.0.20.0                            Retribusi Pemanfaatan Aset Daerah            0     57324500     0.000000
+104   4.1.0.2.0.2.0.7.0                                 Retribusi Rumah Potong Hewan     45890000     53838000   117.319677
+103   4.1.0.2.0.2.0.7.0                                 Retribusi Rumah Potong Hewan     45890000     53838000   117.319677
+97    4.1.0.2.0.2.0.4.0                                           Retribusi Terminal    110680000     15900400    14.366100
+
+=== DETAIL LAIN-LAIN PAD (4.1.0.4.0) ===
+                    code                                                                      name      anggaran     realisasi         pct
+131            4.1.0.4.0                                                    Lain-lain PAD yang Sah  135333029850  124427460695   91.941680
+173       4.1.0.4.0.16.0                                                           Pendapatan BLUD  124093539802  107048544145   86.264397
+174   4.1.0.4.0.16.0.2.0                                         Pendapatan BLUD dari Jasa Layanan  121380506698  104630886218   86.200733
+175   4.1.0.4.0.16.0.2.0                                         Pendapatan BLUD dari Jasa Layanan  121380506698  104630886218   86.200733
+146        4.1.0.4.0.5.0                                                                 Jasa Giro    6538708048    6018239544   92.040194
+154    4.1.0.4.0.7.0.1.0                   Pendapatan Bunga atas Penempatan Uang Pemerintah Daerah    4403332000    5830027387  132.400359
+155    4.1.0.4.0.7.0.1.0                   Pendapatan Bunga atas Penempatan Uang Pemerintah Daerah    4403332000    5830027387  132.400359
+153        4.1.0.4.0.7.0                                                          Pendapatan Bunga    4403332000    5830027387  132.400359
+147    4.1.0.4.0.5.0.1.0                                                 Jasa Giro pada Kas Daerah    6421635780    5708775768   88.899090
+148    4.1.0.4.0.5.0.1.0                                                 Jasa Giro pada Kas Daerah    6421635780    5708775768   88.899090
+168       4.1.0.4.0.15.0                                              Pendapatan dari Pengembalian             0    3715374617    0.000000
+169   4.1.0.4.0.15.0.4.0        Pendapatan dari Pengembalian Kelebihan Pembayaran Perjalanan Dinas             0    3616519889    0.000000
+170   4.1.0.4.0.15.0.4.0        Pendapatan dari Pengembalian Kelebihan Pembayaran Perjalanan Dinas             0    3616519889    0.000000
+176   4.1.0.4.0.16.0.4.0                   Pendapatan BLUD dari Hasil Kerja Sama dengan Pihak Lain    1614842198    1898303892  117.553523
+177   4.1.0.4.0.16.0.4.0                   Pendapatan BLUD dari Hasil Kerja Sama dengan Pihak Lain    1614842198    1898303892  117.553523
+132        4.1.0.4.0.1.0                                 Hasil Penjualan BMD yang Tidak Dipisahkan     247450000     739212500  298.732067
+156        4.1.0.4.0.8.0                   Penerimaan atas Tuntutan Ganti Kerugian Keuangan Daerah             0     729706168    0.000000
+157    4.1.0.4.0.8.0.1.0                         Tuntutan Ganti Kerugian Daerah terhadap Bendahara             0     729706168    0.000000
+158    4.1.0.4.0.8.0.1.0                         Tuntutan Ganti Kerugian Daerah terhadap Bendahara             0     729706168    0.000000
+133    4.1.0.4.0.1.0.2.0                                       Hasil Penjualan Peralatan dan Mesin      72450000     662958000  915.055901
+134    4.1.0.4.0.1.0.2.0                                       Hasil Penjualan Peralatan dan Mesin      72450000     557138800  768.997654
+179   4.1.0.4.0.16.0.6.0                   Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah    1006620571     356916392   35.456894
+178   4.1.0.4.0.16.0.6.0                   Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah    1006620571     356916392   35.456894
+152    4.1.0.4.0.5.0.3.0                                     Jasa Giro pada Rekening Dana Cadangan             0     196257271    0.000000
+151    4.1.0.4.0.5.0.3.0                                     Jasa Giro pada Rekening Dana Cadangan             0     196257271    0.000000
+162       4.1.0.4.0.11.0                 Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan             0     173606458    0.000000
+164   4.1.0.4.0.11.0.1.0                 Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan             0     173606458    0.000000
+163   4.1.0.4.0.11.0.1.0                 Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan             0     173606458    0.000000
+181   4.1.0.4.0.16.0.6.0                   Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah      91570335     162437643  177.391120
+180   4.1.0.4.0.16.0.6.0                   Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah      91570335     162437643  177.391120
+149    4.1.0.4.0.5.0.2.0                                           Jasa Giro pada Kas di Bendahara     117072268     113206505   96.697969
+150    4.1.0.4.0.5.0.2.0                                           Jasa Giro pada Kas di Bendahara     117072268     113206505   96.697969
+135    4.1.0.4.0.1.0.2.0                                       Hasil Penjualan Peralatan dan Mesin             0     105819200    0.000000
+171   4.1.0.4.0.15.0.8.0  Pendapatan dari Pengembalian Kelebihan Pembayaran Belanja Gaji Pokok ASN             0      98854728    0.000000
+172   4.1.0.4.0.15.0.8.0  Pendapatan dari Pengembalian Kelebihan Pembayaran Belanja Gaji Pokok ASN             0      98854728    0.000000
+159        4.1.0.4.0.9.0                             Penerimaan Komisi, Potongan, atau Bentuk Lain             0      89749876    0.000000
+160    4.1.0.4.0.9.0.1.0                             Penerimaan Komisi, Potongan, atau Bentuk Lain             0      89749876    0.000000
+161    4.1.0.4.0.9.0.1.0                             Penerimaan Komisi, Potongan, atau Bentuk Lain             0      89749876    0.000000
+166  4.1.0.4.0.12.0.16.0        Pendapatan Denda Bea Perolehan Hak atas Tanah dan Bangunan (BPHTB)             0      83000000    0.000000
+167  4.1.0.4.0.12.0.16.0        Pendapatan Denda Bea Perolehan Hak atas Tanah dan Bangunan (BPHTB)             0      83000000    0.000000
