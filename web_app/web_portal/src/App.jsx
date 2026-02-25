@@ -417,15 +417,27 @@ function App() {
   // Grouped Categories for the Mega Filter
   const groupedCategories = useMemo(() => {
     const groups = {
-      'PAJAK': [],
+      'PAJAK PROVINSI': [],
+      'PAJAK KAB/KOTA': [],
       'RETRIBUSI': [],
       'PENGELOLAAN': [],
       'LAIN-LAIN': []
     };
     
     categories.forEach(c => {
+      const kode = (c.kode || '').toString().toUpperCase();
       const catUpper = (c.kategori_utama || '').toString().toUpperCase();
-      if (catUpper.includes('PAJAK')) groups['PAJAK'].push(c);
+      
+      if (catUpper.includes('PAJAK')) {
+        if (kode.startsWith('PAJ-PROV')) {
+          groups['PAJAK PROVINSI'].push(c);
+        } else if (kode.startsWith('PAJ-KK')) {
+          groups['PAJAK KAB/KOTA'].push(c);
+        } else {
+          // Fallback if kode format is different but it is still 'Pajak'
+          groups['PAJAK PROVINSI'].push(c);
+        }
+      } 
       else if (catUpper.includes('RETRIBUSI')) groups['RETRIBUSI'].push(c);
       else if (catUpper.includes('PENGELOLAAN')) groups['PENGELOLAAN'].push(c);
       else groups['LAIN-LAIN'].push(c);
@@ -434,13 +446,13 @@ function App() {
     return groups;
   }, [categories]);
 
-  const [dashActiveGroup, setDashActiveGroup] = useState('PAJAK');
+  const [dashActiveGroup, setDashActiveGroup] = useState('PAJAK PROVINSI');
 
   const filteredCategories = useMemo(() => {
     if (activeMetric === 'rataRataPAD') return groupedCategories[dashActiveGroup] || [];
     
     const mapping = {
-      'rataRataPajak': 'PAJAK',
+      'rataRataPajak': dashActiveGroup.includes('KAB/KOTA') ? 'PAJAK KAB/KOTA' : 'PAJAK PROVINSI',
       'rataRataRetribusi': 'RETRIBUSI',
       'rataRataPengelolaan': 'PENGELOLAAN',
       'rataRataLain': 'LAIN-LAIN'
@@ -1064,7 +1076,7 @@ function App() {
                                 setIsDashFilterOpen(false);
                               } else {
                                 const groupMap = {
-                                  'rataRataPajak': 'PAJAK',
+                                  'rataRataPajak': dashActiveGroup.includes('KAB/KOTA') ? 'PAJAK KAB/KOTA' : 'PAJAK PROVINSI',
                                   'rataRataRetribusi': 'RETRIBUSI',
                                   'rataRataPengelolaan': 'PENGELOLAAN',
                                   'rataRataLain': 'LAIN-LAIN'
@@ -1185,15 +1197,35 @@ function App() {
                         <div className="p-8 md:p-12 flex flex-col lg:flex-row gap-12">
                           {/* Left Panel: Context */}
                           <div className="lg:w-80 space-y-8 shrink-0">
-                            <div>
-                              <div className="flex items-center gap-3 mb-2">
-                                <span className="px-2 py-0.5 bg-brand-500/10 text-brand-400 rounded-md text-[10px] font-black uppercase tracking-widest">Advanced Filter</span>
-                                <h4 className="text-white font-black text-sm uppercase tracking-tight">{dashActiveGroup}</h4>
+                              <div className="space-y-4">
+                                <div className="flex items-center gap-3 mb-2">
+                                  <span className="px-2 py-0.5 bg-brand-500/10 text-brand-400 rounded-md text-[10px] font-black uppercase tracking-widest">Advanced Filter</span>
+                                  <h4 className="text-white font-black text-sm uppercase tracking-tight">{dashActiveGroup}</h4>
+                                </div>
+                                
+                                {dashActiveGroup.startsWith('PAJAK') && (
+                                  <div className="flex bg-white/5 p-1 rounded-2xl border border-white/5">
+                                    <button 
+                                      onClick={() => setDashActiveGroup('PAJAK PROVINSI')}
+                                      className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'PAJAK PROVINSI' ? 'bg-brand-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                                    >
+                                      Provinsi
+                                    </button>
+                                    <button 
+                                      onClick={() => setDashActiveGroup('PAJAK KAB/KOTA')}
+                                      className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'PAJAK KAB/KOTA' ? 'bg-brand-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                                    >
+                                      Kab/Kota
+                                    </button>
+                                  </div>
+                                )}
+                                
+                                <p className="text-slate-500 text-[11px] leading-relaxed uppercase font-bold tracking-wider">
+                                  {dashActiveGroup.startsWith('PAJAK')
+                                    ? `Daftar komponen pajak kewenangan pemerintah ${dashActiveGroup.includes('PROVINSI') ? 'Provinsi' : 'Kabupaten/Kota'}.`
+                                    : `Pilih rincian dari kategori "${dashActiveGroup}" untuk dianalisis.`}
+                                </p>
                               </div>
-                              <p className="text-slate-500 text-[11px] leading-relaxed uppercase font-bold tracking-wider">
-                                Pilih satu atau lebih komponen "{dashActiveGroup}" untuk dikombinasikan dalam satu visualisasi.
-                              </p>
-                            </div>
 
                             <div className="space-y-3">
                               <button 

@@ -1,0 +1,2267 @@
+[
+  {
+    "nama": "Pajak Daerah",
+    "kode": "PAD-PAJAK",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Daerah",
+    "kode": "PAD-RETRIBUSI",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pengelolaan Kekayaan Daerah",
+    "kode": "PAD-PENGELOLAAN",
+    "kategori_utama": "pengelolaan"
+  },
+  {
+    "nama": "Lain-lain PAD yang Sah",
+    "kode": "PAD-LAIN",
+    "kategori_utama": "lain_pad"
+  },
+  {
+    "nama": "Pajak Provinsi",
+    "kode": "PAJ-PROV",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Kabupaten/Kota",
+    "kode": "PAJ-KABKO",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB",
+    "kode": "PAJ-PROV-PKB",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB",
+    "kode": "PAJ-PROV-BBNKB",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PAB",
+    "kode": "PAJ-PROV-PAB",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBBKB",
+    "kode": "PAJ-PROV-PBBKB",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PAP",
+    "kode": "PAJ-PROV-PAP",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Rokok",
+    "kode": "PAJ-PROV-ROKOK",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Opsen Pajak MBLB",
+    "kode": "PAJ-PROV-OPSEN-MBLB",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBB-P2",
+    "kode": "PAJ-KK-PBBP2",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BPHTB",
+    "kode": "PAJ-KK-BPHTB",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBJT",
+    "kode": "PAJ-KK-PBJT",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame",
+    "kode": "PAJ-KK-REKLAME",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PAT",
+    "kode": "PAJ-KK-PAT",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak MBLB",
+    "kode": "PAJ-KK-MBLB",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Sarang Burung Walet",
+    "kode": "PAJ-KK-WALET",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Opsen PKB",
+    "kode": "PAJ-KK-OPSEN-PKB",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Opsen BBNKB",
+    "kode": "PAJ-KK-OPSEN-BBNKB",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Makanan dan Minuman",
+    "kode": "PBJT-MAKMIN",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Tenaga Listrik",
+    "kode": "PBJT-LISTRIK",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Jasa Perhotelan",
+    "kode": "PBJT-HOTEL",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Jasa Parkir",
+    "kode": "PBJT-PARKIR",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Jasa Kesenian dan Hiburan",
+    "kode": "PBJT-HIBURAN",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Jasa Umum",
+    "kode": "RET-JU",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Jasa Usaha",
+    "kode": "RET-JUS",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Perizinan Tertentu",
+    "kode": "RET-PT",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pelayanan Kesehatan",
+    "kode": "RET-JU-KESEHATAN",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pelayanan Kebersihan",
+    "kode": "RET-JU-KEBERSIHAN",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pelayanan Parkir di Tepi Jalan Umum",
+    "kode": "RET-JU-PARKIR",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pelayanan Pasar",
+    "kode": "RET-JU-PASAR",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pengendalian Lalu Lintas",
+    "kode": "RET-JU-LALIN",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Penyediaan Tempat Usaha",
+    "kode": "RET-JUS-TEMPAT-USAHA",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Penyediaan Tempat Pelelangan",
+    "kode": "RET-JUS-PELELANGAN",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Tempat Parkir Khusus",
+    "kode": "RET-JUS-PARKIR",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Tempat Penginapan/Vila",
+    "kode": "RET-JUS-PENGINAPAN",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Rumah Pemotongan Hewan",
+    "kode": "RET-JUS-RPH",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Jasa Kepelabuhanan",
+    "kode": "RET-JUS-PELABUHAN",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Tempat Rekreasi/Pariwisata/Olahraga",
+    "kode": "RET-JUS-REKREASI",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Penyeberangan Orang/Barang di Air",
+    "kode": "RET-JUS-PENYEBERANGAN",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Penjualan Produk Usaha Pemda",
+    "kode": "RET-JUS-PRODUK",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pemanfaatan Aset Daerah",
+    "kode": "RET-JUS-ASET",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Persetujuan Bangunan Gedung",
+    "kode": "RET-PT-PBG",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Penggunaan Tenaga Kerja Asing",
+    "kode": "RET-PT-TKA",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pengelolaan Pertambangan Rakyat",
+    "kode": "RET-PT-TAMBANG",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pajak Daerah",
+    "kode": "4.1.0.1",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Daerah",
+    "kode": "4.1.1",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Daerah",
+    "kode": "4.1.0.2",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Daerah",
+    "kode": "4.1.02",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Daerah",
+    "kode": "4.1.2",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan",
+    "kode": "4.1.0.3",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan",
+    "kode": "4.1.03",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Lain-lain PAD yang Sah",
+    "kode": "4.1.0.4",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Lain-lain PAD yang Sah",
+    "kode": "4.1.04",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Hotel",
+    "kode": "4.1.0.1.0.6",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Hiburan",
+    "kode": "4.1.0.1.0.8",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Penerangan Jalan",
+    "kode": "4.1.0.1.0.10",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Air Tanah",
+    "kode": "4.1.0.1.0.12",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "BPHTB",
+    "kode": "4.1.0.1.0.16",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Jasa Usaha",
+    "kode": "4.1.0.2.0.2",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PENDAPATAN TRANSFER",
+    "kode": "4.2",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan Transfer Pemerintah Pusat",
+    "kode": "4.2.1",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan",
+    "kode": "4.1.0.4.0.11.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Dana Bagi Hasil (DBH)",
+    "kode": "4.2.0.1.0.7.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Pajak Reklame",
+    "kode": "4.1.01.09",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Penerangan Jalan",
+    "kode": "4.1.01.10",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Parkir",
+    "kode": "4.1.01.11",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Air Tanah",
+    "kode": "4.1.01.12",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Sarang Burung Walet",
+    "kode": "4.1.01.13",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Mineral Bukan Logam dan Batuan",
+    "kode": "4.1.01.14",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2)",
+    "kode": "4.1.01.15",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)",
+    "kode": "4.1.01.16",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Jasa Umum",
+    "kode": "4.1.02.01",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Jasa Usaha",
+    "kode": "4.1.02.02",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Perizinan Tertentu",
+    "kode": "4.1.02.03",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Jasa Umum",
+    "kode": "4.1.2.01",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Jasa Usaha",
+    "kode": "4.1.2.02",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Perizinan Tertentu",
+    "kode": "4.1.2.03",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan",
+    "kode": "4.1.3",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Lain-lain PAD yang Sah",
+    "kode": "4.1.4",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Restoran",
+    "kode": "4.1.0.1.0.7",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Reklame",
+    "kode": "4.1.0.1.0.9",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Parkir",
+    "kode": "4.1.0.1.0.11",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PBB-P2",
+    "kode": "4.1.0.1.0.15",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PBJT (Pajak Barang dan Jasa Tertentu)",
+    "kode": "4.1.0.1.0.19",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Jasa Umum",
+    "kode": "4.1.0.2.0.1",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Perizinan Tertentu",
+    "kode": "4.1.0.2.0.3",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan Transfer Antar Daerah",
+    "kode": "4.2.2",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pajak Kontes Kecantikan, Binaraga, dan Sejenisnya",
+    "kode": "4.1.01.08.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Pameran",
+    "kode": "4.1.01.08.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Diskotik, Karaoke, Klub Malam, dan Sejenisnya",
+    "kode": "4.1.01.08.05",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Sirkus/Akrobat/Sulap",
+    "kode": "4.1.01.08.06",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Permainan Biliar dan Bowling",
+    "kode": "4.1.01.08.07",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Pacuan Kuda, Kendaraan Bermotor, dan Permainan Ketangkasan",
+    "kode": "4.1.01.08.08",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Panti Pijat, Refleksi, Mandi Uap/Spa dan Pusat Kebugaran (Fitness Center)",
+    "kode": "4.1.01.08.09",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Pertandingan Olahraga",
+    "kode": "4.1.01.08.10",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame Papan/Billboard/Videotron/ Megatron",
+    "kode": "4.1.01.09.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame Kain",
+    "kode": "4.1.01.09.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame Udara",
+    "kode": "4.1.01.09.06",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Pelayanan Kesehatan",
+    "kode": "4.1.0.2.0.1.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Izin Tempat Penjualan Minuman Beralkohol",
+    "kode": "4.1.02.03.02",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Izin Trayek untuk Menyediakan Pelayanan Angkutan Umum",
+    "kode": "4.1.02.03.03",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Izin Usaha Perikanan",
+    "kode": "4.1.02.03.04",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pengendalian Lalu Lintas",
+    "kode": "4.1.02.03.05",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA)",
+    "kode": "4.1.02.03.06",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Kesehatan",
+    "kode": "4.1.2.01.01",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pelayanan Persampahan/ Kebersihan",
+    "kode": "4.1.2.01.02",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Pajak Reklame Film/Slide",
+    "kode": "4.1.0.1.0.9.0.9.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Penerangan Jalan",
+    "kode": "4.1.0.1.0.10.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PENDAPATAN ASLI DAERAH",
+    "kode": "4.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Daerah",
+    "kode": "4.1.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Hotel",
+    "kode": "4.1.0.1.0.6.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Hotel",
+    "kode": "4.1.0.1.0.6.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Restoran",
+    "kode": "4.1.0.1.0.7.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Penerangan Jalan Sumber Lain",
+    "kode": "4.1.0.1.0.10.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Restoran dan Sejenisnya",
+    "kode": "4.1.0.1.0.7.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Hiburan",
+    "kode": "4.1.0.1.0.8.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Parkir",
+    "kode": "4.1.0.1.0.11.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Tontonan Film",
+    "kode": "4.1.0.1.0.8.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Diskotik, Karoke, Klub Malam, dan Sejenisnya",
+    "kode": "4.1.0.1.0.8.0.5.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Parkir",
+    "kode": "4.1.0.1.0.11.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Pacuan Kuda, Kendaraan Bermotor, dan Permainan Ketangkasan",
+    "kode": "4.1.0.1.0.8.0.8.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Air Tanah",
+    "kode": "4.1.0.1.0.12.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Panti Pijat, Refleksi, Mandi Uap/Spa dan Pusat Kebugaran (Fitness Center)",
+    "kode": "4.1.0.1.0.8.0.9.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Pertandingan Olahraga",
+    "kode": "4.1.0.1.0.8.0.10.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Reklame",
+    "kode": "4.1.0.1.0.9.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Air Tanah",
+    "kode": "4.1.0.1.0.12.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Reklame Papan/Billboard/Videotron/ Megatron",
+    "kode": "4.1.0.1.0.9.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Mineral bukan Logam dan Batuan",
+    "kode": "4.1.0.1.0.14.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Reklame Kain",
+    "kode": "4.1.0.1.0.9.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Reklame Selebaran",
+    "kode": "4.1.0.1.0.9.0.4.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Mineral bukan Logam dan Batuan Lainnya",
+    "kode": "4.1.0.1.0.14.0.37.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Bumi dan Bangunan Perdesaan dan Perkotaan (PBBP2)",
+    "kode": "4.1.0.1.0.15.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PBBP2",
+    "kode": "4.1.0.1.0.15.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB)",
+    "kode": "4.1.0.1.0.16.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "BPHTB-Pemberian Hak Baru",
+    "kode": "4.1.0.1.0.16.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Daerah",
+    "kode": "4.1.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Jasa Umum",
+    "kode": "4.1.0.2.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PENDAPATAN DAERAH",
+    "kode": "4",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pajak barang dan Jasa Tertentu (PBJT)",
+    "kode": "4.1.0.1.0.19.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Opsen Pajak Kendaraan Bermotor (PKB)",
+    "kode": "4.1.0.1.0.20.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pasar Grosir dan/atau Pertokoan",
+    "kode": "4.1.0.2.0.2.0.2.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Tempat Rekreasi dan Olahraga",
+    "kode": "4.1.0.2.0.2.0.9.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pelayanan Persampahan/ Kebersihan",
+    "kode": "4.1.0.2.0.1.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Penyeberangan di Air",
+    "kode": "4.1.0.2.0.2.0.10.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Jasa Giro pada Rekening Dana Cadangan",
+    "kode": "4.1.0.4.0.5.0.3.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pelayanan Parkir di Tepi Jalan Umum",
+    "kode": "4.1.0.2.0.1.0.4.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Izin Trayek untuk Menyediakan Pelayanan Angkutan Umum",
+    "kode": "4.1.0.2.0.3.0.3.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pengujian Kendaraan Bermotor",
+    "kode": "4.1.0.2.0.1.0.6.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan",
+    "kode": "4.1.0.3.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pengolahan Limbah Cair",
+    "kode": "4.1.0.2.0.1.0.10.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Hasil Penjualan Aset Lainnya",
+    "kode": "4.1.0.4.0.1.0.6.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD",
+    "kode": "4.1.0.3.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi",
+    "kode": "4.1.0.2.0.1.0.13.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Penerimaan Komisi, Potongan, atau Bentuk Lain",
+    "kode": "4.1.0.4.0.9.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Tempat Khusus Parkir",
+    "kode": "4.1.0.2.0.2.0.5.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Lembaga Keuangan)",
+    "kode": "4.1.0.3.0.2.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Penerimaan Komisi, Potongan, atau Bentuk Lain",
+    "kode": "4.1.0.4.0.9.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Bidang Air Minum)",
+    "kode": "4.1.0.3.0.2.0.3.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan Denda atas Pelanggaran Peraturan Daerah",
+    "kode": "4.1.0.4.0.21.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Pendapatan Denda atas Pelanggaran Peraturan Daerah",
+    "kode": "4.1.0.4.0.21.0.16.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Pendapatan Denda Pajak Daerah",
+    "kode": "4.1.0.4.0.12.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Non Fisik",
+    "kode": "4.2.0.1.0.1.0.4.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Hasil Penjualan Aset Tetap Lainnya",
+    "kode": "4.1.0.4.0.1.0.5.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Jasa Giro",
+    "kode": "4.1.0.4.0.5.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan Denda Bea Perolehan Hak atas Tanah dan Bangunan (BPHTB)",
+    "kode": "4.1.0.4.0.12.0.16.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Jasa Giro pada Kas Daerah",
+    "kode": "4.1.0.4.0.5.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Dana Desa",
+    "kode": "4.2.0.1.0.5.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan dari Pengembalian Kelebihan Pembayaran Perjalanan Dinas",
+    "kode": "4.1.0.4.0.15.0.4.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Dana Transfer Khusus-Dana Alokasi Khusus (DAK) Fisik",
+    "kode": "4.2.0.1.0.1.0.3.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Dana Desa",
+    "kode": "4.2.0.1.0.5.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Bantuan Keuangan",
+    "kode": "4.2.0.2.0.2.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Bantuan Keuangan Khusus dari Pemerintah Provinsi",
+    "kode": "4.2.0.2.0.2.0.2.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Hasil Penjualan BMD yang Tidak Dipisahkan",
+    "kode": "4.1.0.4.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PBJT-Jasa Perhotelan",
+    "kode": "4.1.0.1.0.19.0.3.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PBJT-Tenaga Listrik",
+    "kode": "4.1.0.1.0.19.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pelayanan Tera/Tera Ulang",
+    "kode": "4.1.0.2.0.1.0.11.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Jasa Usaha",
+    "kode": "4.1.0.2.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PBJT-Jasa Parkir",
+    "kode": "4.1.0.1.0.19.0.4.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PBJT-Jasa Kesenian dan Hiburan",
+    "kode": "4.1.0.1.0.19.0.5.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan Transfer Pemerintah Pusat",
+    "kode": "4.2.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "PBJT-Makanan dan/atau Minuman",
+    "kode": "4.1.0.1.0.19.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Opsen PKB",
+    "kode": "4.1.0.1.0.20.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Izin Mendirikan Bangunan",
+    "kode": "4.1.0.2.0.3.0.1.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA)",
+    "kode": "4.1.0.2.0.3.0.6.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pelayanan Pemakaman dan Pengabuan Mayat",
+    "kode": "4.1.0.2.0.1.0.3.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pelayanan Pasar",
+    "kode": "4.1.0.2.0.1.0.5.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Penyediaan dan/atau Penyedotan Kakus",
+    "kode": "4.1.0.2.0.1.0.9.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pemakaian Kekayaan Daerah",
+    "kode": "4.1.0.2.0.2.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Perizinan Tertentu",
+    "kode": "4.1.0.2.0.3.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Terminal",
+    "kode": "4.1.0.2.0.2.0.4.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Rumah Potong Hewan",
+    "kode": "4.1.0.2.0.2.0.7.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Pemanfaatan Aset Daerah",
+    "kode": "4.1.0.2.0.2.0.20.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Lain-lain PAD yang Sah",
+    "kode": "4.1.0.4.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Persetujuan Bangunan Gedung",
+    "kode": "4.1.0.2.0.3.0.7.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Retribusi Penggunaan Tenaga Kerja Asing (TKA)",
+    "kode": "4.1.0.2.0.3.0.8.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Hasil Penjualan Peralatan dan Mesin",
+    "kode": "4.1.0.4.0.1.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Hasil Pemanfaatan BMD yang Tidak Dipisahkan",
+    "kode": "4.1.0.4.0.3.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan dari Pengembalian Kelebihan Pembayaran Gaji dan Tunjangan",
+    "kode": "4.1.0.4.0.15.0.3.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Hasil Penjualan Gedung dan Bangunan",
+    "kode": "4.1.0.4.0.1.0.3.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan BLUD",
+    "kode": "4.1.0.4.0.16.0.1.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Hasil Penjualan Aset Lain-lain",
+    "kode": "4.1.0.4.0.1.0.8.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan Bunga",
+    "kode": "4.1.0.4.0.7.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Hasil Sewa BMD",
+    "kode": "4.1.0.4.0.3.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Jasa Giro pada Kas di Bendahara",
+    "kode": "4.1.0.4.0.5.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Penerimaan atas Tuntutan Ganti Kerugian Keuangan Daerah",
+    "kode": "4.1.0.4.0.8.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Dana Insentif Daerah (DID)",
+    "kode": "4.2.0.1.0.2.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "DID",
+    "kode": "4.2.0.1.0.2.0.1.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Pendapatan dari Pengembalian",
+    "kode": "4.1.0.4.0.15.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Tuntutan Ganti Kerugian Daerah terhadap Bendahara",
+    "kode": "4.1.0.4.0.8.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan BLUD",
+    "kode": "4.1.0.4.0.16.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan dari Pengembalian Kelebihan Pembayaran Belanja Gaji Pokok ASN",
+    "kode": "4.1.0.4.0.15.0.8.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "PENDAPATAN TRANSFER",
+    "kode": "4.2.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan BLUD dari Jasa Layanan",
+    "kode": "4.1.0.4.0.16.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan BLUD dari Hasil Kerja Sama dengan Pihak Lain",
+    "kode": "4.1.0.4.0.16.0.4.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan BLUD dari Lain-Lain Pendapatan BLUD yang Sah",
+    "kode": "4.1.0.4.0.16.0.6.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Dana Perimbangan",
+    "kode": "4.2.0.1.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Dana Transfer Umum-Dana Bagi Hasil (DBH)",
+    "kode": "4.2.0.1.0.1.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Insentif Fiskal",
+    "kode": "4.2.0.1.0.6.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Dana Transfer Umum-Dana Alokasi Umum (DAU)",
+    "kode": "4.2.0.1.0.1.0.2.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan Transfer Antar Daerah",
+    "kode": "4.2.0.2.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Insentif Fiskal",
+    "kode": "4.2.0.1.0.6.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan Bagi Hasil",
+    "kode": "4.2.0.2.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "LAIN-LAIN PENDAPATAN DAERAH YANG SAH",
+    "kode": "4.3.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan Bagi Hasil Pajak",
+    "kode": "4.2.0.2.0.1.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan Hibah",
+    "kode": "4.3.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan Hibah dari Pemerintah Pusat",
+    "kode": "4.3.0.1.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Pendapatan Hibah dari Pemerintah Pusat",
+    "kode": "4.3.0.1.0.1.0.1.0",
+    "kategori_utama": "Transfer"
+  },
+  {
+    "nama": "Opsen Bea Balik Nama Kendaraan Bermotor (BBNKB)",
+    "kode": "4.1.0.1.0.21.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Opsen BBNKB",
+    "kode": "4.1.0.1.0.21.0.1.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Tuntutan Ganti Kerugian Daerah terhadap Pegawai Negeri Bukan Bendahara atau Pejabat Lain",
+    "kode": "4.1.0.4.0.8.0.2.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Pendapatan Denda atas Pelanggaran Peraturan Daerah",
+    "kode": "4.1.0.4.0.21.0.1.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Insentif Fiskal Untuk Penghargaan Kinerja Tahun Sebelumnya",
+    "kode": "4.2.0.1.0.6.0.2.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "DAU yang Ditentukan Penggunaannya",
+    "kode": "4.2.0.1.0.8.0.2.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Dana Alokasi Khusus (DAK)",
+    "kode": "4.2.0.1.0.9.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "DAK Fisik",
+    "kode": "4.2.0.1.0.9.0.1.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Penjualan Produksi Usaha Daerah",
+    "kode": "4.1.0.2.0.2.0.11.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Bagian Laba yang Dibagikan kepada Pemerintah Daerah (Dividen) atas Penyertaan Modal pada BUMD (Aneka Usaha)",
+    "kode": "4.1.0.3.0.2.0.2.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "DBH Pajak",
+    "kode": "4.2.0.1.0.7.0.1.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "DBH Sumber Daya Alam (SDA)",
+    "kode": "4.2.0.1.0.7.0.2.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Dana Alokasi Umum (DAU)",
+    "kode": "4.2.0.1.0.8.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "DAU yang Tidak Ditentukan Penggunaannya",
+    "kode": "4.2.0.1.0.8.0.1.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "DAK Non Fisik",
+    "kode": "4.2.0.1.0.9.0.2.0",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "PENDAPATAN ASLI DAERAH (PAD)",
+    "kode": "4.1",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Kendaraan Bermotor (PKB)",
+    "kode": "4.1.01.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Penumpang-Sedan",
+    "kode": "4.1.01.01.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Penumpang-Jeep",
+    "kode": "4.1.01.01.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Penumpang-Minibus",
+    "kode": "4.1.01.01.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Bus-Microbus",
+    "kode": "4.1.01.01.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Bus-Bus",
+    "kode": "4.1.01.01.05",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Barang/Beban-Pick Up",
+    "kode": "4.1.01.01.06",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Barang/Beban-Light Truck",
+    "kode": "4.1.01.01.07",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Barang/Beban-Truck",
+    "kode": "4.1.01.01.08",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Bea Balik Nama Kendaraan Bermotor (BBNKB)",
+    "kode": "4.1.01.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Penumpang-Sedan",
+    "kode": "4.1.01.02.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Penumpang-Jeep",
+    "kode": "4.1.01.02.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Penumpang-Minibus",
+    "kode": "4.1.01.02.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Bus-Microbus",
+    "kode": "4.1.01.02.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Bus-Bus",
+    "kode": "4.1.01.02.05",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Barang/Beban-Pick Up",
+    "kode": "4.1.01.02.06",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Barang/Beban-Light Truck",
+    "kode": "4.1.01.02.07",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Barang/Beban-Truck",
+    "kode": "4.1.01.02.08",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Bahan Bakar Kendaraan Bermotor (PBBKB)",
+    "kode": "4.1.01.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBBKB-Bahan Bakar Bensin",
+    "kode": "4.1.01.03.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBBKB-Bahan Bakar Solar",
+    "kode": "4.1.01.03.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBBKB-Bahan Bakar Gas",
+    "kode": "4.1.01.03.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBBKB-Bahan Bakar Lainnya",
+    "kode": "4.1.01.03.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Air Permukaan",
+    "kode": "4.1.01.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Air Permukaan",
+    "kode": "4.1.01.04.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Rokok",
+    "kode": "4.1.01.05",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Rokok",
+    "kode": "4.1.01.05.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Hotel",
+    "kode": "4.1.01.06",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Hotel",
+    "kode": "4.1.01.06.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Motel",
+    "kode": "4.1.01.06.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Losmen",
+    "kode": "4.1.01.06.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Gubuk Pariwisata",
+    "kode": "4.1.01.06.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Wisma Pariwisata",
+    "kode": "4.1.01.06.05",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Pesanggrahan",
+    "kode": "4.1.01.06.06",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Rumah Penginapan dan Sejenisnya",
+    "kode": "4.1.01.06.07",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Rumah Kos dengan Jumlah Kamar Lebih dari 10 (Sepuluh)",
+    "kode": "4.1.01.06.08",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Restoran",
+    "kode": "4.1.01.07",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Restoran dan Sejenisnya",
+    "kode": "4.1.01.07.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Rumah Makan dan Sejenisnya",
+    "kode": "4.1.01.07.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Kafetaria dan Sejenisnya",
+    "kode": "4.1.01.07.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Kantin dan Sejenisnya",
+    "kode": "4.1.01.07.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Warung dan Sejenisnya",
+    "kode": "4.1.01.07.05",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Bar dan Sejenisnya",
+    "kode": "4.1.01.07.06",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Jasa Boga/Katering dan Sejenisnya",
+    "kode": "4.1.01.07.07",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Hiburan",
+    "kode": "4.1.01.08",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Tontonan Film",
+    "kode": "4.1.01.08.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Pagelaran Kesenian/Musik/Tari/ Busana",
+    "kode": "4.1.01.08.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame Melekat/Stiker",
+    "kode": "4.1.01.09.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame Selebaran",
+    "kode": "4.1.01.09.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame Berjalan",
+    "kode": "4.1.01.09.05",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Daerah",
+    "kode": "4.1.01",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pajak Reklame Apung",
+    "kode": "4.1.01.09.07",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame Suara",
+    "kode": "4.1.01.09.08",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame Film/Slide",
+    "kode": "4.1.01.09.09",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Reklame Peragaan",
+    "kode": "4.1.01.09.10",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Penerangan Jalan Dihasilkan Sendiri",
+    "kode": "4.1.01.10.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Penerangan Jalan Sumber Lain",
+    "kode": "4.1.01.10.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Parkir",
+    "kode": "4.1.01.11.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Air Tanah",
+    "kode": "4.1.01.12.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Sarang Burung Walet",
+    "kode": "4.1.01.13.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Asbes",
+    "kode": "4.1.01.14.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Batu Tulis",
+    "kode": "4.1.01.14.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Batu Setengah Permata",
+    "kode": "4.1.01.14.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Batu Kapur",
+    "kode": "4.1.01.14.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Batu Apung",
+    "kode": "4.1.01.14.05",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Batu Permata",
+    "kode": "4.1.01.14.06",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Bentonit",
+    "kode": "4.1.01.14.07",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Dolomit",
+    "kode": "4.1.01.14.08",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Felspar",
+    "kode": "4.1.01.14.09",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Garam Batu (Halite)",
+    "kode": "4.1.01.14.10",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Grafit",
+    "kode": "4.1.01.14.11",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Granit/Andesit",
+    "kode": "4.1.01.14.12",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Gips",
+    "kode": "4.1.01.14.13",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Kalsit",
+    "kode": "4.1.01.14.14",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Kaolin",
+    "kode": "4.1.01.14.15",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Leusit",
+    "kode": "4.1.01.14.16",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Magnesit",
+    "kode": "4.1.01.14.17",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Mika",
+    "kode": "4.1.01.14.18",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Marmer",
+    "kode": "4.1.01.14.19",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Nitrat",
+    "kode": "4.1.01.14.20",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Opsidien",
+    "kode": "4.1.01.14.21",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Pelayanan Pemakaman dan Pengabuan Mayat",
+    "kode": "4.1.2.01.03",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pelayanan Parkir di Tepi Jalan Umum",
+    "kode": "4.1.2.01.04",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pelayanan Pasar",
+    "kode": "4.1.2.01.05",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pengujian Kendaraan Bermotor",
+    "kode": "4.1.2.01.06",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pemeriksaan Alat Pemadam Kebakaran",
+    "kode": "4.1.2.01.07",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Penggantian Biaya Cetak Peta",
+    "kode": "4.1.2.01.08",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Penyediaan dan/atau Penyedotan Kakus",
+    "kode": "4.1.2.01.09",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pengolahan Limbah Cair",
+    "kode": "4.1.2.01.10",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pelayanan Tera/Tera Ulang",
+    "kode": "4.1.2.01.11",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pelayanan Pendidikan",
+    "kode": "4.1.2.01.12",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi",
+    "kode": "4.1.2.01.13",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pemakaian Kekayaan Daerah",
+    "kode": "4.1.2.02.01",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pasar Grosir dan/atau Pertokoan",
+    "kode": "4.1.2.02.02",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Tempat Pelelangan",
+    "kode": "4.1.2.02.03",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Terminal",
+    "kode": "4.1.2.02.04",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Tempat Khusus Parkir",
+    "kode": "4.1.2.02.05",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Tempat Penginapan/Pesanggrahan/ Vila",
+    "kode": "4.1.2.02.06",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Rumah Potong Hewan",
+    "kode": "4.1.2.02.07",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pelayanan Kepelabuhanan",
+    "kode": "4.1.2.02.08",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Tempat Rekreasi dan Olahraga",
+    "kode": "4.1.2.02.09",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Penyeberangan di Air",
+    "kode": "4.1.2.02.10",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Penjualan Produksi Usaha Daerah",
+    "kode": "4.1.2.02.11",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Izin Mendirikan Bangunan",
+    "kode": "4.1.2.03.01",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Izin Tempat Penjualan Minuman Beralkohol",
+    "kode": "4.1.2.03.02",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Izin Trayek untuk Menyediakan Pelayanan Angkutan Umum",
+    "kode": "4.1.2.03.03",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Pajak Oker",
+    "kode": "4.1.01.14.22",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Pasir dan Kerikil",
+    "kode": "4.1.01.14.23",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Pasir Kuarsa",
+    "kode": "4.1.01.14.24",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Perlit",
+    "kode": "4.1.01.14.25",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Phospat",
+    "kode": "4.1.01.14.26",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Talk",
+    "kode": "4.1.01.14.27",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Tanah Serap (Fullers Earth)",
+    "kode": "4.1.01.14.28",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Tanah Diatome",
+    "kode": "4.1.01.14.29",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Tanah Liat",
+    "kode": "4.1.01.14.30",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Tawas (Alum)",
+    "kode": "4.1.01.14.31",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Tras",
+    "kode": "4.1.01.14.32",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Yarosif",
+    "kode": "4.1.01.14.33",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Zeolit",
+    "kode": "4.1.01.14.34",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Basal",
+    "kode": "4.1.01.14.35",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Trakit",
+    "kode": "4.1.01.14.36",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Mineral bukan Logam dan Batuan Lainnya",
+    "kode": "4.1.01.14.37",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBBP2",
+    "kode": "4.1.01.15.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BPHTB-Pemindahan Hak",
+    "kode": "4.1.01.16.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BPHTB-Pemberian Hak Baru",
+    "kode": "4.1.01.16.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Pelayanan Kesehatan",
+    "kode": "4.1.02.01.01",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Persampahan/ Kebersihan",
+    "kode": "4.1.02.01.02",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Pemakaman dan Pengabuan Mayat",
+    "kode": "4.1.02.01.03",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Parkir di Tepi Jalan Umum",
+    "kode": "4.1.02.01.04",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Pasar",
+    "kode": "4.1.02.01.05",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pengujian Kendaraan Bermotor",
+    "kode": "4.1.02.01.06",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pemeriksaan Alat Pemadam Kebakaran",
+    "kode": "4.1.02.01.07",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Penggantian Biaya Cetak Peta",
+    "kode": "4.1.02.01.08",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Penyediaan dan/atau Penyedotan Kakus",
+    "kode": "4.1.02.01.09",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pengolahan Limbah Cair",
+    "kode": "4.1.02.01.10",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Tera/Tera Ulang",
+    "kode": "4.1.02.01.11",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Pendidikan",
+    "kode": "4.1.02.01.12",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pengawasan dan Pengendalian Menara Telekomunikasi",
+    "kode": "4.1.02.01.13",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pemakaian Kekayaan Daerah",
+    "kode": "4.1.02.02.01",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pasar Grosir dan/atau Pertokoan",
+    "kode": "4.1.02.02.02",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Tempat Pelelangan",
+    "kode": "4.1.02.02.03",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Terminal",
+    "kode": "4.1.02.02.04",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Tempat Khusus Parkir",
+    "kode": "4.1.02.02.05",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Tempat Penginapan/Pesanggrahan/ Vila",
+    "kode": "4.1.02.02.06",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Rumah Potong Hewan",
+    "kode": "4.1.02.02.07",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Kepelabuhanan",
+    "kode": "4.1.02.02.08",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Tempat Rekreasi dan Olahraga",
+    "kode": "4.1.02.02.09",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Penyeberangan di Air",
+    "kode": "4.1.02.02.10",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Penjualan Produksi Usaha Daerah",
+    "kode": "4.1.02.02.11",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Izin Mendirikan Bangunan",
+    "kode": "4.1.02.03.01",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "BBNKB-Kendaraan Bermotor yang Dioperasikan di Air",
+    "kode": "4.1.01.02.12",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Kendaraan Khusus Alat Berat",
+    "kode": "4.1.01.02.13",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Roda Tiga",
+    "kode": "4.1.01.02.14",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Persetujuan Bangunan Gedung",
+    "kode": "4.1.02.03.07",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pertambangan Rakyat",
+    "kode": "4.1.02.03.09",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "PKB-Mobil Penumpang-Roda Tiga",
+    "kode": "4.1.01.01.15",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Barang-Roda Tiga",
+    "kode": "4.1.01.01.16",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Barang/Beban-Pick Up Box",
+    "kode": "4.1.01.01.17",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Sepeda Motor-Sepeda Motor Roda Tiga Penumpang",
+    "kode": "4.1.01.01.18",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Izin Usaha Perikanan",
+    "kode": "4.1.2.03.04",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Pengendalian Lalu Lintas",
+    "kode": "4.1.2.03.05",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA)",
+    "kode": "4.1.2.03.06",
+    "kategori_utama": "pad"
+  },
+  {
+    "nama": "PKB-Mobil Barang/Beban-Blind Van",
+    "kode": "4.1.01.01.09",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Sepeda Motor-Sepeda Motor Roda Dua",
+    "kode": "4.1.01.01.10",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Sepeda Motor-Sepeda Motor Roda Tiga",
+    "kode": "4.1.01.01.11",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Kendaraan Bermotor yang Dioperasikan di Air",
+    "kode": "4.1.01.01.12",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Kendaraan Khusus Alat Berat/Alat Besar",
+    "kode": "4.1.01.01.13",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PKB-Mobil Roda Tiga",
+    "kode": "4.1.01.01.14",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Barang/Beban-Blind Van",
+    "kode": "4.1.01.02.09",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Sepeda Motor-Sepeda Motor Roda Dua",
+    "kode": "4.1.01.02.10",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Sepeda Motor-Sepeda Motor Roda Tiga",
+    "kode": "4.1.01.02.11",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Penyediaan Tempat Khusus Parkir Diluar Badan Jalan",
+    "kode": "4.1.0.2.0.2.0.14.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan",
+    "kode": "4.1.0.4.0.11.0.1.0",
+    "kategori_utama": "PAD"
+  },
+  {
+    "nama": "BBNKB-Mobil Penumpang-Roda Tiga",
+    "kode": "4.1.01.02.15",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Barang-Roda Tiga",
+    "kode": "4.1.01.02.16",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Mobil Barang/Beban-Pick Up Box",
+    "kode": "4.1.01.02.17",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "BBNKB-Sepeda Motor-Sepeda Motor Roda Tiga Penumpang",
+    "kode": "4.1.01.02.18",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Belerang",
+    "kode": "4.1.01.14.38",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak MBLB Ikutan Dalam Suatu Pertambangan Mineral",
+    "kode": "4.1.01.14.39",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Alat Berat",
+    "kode": "4.1.01.17",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Alat Berat",
+    "kode": "4.1.01.17.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Opsen Pajak Mineral Bukan Logam dan Batuan (MBLB)",
+    "kode": "4.1.01.18",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Opsen Pajak Mineral Bukan Logam dan Batuan (MBLB)",
+    "kode": "4.1.01.18.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Pajak Barang dan Jasa Tertentu (PBJT)",
+    "kode": "4.1.01.19",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBJT-Makanan dan/atau Minuman",
+    "kode": "4.1.01.19.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBJT-Tenaga Listrik",
+    "kode": "4.1.01.19.02",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBJT-Jasa Perhotelan",
+    "kode": "4.1.01.19.03",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBJT-Jasa Parkir",
+    "kode": "4.1.01.19.04",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "PBJT-Jasa Kesenian dan Hiburan",
+    "kode": "4.1.01.19.05",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Opsen Pajak Kendaraan Bermotor (PKB)",
+    "kode": "4.1.01.20",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Opsen PKB",
+    "kode": "4.1.01.20.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Opsen Bea Balik Nama Kendaraan Bermotor (BBNKB)",
+    "kode": "4.1.01.21",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Opsen BBNKB",
+    "kode": "4.1.01.21.01",
+    "kategori_utama": "pajak"
+  },
+  {
+    "nama": "Retribusi Pelayanan Kebersihan",
+    "kode": "4.1.02.01.14",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pengendalian Lalu Lintas",
+    "kode": "4.1.02.01.15",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Penyediaan Tempat Kegiatan Usaha berupa Pasar, Grosir, Pertokoan, dan Tempat Kegiatan Usaha Lainnya",
+    "kode": "4.1.02.02.12",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Penyediaan Tempat Pelelangan Ikan, Ternak, Hasil Bumi, dan Hasil Hutan Termasuk Fasilitas Lainnya dalam Lingkungan Tempat Pelelangan",
+    "kode": "4.1.02.02.13",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Penyediaan Tempat Khusus Parkir Diluar Badan Jalan",
+    "kode": "4.1.02.02.14",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Rumah Pemotongan Hewan Ternak",
+    "kode": "4.1.02.02.15",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Jasa Kepelabuhanan",
+    "kode": "4.1.02.02.16",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Tempat Rekreasi, Pariwisata, dan Olahraga",
+    "kode": "4.1.02.02.17",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pelayanan Penyeberangan Orang atau Barang dengan Menggunakan Kendaraan di Air",
+    "kode": "4.1.02.02.18",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Penjualan Hasil Produksi Usaha Pemerintah Daerah",
+    "kode": "4.1.02.02.19",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Pemanfaatan Aset Daerah",
+    "kode": "4.1.02.02.20",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Retribusi Penggunaan Tenaga Kerja Asing (TKA)",
+    "kode": "4.1.02.03.08",
+    "kategori_utama": "retribusi"
+  },
+  {
+    "nama": "Pendapatan Bunga atas Penempatan Uang Pemerintah Daerah",
+    "kode": "4.1.0.4.0.7.0.1.0",
+    "kategori_utama": "PAD"
+  }
+]
