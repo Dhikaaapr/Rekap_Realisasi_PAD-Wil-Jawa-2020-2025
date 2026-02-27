@@ -13,7 +13,7 @@ const StatCard = ({ title, value, icon: Icon, description, trend, color = 'brand
   };
 
   return (
-    <div className="bg-white/5 backdrop-blur-xl rounded-[24px] md:rounded-[28px] p-5 md:p-7 border border-white/10 hover:shadow-2xl hover:translate-y-[-4px] transition-all duration-300 h-full flex flex-col justify-between">
+    <div className="bg-white rounded-[24px] md:rounded-[28px] p-5 md:p-7 border border-slate-200 hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 h-full flex flex-col justify-between shadow-sm">
       <div className="flex items-center justify-between mb-4 md:mb-6">
         <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl ${getColors()}`}>
           <Icon size={20} className="md:w-6 md:h-6" />
@@ -26,7 +26,7 @@ const StatCard = ({ title, value, icon: Icon, description, trend, color = 'brand
       </div>
       <div>
         <h3 className="text-slate-500 text-[10px] md:text-xs font-black uppercase tracking-widest">{title}</h3>
-        <p className="text-xl md:text-3xl font-black text-white mt-1 md:mt-2 tracking-tight">{value || '0'}</p>
+        <p className="text-xl md:text-3xl font-black text-slate-900 mt-1 md:mt-2 tracking-tight">{value || '0'}</p>
         {description && (
           <p className="text-slate-500 text-[8px] md:text-[10px] font-bold mt-3 md:mt-4 uppercase tracking-wider">{description}</p>
         )}

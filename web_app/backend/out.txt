@@ -1,0 +1,77 @@
+Jawa Barat limited:
+[
+  {
+    "daerah": "Prov. Jawa Barat",
+    "tahun": 2021,
+    "kategori_kode": "PAD-PAJAK",
+    "anggaran": 17983290282110,
+    "realisasi": 18847793728565
+  },
+  {
+    "daerah": "Prov. Jawa Barat",
+    "tahun": 2023,
+    "kategori_kode": "PAD-PAJAK",
+    "anggaran": 22983763184193,
+    "realisasi": 22467329387753
+  },
+  {
+    "daerah": "Prov. Jawa Barat",
+    "tahun": 2022,
+    "kategori_kode": "PAD-PAJAK",
+    "anggaran": 20648581527631,
+    "realisasi": 21542606068935
+  },
+  {
+    "daerah": "Prov. Jawa Barat",
+    "tahun": 2024,
+    "kategori_kode": "PAD-PAJAK",
+    "anggaran": 23078029493976,
+    "realisasi": 23432058912013
+  },
+  {
+    "daerah": "Prov. Jawa Barat",
+    "tahun": 2025,
+    "kategori_kode": "PAD-PAJAK",
+    "anggaran": 17691848216117,
+    "realisasi": 16060479725262
+  }
+]
+Any data limited:
+[
+  {
+    "daerah": "Prov. Sumatera Utara",
+    "tahun": 2025,
+    "kategori_kode": "PAD-RETRIBUSI",
+    "anggaran": 192531703635,
+    "realisasi": 182761841779.52
+  },
+  {
+    "daerah": "Prov. Sumatera Utara",
+    "tahun": 2025,
+    "kategori_kode": "PAD-LAIN",
+    "anggaran": 268348553574,
+    "realisasi": 75128465319.93
+  },
+  {
+    "daerah": "Prov. Sumatera Selatan",
+    "tahun": 2025,
+    "kategori_kode": "PAD-PAJAK",
+    "anggaran": 3833367486607,
+    "realisasi": 3748186761393.68
+  },
+  {
+    "daerah": "Prov. Sumatera Selatan",
+    "tahun": 2025,
+    "kategori_kode": "PAD-RETRIBUSI",
+    "anggaran": 5110991800,
+    "realisasi": 5227615402
+  },
+  {
+    "daerah": "Prov. Sumatera Selatan",
+    "tahun": 2025,
+    "kategori_kode": "PAD-PENGELOLAAN",
+    "anggaran": 173213785434,
+    "realisasi": 106316886488.21
+  }
+]
+Total count: 11668

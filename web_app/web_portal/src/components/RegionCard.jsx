@@ -16,8 +16,8 @@ const RegionCard = ({ region, rank, isTop, isBottom, onClick, value, label }) =>
       if (rank === 3) return 'bg-orange-500/20 text-orange-400 ring-orange-500/30';
       return 'bg-emerald-500/20 text-emerald-400 ring-emerald-500/30';
     }
-    if (isBottom) return 'bg-rose-500/20 text-rose-400 ring-rose-500/30';
-    return 'bg-white/5 text-slate-500 ring-white/10';
+    if (isBottom) return 'bg-rose-100 text-rose-600 ring-rose-300';
+    return 'bg-slate-100 text-slate-500 ring-slate-200';
   };
 
   const getTipeColor = (tipe) => {
@@ -32,9 +32,9 @@ const RegionCard = ({ region, rank, isTop, isBottom, onClick, value, label }) =>
   return (
     <div 
       onClick={onClick}
-      className={`group relative bg-white/5 cursor-pointer rounded-2xl md:rounded-3xl p-4 md:p-6 border transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px] backdrop-blur-xl ${
-        isTop ? 'border-emerald-500/20 shadow-emerald-500/5' : 
-        isBottom ? 'border-rose-500/20 shadow-rose-500/5' : 'border-white/10 shadow-sm'
+      className={`group relative bg-white cursor-pointer rounded-2xl md:rounded-3xl p-4 md:p-6 border transition-all duration-300 hover:shadow-lg hover:translate-y-[-4px] ${
+        isTop ? 'border-emerald-200 shadow-sm' : 
+        isBottom ? 'border-rose-200 shadow-sm' : 'border-slate-200 shadow-sm'
       }`}
     >
       {isTop && rank === 1 && (
@@ -54,11 +54,11 @@ const RegionCard = ({ region, rank, isTop, isBottom, onClick, value, label }) =>
         <div className="flex-grow min-w-0">
           <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
              <div className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full flex-shrink-0 ${getTipeColor(region.tipe)}`} />
-            <h3 className="font-header font-black text-white truncate text-sm md:text-lg group-hover:text-brand-400 transition-colors uppercase tracking-tight">{region.daerah}</h3>
+            <h3 className="font-header font-black text-slate-900 truncate text-sm md:text-lg group-hover:text-blue-600 transition-colors uppercase tracking-tight">{region.daerah}</h3>
           </div>
           
           <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-6">
-            <div className={`flex items-center gap-1 md:gap-2 font-black text-sm md:text-base ${isBottom ? 'text-rose-400' : 'text-emerald-400'}`}>
+            <div className={`flex items-center gap-1 md:gap-2 font-black text-sm md:text-base ${isBottom ? 'text-rose-600' : 'text-emerald-600'}`}>
               <TrendingUp size={14} className="md:w-4 md:h-4" />
               {formatMoney(value || region.rataRataPAD)}
             </div>
@@ -67,7 +67,7 @@ const RegionCard = ({ region, rank, isTop, isBottom, onClick, value, label }) =>
                  <span className="truncate">{label}</span>
                ) : (
                  <>
-                   <MapPin size={12} className="text-slate-300 md:w-3.5 md:h-3.5" />
+                   <MapPin size={12} className="text-slate-400 md:w-3.5 md:h-3.5" />
                    {region.tahunList?.length || 0} Tahun
                  </>
                )}
@@ -76,7 +76,7 @@ const RegionCard = ({ region, rank, isTop, isBottom, onClick, value, label }) =>
         </div>
 
         {/* Action */}
-        <button className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center text-slate-500 group-hover:bg-brand-500 group-hover:text-white group-hover:rotate-[-45deg] transition-all duration-500 shadow-inner">
+        <button className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-blue-500 group-hover:text-white group-hover:rotate-[-45deg] transition-all duration-500">
           <ChevronRight size={20} className="md:w-6 md:h-6" />
         </button>
       </div>

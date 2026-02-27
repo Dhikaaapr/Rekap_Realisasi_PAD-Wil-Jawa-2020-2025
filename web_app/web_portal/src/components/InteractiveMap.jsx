@@ -95,7 +95,33 @@ const InteractiveMap = ({ data, selectedYear = 2025, activeMetric = 'rataRataPAD
   const [loading, setLoading] = useState(true);
   const [activeFeature, setActiveFeature] = useState(null);
   const [mapError, setMapError] = useState(false);
-  const [viewMode, setViewMode] = useState('realisasi'); // 'realisasi' or 'anggaran'
+  const [viewMode, setViewMode] = useState('realisasi');
+
+  // Dynamic thresholds — calculated from actual data distribution (percentile-based)
+  // Klaster: I (<p15), II (p15-p35), III (p35-p55), IV (p55-p75), V (p75-p90), VI (>p90)
+  const dynamicThresholds = useMemo(() => {
+    if (!data || data.length === 0) return { t1: 5e11, t2: 1e12, t3: 2e12, t4: 3e12, t5: 5e12 };
+    
+    const values = data
+      .map(d => viewMode === 'realisasi' ? (d.rataRataPAD || 0) : (d.rataRataAnggaran || 0))
+      .filter(v => v > 0)
+      .sort((a, b) => a - b);
+
+    if (values.length === 0) return { t1: 5e11, t2: 1e12, t3: 2e12, t4: 3e12, t5: 5e12 };
+
+    const pct = (p) => {
+      const idx = Math.floor((p / 100) * (values.length - 1));
+      return values[idx];
+    };
+
+    return {
+      t1: pct(15),  // Klaster II threshold
+      t2: pct(35),  // Klaster III threshold
+      t3: pct(55),  // Klaster IV threshold
+      t4: pct(75),  // Klaster V threshold
+      t5: pct(90),  // Klaster VI threshold
+    };
+  }, [data, viewMode]);
 
   // 1. Data Processing - Simplify and use pre-calculated fields from App.jsx
   const dataMap = useMemo(() => {
@@ -225,46 +251,39 @@ const InteractiveMap = ({ data, selectedYear = 2025, activeMetric = 'rataRataPAD
     });
   }, [dataMap]);
 
-  // 4. Styling & Hover
+  // 4. Styling & Hover — Dynamic percentile-based color thresholds
+  const KLASTER_COLORS = [
+    '#3b82f6',  // Klaster I  — biru   (terendah)
+    '#f59e0b',  // Klaster II — amber
+    '#10b981',  // Klaster III— hijau
+    '#a855f7',  // Klaster IV — ungu
+    '#ef4444',  // Klaster V  — merah
+    '#0f766e',  // Klaster VI — teal   (tertinggi)
+  ];
+
   const getFeatureStyle = useCallback((feature) => {
     const matched = findMatchingData(feature.properties);
-    const value = matched ? 
-      (viewMode === 'realisasi' ? (Number(matched.displayPAD) || 0) : (Number(matched.displayAnggaran) || 0)) 
+    const value = matched
+      ? (viewMode === 'realisasi' ? (Number(matched.displayPAD) || 0) : (Number(matched.displayAnggaran) || 0))
       : 0;
+
+    const { t1, t2, t3, t4, t5 } = dynamicThresholds;
     
-    let color = '#3b82f6'; // Klaster I (Default)
-    
-    // Threshold Scaling Logic (Ensures colors match the scale of the data)
-    // - Sub-metrics (e.g. Pajak Hotel) are ~20-50x smaller than total PAD
-    // - Specific main metrics (Pajak/Retribusi) are also smaller than Total PAD
-    const isSub = subDataLookup && Object.keys(subDataLookup).length > 0;
-    const isAll = selectedYear === 'all';
-    
-    // Determine the baseline based on the active metric
-    let factor = 1;
-    if (isSub) factor = 0.05; // 5% scale for rincian
-    else if (activeMetric === 'rataRataPajak') factor = 0.6; // Pajak usually ~60% of PAD
-    else if (activeMetric === 'rataRataRetribusi') factor = 0.15; // Retribusi usually ~15%
-    else if (activeMetric === 'rataRataPengelolaan' || activeMetric === 'rataRataLain') factor = 0.1;
-    
-    if (isAll) factor *= 4; // Scale up for 5-year aggregate totals
-    
-    // Kemendagri Standard Klaster (Teal, Red, Purple, Green, Orange, Blue)
-    if (value >= 5e12 * factor) color = '#0f766e';      // Klaster VI (> 5 T)
-    else if (value >= 3e12 * factor) color = '#ef4444'; // Klaster V (3 - 5 T)
-    else if (value >= 2e12 * factor) color = '#d946ef'; // Klaster IV (2 - 3 T)
-    else if (value >= 1e12 * factor) color = '#10b981'; // Klaster III (1 - 2 T)
-    else if (value >= 5e11 * factor) color = '#f59e0b'; // Klaster II (500 M - 1 T)
-    else color = '#3b82f6';                            // Klaster I (< 500 M)
+    let color = KLASTER_COLORS[0]; // Default: Klaster I
+    if      (value >= t5) color = KLASTER_COLORS[5]; // Klaster VI
+    else if (value >= t4) color = KLASTER_COLORS[4]; // Klaster V
+    else if (value >= t3) color = KLASTER_COLORS[3]; // Klaster IV
+    else if (value >= t2) color = KLASTER_COLORS[2]; // Klaster III
+    else if (value >= t1) color = KLASTER_COLORS[1]; // Klaster II
 
     return {
       fillColor: color,
       weight: 0.5,
       opacity: 1,
       color: '#cbd5e1',
-      fillOpacity: matched ? 0.9 : 0.1
+      fillOpacity: matched ? 0.85 : 0.08
     };
-  }, [findMatchingData, viewMode, subDataLookup]);
+  }, [findMatchingData, viewMode, dynamicThresholds]);
 
   const onEachFeature = useCallback((feature, layer) => {
     const matched = findMatchingData(feature.properties);
@@ -359,24 +378,33 @@ const InteractiveMap = ({ data, selectedYear = 2025, activeMetric = 'rataRataPAD
             ))}
           </div>
 
-          <div className="absolute bottom-6 right-6 z-[1000] bg-white/95 backdrop-blur-md p-6 rounded-[28px] border border-slate-100 shadow-2xl pointer-events-none">
-             <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Klaster Kemendagri</h4>
-             <div className="space-y-3">
-               {[
-                 { c: '#0f766e', l: 'Klaster VI (> 5 T)' },
-                 { c: '#ef4444', l: 'Klaster V (3 - 5 T)' },
-                 { c: '#d946ef', l: 'Klaster IV (2 - 3 T)' },
-                 { c: '#10b981', l: 'Klaster III (1 - 2 T)' },
-                 { c: '#f59e0b', l: 'Klaster II (500 M - 1 T)' },
-                 { c: '#3b82f6', l: 'Klaster I (< 500 M)' }
-               ].map((item, i) => (
-                 <div key={i} className="flex items-center gap-4">
-                   <div className="w-3 h-3 rounded-full shadow-sm ring-2 ring-white" style={{ background: item.c }} />
-                   <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wide">{item.l}</span>
-                 </div>
-               ))}
-             </div>
-          </div>
+          {/* Dynamic Legend — auto-updates based on actual data distribution */}
+          {(() => {
+            const fmt = (v) => v >= 1e12 ? `${(v/1e12).toFixed(1)}T` : `${(v/1e9).toFixed(0)}M`;
+            const { t1, t2, t3, t4, t5 } = dynamicThresholds;
+            const items = [
+              { c: '#0f766e', l: `Klaster VI (≥ ${fmt(t5)})` },
+              { c: '#ef4444', l: `Klaster V  (${fmt(t4)} – ${fmt(t5)})` },
+              { c: '#a855f7', l: `Klaster IV (${fmt(t3)} – ${fmt(t4)})` },
+              { c: '#10b981', l: `Klaster III (${fmt(t2)} – ${fmt(t3)})` },
+              { c: '#f59e0b', l: `Klaster II  (${fmt(t1)} – ${fmt(t2)})` },
+              { c: '#3b82f6', l: `Klaster I   (< ${fmt(t1)})` },
+            ];
+            return (
+              <div className="absolute bottom-6 right-6 z-[1000] bg-white/95 backdrop-blur-md p-5 rounded-[24px] border border-slate-100 shadow-2xl pointer-events-none min-w-[200px]">
+                <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3">Klaster Kemendagri</h4>
+                <p className="text-[8px] font-bold text-brand-500 uppercase tracking-widest mb-3">Auto-scaled • {selectedYear === 'all' ? 'Semua Tahun' : selectedYear}</p>
+                <div className="space-y-2.5">
+                  {items.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className="w-3 h-3 rounded-sm shadow-sm flex-shrink-0" style={{ background: item.c }} />
+                      <span className="text-[9px] font-bold text-slate-600 tracking-wide font-mono">{item.l}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
         </MapContainer>
 
         {/* Info Panel */}

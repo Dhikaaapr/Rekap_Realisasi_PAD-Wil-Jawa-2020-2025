@@ -1,0 +1,31 @@
+Jawa Barat 2024:
+[
+  {
+    "daerah": "Prov. Jawa Barat",
+    "tahun": 2024,
+    "kategori_kode": "PAD-PAJAK",
+    "anggaran": 23078029493976,
+    "realisasi": 23432058912013
+  },
+  {
+    "daerah": "Prov. Jawa Barat",
+    "tahun": 2024,
+    "kategori_kode": "PAD-RETRIBUSI",
+    "anggaran": 800718924489,
+    "realisasi": 806580892930
+  },
+  {
+    "daerah": "Prov. Jawa Barat",
+    "tahun": 2024,
+    "kategori_kode": "PAD-PENGELOLAAN",
+    "anggaran": 430595755275,
+    "realisasi": 430658809497
+  },
+  {
+    "daerah": "Prov. Jawa Barat",
+    "tahun": 2024,
+    "kategori_kode": "PAD-LAIN",
+    "anggaran": 572864445961,
+    "realisasi": 689462415686
+  }
+]

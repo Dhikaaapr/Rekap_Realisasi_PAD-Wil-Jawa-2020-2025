@@ -1,0 +1,113 @@
+Kab. Sidoarjo 2024:
+[
+  {
+    "kategori_kode": "PAJ-KK-REKLAME",
+    "anggaran": 27999500000,
+    "realisasi": 29380751914
+  },
+  {
+    "kategori_kode": "PBJT-MAKMIN",
+    "anggaran": 124000000000,
+    "realisasi": 129233152030
+  },
+  {
+    "kategori_kode": "PBJT-HIBURAN",
+    "anggaran": 5460000000,
+    "realisasi": 5628239798
+  },
+  {
+    "kategori_kode": "RET-JUS-ASET",
+    "anggaran": 9572618250,
+    "realisasi": 6152011147
+  },
+  {
+    "kategori_kode": "RET-JUS-RPH",
+    "anggaran": 282503000,
+    "realisasi": 372395000
+  },
+  {
+    "kategori_kode": "PAD-PAJAK",
+    "anggaran": 849455000000,
+    "realisasi": 929261529986.45
+  },
+  {
+    "kategori_kode": "PAD-RETRIBUSI",
+    "anggaran": 55980517525,
+    "realisasi": 58931135490
+  },
+  {
+    "kategori_kode": "PBJT-LISTRIK",
+    "anggaran": 626000000000,
+    "realisasi": 610597356854.9
+  },
+  {
+    "kategori_kode": "PBJT-PARKIR",
+    "anggaran": 15000000000,
+    "realisasi": 15821168400
+  },
+  {
+    "kategori_kode": "PAJ-KK-PAT",
+    "anggaran": 2025000000,
+    "realisasi": 2575219356
+  },
+  {
+    "kategori_kode": "PAJ-KK-PBBP2",
+    "anggaran": 211000000000,
+    "realisasi": 229810879995
+  },
+  {
+    "kategori_kode": "PAJ-KK-BPHTB",
+    "anggaran": 220000000000,
+    "realisasi": 282529546294
+  },
+  {
+    "kategori_kode": "RET-JU-KEBERSIHAN",
+    "anggaran": 4500000000,
+    "realisasi": 5599205020
+  },
+  {
+    "kategori_kode": "RET-JU-PASAR",
+    "anggaran": 17210715000,
+    "realisasi": 17445732926
+  },
+  {
+    "kategori_kode": "RET-JU-KESEHATAN",
+    "anggaran": 30076775000,
+    "realisasi": 33024605054
+  },
+  {
+    "kategori_kode": "RET-JU-LALIN",
+    "anggaran": 992110000,
+    "realisasi": 1266797108
+  },
+  {
+    "kategori_kode": "RET-JUS-PENGINAPAN",
+    "anggaran": 4000000000,
+    "realisasi": 0
+  },
+  {
+    "kategori_kode": "RET-JUS-TEMPAT-USAHA",
+    "anggaran": 857135000,
+    "realisasi": 962113507
+  },
+  {
+    "kategori_kode": "RET-JUS-PENYEBERANGAN",
+    "anggaran": 856820250,
+    "realisasi": 465208500
+  },
+  {
+    "kategori_kode": "RET-PT-PBG",
+    "anggaran": 43607358550,
+    "realisasi": 52566786718
+  },
+  {
+    "kategori_kode": "RET-PT-TKA",
+    "anggaran": 5000000,
+    "realisasi": 7416000
+  },
+  {
+    "kategori_kode": "PBJT-HOTEL",
+    "anggaran": 19400000000,
+    "realisasi": 22209931286
+  }
+]

@@ -1,0 +1,649 @@
+=== REF_KATEGORI_PAD ===
+L1 | PAD-LAIN | Lain-lain PAD yang Sah | semua | parent:-
+L1 | PAD-PAJAK | Pajak Daerah | semua | parent:-
+L1 | PAD-PENGELOLAAN | Pengelolaan Kekayaan Daerah | semua | parent:-
+L1 | PAD-RETRIBUSI | Retribusi Daerah | semua | parent:-
+  L2 | PAJ-KABKO | Pajak Kabupaten/Kota | kabupaten_kota | parent:PAD-PAJAK
+    L3 | PAJ-KK-BPHTB | BPHTB | kabupaten_kota | parent:PAJ-KABKO
+    L3 | PAJ-KK-MBLB | Pajak MBLB | kabupaten_kota | parent:PAJ-KABKO
+    L3 | PAJ-KK-OPSEN-BBNKB | Opsen BBNKB | kabupaten_kota | parent:PAJ-KABKO
+    L3 | PAJ-KK-OPSEN-PKB | Opsen PKB | kabupaten_kota | parent:PAJ-KABKO
+    L3 | PAJ-KK-PAT | PAT | kabupaten_kota | parent:PAJ-KABKO
+    L3 | PAJ-KK-PBBP2 | PBB-P2 | kabupaten_kota | parent:PAJ-KABKO
+    L3 | PAJ-KK-PBJT | PBJT | kabupaten_kota | parent:PAJ-KABKO
+    L3 | PAJ-KK-REKLAME | Pajak Reklame | kabupaten_kota | parent:PAJ-KABKO
+    L3 | PAJ-KK-WALET | Pajak Sarang Burung Walet | kabupaten_kota | parent:PAJ-KABKO
+  L2 | PAJ-PROV | Pajak Provinsi | provinsi | parent:PAD-PAJAK
+    L3 | PAJ-PROV-BBNKB | BBNKB | provinsi | parent:PAJ-PROV
+    L3 | PAJ-PROV-OPSEN-MBLB | Opsen Pajak MBLB | provinsi | parent:PAJ-PROV
+    L3 | PAJ-PROV-PAB | PAB | provinsi | parent:PAJ-PROV
+    L3 | PAJ-PROV-PAP | PAP | provinsi | parent:PAJ-PROV
+    L3 | PAJ-PROV-PBBKB | PBBKB | provinsi | parent:PAJ-PROV
+    L3 | PAJ-PROV-PKB | PKB | provinsi | parent:PAJ-PROV
+    L3 | PAJ-PROV-ROKOK | Pajak Rokok | provinsi | parent:PAJ-PROV
+      L4 | PBJT-HIBURAN | Jasa Kesenian dan Hiburan | kabupaten_kota | parent:PAJ-KK-PBJT
+      L4 | PBJT-HOTEL | Jasa Perhotelan | kabupaten_kota | parent:PAJ-KK-PBJT
+      L4 | PBJT-LISTRIK | Tenaga Listrik | kabupaten_kota | parent:PAJ-KK-PBJT
+      L4 | PBJT-MAKMIN | Makanan dan Minuman | kabupaten_kota | parent:PAJ-KK-PBJT
+      L4 | PBJT-PARKIR | Jasa Parkir | kabupaten_kota | parent:PAJ-KK-PBJT
+  L2 | RET-JU | Retribusi Jasa Umum | semua | parent:PAD-RETRIBUSI
+    L3 | RET-JU-KEBERSIHAN | Pelayanan Kebersihan | semua | parent:RET-JU
+    L3 | RET-JU-KESEHATAN | Pelayanan Kesehatan | semua | parent:RET-JU
+    L3 | RET-JU-LALIN | Pengendalian Lalu Lintas | semua | parent:RET-JU
+    L3 | RET-JU-PARKIR | Pelayanan Parkir di Tepi Jalan Umum | semua | parent:RET-JU
+    L3 | RET-JU-PASAR | Pelayanan Pasar | semua | parent:RET-JU
+  L2 | RET-JUS | Retribusi Jasa Usaha | semua | parent:PAD-RETRIBUSI
+    L3 | RET-JUS-ASET | Pemanfaatan Aset Daerah | semua | parent:RET-JUS
+    L3 | RET-JUS-PARKIR | Tempat Parkir Khusus | semua | parent:RET-JUS
+    L3 | RET-JUS-PELABUHAN | Jasa Kepelabuhanan | semua | parent:RET-JUS
+    L3 | RET-JUS-PELELANGAN | Penyediaan Tempat Pelelangan | semua | parent:RET-JUS
+    L3 | RET-JUS-PENGINAPAN | Tempat Penginapan/Vila | semua | parent:RET-JUS
+    L3 | RET-JUS-PENYEBERANGAN | Penyeberangan Orang/Barang di Air | semua | parent:RET-JUS
+    L3 | RET-JUS-PRODUK | Penjualan Produk Usaha Pemda | semua | parent:RET-JUS
+    L3 | RET-JUS-REKREASI | Tempat Rekreasi/Pariwisata/Olahraga | semua | parent:RET-JUS
+    L3 | RET-JUS-RPH | Rumah Pemotongan Hewan | semua | parent:RET-JUS
+    L3 | RET-JUS-TEMPAT-USAHA | Penyediaan Tempat Usaha | semua | parent:RET-JUS
+  L2 | RET-PT | Retribusi Perizinan Tertentu | semua | parent:PAD-RETRIBUSI
+    L3 | RET-PT-PBG | Persetujuan Bangunan Gedung | semua | parent:RET-PT
+    L3 | RET-PT-TAMBANG | Pengelolaan Pertambangan Rakyat | semua | parent:RET-PT
+    L3 | RET-PT-TKA | Penggunaan Tenaga Kerja Asing | semua | parent:RET-PT
+
+=== SAMPLE: Prov. Jawa Barat 2024 ===
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 572864445961 | real: 689462415686
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-PAJAK | ang: 0 | real: 0
+  PAD-PAJAK | ang: 23078029493976 | real: 23432058912013
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 430595755275 | real: 430658809497
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 800718924489 | real: 806580892930
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAJ-KK-BPHTB | ang: 0 | real: 0
+  PAJ-KK-BPHTB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-OPSEN-PKB | ang: 0 | real: 0
+  PAJ-KK-OPSEN-PKB | ang: 0 | real: 0
+  PAJ-KK-PAT | ang: 0 | real: 0
+  PAJ-KK-PAT | ang: 0 | real: 0
+  PAJ-KK-PBBP2 | ang: 0 | real: 0
+  PAJ-KK-PBBP2 | ang: 0 | real: 0
+  PAJ-KK-PBJT | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 0 | real: 0
+  RET-JU-KEBERSIHAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-LALIN | ang: 0 | real: 0
+  RET-JU-LALIN | ang: 0 | real: 0
+  RET-JU-PARKIR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-PENGINAPAN | ang: 0 | real: 0
+  RET-JUS-PENYEBERANGAN | ang: 0 | real: 0
+  RET-JUS-RPH | ang: 0 | real: 0
+  RET-JUS-TEMPAT-USAHA | ang: 0 | real: 0
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-TKA | ang: 0 | real: 0
+  Total rows: 98
+
+=== SAMPLE: Kab. Sidoarjo 2024 ===
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-PAJAK | ang: 0 | real: 0
+  PAD-PAJAK | ang: 849455000000 | real: 929261529986.45
+  PAD-PAJAK | ang: 849455000000 | real: 929261529986.45
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 55980517525 | real: 58931135490
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 55980517525 | real: 58931135490
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAJ-KK-BPHTB | ang: 220000000000 | real: 282529546294
+  PAJ-KK-BPHTB | ang: 0 | real: 0
+  PAJ-KK-BPHTB | ang: 220000000000 | real: 282529546294
+  PAJ-KK-BPHTB | ang: 0 | real: 0
+  PAJ-KK-BPHTB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-OPSEN-PKB | ang: 0 | real: 0
+  PAJ-KK-OPSEN-PKB | ang: 0 | real: 0
+  PAJ-KK-PAT | ang: 2025000000 | real: 2575219356
+  PAJ-KK-PAT | ang: 0 | real: 0
+  PAJ-KK-PAT | ang: 0 | real: 0
+  PAJ-KK-PAT | ang: 2025000000 | real: 2575219356
+  PAJ-KK-PBBP2 | ang: 211000000000 | real: 229810879995
+  PAJ-KK-PBBP2 | ang: 0 | real: 0
+  PAJ-KK-PBBP2 | ang: 0 | real: 0
+  PAJ-KK-PBBP2 | ang: 211000000000 | real: 229810879995
+  PAJ-KK-PBJT | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 500000 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 11531000000 | real: 12117187902
+  PAJ-KK-REKLAME | ang: 500000 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 138000000 | real: 113497092
+  PAJ-KK-REKLAME | ang: 2300000000 | real: 2441660963
+  PAJ-KK-REKLAME | ang: 14000000000 | real: 14690375957
+  PAJ-KK-REKLAME | ang: 30000000 | real: 18030000
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-WALET | ang: 0 | real: 0
+  PAJ-KK-WALET | ang: 0 | real: 0
+  PAJ-PROV-BBNKB | ang: 0 | real: 0
+  PAJ-PROV-BBNKB | ang: 0 | real: 0
+  PAJ-PROV-BBNKB | ang: 0 | real: 0
+  PAJ-PROV-BBNKB | ang: 0 | real: 0
+  PAJ-PROV-BBNKB | ang: 0 | real: 0
+  PAJ-PROV-BBNKB | ang: 0 | real: 0
+  PAJ-PROV-BBNKB | ang: 0 | real: 0
+  PAJ-PROV-BBNKB | ang: 0 | real: 0
+  PAJ-PROV-BBNKB | ang: 0 | real: 0
+  PAJ-PROV-PAP | ang: 0 | real: 0
+  PAJ-PROV-PAP | ang: 0 | real: 0
+  PAJ-PROV-PBBKB | ang: 0 | real: 0
+  PAJ-PROV-PBBKB | ang: 0 | real: 0
+  PAJ-PROV-PBBKB | ang: 0 | real: 0
+  PAJ-PROV-PBBKB | ang: 0 | real: 0
+  PAJ-PROV-PBBKB | ang: 0 | real: 0
+  PAJ-PROV-PKB | ang: 0 | real: 0
+  PAJ-PROV-PKB | ang: 0 | real: 0
+  PAJ-PROV-PKB | ang: 0 | real: 0
+  PAJ-PROV-PKB | ang: 0 | real: 0
+  PAJ-PROV-PKB | ang: 0 | real: 0
+  PAJ-PROV-PKB | ang: 0 | real: 0
+  PAJ-PROV-PKB | ang: 0 | real: 0
+  PAJ-PROV-PKB | ang: 0 | real: 0
+  PAJ-PROV-PKB | ang: 0 | real: 0
+  PAJ-PROV-ROKOK | ang: 0 | real: 0
+  PAJ-PROV-ROKOK | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 4000000 | real: 4269155
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 18000000 | real: 22610200
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 2730000000 | real: 2814119899
+  PBJT-HIBURAN | ang: 1200000000 | real: 1399996309
+  PBJT-HIBURAN | ang: 4000000 | real: 4000000
+  PBJT-HIBURAN | ang: 264000000 | real: 239480746
+  PBJT-HIBURAN | ang: 1170000000 | real: 1083263489
+  PBJT-HIBURAN | ang: 70000000 | real: 60500000
+  PBJT-HOTEL | ang: 68000000 | real: 157352890
+  PBJT-HOTEL | ang: 9700000000 | real: 11104965643
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 313000000 | real: 378595246
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 9319000000 | real: 10569017507
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 313000000000 | real: 305298678427.45
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 14000000000 | real: 15510653282.45
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 299000000000 | real: 289788025145
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 7250000000 | real: 7054511305
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 350000000 | real: 291912387
+  PBJT-MAKMIN | ang: 62000000000 | real: 64616576015
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 8700000000 | real: 10871335184
+  PBJT-MAKMIN | ang: 6800000000 | real: 6739145556
+  PBJT-MAKMIN | ang: 36500000000 | real: 36591856607
+  PBJT-MAKMIN | ang: 2400000000 | real: 3067814976
+  PBJT-PARKIR | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 15000000000 | real: 15821168400
+  PBJT-PARKIR | ang: 15000000000 | real: 15821168400
+  PBJT-PARKIR | ang: 0 | real: 0
+  RET-JU-KEBERSIHAN | ang: 4500000000 | real: 5599205020
+  RET-JU-KEBERSIHAN | ang: 0 | real: 0
+  RET-JU-KEBERSIHAN | ang: 4500000000 | real: 5599205020
+  RET-JU-KESEHATAN | ang: 26389800000 | real: 28668170054
+  RET-JU-KESEHATAN | ang: 3686975000 | real: 4356435000
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 3686975000 | real: 4356435000
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 26389800000 | real: 28668170054
+  RET-JU-LALIN | ang: 900000000 | real: 1145194108
+  RET-JU-LALIN | ang: 900000000 | real: 1145194108
+  RET-JU-LALIN | ang: 0 | real: 0
+  RET-JU-LALIN | ang: 0 | real: 0
+  RET-JU-LALIN | ang: 92110000 | real: 121603000
+  RET-JU-LALIN | ang: 92110000 | real: 121603000
+  RET-JU-PARKIR | ang: 0 | real: 0
+  RET-JU-PARKIR | ang: 0 | real: 0
+  RET-JU-PARKIR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 275980000 | real: 263556500
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 650000000 | real: 853750000
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 16284735000 | real: 16328426426
+  RET-JU-PASAR | ang: 275980000 | real: 263556500
+  RET-JU-PASAR | ang: 650000000 | real: 853750000
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 16284735000 | real: 16328426426
+  RET-JUS-ASET | ang: 1788080000 | real: 2176147070
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 7784538250 | real: 3975864077
+  RET-JUS-ASET | ang: 1788080000 | real: 2176147070
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 7784538250 | real: 3975864077
+  RET-JUS-PARKIR | ang: 0 | real: 0
+  RET-JUS-PARKIR | ang: 0 | real: 0
+  RET-JUS-PELABUHAN | ang: 0 | real: 0
+  RET-JUS-PELABUHAN | ang: 0 | real: 0
+  RET-JUS-PELELANGAN | ang: 0 | real: 0
+  RET-JUS-PELELANGAN | ang: 0 | real: 0
+  RET-JUS-PENGINAPAN | ang: 0 | real: 0
+  RET-JUS-PENGINAPAN | ang: 4000000000 | real: 0
+  RET-JUS-PENGINAPAN | ang: 4000000000 | real: 0
+  RET-JUS-PENYEBERANGAN | ang: 0 | real: 0
+  RET-JUS-PENYEBERANGAN | ang: 856820250 | real: 465208500
+  RET-JUS-PENYEBERANGAN | ang: 856820250 | real: 465208500
+  RET-JUS-PRODUK | ang: 0 | real: 0
+  RET-JUS-PRODUK | ang: 0 | real: 0
+  RET-JUS-REKREASI | ang: 0 | real: 0
+  RET-JUS-REKREASI | ang: 0 | real: 0
+  RET-JUS-RPH | ang: 282503000 | real: 372395000
+  RET-JUS-RPH | ang: 0 | real: 0
+  RET-JUS-RPH | ang: 282503000 | real: 372395000
+  RET-JUS-TEMPAT-USAHA | ang: 0 | real: 0
+  RET-JUS-TEMPAT-USAHA | ang: 857135000 | real: 962113507
+  RET-JUS-TEMPAT-USAHA | ang: 857135000 | real: 962113507
+  RET-PT-PBG | ang: 21806179275 | real: 26287101359
+  RET-PT-PBG | ang: 18801179275 | real: 21829678759
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 3000000000 | real: 4450006600
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 21806179275 | real: 26287101359
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 3000000000 | real: 4450006600
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 18801179275 | real: 21829678759
+  RET-PT-TAMBANG | ang: 0 | real: 0
+  RET-PT-TAMBANG | ang: 0 | real: 0
+  RET-PT-TKA | ang: 5000000 | real: 7416000
+  RET-PT-TKA | ang: 5000000 | real: 7416000
+  RET-PT-TKA | ang: 0 | real: 0
+  Total rows: 282
+
+=== SAMPLE: DKI Jakarta 2024 ===
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-LAIN | ang: 0 | real: 0
+  PAD-PAJAK | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-PENGELOLAAN | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAD-RETRIBUSI | ang: 0 | real: 0
+  PAJ-KK-BPHTB | ang: 0 | real: 0
+  PAJ-KK-BPHTB | ang: 0 | real: 0
+  PAJ-KK-BPHTB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-MBLB | ang: 0 | real: 0
+  PAJ-KK-OPSEN-PKB | ang: 0 | real: 0
+  PAJ-KK-OPSEN-PKB | ang: 0 | real: 0
+  PAJ-KK-OPSEN-PKB | ang: 0 | real: 0
+  PAJ-KK-PAT | ang: 0 | real: 0
+  PAJ-KK-PAT | ang: 0 | real: 0
+  PAJ-KK-PAT | ang: 0 | real: 0
+  PAJ-KK-PBBP2 | ang: 0 | real: 0
+  PAJ-KK-PBBP2 | ang: 0 | real: 0
+  PAJ-KK-PBBP2 | ang: 0 | real: 0
+  PAJ-KK-PBJT | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PAJ-KK-REKLAME | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HIBURAN | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-HOTEL | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-LISTRIK | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-MAKMIN | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 0 | real: 0
+  PBJT-PARKIR | ang: 0 | real: 0
+  RET-JU-KEBERSIHAN | ang: 0 | real: 0
+  RET-JU-KEBERSIHAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-KESEHATAN | ang: 0 | real: 0
+  RET-JU-LALIN | ang: 0 | real: 0
+  RET-JU-LALIN | ang: 0 | real: 0
+  RET-JU-LALIN | ang: 0 | real: 0
+  RET-JU-LALIN | ang: 0 | real: 0
+  RET-JU-PARKIR | ang: 0 | real: 0
+  RET-JU-PARKIR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JU-PASAR | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-ASET | ang: 0 | real: 0
+  RET-JUS-PENGINAPAN | ang: 0 | real: 0
+  RET-JUS-PENGINAPAN | ang: 0 | real: 0
+  RET-JUS-PENYEBERANGAN | ang: 0 | real: 0
+  RET-JUS-PENYEBERANGAN | ang: 0 | real: 0
+  RET-JUS-RPH | ang: 0 | real: 0
+  RET-JUS-RPH | ang: 0 | real: 0
+  RET-JUS-RPH | ang: 0 | real: 0
+  RET-JUS-RPH | ang: 0 | real: 0
+  RET-JUS-TEMPAT-USAHA | ang: 0 | real: 0
+  RET-JUS-TEMPAT-USAHA | ang: 0 | real: 0
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-PBG | ang: 0 | real: 0
+  RET-PT-TKA | ang: 0 | real: 0
+  RET-PT-TKA | ang: 0 | real: 0
+  Total rows: 180
+
+=== ALL UNIQUE kategori_kode in detail_pad_data ===
+  PAD-LAIN
+  Total unique codes: 1
+
+=== CHECK DUPLICATES ===
+  DUP: DI Yogyakarta|2023|RET-PT-PBG (4 entries)
+  DUP: DI Yogyakarta|2022|RET-PT-PBG (4 entries)
+  DUP: DI Yogyakarta|2024|RET-PT-PBG (4 entries)
+  DUP: DI Yogyakarta|2025|RET-PT-PBG (4 entries)
+  DUP: DI Yogyakarta|2021|RET-PT-PBG (4 entries)
+  DUP: DI Yogyakarta|2022|RET-JU-PASAR (8 entries)
+  DUP: DI Yogyakarta|2023|RET-JU-PASAR (8 entries)
+  DUP: DI Yogyakarta|2024|RET-JU-PASAR (8 entries)
+  DUP: DI Yogyakarta|2022|RET-JUS-ASET (14 entries)
+  DUP: DI Yogyakarta|2021|RET-JUS-ASET (14 entries)
+  DUP: DI Yogyakarta|2025|RET-JUS-ASET (14 entries)
+  DUP: DI Yogyakarta|2024|RET-JUS-ASET (14 entries)
+  DUP: DI Yogyakarta|2023|RET-JUS-ASET (14 entries)
+  DUP: DI Yogyakarta|2021|PAD-LAIN (51 entries)
+  DUP: DI Yogyakarta|2022|PAD-LAIN (51 entries)
+  DUP: DI Yogyakarta|2025|PAD-PENGELOLAAN (8 entries)
+  DUP: DI Yogyakarta|2023|PAD-LAIN (51 entries)
+  DUP: DI Yogyakarta|2024|PAD-LAIN (51 entries)
+  DUP: DI Yogyakarta|2025|PAD-LAIN (51 entries)
+  DUP: DI Yogyakarta|2023|PAJ-KK-OPSEN-PKB (3 entries)
+  Total duplicate groups: 143
+
+=== YEARS WITH DETAIL DATA ===
+  Years: 2021
+  Year 2021: 15797 rows

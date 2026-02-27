@@ -88,225 +88,151 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
         fetchKategoriPad()
       ]);
 
-      // Build a map of ref categories by kode
-      const refMap = {};
-      categories.forEach(cat => {
-        refMap[cat.kode] = cat;
+      // Determine region type for filtering
+      const isDKI = region?.daerah?.toUpperCase().includes('JAKARTA');
+      const isProv = region?.tipe === 'Provinsi' || isDKI;
+      const isKabKota = !isProv;
+
+      // 1. Filter ALL categories to only those relevant to this region type
+      const relevantCategories = categories.filter(cat => {
+        const tingkat = cat.tingkat_pemerintahan;
+        if (tingkat === 'semua' || !tingkat) return true;
+        if (isDKI) return true;
+        if (isProv && tingkat === 'provinsi') return true;
+        if (isKabKota && tingkat === 'kabupaten_kota') return true;
+        return false;
       });
 
-      let data = fetchedData || [];
+      // Build reference maps for sorting and building the tree
+      const refMap = {};
+      relevantCategories.forEach(cat => { refMap[cat.kode] = cat; });
 
-      // FALLBACK: If data is empty or very sparse (<= 4 records), use region summary data
-      // This handles cases like 2025 where detail_pad_data is missing for many regions
-      if (data.length <= 4 && region && region.dataPerTahun) {
-        const summaryData = region.dataPerTahun.find(d => d.tahun === year);
-        if (summaryData) {
-          // If we have existing data (like the 4 main categories), merge/use them
-          // Otherwise create them from summary
-          const mainCats = [
-            { kode: '4', nama: 'PENDAPATAN DAERAH', real: 0, ang: 0, level: 1 },
-            { kode: '4.1', nama: 'PENDAPATAN ASLI DAERAH (PAD)', real: 0, ang: 0, level: 2 },
-            { kode: '4.1.01', nama: 'Pajak Daerah', real: summaryData.pajakRealisasi, ang: summaryData.pajakAnggaran, level: 3 },
-            { kode: '4.1.02', nama: 'Retribusi Daerah', real: summaryData.retribusiRealisasi, ang: summaryData.retribusiAnggaran, level: 3 },
-            { kode: '4.1.03', nama: 'Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan', real: summaryData.pengelolaanRealisasi, ang: summaryData.pengelolaanAnggaran, level: 3 },
-            { kode: '4.1.04', nama: 'Lain-lain PAD yang Sah', real: summaryData.lainPadRealisasi, ang: summaryData.lainPadAnggaran, level: 3 },
-          ];
-
-          // If we have actual DB rows, use them (they might be accurate), otherwise use summary
-          // Actually, if we have <= 4 rows, they likely ARE these 4 categories.
-          // Let's ensure we have at least these structure.
-          
-          const existingCodes = new Set(data.map(d => d.kategori_kode));
-          
-          // Generate rows for missing basic categories
-          const fallbackRows = mainCats
-            .filter(cat => !existingCodes.has(cat.kode) && cat.kode.length > 3) // Only add leaf nodes if missing
-            .map(cat => ({
-              kategori_kode: cat.kode,
-              anggaran: cat.ang,
-              realisasi: cat.real,
-              ref_kategori_pad: { nama: cat.nama },
-              _synthetic: true
-            }));
-            
-          data = [...data, ...fallbackRows];
-        }
-      }
-
-      // Helper: generate all parent codes from a given code
-      // e.g., "4.1.01.06" → ["4", "4.1", "4.1.01"]
-      const getParentCodes = (code) => {
-        if (!code) return [];
-        const parts = code.split('.');
-        const parents = [];
-        for (let i = 1; i < parts.length; i++) {
-          parents.push(parts.slice(0, i).join('.'));
-        }
-        return parents;
-      };
-
-      // Collect all existing codes
-      const existingCodes = new Set(data.map(d => d.kategori_kode).filter(Boolean));
-
-      // Find all missing parent codes that need injection
-      const missingParents = new Set();
-      data.forEach(d => {
+      // 2. Aggregate actual data by kategori_kode
+      const dataMap = {};
+      (fetchedData || []).forEach(d => {
         const code = d.kategori_kode;
         if (!code) return;
-        getParentCodes(code).forEach(pCode => {
-          if (!existingCodes.has(pCode)) {
-            missingParents.add(pCode);
+        if (!dataMap[code]) {
+          dataMap[code] = { anggaran: 0, realisasi: 0 };
+        }
+        dataMap[code].anggaran += Number(d.anggaran || 0);
+        dataMap[code].realisasi += Number(d.realisasi || 0);
+      });
+
+      // 3. Create the merged list: Every relevant category gets a row
+      // This is "Category-First" approach: Structure is determined by ref_kategori_pad
+      const mergedData = relevantCategories.map(cat => {
+        const d = dataMap[cat.kode] || { anggaran: 0, realisasi: 0 };
+        return {
+          kategori_kode: cat.kode,
+          anggaran: d.anggaran,
+          realisasi: d.realisasi,
+          ref_kategori_pad: { 
+            nama: cat.nama, 
+            kategori_utama: cat.kategori_utama, 
+            sub_kategori: cat.sub_kategori 
+          },
+          _refLevel: cat.level,
+          _refParent: cat.parent_kode,
+          _refTingkat: cat.tingkat_pemerintahan,
+          _synthetic: !dataMap[cat.kode] // mark as synthetic if not in DB
+        };
+      });
+
+      // 4. Sort by ref hierarchy (Path-based sort using urutan)
+      mergedData.sort((a, b) => {
+        const getPath = (kode) => {
+          const path = [];
+          let current = kode;
+          while (current && refMap[current]) {
+            path.unshift({ urutan: refMap[current].urutan || 0, kode: current });
+            current = refMap[current].parent_kode;
           }
-        });
-      });
-
-      // Create synthetic parent rows from ref_kategori_pad
-      const syntheticRows = [];
-      missingParents.forEach(pCode => {
-        const ref = refMap[pCode];
-        // Calculate totals for this new parent will happen in the bottom-up pass
-        syntheticRows.push({
-          kategori_kode: pCode,
-          anggaran: 0, 
-          realisasi: 0,
-          ref_kategori_pad: ref ? { nama: ref.nama, kategori_utama: ref.kategori_utama, sub_kategori: ref.sub_kategori } : { nama: pCode, kategori_utama: null, sub_kategori: null },
-          _synthetic: true, // mark as injected
-        });
-      });
-
-      // Merge & sort
-      const mergedData = [...data, ...syntheticRows];
-      const sortedData = mergedData.sort((a, b) => {
-        const codeA = a.kategori_kode || '';
-        const codeB = b.kategori_kode || '';
-        const partsA = codeA.split('.').map(Number);
-        const partsB = codeB.split('.').map(Number);
-        for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
-          const diff = (partsA[i] || 0) - (partsB[i] || 0);
-          if (diff !== 0) return diff;
+          return path;
+        };
+        
+        const pathA = getPath(a.kategori_kode);
+        const pathB = getPath(b.kategori_kode);
+        
+        for (let i = 0; i < Math.max(pathA.length, pathB.length); i++) {
+          const pA = pathA[i];
+          const pB = pathB[i];
+          if (!pA) return -1;
+          if (!pB) return 1;
+          if (pA.urutan !== pB.urutan) return pA.urutan - pB.urutan;
+          if (pA.kode !== pB.kode) return pA.kode < pB.kode ? -1 : 1;
         }
         return 0;
       });
 
-      // Calculate aggregated values for synthetic/parent rows (bottom-up)
-      // We need to re-calculate parents because fallback rows or synthetic rows initially have 0
+      // 5. Bottom-up aggregation: Parent values must always be the sum of their children
       const rowMap = {};
-      sortedData.forEach(d => { if (d.kategori_kode) rowMap[d.kategori_kode] = d; });
-      
-      // Get all parent-like codes (those that are prefixes of others)
-      const allCodes = sortedData.map(d => d.kategori_kode).filter(Boolean);
-      const parentCodes = new Set();
-      allCodes.forEach(c => {
-         getParentCodes(c).forEach(p => parentCodes.add(p));
-      });
+      mergedData.forEach(d => { rowMap[d.kategori_kode] = d; });
 
-      // Sort parents by depth (deepest first) so we aggregate up correctly
-      const sortedParents = [...parentCodes].sort((a, b) => b.split('.').length - a.split('.').length);
+      // Sort parents by level descending (deepest first)
+      const parentCodes = [...new Set(relevantCategories.map(c => c.parent_kode).filter(Boolean))];
+      const sortedParentCodes = parentCodes.sort((a, b) => (refMap[b]?.level || 0) - (refMap[a]?.level || 0));
 
-      sortedParents.forEach(pCode => {
-        const row = rowMap[pCode];
-        if (!row) return; /* Should exist if we did missingParents logic right */
-        
-        let totalAng = 0, totalReal = 0;
-        let hasChildren = false;
+      sortedParentCodes.forEach(pCode => {
+        const parentRow = rowMap[pCode];
+        if (!parentRow) return;
 
-        // Find direct children
-        sortedData.forEach(d => {
-          const dCode = d.kategori_kode || '';
-          if (dCode.startsWith(pCode + '.') && dCode !== pCode) {
-             const remainder = dCode.substring(pCode.length + 1);
-             if (!remainder.includes('.')) {
-               totalAng += Number(d.anggaran || 0);
-               totalReal += Number(d.realisasi || 0);
-               hasChildren = true;
-             }
+        let sumAng = 0, sumReal = 0;
+        let hasChildrenWithData = false;
+
+        mergedData.forEach(child => {
+          if (child._refParent === pCode) {
+            sumAng += Number(child.anggaran || 0);
+            sumReal += Number(child.realisasi || 0);
+            hasChildrenWithData = true;
           }
         });
 
-        if (hasChildren) {
-          row.anggaran = totalAng;
-          row.realisasi = totalReal;
-        }
-      });
-      
-      // Build a set of all codes in current data for ancestor lookup
-      const currentCodesSet = new Set(sortedData.map(d => d.kategori_kode).filter(Boolean));
-
-      // ===== STRICT UU HKPD FILTERING FOR USER PORTAL =====
-      // Special check for DKI Jakarta which is a Province but type might be 'Kota'
-      const isProv = region?.tipe === 'Provinsi' || region?.daerah?.toUpperCase().includes('JAKARTA');
-      
-      const KAB_KOTA_ONLY_KEYWORDS = [
-        'PBB-P2', 'PBBP2', 'BUMI DAN BANGUNAN', 'BPHTB', 'PEROLEHAN HAK', 'PBJT', 
-        'BARANG DAN JASA TERTENTU', 'REKLAME', 'AIR TANAH', 'PAT', 'MBLB', 
-        'MINERAL BUKAN LOGAM', 'WALET', 'SARANG BURUNG', 'OPSEN PKB', 'OPSEN BBNKB'
-      ];
-
-      const PROV_ONLY_KEYWORDS = [
-        'PKB', 'BBNKB', 'ALAT BERAT', 'PAB', 'PBBKB', 'BAHAN BAKAR', 'AIR PERMUKAAN', 
-        'PAP', 'ROKOK', 'OPSEN MBLB', 'KENDARAAN BERMOTOR'
-      ];
-
-      const filteredData = sortedData.filter(row => {
-        const name = (row.ref_kategori_pad?.nama || row.kategori_kode || '').toUpperCase();
-        const code = row.kategori_kode || '';
-        const parts = code.split('.');
-
-        // Always show top levels (4, 4.1, 4.1.01 etc)
-        if (parts.length <= 3) return true;
-
-        if (isProv) {
-          const matchesKab = KAB_KOTA_ONLY_KEYWORDS.some(k => name.includes(k));
-          // Special case: Opsen MBLB is Province revenue, keep it
-          if (matchesKab && !name.includes('OPSEN MBLB')) return false;
-          return true;
-        } else {
-          const matchesProv = PROV_ONLY_KEYWORDS.some(k => name.includes(k));
-          // Special case: Opsen PKB/BBNKB is Kab/Kota revenue, keep it
-          if (matchesProv && !name.includes('OPSEN PKB') && !name.includes('OPSEN BBNKB')) return false;
-          if (name.includes('OPSEN MBLB')) return false;
-          return true;
+        // If children exist, we override parent totals with sum of children
+        // This ensures the tree is mathematically consistent
+        if (hasChildrenWithData) {
+          parentRow.anggaran = sumAng;
+          parentRow.realisasi = sumReal;
         }
       });
 
-      // Recalculate summary totals based on filtered data
+      // 6. Final Summary Calculation for the header stats
       const newSummary = { pajakR: 0, pajakA: 0, retribusiR: 0, retribusiA: 0, pengelolaanR: 0, pengelolaanA: 0, lainR: 0, lainA: 0 };
-      
-      filteredData.forEach(row => {
-        const code = row.kategori_kode || '';
-        if (code === '4.1.01') { newSummary.pajakR = Number(row.realisasi || 0); newSummary.pajakA = Number(row.anggaran || 0); }
-        else if (code === '4.1.02') { newSummary.retribusiR = Number(row.realisasi || 0); newSummary.retribusiA = Number(row.anggaran || 0); }
-        else if (code === '4.1.03') { newSummary.pengelolaanR = Number(row.realisasi || 0); newSummary.pengelolaanA = Number(row.anggaran || 0); }
-        else if (code === '4.1.04') { newSummary.lainR = Number(row.realisasi || 0); newSummary.lainA = Number(row.anggaran || 0); }
+      mergedData.forEach(row => {
+        const code = row.kategori_kode;
+        if (code === 'PAD-PAJAK') { newSummary.pajakR = row.realisasi; newSummary.pajakA = row.anggaran; }
+        else if (code === 'PAD-RETRIBUSI') { newSummary.retribusiR = row.realisasi; newSummary.retribusiA = row.anggaran; }
+        else if (code === 'PAD-PENGELOLAAN') { newSummary.pengelolaanR = row.realisasi; newSummary.pengelolaanA = row.anggaran; }
+        else if (code === 'PAD-LAIN') { newSummary.lainR = row.realisasi; newSummary.lainA = row.anggaran; }
       });
 
-      // EMERGENCY FALLBACK: If summary is zero but we have region context, use region data
+      // EMERGENCY FALLBACK: If top-level totals are still 0 but region summary has data, use it
       if (newSummary.pajakR === 0 && newSummary.retribusiR === 0 && region?.dataPerTahun) {
-        const s = region.dataPerTahun.find(d => d.tahun === year);
-        if (s) {
-          newSummary.pajakR = s.pajakRealisasi; newSummary.pajakA = s.pajakAnggaran;
-          newSummary.retribusiR = s.retribusiRealisasi; newSummary.retribusiA = s.retribusiAnggaran;
-          newSummary.pengelolaanR = s.pengelolaanRealisasi; newSummary.pengelolaanA = s.pengelolaanAnggaran;
-          newSummary.lainR = s.lainPadRealisasi; newSummary.lainA = s.lainPadAnggaran;
+        const summary = region.dataPerTahun.find(d => d.tahun === year);
+        if (summary) {
+          if (rowMap['PAD-PAJAK']) { rowMap['PAD-PAJAK'].realisasi = summary.pajakRealisasi; rowMap['PAD-PAJAK'].anggaran = summary.pajakAnggaran; }
+          if (rowMap['PAD-RETRIBUSI']) { rowMap['PAD-RETRIBUSI'].realisasi = summary.retribusiRealisasi; rowMap['PAD-RETRIBUSI'].anggaran = summary.retribusiAnggaran; }
+          if (rowMap['PAD-PENGELOLAAN']) { rowMap['PAD-PENGELOLAAN'].realisasi = summary.pengelolaanRealisasi; rowMap['PAD-PENGELOLAAN'].anggaran = summary.pengelolaanAnggaran; }
+          if (rowMap['PAD-LAIN']) { rowMap['PAD-LAIN'].realisasi = summary.lainPadRealisasi; rowMap['PAD-LAIN'].anggaran = summary.lainPadAnggaran; }
+          
+          newSummary.pajakR = summary.pajakRealisasi; newSummary.pajakA = summary.pajakAnggaran;
+          newSummary.retribusiR = summary.retribusiRealisasi; newSummary.retribusiA = summary.retribusiAnggaran;
+          newSummary.pengelolaanR = summary.pengelolaanRealisasi; newSummary.pengelolaanA = summary.pengelolaanAnggaran;
+          newSummary.lainR = summary.lainPadRealisasi; newSummary.lainA = summary.lainPadAnggaran;
         }
       }
-      
-      // Auto-expand first 3 levels
+
+      // Auto-expand first 2 levels
       const initialExpanded = {};
-      filteredData.forEach(d => {
-        const kode = d.kategori_kode || '';
-        const segCount = kode.split('.').length;
-        if (segCount <= 3) initialExpanded[kode] = true;
+      mergedData.forEach(d => {
+        if (d._refLevel <= 2) initialExpanded[d.kategori_kode] = true;
       });
-      
+
       setExpandedNodes(initialExpanded);
-      setDetails(filteredData);
-      
-      // Merge new summary into active view if needed or use local state
-      // Actually, we can just replace currentYearData usage with these new totals.
+      setDetails(mergedData);
       setFilteredSummary(newSummary);
     } catch (err) {
-      console.error('Error fetching details from Supabase:', err);
+      console.error('Error in loadDetails:', err);
       setDetails([]);
     } finally {
       setLoading(false);
@@ -318,23 +244,34 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
     loadDetails(activeYearTab, region.daerah);
   }, [region, activeYearTab, loadDetails]);
 
-  // Build a set of all codes in current data for ancestor lookup
-  const allCodesSet = React.useMemo(() => new Set(details.map(d => d.kategori_kode).filter(Boolean)), [details]);
+  // Build maps for parent_kode tree navigation
+  const { allCodesSet, parentMap, childrenOfMap } = React.useMemo(() => {
+    const codesSet = new Set(details.map(d => d.kategori_kode).filter(Boolean));
+    const pMap = {};   // kode -> parent_kode
+    const cMap = {};   // parent_kode -> Set of child kodes in current data
+    details.forEach(d => {
+      const parentKode = d._refParent;
+      if (parentKode) {
+        pMap[d.kategori_kode] = parentKode;
+        if (!cMap[parentKode]) cMap[parentKode] = new Set();
+        cMap[parentKode].add(d.kategori_kode);
+      }
+    });
+    return { allCodesSet: codesSet, parentMap: pMap, childrenOfMap: cMap };
+  }, [details]);
 
   // Helper: is item visible given current expanded state?
   const isVisible = React.useCallback((kode, expanded, searchActive) => {
-    if (searchActive) return true; // When searching, show everything
+    if (searchActive) return true;
     if (!kode) return false;
-    const parts = kode.split('.');
-    if (parts.length <= 1) return true; // Root always visible
-    // Check every ancestor PREFIX that actually exists in the dataset
-    for (let i = 1; i < parts.length; i++) {
-      const ancestorKode = parts.slice(0, i).join('.');
-      // Only check if this ancestor actually exists as a row
-      if (allCodesSet.has(ancestorKode) && !expanded[ancestorKode]) return false;
+    // Walk up the parent chain and check if all ancestors are expanded
+    let current = parentMap[kode];
+    while (current) {
+      if (allCodesSet.has(current) && !expanded[current]) return false;
+      current = parentMap[current];
     }
     return true;
-  }, [allCodesSet]);
+  }, [allCodesSet, parentMap]);
 
   const toggleNode = (code) => {
     setExpandedNodes(prev => ({ ...prev, [code]: !prev[code] }));
@@ -359,23 +296,26 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
   };
 
   const leafNodes = React.useMemo(() => {
-    // Collect all level 4 or deeper nodes which are the actual "selectable" items
-    return details.filter(d => (d.kategori_kode || '').split('.').length >= 4);
-  }, [details]);
+    // Leaf nodes = nodes that have no children in the current dataset
+    return details.filter(d => !childrenOfMap[d.kategori_kode] || childrenOfMap[d.kategori_kode].size === 0);
+  }, [details, childrenOfMap]);
 
   const filteredDetails = React.useMemo(() => {
     let result = details;
     
     // 1. Filter by Component Selection
     if (selectedCodes) {
-      // Find all codes that should be visible (selected ones + their parents)
+      // Find all codes that should be visible (selected ones + their ancestors)
       const visibleCodes = new Set();
       details.forEach(d => {
         if (selectedCodes.has(d.kategori_kode)) {
-          // Add this code and all its parents
-          const parts = d.kategori_kode.split('.');
-          for (let i = 1; i <= parts.length; i++) {
-            visibleCodes.add(parts.slice(0, i).join('.'));
+          visibleCodes.add(d.kategori_kode);
+          // Walk up parent chain to add all ancestors
+          let parent = d._refParent;
+          while (parent) {
+            visibleCodes.add(parent);
+            const parentRow = details.find(p => p.kategori_kode === parent);
+            parent = parentRow?._refParent;
           }
         }
       });
@@ -525,13 +465,13 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
               </div>
               <div className="flex-grow">
                 <div className="flex flex-wrap items-center gap-3 mb-1">
-                  <h2 className="font-black text-3xl md:text-4xl text-white uppercase tracking-tight leading-none">{region.daerah}</h2>
+                  <h2 className="font-black text-3xl md:text-4xl text-force-white uppercase tracking-tight leading-none">{region.daerah}</h2>
                   <span className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest ${
-                    region.tipe === 'Provinsi' ? 'bg-brand-500/30 text-brand-200' :
-                    region.tipe === 'Kota' ? 'bg-blue-500/30 text-blue-200' : 'bg-emerald-500/30 text-emerald-200'
-                  }`}>{region.tipe}</span>
+                    region.tipe === 'Provinsi' ? 'bg-brand-500/30' :
+                    region.tipe === 'Kota' ? 'bg-blue-500/30' : 'bg-emerald-500/30'
+                  } text-force-white`}>{region.tipe}</span>
                 </div>
-                <p className="text-slate-400 text-sm flex items-center gap-2 mt-2">
+                <p className="text-slate-300 text-sm flex items-center gap-2 mt-2">
                   <Calendar size={14} />
                   Data tersedia {region.tahunList.length} periode ({Math.min(...region.tahunList)}–{Math.max(...region.tahunList)})
                 </p>
@@ -955,15 +895,15 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
                       <tbody className="divide-y divide-white/5">
                         {filteredDetails.map((item, idx) => {
                           const code = item.kategori_kode || '';
-                          const codeParts = code.split('.');
-                          const level = codeParts.length - 1;
+                          const level = (item._refLevel || 1) - 1; // 0-indexed for styling
 
                           // Use isVisible helper — checks ALL ancestors are expanded
                           if (!isVisible(code, expandedNodes, !!searchTerm)) return null;
 
-                          const hasChildren = details.some(d => d.kategori_kode?.startsWith(code + '.') && d.kategori_kode !== code);
+                          const hasChildren = !!(childrenOfMap[code] && childrenOfMap[code].size > 0);
                           const isExpanded = expandedNodes[code];
                           const isSynthetic = item._synthetic;
+                          const tingkat = item._refTingkat;
 
                           const pct = item.anggaran > 0 ? (item.realisasi / item.anggaran) * 100 : 0;
                           
@@ -979,6 +919,10 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
                           const codeBadgeClass = level === 0 ? 'bg-brand-500/20 text-brand-400 font-bold' : 
                                                  level === 1 ? 'bg-brand-500/10 text-brand-400' :
                                                  hasChildren ? 'bg-amber-500/10 text-amber-400' : 'bg-white/5 text-slate-500';
+
+                          // Determine sektor tag
+                          const isProvTax = tingkat === 'provinsi';
+                          const isKabTax = tingkat === 'kabupaten_kota';
 
                           return (
                             <motion.tr
@@ -999,16 +943,16 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
                                   <div className="min-w-0">
                                     <div className="flex items-center gap-2 flex-wrap">
                                       <span className={`font-mono text-[9px] px-1.5 py-0.5 rounded shrink-0 ${codeBadgeClass}`}>{code}</span>
-                                      <span className={`truncate ${isSynthetic && hasChildren ? 'font-bold' : ''} ${item.ref_kategori_pad?.nama?.includes('Provinsi') ? 'text-indigo-400' : item.ref_kategori_pad?.nama?.includes('Kabupaten') ? 'text-emerald-400' : ''}`}>
+                                      <span className={`truncate ${isSynthetic && hasChildren ? 'font-bold' : ''} ${isProvTax ? 'text-indigo-400' : isKabTax ? 'text-emerald-400' : ''}`}>
                                         {item.ref_kategori_pad?.nama || code}
                                       </span>
-                                      {item.ref_kategori_pad?.nama?.includes('Provinsi') && (
-                                        <span className="px-1.5 py-0.5 bg-indigo-500/10 text-indigo-400 rounded text-[7px] font-black uppercase shrink-0">Sektor Provinsi</span>
+                                      {isProvTax && level >= 1 && (
+                                        <span className="px-1.5 py-0.5 bg-indigo-500/10 text-indigo-400 rounded text-[7px] font-black uppercase shrink-0">Provinsi</span>
                                       )}
-                                      {item.ref_kategori_pad?.nama?.includes('Kabupaten') && (
-                                        <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 rounded text-[7px] font-black uppercase shrink-0">Sektor Kab/Kota</span>
+                                      {isKabTax && level >= 1 && (
+                                        <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 rounded text-[7px] font-black uppercase shrink-0">Kab/Kota</span>
                                       )}
-                                      {isSynthetic && hasChildren && !item.ref_kategori_pad?.nama?.includes('Provinsi') && !item.ref_kategori_pad?.nama?.includes('Kabupaten') && (
+                                      {isSynthetic && hasChildren && !isProvTax && !isKabTax && tingkat === 'semua' && level >= 1 && (
                                         <span className="px-1.5 py-0.5 bg-blue-500/10 text-blue-400 rounded text-[7px] font-black uppercase shrink-0">Kategori</span>
                                       )}
                                       {!hasChildren && level >= 2 && (

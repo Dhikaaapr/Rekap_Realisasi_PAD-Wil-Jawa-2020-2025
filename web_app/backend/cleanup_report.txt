@@ -1,0 +1,13 @@
+Total rows: 137966
+Zero-value rows: 121474
+Non-zero rows: 16492
+Duplicate groups in non-zero: 2512
+Total IDs to delete: 126298
+Expected final count: 11668
+
+Per Year Breakdown:
+  2021: 15797 total, 12626 zero, 3171 non-zero
+  2022: 16262 total, 13134 zero, 3128 non-zero
+  2023: 16052 total, 12808 zero, 3244 non-zero
+  2024: 33733 total, 29052 zero, 4681 non-zero
+  2025: 56122 total, 53854 zero, 2268 non-zero

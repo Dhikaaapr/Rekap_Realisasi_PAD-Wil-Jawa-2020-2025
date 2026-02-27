@@ -135,16 +135,16 @@ const CollapsibleSection = ({ title, data, metricKey, label, color, onRegionClic
   const c = colorMap[color] || colorMap.brand;
 
   return (
-    <div className={`bg-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden border border-white/10 transition-all duration-300`}>
+    <div className={`bg-white rounded-3xl overflow-hidden border border-slate-200 transition-all duration-300 shadow-sm hover:shadow-md`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center gap-4 p-5 md:p-7 hover:bg-white/5 transition-colors"
+        className="w-full flex items-center gap-4 p-5 md:p-7 hover:bg-slate-50 transition-colors"
       >
         <div className={`w-12 h-12 rounded-2xl ${c.bg} flex items-center justify-center text-white shadow-lg`}>
           {Icon && <Icon size={20} />}
         </div>
         <div className="text-left flex-grow">
-          <h3 className="text-base md:text-lg font-black text-white uppercase tracking-tight">{title}</h3>
+          <h3 className="text-base md:text-lg font-black text-slate-900 uppercase tracking-tight">{title}</h3>
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">
             {sortedData.length} wilayah • {isOpen ? 'klik untuk tutup' : 'klik untuk lihat'}
           </p>
@@ -168,7 +168,7 @@ const CollapsibleSection = ({ title, data, metricKey, label, color, onRegionClic
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="border-t border-white/10"
+            className="border-t border-slate-200"
           >
             <div className="p-5 md:p-7 space-y-6">
               {top10.length > 0 && (
@@ -199,7 +199,7 @@ const CollapsibleSection = ({ title, data, metricKey, label, color, onRegionClic
                 </CollapsibleSubSection>
               )}
             </div>
-            <div className="bg-white/5 py-3 text-center border-t border-white/10">
+            <div className="bg-slate-50 py-3 text-center border-t border-slate-200">
               <button onClick={() => setIsOpen(false)} className="text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-brand-400 transition-colors">
                 ↑ Tutup Tampilan
               </button>
@@ -217,21 +217,21 @@ const CollapsibleSection = ({ title, data, metricKey, label, color, onRegionClic
 const ProvinceCard = ({ name, value, rank, color, onClick, isSelected, budget = 0 }) => {
   const pct = budget > 0 ? (value / budget) * 100 : 0;
   return (
-    <div onClick={onClick} className={`flex flex-col gap-2 p-3 rounded-xl hover:bg-white/10 hover:shadow-lg transition-all cursor-pointer group border ${
-      isSelected ? 'bg-brand-500/20 border-brand-500/50 ring-1 ring-brand-500/30' : 'bg-white/5 border-white/5'
+    <div onClick={onClick} className={`flex flex-col gap-2 p-3 rounded-xl hover:bg-slate-50 hover:shadow-md transition-all cursor-pointer group border ${
+      isSelected ? 'bg-blue-50 border-blue-200 ring-1 ring-blue-300' : 'bg-white border-slate-200'
     }`}>
       <div className="flex items-center gap-3">
-        <span className="text-xs font-black text-slate-600 w-5 text-center">#{rank}</span>
+        <span className="text-xs font-black text-slate-400 w-5 text-center">#{rank}</span>
         <div className={`w-2.5 h-2.5 rounded-full ${color} shrink-0`} />
         <span className={`font-bold text-xs flex-grow transition-colors ${
-          isSelected ? 'text-brand-400' : 'text-slate-300 group-hover:text-brand-400'
+          isSelected ? 'text-blue-600' : 'text-slate-700 group-hover:text-blue-600'
         }`}>{name}</span>
-        <span className="font-black text-white text-xs">{formatCurrencyShort(value)}</span>
+        <span className="font-black text-slate-900 text-xs">{formatCurrencyShort(value)}</span>
         <ChevronDown size={12} className={`transition-transform duration-300 ${
-          isSelected ? 'rotate-180 text-brand-400' : 'text-slate-600 group-hover:text-brand-400'
+          isSelected ? 'rotate-180 text-blue-500' : 'text-slate-400 group-hover:text-blue-500'
         }`} />
       </div>
-      <div className="h-1 bg-white/5 rounded-full overflow-hidden ml-8">
+      <div className="h-1 bg-slate-100 rounded-full overflow-hidden ml-8">
         <motion.div initial={{ width: 0 }} animate={{ width: `${Math.min(100, pct)}%` }} className={`h-full ${color}`} />
       </div>
     </div>
@@ -261,11 +261,13 @@ function App() {
   const [activeSubMetric, setActiveSubMetric] = useState('all');
   const [tempSubMetric, setTempSubMetric] = useState('all');
   const [regionalSubData, setRegionalSubData] = useState({});
+  const [perComponentSubData, setPerComponentSubData] = useState({});
   const [isSubLoading, setIsSubLoading] = useState(false);
   const [isDashFilterOpen, setIsDashFilterOpen] = useState(false);
   const [dashSearchQuery, setDashSearchQuery] = useState('');
   const [tempDashSelected, setTempDashSelected] = useState(new Set());
   const [showCelebrate, setShowCelebrate] = useState(false);
+  const [dashActiveGroup, setDashActiveGroup] = useState('PAJAK PROVINSI');
 
   // Celebration trigger function
   const triggerCelebration = () => {
@@ -368,40 +370,177 @@ function App() {
 
   useEffect(() => { fetchData(); }, []);
 
+  // Helper: map a single raw dashboard code to its granular DB codes
+  // All data in detail_pad_data now uses clean alphanumeric codes
+  // Each code simply maps to itself (1:1 mapping after DB cleanup)
+  const DASHBOARD_TO_GRANULAR = useMemo(() => ({
+    // === PAJAK KAB/KOTA ===
+    'PAJ-KK-PBBP2':        ['PAJ-KK-PBBP2'],
+    'PAJ-KK-BPHTB':        ['PAJ-KK-BPHTB'],
+    'PAJ-KK-PBJT':         ['PAJ-KK-PBJT', 'PBJT-MAKMIN', 'PBJT-LISTRIK', 'PBJT-HOTEL', 'PBJT-PARKIR', 'PBJT-HIBURAN'],
+    'PAJ-KK-REKLAME':      ['PAJ-KK-REKLAME'],
+    'PAJ-KK-PAT':          ['PAJ-KK-PAT'],
+    'PAJ-KK-MBLB':         ['PAJ-KK-MBLB'],
+    'PAJ-KK-WALET':        ['PAJ-KK-WALET'],
+    'PAJ-KK-OPSEN-PKB':    ['PAJ-KK-OPSEN-PKB'],
+    'PAJ-KK-OPSEN-BBNKB':  ['PAJ-KK-OPSEN-BBNKB'],
+    // === PBJT DETAIL ===
+    'PBJT-MAKMIN':          ['PBJT-MAKMIN'],
+    'PBJT-LISTRIK':         ['PBJT-LISTRIK'],
+    'PBJT-HOTEL':           ['PBJT-HOTEL'],
+    'PBJT-PARKIR':          ['PBJT-PARKIR'],
+    'PBJT-HIBURAN':         ['PBJT-HIBURAN'],
+    // === PAJAK PROVINSI ===
+    'PAJ-PROV-PKB':         ['PAJ-PROV-PKB'],
+    'PAJ-PROV-BBNKB':      ['PAJ-PROV-BBNKB'],
+    'PAJ-PROV-PAB':         ['PAJ-PROV-PAB'],
+    'PAJ-PROV-PBBKB':      ['PAJ-PROV-PBBKB'],
+    'PAJ-PROV-PAP':         ['PAJ-PROV-PAP'],
+    'PAJ-PROV-ROKOK':       ['PAJ-PROV-ROKOK'],
+    'PAJ-PROV-OPSEN-MBLB':  ['PAJ-PROV-OPSEN-MBLB'],
+    // === RETRIBUSI JASA UMUM ===
+    'RET-JU-KESEHATAN':     ['RET-JU-KESEHATAN'],
+    'RET-JU-KEBERSIHAN':    ['RET-JU-KEBERSIHAN'],
+    'RET-JU-PARKIR':        ['RET-JU-PARKIR'],
+    'RET-JU-PASAR':         ['RET-JU-PASAR'],
+    'RET-JU-LALIN':         ['RET-JU-LALIN'],
+    // === RETRIBUSI JASA USAHA ===
+    'RET-JUS-ASET':         ['RET-JUS-ASET'],
+    'RET-JUS-REKREASI':     ['RET-JUS-REKREASI'],
+    'RET-JUS-PARKIR':       ['RET-JUS-PARKIR'],
+    'RET-JUS-RPH':          ['RET-JUS-RPH'],
+    'RET-JUS-PENGINAPAN':   ['RET-JUS-PENGINAPAN'],
+    'RET-JUS-PELABUHAN':    ['RET-JUS-PELABUHAN'],
+    'RET-JUS-TEMPAT-USAHA': ['RET-JUS-TEMPAT-USAHA'],
+    'RET-JUS-PELELANGAN':   ['RET-JUS-PELELANGAN'],
+    'RET-JUS-PENYEBERANGAN':['RET-JUS-PENYEBERANGAN'],
+    'RET-JUS-PRODUK':       ['RET-JUS-PRODUK'],
+    // === RETRIBUSI PERIZINAN ===
+    'RET-PT-PBG':           ['RET-PT-PBG'],
+    'RET-PT-TAMBANG':       ['RET-PT-TAMBANG'],
+    'RET-PT-TKA':           ['RET-PT-TKA'],
+  }), []);
+
+  const mapCodeToGranular = useCallback((code) => {
+    const hardcoded = DASHBOARD_TO_GRANULAR[code];
+    if (hardcoded && hardcoded.length > 0) {
+      return [...hardcoded, code]; // include original code as fallback
+    }
+    // Fallback: just return the code itself
+    return [code];
+  }, [DASHBOARD_TO_GRANULAR]);
+
+  // Helper: normalize result rows to canonical daerah names
+  const normalizeToDaerah = useCallback((results) => {
+    // Build a lookup map once for performance
+    const canonicalMap = {};
+    data.forEach(d => {
+      // Exact key
+      canonicalMap[d.daerah] = d.daerah;
+      // Lowercase key
+      canonicalMap[d.daerah.toLowerCase()] = d.daerah;
+      // Trimmed key (strip extra spaces)
+      canonicalMap[d.daerah.trim().toLowerCase()] = d.daerah;
+    });
+
+    const findCanonical = (rawName) => {
+      if (!rawName) return rawName;
+      // 1. Exact match
+      if (canonicalMap[rawName]) return canonicalMap[rawName];
+      // 2. Case-insensitive match
+      const lower = rawName.toLowerCase().trim();
+      if (canonicalMap[lower]) return canonicalMap[lower];
+      // 3. Try common alternate prefix forms
+      const alternates = [
+        rawName.replace(/^Provinsi /i, 'Prov. '),
+        rawName.replace(/^Prov\. /i, 'Provinsi '),
+        rawName.replace(/^Kabupaten /i, 'Kab. '),
+        rawName.replace(/^Kab\. /i, 'Kabupaten '),
+        rawName.replace(/^Prov\. DKI /i, 'DKI '),
+        'Prov. ' + rawName,
+        'Kab. ' + rawName,
+        'Kota ' + rawName,
+      ];
+      for (const alt of alternates) {
+        if (canonicalMap[alt]) return canonicalMap[alt];
+        if (canonicalMap[alt.toLowerCase()]) return canonicalMap[alt.toLowerCase()];
+      }
+      // 4. Fuzzy: find a canonical name that contains the raw name or vice versa
+      const rawClean = rawName.replace(/^(Prov\.|Provinsi|Kab\.|Kabupaten|Kota)\s*/i, '').trim().toLowerCase();
+      if (rawClean.length >= 3) {
+        const match = data.find(d => {
+          const dClean = d.daerah.replace(/^(Prov\.|Provinsi|Kab\.|Kabupaten|Kota)\s*/i, '').trim().toLowerCase();
+          return dClean === rawClean;
+        });
+        if (match) return match.daerah;
+      }
+      return rawName;
+    };
+
+    const mapped = {};
+    results.forEach(r => {
+      const canonical = findCanonical(r.daerah);
+      if (!mapped[canonical]) mapped[canonical] = { realisasi: 0, anggaran: 0, yearly: {} };
+      mapped[canonical].realisasi += r.realisasi || 0;
+      mapped[canonical].anggaran += r.anggaran || 0;
+      if (!mapped[canonical].yearly[r.tahun]) mapped[canonical].yearly[r.tahun] = 0;
+      mapped[canonical].yearly[r.tahun] += r.realisasi || 0;
+    });
+    return mapped;
+  }, [data]);
+
   // Fetch sub-metric data when selection changes
   useEffect(() => {
     const fetchSubData = async () => {
       if (activeSubMetric === 'all') {
         setRegionalSubData({});
+        setPerComponentSubData({});
         return;
       }
       setIsSubLoading(true);
       try {
-        const codesToFetch = Array.isArray(activeSubMetric) ? activeSubMetric : (activeSubMetric === 'all' ? [] : [activeSubMetric]);
-        const results = await fetchDetailDataByCategory(selectedYear, codesToFetch);
-        // Map to normalized daerah key for reliable lookup
-        const mapped = {};
-        results.forEach(r => {
-          // Normalizing the daerah name from detail data to match our canonical names
-          const normName = r.daerah.toUpperCase()
-            .replace(/(PROV\.|PROVINSI|KAB\.|KABUPATEN|KOTA|DKI|DI|JAWA| )/g, '')
-            .trim();
-            
-          // Find the matching canonical name from the data we already have
-          const canonical = data.find(d => {
-            const dNorm = d.daerah.toUpperCase()
-              .replace(/(PROV\.|PROVINSI|KAB\.|KABUPATEN|KOTA|DKI|DI|JAWA| )/g, '')
-              .trim();
-            return dNorm === normName;
-          })?.daerah || r.daerah;
-
-          if (!mapped[canonical]) mapped[canonical] = { realisasi: 0, anggaran: 0, yearly: {} };
-          mapped[canonical].realisasi += r.realisasi || 0;
-          mapped[canonical].anggaran += r.anggaran || 0;
-          if (!mapped[canonical].yearly[r.tahun]) mapped[canonical].yearly[r.tahun] = 0;
-          mapped[canonical].yearly[r.tahun] += r.realisasi || 0;
+        const rawCodes = Array.isArray(activeSubMetric) ? activeSubMetric : [activeSubMetric];
+        
+        // Build ALL granular codes for the combined fetch
+        const allMappedCodes = new Set();
+        const codeMapping = {}; // rawCode -> Set of granular codes
+        rawCodes.forEach(code => {
+          const granular = mapCodeToGranular(code);
+          codeMapping[code] = granular;
+          granular.forEach(c => allMappedCodes.add(c));
         });
+
+        const codesToFetch = Array.from(allMappedCodes);
+        if (codesToFetch.length === 0) {
+           setRegionalSubData({});
+           setPerComponentSubData({});
+           setIsSubLoading(false);
+           return;
+        }
+
+        const results = await fetchDetailDataByCategory(selectedYear, codesToFetch);
+        console.log('[PAD Debug] Total results:', results.length, 'Codes fetched:', codesToFetch);
+        
+        // Build combined regional data (existing behavior)
+        const mapped = normalizeToDaerah(results);
         setRegionalSubData(mapped);
+
+        // Build PER-COMPONENT data for individual charts
+        if (rawCodes.length > 1) {
+          const perComp = {};
+          
+          for (const rawCode of rawCodes) {
+            // Fetch data INDIVIDUALLY per component for reliability
+            const compCodes = codeMapping[rawCode] || [rawCode];
+            const compResults = await fetchDetailDataByCategory(selectedYear, compCodes);
+            console.log(`[PAD Debug] Component ${rawCode}: ${compCodes.length} codes, ${compResults.length} results`);
+            perComp[rawCode] = normalizeToDaerah(compResults);
+          }
+          
+          setPerComponentSubData(perComp);
+        } else {
+          setPerComponentSubData({});
+        }
       } catch (err) {
         console.error("Sub-metric fetch fail:", err);
       } finally {
@@ -409,63 +548,94 @@ function App() {
       }
     };
     fetchSubData();
-  }, [activeSubMetric, selectedYear]);
+  }, [activeSubMetric, selectedYear, categories, mapCodeToGranular, normalizeToDaerah]);
 
 
 
   // Filter categories based on active main metric
   // Grouped Categories for the Mega Filter
+  // ONLY show clean high-level categories (PAJ-PROV-xxx, PAJ-KK-xxx, RET-xxx, PBJT-xxx)
+  // Detail codes like 4.1.01.xx are for LRA only
+  const DASHBOARD_CATEGORY_PREFIXES = [
+    'PAJ-PROV-',   // Pajak Provinsi sub-items (PKB, BBNKB, PAB, etc.)
+    'PAJ-KK-',     // Pajak Kab/Kota sub-items (PBB-P2, BPHTB, PBJT, etc.)
+    'PBJT-',       // PBJT detail (Makmin, Listrik, Hotel, Parkir, Hiburan)
+    'RET-JU-',     // Retribusi Jasa Umum sub-items
+    'RET-JUS-',    // Retribusi Jasa Usaha sub-items
+    'RET-PT-',     // Retribusi Perizinan Tertentu sub-items
+  ];
+
   const groupedCategories = useMemo(() => {
     const groups = {
       'PAJAK PROVINSI': [],
       'PAJAK KAB/KOTA': [],
-      'RETRIBUSI': [],
+      'PBJT DETAIL': [],
+      'RETRIBUSI JASA UMUM': [],
+      'RETRIBUSI JASA USAHA': [],
+      'RETRIBUSI PERIZINAN': [],
       'PENGELOLAAN': [],
       'LAIN-LAIN': []
     };
     
     categories.forEach(c => {
-      const kode = (c.kode || '').toString().toUpperCase();
-      const catUpper = (c.kategori_utama || '').toString().toUpperCase();
+      const kode = (c.kode || '').toString();
       
-      if (catUpper.includes('PAJAK')) {
-        if (kode.startsWith('PAJ-PROV')) {
-          groups['PAJAK PROVINSI'].push(c);
-        } else if (kode.startsWith('PAJ-KK')) {
-          groups['PAJAK KAB/KOTA'].push(c);
-        } else {
-          // Fallback if kode format is different but it is still 'Pajak'
-          groups['PAJAK PROVINSI'].push(c);
-        }
-      } 
-      else if (catUpper.includes('RETRIBUSI')) groups['RETRIBUSI'].push(c);
-      else if (catUpper.includes('PENGELOLAAN')) groups['PENGELOLAAN'].push(c);
-      else groups['LAIN-LAIN'].push(c);
+      // Only include dashboard-level categories, skip granular detail codes (4.1.xx)
+      const isDashboardCategory = DASHBOARD_CATEGORY_PREFIXES.some(prefix => kode.startsWith(prefix));
+      if (!isDashboardCategory) return;
+      
+      if (kode.startsWith('PAJ-PROV-')) {
+        groups['PAJAK PROVINSI'].push(c);
+      } else if (kode.startsWith('PAJ-KK-')) {
+        groups['PAJAK KAB/KOTA'].push(c);
+      } else if (kode.startsWith('PBJT-')) {
+        groups['PBJT DETAIL'].push(c);
+      } else if (kode.startsWith('RET-JU-')) {
+        groups['RETRIBUSI JASA UMUM'].push(c);
+      } else if (kode.startsWith('RET-JUS-')) {
+        groups['RETRIBUSI JASA USAHA'].push(c);
+      } else if (kode.startsWith('RET-PT-')) {
+        groups['RETRIBUSI PERIZINAN'].push(c);
+      }
     });
     
     return groups;
   }, [categories]);
 
-  const [dashActiveGroup, setDashActiveGroup] = useState('PAJAK PROVINSI');
 
   const filteredCategories = useMemo(() => {
+    // For PAD Total, show whatever dashActiveGroup is set to
     if (activeMetric === 'rataRataPAD') return groupedCategories[dashActiveGroup] || [];
     
-    const mapping = {
-      'rataRataPajak': dashActiveGroup.includes('KAB/KOTA') ? 'PAJAK KAB/KOTA' : 'PAJAK PROVINSI',
-      'rataRataRetribusi': 'RETRIBUSI',
-      'rataRataPengelolaan': 'PENGELOLAAN',
-      'rataRataLain': 'LAIN-LAIN'
-    };
+    // For specific metrics, map to the right group(s)
+    if (activeMetric === 'rataRataPajak') {
+      // Show the active pajak group (Provinsi or Kab/Kota or PBJT Detail)
+      return groupedCategories[dashActiveGroup] || [];
+    }
+    if (activeMetric === 'rataRataRetribusi') {
+      // Show the active retribusi group
+      return groupedCategories[dashActiveGroup] || [];
+    }
+    if (activeMetric === 'rataRataPengelolaan') return [];
+    if (activeMetric === 'rataRataLain') return [];
     
-    const targetGroup = mapping[activeMetric];
-    return groupedCategories[targetGroup] || [];
+    return groupedCategories[dashActiveGroup] || [];
   }, [groupedCategories, activeMetric, dashActiveGroup]);
 
   // Reset sub-metric when main metric changes
   useEffect(() => {
     setActiveSubMetric('all');
     setTempSubMetric('all');
+    setTempDashSelected(new Set()); // Reset selections when main metric changes!
+    
+    // Auto-set dashActiveGroup to appropriate default for new metric
+    if (activeMetric === 'rataRataPAD' || activeMetric === 'rataRataPajak') {
+      setDashActiveGroup('PAJAK PROVINSI');
+    } else if (activeMetric === 'rataRataRetribusi') {
+      setDashActiveGroup('RETRIBUSI JASA UMUM');
+    } else {
+      setDashActiveGroup('PAJAK PROVINSI');
+    }
   }, [activeMetric]);
 
   // Year-filtered or All-years aggregated data
@@ -497,9 +667,8 @@ function App() {
         let lai = group.totalLain;
         let ang = group.totalAnggaran;
 
-        if (activeSubMetric !== 'all') {
+        if (activeSubMetric !== 'all' && Object.keys(regionalSubData).length > 0) {
            const subRow = regionalSubData[group.daerah];
-           // If sub-metric active, use sub-data if exists, otherwise 0
            const subVal = subRow ? subRow.realisasi : 0;
            const subAng = subRow ? subRow.anggaran : 0;
            
@@ -536,7 +705,7 @@ function App() {
       let lai = yr.lainPadRealisasi;
       let ang = yr.pajakAnggaran + yr.retribusiAnggaran + yr.pengelolaanAnggaran + yr.lainPadAnggaran;
 
-      if (activeSubMetric !== 'all') {
+      if (activeSubMetric !== 'all' && Object.keys(regionalSubData).length > 0) {
          const subRow = regionalSubData[group.daerah];
          const subVal = subRow ? subRow.realisasi : 0;
          const subAng = subRow ? subRow.anggaran : 0;
@@ -711,12 +880,23 @@ function App() {
       .sort((a, b) => b[activeMetric] - a[activeMetric]);
   }, [selectedProvince, activeYearData, activeMetric, provinceStats]);
 
+  // Moved BEFORE early returns to satisfy React hooks rules
+  const getCategoryLabel = useCallback((codes) => {
+    if (!codes || codes === 'all') return METRICS.find(m => m.id === activeMetric)?.label || 'PAD Total';
+    if (Array.isArray(codes)) {
+      if (codes.length === 0) return 'Tidak ada komponen';
+      if (codes.length === 1) return categories.find(c => c.kode === codes[0])?.nama || codes[0];
+      return `${codes.length} Komponen Terpilih`;
+    }
+    return categories.find(c => c.kode === codes)?.nama || codes;
+  }, [categories, activeMetric]);
+
   // =====================
   // LOADING SCREEN
   // =====================
   if (loading) {
     return (
-      <div className="min-h-screen bg-brand-900 flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center relative overflow-hidden">
         <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.18, 0.08] }} transition={{ duration: 4, repeat: Infinity }} className="absolute w-[700px] h-[700px] bg-brand-500 rounded-full blur-[150px] -top-48 -left-48" />
         <motion.div animate={{ scale: [1, 1.3, 1], opacity: [0.05, 0.12, 0.05] }} transition={{ duration: 5, repeat: Infinity, delay: 1 }} className="absolute w-[500px] h-[500px] bg-blue-600 rounded-full blur-[120px] -bottom-24 -right-24" />
         <div className="relative z-10 flex flex-col items-center text-center px-8">
@@ -770,18 +950,9 @@ function App() {
   // =====================
   // MAIN LAYOUT
   // =====================
-  const getCategoryLabel = useCallback((codes) => {
-    if (!codes || codes === 'all') return METRICS.find(m => m.id === activeMetric)?.label || 'PAD Total';
-    if (Array.isArray(codes)) {
-      if (codes.length === 0) return 'Tidak ada komponen';
-      if (codes.length === 1) return categories.find(c => c.kode === codes[0])?.nama || codes[0];
-      return `${codes.length} Komponen Terpilih`;
-    }
-    return categories.find(c => c.kode === codes)?.nama || codes;
-  }, [categories, activeMetric]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0c1427] via-[#020617] to-[#01030e] flex flex-col lg:flex-row relative">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex flex-col lg:flex-row relative">
       
       {/* ===== MOBILE HEADER ===== */}
       <div className="lg:hidden bg-brand-900 text-white p-4 flex items-center justify-between sticky top-0 z-30 shadow-xl">
@@ -1202,7 +1373,7 @@ function App() {
                         initial={{ opacity: 0, y: 20, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.98 }}
-                        className="absolute top-[calc(100%+1rem)] left-0 right-0 z-[110] bg-[#0f172a] rounded-[48px] border border-white/10 shadow-[0_48px_96px_-24px_rgba(0,0,0,0.9)] overflow-hidden ring-1 ring-white/5 backdrop-blur-3xl"
+                        className="absolute top-[calc(100%+1rem)] left-0 right-0 z-[110] bg-white rounded-[48px] border border-slate-200 shadow-[0_48px_96px_-24px_rgba(0,0,0,0.15)] overflow-hidden ring-1 ring-slate-100 backdrop-blur-3xl"
                       >
                         <div className="p-8 md:p-12 flex flex-col lg:flex-row gap-12">
                           {/* Left Panel: Context */}
@@ -1213,26 +1384,66 @@ function App() {
                                   <h4 className="text-white font-black text-sm uppercase tracking-tight">{dashActiveGroup}</h4>
                                 </div>
                                 
-                                {dashActiveGroup.startsWith('PAJAK') && (
-                                  <div className="flex bg-white/5 p-1 rounded-2xl border border-white/5">
+                                {/* Dynamic Group Tabs based on active metric */}
+                                {(activeMetric === 'rataRataPAD' || activeMetric === 'rataRataPajak') && (
+                                  <div className="flex flex-col gap-1.5 bg-white/5 p-1.5 rounded-2xl border border-white/5">
+                                    <div className="flex gap-1">
+                                      <button 
+                                        onClick={() => setDashActiveGroup('PAJAK PROVINSI')}
+                                        className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'PAJAK PROVINSI' ? 'bg-brand-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                                      >
+                                        Pajak Prov
+                                      </button>
+                                      <button 
+                                        onClick={() => setDashActiveGroup('PAJAK KAB/KOTA')}
+                                        className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'PAJAK KAB/KOTA' ? 'bg-brand-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                                      >
+                                        Pajak Kab/Kota
+                                      </button>
+                                    </div>
                                     <button 
-                                      onClick={() => setDashActiveGroup('PAJAK PROVINSI')}
-                                      className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'PAJAK PROVINSI' ? 'bg-brand-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                                      onClick={() => setDashActiveGroup('PBJT DETAIL')}
+                                      className={`w-full py-2 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'PBJT DETAIL' ? 'bg-emerald-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
                                     >
-                                      Provinsi
+                                      PBJT Detail
                                     </button>
+                                  </div>
+                                )}
+
+                                {(activeMetric === 'rataRataPAD' || activeMetric === 'rataRataRetribusi') && (
+                                  <div className="flex flex-col gap-1.5 bg-white/5 p-1.5 rounded-2xl border border-white/5">
+                                    <div className="flex gap-1">
+                                      <button 
+                                        onClick={() => setDashActiveGroup('RETRIBUSI JASA UMUM')}
+                                        className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'RETRIBUSI JASA UMUM' ? 'bg-emerald-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                                      >
+                                        Jasa Umum
+                                      </button>
+                                      <button 
+                                        onClick={() => setDashActiveGroup('RETRIBUSI JASA USAHA')}
+                                        className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'RETRIBUSI JASA USAHA' ? 'bg-emerald-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                                      >
+                                        Jasa Usaha
+                                      </button>
+                                    </div>
                                     <button 
-                                      onClick={() => setDashActiveGroup('PAJAK KAB/KOTA')}
-                                      className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'PAJAK KAB/KOTA' ? 'bg-brand-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                                      onClick={() => setDashActiveGroup('RETRIBUSI PERIZINAN')}
+                                      className={`w-full py-2 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all ${dashActiveGroup === 'RETRIBUSI PERIZINAN' ? 'bg-emerald-500 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
                                     >
-                                      Kab/Kota
+                                      Perizinan
                                     </button>
                                   </div>
                                 )}
                                 
                                 <p className="text-slate-500 text-[11px] leading-relaxed uppercase font-bold tracking-wider">
-                                  {dashActiveGroup.startsWith('PAJAK')
-                                    ? `Daftar komponen pajak kewenangan pemerintah ${dashActiveGroup.includes('PROVINSI') ? 'Provinsi' : 'Kabupaten/Kota'}.`
+                                  {dashActiveGroup.includes('PAJAK PROVINSI')
+                                    ? 'Daftar komponen pajak kewenangan pemerintah Provinsi (PKB, BBNKB, PAB, PBBKB, PAP, Pajak Rokok, Opsen MBLB).'
+                                    : dashActiveGroup.includes('KAB/KOTA')
+                                    ? 'Daftar komponen pajak kewenangan pemerintah Kabupaten/Kota (PBB-P2, BPHTB, PBJT, Reklame, PAT, MBLB, Walet, Opsen PKB/BBNKB).'
+                                    : dashActiveGroup.includes('PBJT')
+                                    ? 'Rincian Pajak Barang dan Jasa Tertentu (Makanan/Minuman, Listrik, Perhotelan, Parkir, Hiburan).'
+                                    : dashActiveGroup.includes('RETRIBUSI')
+                                    ? `Rincian ${dashActiveGroup.replace('RETRIBUSI ', '')} — pilih komponen untuk dianalisis.`
                                     : `Pilih rincian dari kategori "${dashActiveGroup}" untuk dianalisis.`}
                                 </p>
                               </div>
@@ -1250,7 +1461,7 @@ function App() {
                                 {isSubLoading ? (
                                   <>Memproses... <RefreshCw size={16} className="animate-spin" /></>
                                 ) : (
-                                  <>Terapkan Filter <ArrowUpRight size={16} /></>
+                                  <>Terapkan Filter <ArrowUpRight size={40} /></>
                                 )}
                               </button>
                                <button 
@@ -1360,7 +1571,7 @@ function App() {
                 <StatCard title="Total Pajak" value={formatCurrencyShort(stats.totalPajak)} icon={BarChart3} description={selectedYear === 'all' ? 'Total Pajak Terkumpul' : 'Kontribusi pajak'} color="indigo" />
                 <StatCard
                   title="% Capaian"
-                  value={`${((stats.totalRealisasi / (stats.totalAnggaran || 1)) * 100).toFixed(1)}%`}
+                  value={`${Math.min(100, (stats.totalRealisasi / (stats.totalAnggaran || 1)) * 100).toFixed(1)}%`}
                   icon={Award}
                   description={selectedYear === 'all' ? 'Rata-rata Capaian' : `Target: ${formatCurrencyShort(stats.totalAnggaran)}`}
                   color="emerald"
@@ -1470,7 +1681,7 @@ function App() {
                             <div className="flex-grow min-h-[300px]">
                               <ResponsiveContainer width="100%" height="100%">
                                 <BarChart data={provincialRanking} layout="vertical" margin={{ top: 0, right: 60, left: 10, bottom: 0 }}>
-                                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#ffffff" opacity={0.03} />
+                                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e2e8f0" opacity={0.6} />
                                   <XAxis type="number" hide />
                                   <YAxis 
                                     type="category" 
@@ -1478,18 +1689,18 @@ function App() {
                                     axisLine={false} 
                                     tickLine={false} 
                                     width={90}
-                                    tick={{ fill: '#94a3b8', fontSize: 9, fontWeight: '900' }}
+                                    tick={{ fill: '#475569', fontSize: 9, fontWeight: '900' }}
                                   />
                                   <Tooltip 
-                                    cursor={{ fill: 'rgba(255,255,255,0.03)' }}
-                                    contentStyle={{ backgroundColor: '#0f172a', borderRadius: '16px', border: 'none', fontSize: '11px' }}
-                                    itemStyle={{ color: '#fff', fontWeight: 'bold' }}
+                                    cursor={{ fill: 'rgba(59,130,246,0.06)' }}
+                                    contentStyle={{ backgroundColor: '#ffffff', borderRadius: '16px', border: '1px solid #e2e8f0', fontSize: '11px', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}
+                                    itemStyle={{ color: '#1e293b', fontWeight: 'bold' }}
                                     labelStyle={{ color: '#94a3b8', fontWeight: 'black', marginBottom: '4px' }}
                                     formatter={(v) => [formatCurrencyShort(v), 'Realisasi']}
                                   />
                                   <Bar dataKey="value" radius={[0, 6, 6, 0]} barSize={24} onClick={p => p?.payload && setActiveInsight(p.payload)}>
                                     {provincialRanking.map((entry, i) => (
-                                      <Cell key={i} fill={activeInsight?.daerah === entry.daerah ? '#f59e0b' : '#3b82f6'} className="cursor-pointer" />
+                                      <Cell key={i} fill={activeInsight?.daerah === entry.daerah ? '#f59e0b' : '#2563eb'} className="cursor-pointer" />
                                     ))}
                                     <LabelList 
                                       dataKey="value" 
@@ -1498,7 +1709,7 @@ function App() {
                                         <text 
                                           x={props.x + props.width + 5} 
                                           y={props.y + props.height / 2 + 4} 
-                                          fill="#f8fafc" 
+                                          fill="#1e293b" 
                                           fontSize="10" 
                                           fontWeight="900"
                                           className="drop-shadow-sm"
@@ -1579,7 +1790,7 @@ function App() {
                                       }
                                     }}
                                   >
-                                    <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#ffffff" opacity={0.03} />
+                                    <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e2e8f0" opacity={0.6} />
                                     <XAxis type="number" hide />
                                     <YAxis 
                                       type="category" 
@@ -1587,18 +1798,18 @@ function App() {
                                       axisLine={false} 
                                       tickLine={false} 
                                       width={140}
-                                      tick={{ fill: '#94a3b8', fontSize: 9, fontWeight: '900' }}
+                                      tick={{ fill: '#475569', fontSize: 9, fontWeight: '900' }}
                                     />
                                     <Tooltip 
-                                      cursor={{ fill: 'rgba(255,255,255,0.03)' }}
+                                      cursor={{ fill: 'rgba(59,130,246,0.06)' }}
                                       contentStyle={{ 
-                                        backgroundColor: '#0f172a', 
+                                        backgroundColor: '#ffffff', 
                                         borderRadius: '16px', 
                                         border: '1px solid rgba(255,255,255,0.1)', 
                                         fontSize: '11px',
                                         padding: '12px'
                                       }}
-                                      itemStyle={{ color: '#fff', fontWeight: 'bold' }}
+                                      itemStyle={{ color: '#1e293b', fontWeight: 'bold' }}
                                       labelStyle={{ color: '#94a3b8', marginBottom: '4px', fontWeight: 'black' }}
                                       formatter={(v) => [formatCurrencyShort(v), 'Realisasi']}
                                     />
@@ -1610,7 +1821,7 @@ function App() {
                                       {regionalRanking.map((entry, i) => (
                                         <Cell 
                                           key={i} 
-                                          fill={activeInsight?.daerah === entry.daerah ? '#f59e0b' : '#3949ab'}
+                                          fill={activeInsight?.daerah === entry.daerah ? '#f59e0b' : '#4338ca'}
                                           className="cursor-pointer hover:opacity-80 transition-opacity"
                                           style={{ filter: activeInsight?.daerah === entry.daerah ? 'drop-shadow(0 0 8px rgba(245, 158, 11, 0.4))' : 'none' }}
                                         />
@@ -1622,7 +1833,7 @@ function App() {
                                           <text 
                                             x={props.x + props.width + 5} 
                                             y={props.y + props.height / 2 + 4} 
-                                            fill="#f8fafc" 
+                                            fill="#1e293b" 
                                             fontSize="9" 
                                             fontWeight="900"
                                             className="drop-shadow-sm"
@@ -1678,69 +1889,178 @@ function App() {
                   {/* CHARTS ROW */}
                   <div className="space-y-6 mt-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                      {/* Bar Chart Top 10 Kab/Kota */}
-                      <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl">
-                        <h3 
-                          className="font-black text-white text-[11px] md:text-xs uppercase tracking-widest flex items-center gap-2 mb-5 truncate"
-                          title={activeSubMetric !== 'all' 
-                            ? `Top 10 Kab/Kota: ${
-                                Array.isArray(activeSubMetric) 
-                                  ? (activeSubMetric.length === 1 
-                                      ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0]) 
-                                      : `${activeSubMetric.length} Komponen`) 
-                                  : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)
-                              }`
-                            : `${METRICS.find(m => m.id === activeMetric)?.label}`}
-                        >
-                          <BarChart3 size={16} className="text-emerald-500 shrink-0" /> 
-                          <span className="truncate">
-                            Top 10 Kab/Kota: {activeSubMetric !== 'all' 
-                              ? (Array.isArray(activeSubMetric) 
-                                  ? (activeSubMetric.length === 1 
-                                      ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0]) 
-                                      : `${activeSubMetric.length} Komponen`) 
-                                  : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)) 
-                              : METRICS.find(m => m.id === activeMetric)?.label} ({selectedYear === 'all' ? 'Semua Periode' : selectedYear})
-                          </span>
-                        </h3>
-                        <div className="h-[280px]">
-                          <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={top10KabKota} margin={{ top: 0, right: 0, left: -20, bottom: 40 }}>
-                              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" opacity={0.05} />
-                              <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 8, fontWeight: 'bold' }} angle={-35} textAnchor="end" />
-                              <YAxis axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 9 }} tickFormatter={v => v >= 1e12 ? `${(v/1e12).toFixed(1)}T` : `${(v/1e9).toFixed(0)}M`} />
-                              <Tooltip 
-                                cursor={{ fill: 'rgba(255,255,255,0.05)', radius: 8 }} 
-                                contentStyle={{ backgroundColor: '#0f172a', borderRadius: '14px', border: 'none', fontSize: '11px' }} 
-                                itemStyle={{ color: '#fff', fontWeight: 'bold' }}
-                                labelStyle={{ color: '#94a3b8', fontWeight: 'black', marginBottom: '4px' }}
-                                formatter={v => [formatCurrencyShort(v), 'Realisasi']} 
-                              />
-                              <Bar dataKey="value" radius={[8, 8, 0, 0]} barSize={26} onClick={p => p?.payload && setActiveInsight(p.payload)}>
-                                {top10KabKota.map((entry, i) => (
-                                  <Cell key={i} fill={activeInsight?.daerah === entry.daerah ? '#f59e0b' : (i < 3 ? '#10b981' : '#3949ab')} className="cursor-pointer" />
-                                ))}
-                                <LabelList
-                                  dataKey="value"
-                                  position="top"
-                                  content={(props) => (
-                                    <text
-                                      x={props.x + props.width / 2}
-                                      y={props.y - 12}
-                                      fill="#cbd5e1"
-                                      fontSize="8"
-                                      fontWeight="900"
-                                      textAnchor="middle"
-                                    >
-                                      {formatCurrencyShort(props.value)}
-                                    </text>
-                                  )}
+                      {/* Bar Chart Top 10 Kab/Kota — shows individual charts per component when multiple selected */}
+                      {(activeSubMetric !== 'all' && Array.isArray(activeSubMetric) && activeSubMetric.length > 1 && Object.keys(perComponentSubData).length > 0) ? (
+                        // === INDIVIDUAL CHARTS PER COMPONENT ===
+                        activeSubMetric.map((compCode, compIdx) => {
+                          const compData = perComponentSubData[compCode] || {};
+                          const compName = categories.find(c => c.kode === compCode)?.nama || compCode;
+                          // Build top 10 from per-component data - use compData keys directly
+                          const compEntries = Object.entries(compData);
+                          const compTop10 = compEntries
+                            .map(([daerah, sub]) => ({
+                              daerah,
+                              name: daerah.replace('Kab. ', '').replace('Kota ', '').replace('Prov. ', ''),
+                              tipe: (daerah.toLowerCase().startsWith('prov') || daerah === 'DKI Jakarta') ? 'Provinsi' : 'Kab/Kota',
+                              compValue: sub.realisasi || 0
+                            }))
+                            .filter(d => d.compValue > 0)
+                            .sort((a, b) => b.compValue - a.compValue)
+                            .slice(0, 10);
+
+                          const COMP_COLORS = [
+                            { bar: '#8b5cf6', accent: 'text-violet-400', badge: 'bg-violet-500/20 border-violet-500/30', icon: 'text-violet-500' },
+                            { bar: '#10b981', accent: 'text-emerald-400', badge: 'bg-emerald-500/20 border-emerald-500/30', icon: 'text-emerald-500' },
+                            { bar: '#f59e0b', accent: 'text-amber-400', badge: 'bg-amber-500/20 border-amber-500/30', icon: 'text-amber-500' },
+                            { bar: '#3b82f6', accent: 'text-blue-400', badge: 'bg-blue-500/20 border-blue-500/30', icon: 'text-blue-500' },
+                            { bar: '#ec4899', accent: 'text-pink-400', badge: 'bg-pink-500/20 border-pink-500/30', icon: 'text-pink-500' },
+                            { bar: '#06b6d4', accent: 'text-cyan-400', badge: 'bg-cyan-500/20 border-cyan-500/30', icon: 'text-cyan-500' },
+                            { bar: '#f97316', accent: 'text-orange-400', badge: 'bg-orange-500/20 border-orange-500/30', icon: 'text-orange-500' },
+                            { bar: '#a855f7', accent: 'text-purple-400', badge: 'bg-purple-500/20 border-purple-500/30', icon: 'text-purple-500' },
+                          ];
+                          const colorSet = COMP_COLORS[compIdx % COMP_COLORS.length];
+                          const totalRealisasi = Object.values(compData).reduce((s, d) => s + (d.realisasi || 0), 0);
+
+                          if (compTop10.length === 0) {
+                            return (
+                              <motion.div
+                                key={compCode}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: compIdx * 0.08 }}
+                                className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl flex flex-col items-center justify-center text-center min-h-[320px]"
+                              >
+                                <AlertTriangle size={28} className="text-amber-500 mb-3 opacity-50" />
+                                <h4 className="text-white font-black text-[11px] uppercase tracking-widest mb-1">{compName}</h4>
+                                <p className="text-slate-500 text-[10px] font-bold uppercase">Data tidak tersedia untuk Kab/Kota</p>
+                              </motion.div>
+                            );
+                          }
+
+                          return (
+                            <motion.div
+                              key={compCode}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: compIdx * 0.08 }}
+                              className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl"
+                            >
+                              <div className="flex items-center justify-between mb-5">
+                                <h3 className="font-black text-white text-[11px] md:text-xs uppercase tracking-widest flex items-center gap-2 truncate">
+                                  <BarChart3 size={16} className={`${colorSet.icon} shrink-0`} />
+                                  <span className="truncate">Top 10: {compName}</span>
+                                </h3>
+                                <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border ${colorSet.badge}`}>
+                                  <span className={`text-[9px] font-black uppercase tracking-tight ${colorSet.accent}`}>
+                                    {formatCurrencyShort(totalRealisasi)}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="h-[280px]">
+                                <ResponsiveContainer width="100%" height="100%">
+                                  <BarChart data={compTop10} margin={{ top: 0, right: 0, left: -20, bottom: 40 }}>
+                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" opacity={0.6} />
+                                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#475569', fontSize: 8, fontWeight: 'bold' }} angle={-35} textAnchor="end" />
+                                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#475569', fontSize: 9 }} tickFormatter={v => v >= 1e12 ? `${(v/1e12).toFixed(1)}T` : `${(v/1e9).toFixed(0)}M`} />
+                                    <Tooltip
+                                      cursor={{ fill: 'rgba(59,130,246,0.06)', radius: 8 }}
+                                      contentStyle={{ backgroundColor: '#ffffff', borderRadius: '14px', border: '1px solid #e2e8f0', fontSize: '11px', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}
+                                      itemStyle={{ color: '#1e293b', fontWeight: 'bold' }}
+                                      labelStyle={{ color: '#94a3b8', fontWeight: 'black', marginBottom: '4px' }}
+                                      formatter={v => [formatCurrencyShort(v), compName]}
+                                    />
+                                    <Bar dataKey="compValue" radius={[8, 8, 0, 0]} barSize={26}>
+                                      {compTop10.map((entry, i) => (
+                                        <Cell key={i} fill={i < 3 ? colorSet.bar : `${colorSet.bar}99`} className="cursor-pointer" />
+                                      ))}
+                                      <LabelList
+                                        dataKey="compValue"
+                                        position="top"
+                                        content={(props) => (
+                                          <text
+                                            x={props.x + props.width / 2}
+                                            y={props.y - 12}
+                                            fill="#334155"
+                                            fontSize="8"
+                                            fontWeight="900"
+                                            textAnchor="middle"
+                                          >
+                                            {formatCurrencyShort(props.value)}
+                                          </text>
+                                        )}
+                                      />
+                                    </Bar>
+                                  </BarChart>
+                                </ResponsiveContainer>
+                              </div>
+                            </motion.div>
+                          );
+                        })
+                      ) : (
+                        // === SINGLE COMBINED CHART (original behavior) ===
+                        <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl">
+                          <h3 
+                            className="font-black text-white text-[11px] md:text-xs uppercase tracking-widest flex items-center gap-2 mb-5 truncate"
+                            title={activeSubMetric !== 'all' 
+                              ? `Top 10 Kab/Kota: ${
+                                  Array.isArray(activeSubMetric) 
+                                    ? (activeSubMetric.length === 1 
+                                        ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0]) 
+                                        : `${activeSubMetric.length} Komponen`) 
+                                    : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)
+                                }`
+                              : `${METRICS.find(m => m.id === activeMetric)?.label}`}
+                          >
+                            <BarChart3 size={16} className="text-emerald-500 shrink-0" /> 
+                            <span className="truncate">
+                              Top 10 Kab/Kota: {activeSubMetric !== 'all' 
+                                ? (Array.isArray(activeSubMetric) 
+                                    ? (activeSubMetric.length === 1 
+                                        ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0]) 
+                                        : `${activeSubMetric.length} Komponen`) 
+                                    : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)) 
+                                : METRICS.find(m => m.id === activeMetric)?.label} ({selectedYear === 'all' ? 'Semua Periode' : selectedYear})
+                            </span>
+                          </h3>
+                          <div className="h-[280px]">
+                            <ResponsiveContainer width="100%" height="100%">
+                              <BarChart data={top10KabKota} margin={{ top: 0, right: 0, left: -20, bottom: 40 }}>
+                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" opacity={0.6} />
+                                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#475569', fontSize: 8, fontWeight: 'bold' }} angle={-35} textAnchor="end" />
+                                <YAxis axisLine={false} tickLine={false} tick={{ fill: '#475569', fontSize: 9 }} tickFormatter={v => v >= 1e12 ? `${(v/1e12).toFixed(1)}T` : `${(v/1e9).toFixed(0)}M`} />
+                                <Tooltip 
+                                  cursor={{ fill: 'rgba(59,130,246,0.06)', radius: 8 }} 
+                                  contentStyle={{ backgroundColor: '#ffffff', borderRadius: '14px', border: '1px solid #e2e8f0', fontSize: '11px', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }} 
+                                  itemStyle={{ color: '#1e293b', fontWeight: 'bold' }}
+                                  labelStyle={{ color: '#94a3b8', fontWeight: 'black', marginBottom: '4px' }}
+                                  formatter={v => [formatCurrencyShort(v), 'Realisasi']} 
                                 />
-                              </Bar>
-                            </BarChart>
-                          </ResponsiveContainer>
+                                <Bar dataKey="value" radius={[8, 8, 0, 0]} barSize={26} onClick={p => p?.payload && setActiveInsight(p.payload)}>
+                                  {top10KabKota.map((entry, i) => (
+                                    <Cell key={i} fill={activeInsight?.daerah === entry.daerah ? '#f59e0b' : (i < 3 ? '#059669' : '#4338ca')} className="cursor-pointer" />
+                                  ))}
+                                  <LabelList
+                                    dataKey="value"
+                                    position="top"
+                                    content={(props) => (
+                                      <text
+                                        x={props.x + props.width / 2}
+                                        y={props.y - 12}
+                                        fill="#334155"
+                                        fontSize="8"
+                                        fontWeight="900"
+                                        textAnchor="middle"
+                                      >
+                                        {formatCurrencyShort(props.value)}
+                                      </text>
+                                    )}
+                                  />
+                                </Bar>
+                              </BarChart>
+                            </ResponsiveContainer>
+                          </div>
                         </div>
-                      </div>
+                      )}
 
                       {/* Province Distribution */}
                       <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/10">
@@ -1897,12 +2217,12 @@ function App() {
                                   <stop offset="100%" stopColor="#3b82f6" />
                                 </linearGradient>
                               </defs>
-                              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#ffffff" opacity={0.03} />
+                              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" opacity={0.6} />
                               <XAxis 
                                 dataKey="name" 
                                 axisLine={false} 
                                 tickLine={false} 
-                                tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: '900' }} 
+                                tick={{ fill: '#475569', fontSize: 10, fontWeight: '900' }} 
                                 angle={-35} 
                                 textAnchor="end"
                                 interval={0}
@@ -1910,19 +2230,19 @@ function App() {
                               <YAxis 
                                 axisLine={false} 
                                 tickLine={false} 
-                                tick={{ fill: '#64748b', fontSize: 11, fontWeight: '700' }} 
+                                tick={{ fill: '#475569', fontSize: 11, fontWeight: '700' }} 
                                 tickFormatter={v => formatCurrencyShort(v).replace('Rp ', '')}
                               />
                               <Tooltip 
-                                cursor={{ fill: 'rgba(255,255,255,0.03)', radius: 16 }}
+                                cursor={{ fill: 'rgba(59,130,246,0.06)', radius: 16 }}
                                 contentStyle={{ 
-                                  backgroundColor: '#0f172a', 
+                                  backgroundColor: '#ffffff', 
                                   borderRadius: '24px', 
-                                  border: '1px solid rgba(255,255,255,0.1)', 
-                                  boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
+                                  border: '1px solid #e2e8f0', 
+                                  boxShadow: '0 4px 24px -4px rgba(0,0,0,0.1)',
                                   padding: '16px'
                                 }}
-                                itemStyle={{ color: '#fff', fontWeight: 'bold' }}
+                                itemStyle={{ color: '#1e293b', fontWeight: 'bold' }}
                                 formatter={(val) => [formatCurrencyShort(val), 'Realisasi']}
                                 labelStyle={{ color: '#94a3b8', fontWeight: 'bold', marginBottom: '8px' }}
                               />
@@ -1947,7 +2267,7 @@ function App() {
                                     <text
                                       x={props.x + props.width / 2}
                                       y={props.y - 12}
-                                      fill="#cbd5e1"
+                                      fill="#334155"
                                       fontSize="10"
                                       fontWeight="bold"
                                       textAnchor="middle"

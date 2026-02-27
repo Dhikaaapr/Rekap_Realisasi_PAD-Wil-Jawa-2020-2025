@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Save, RefreshCw, Zap, AlertCircle, CheckCircle2, ShieldCheck, ChevronRight } from 'lucide-react';
-import { fetchDetailForEdit, upsertDetailRows, syncPadTotals } from '../lib/supabase';
+import { fetchDetailForEdit, upsertDetailRows, clearDetailRows, syncPadTotals } from '../lib/supabase';
 
 const formatCurrency = (val) => {
   return new Intl.NumberFormat('id-ID', { 
@@ -85,6 +85,7 @@ export const ProvinsiForm = ({ region, year, onSave }) => {
   const handleSubmit = async () => {
     setSaving(true);
     try {
+      await clearDetailRows(region, year);
       const rows = fields.filter(f => f.id).map(f => ({
         id: f.id, anggaran: f.ang, realisasi: f.real, daerah: region, tahun: year, kategori_kode: f.kode
       }));
@@ -164,6 +165,7 @@ export const KabKotaForm = ({ region, year, onSave }) => {
   const handleSubmit = async () => {
     setSaving(true);
     try {
+      await clearDetailRows(region, year);
       const rows = fields.filter(f => f.id).map(f => ({
         id: f.id, anggaran: f.ang, realisasi: f.real, daerah: region, tahun: year, kategori_kode: f.kode
       }));
@@ -237,6 +239,7 @@ export const RetribusiForm = ({ region, year, onSave }) => {
   const handleSubmit = async () => {
     setSaving(true);
     try {
+      await clearDetailRows(region, year);
       const rows = data.filter(f => f.id).map(f => ({
         id: f.id, anggaran: f.ang, realisasi: f.real, daerah: region, tahun: year, kategori_kode: f.kode
       }));

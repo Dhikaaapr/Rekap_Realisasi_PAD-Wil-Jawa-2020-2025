@@ -1,0 +1,23 @@
+Jawa Barat 2023:
+[
+  {
+    "kategori_kode": "PAD-PAJAK",
+    "anggaran": 22983763184193,
+    "realisasi": 22467329387753
+  },
+  {
+    "kategori_kode": "PAD-RETRIBUSI",
+    "anggaran": 51618580872,
+    "realisasi": 60805884732
+  },
+  {
+    "kategori_kode": "PAD-LAIN",
+    "anggaran": 1221848864821,
+    "realisasi": 1637721549756
+  },
+  {
+    "kategori_kode": "PAD-PENGELOLAAN",
+    "anggaran": 541265527276,
+    "realisasi": 541138347206
+  }
+]

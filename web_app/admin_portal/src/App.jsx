@@ -47,42 +47,71 @@ const formatCurrency = (val) => {
 };
 
 const recalculateTree = (data) => {
-  const rows = data.map(d => ({ ...d }));
+  if (!data || data.length === 0) return [];
+  
+  // 1. Deduplicate by kategori_kode to prevent double-counting if DB has duplicates
+  const uniqueMap = {};
+  data.forEach(d => {
+    const code = d.kategori_kode;
+    if (!code) return;
+    // If duplicate exists, keep the one with higher values (usually the more complete one)
+    if (!uniqueMap[code]) {
+      uniqueMap[code] = { ...d };
+    } else {
+      const existingVal = (uniqueMap[code].realisasi || 0) + (uniqueMap[code].anggaran || 0);
+      const newVal = (d.realisasi || 0) + (d.anggaran || 0);
+      if (newVal > existingVal) {
+        uniqueMap[code] = { ...d };
+      }
+    }
+  });
+
+  const rows = Object.values(uniqueMap);
   const map = {};
   rows.forEach(r => map[r.kategori_kode] = r);
   
-  // 1. Reset Parents and Mark
+  // 2. Clear values for all parent nodes so they can be re-summed cleanly
   rows.forEach(r => {
-      const isParent = rows.some(child => child.kategori_kode.startsWith(r.kategori_kode + '.') && child.kategori_kode !== r.kategori_kode);
-      r.isParent = isParent;
-      if (isParent) {
-          r.anggaran = 0;
-          r.realisasi = 0;
-      }
+    const isParent = rows.some(child => child.kategori_kode !== r.kategori_kode && child.kategori_kode.startsWith(r.kategori_kode + '.'));
+    r.isParent = isParent;
+    if (isParent) {
+      r.anggaran = 0;
+      r.realisasi = 0;
+    }
   });
 
-  // 2. Aggregate
-  // We need to process from deep to shallow. Sort by length of code desc.
-  // Actually, sorting by code usually puts 4.1.1.1 after 4.1.1.
-  // So reverse iteration works IF standard string sort is used.
-  rows.sort((a, b) => a.kategori_kode.localeCompare(b.kategori_kode));
+  // 3. Aggregate from bottom to top
+  // Sorting by descending code length ensures we process deepest levels first
+  const sortedRows = [...rows].sort((a, b) => b.kategori_kode.length - a.kategori_kode.length);
   
-  for (let i = rows.length - 1; i >= 0; i--) {
-     const node = rows[i];
-     // Find parent
+  sortedRows.forEach(node => {
+     if (node.isParent) return; // Skip parents, they will be populated by children
+
      let parts = node.kategori_kode.split('.');
      while (parts.length > 1) {
          parts.pop();
          const pCode = parts.join('.');
-         if (map[pCode]) {
-             const parent = map[pCode];
-             parent.anggaran = (parent.anggaran || 0) + (node.anggaran || 0);
-             parent.realisasi = (parent.realisasi || 0) + (node.realisasi || 0);
-             break; // Add to immediate parent only. The parent will add to its parent.
+         const parent = map[pCode];
+         if (parent) {
+             parent.anggaran = (Number(parent.anggaran) || 0) + (Number(node.anggaran) || 0);
+             parent.realisasi = (Number(parent.realisasi) || 0) + (Number(node.realisasi) || 0);
+             // We only add to the immediate parent in this loop, 
+             // but wait - the standard way to aggregate a tree is either 
+             // adding to ALL ancestors OR processing level by level.
+             // If we add to ALL ancestors here, we should continue the while loop.
          }
      }
-  }
-  return rows;
+  });
+  
+  // Sort back to standard order for display
+  return rows.sort((a, b) => {
+    const partsA = a.kategori_kode.split('.').map(Number);
+    const partsB = b.kategori_kode.split('.').map(Number);
+    for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
+      if ((partsA[i] || 0) !== (partsB[i] || 0)) return (partsA[i] || 0) - (partsB[i] || 0);
+    }
+    return 0;
+  });
 };
 
 // --- COMPONENTS ---

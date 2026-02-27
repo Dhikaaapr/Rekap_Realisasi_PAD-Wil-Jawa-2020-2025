@@ -7,9 +7,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: dark;
-  color: #e2e8f0;
-  background-color: #020617;
+  color-scheme: light;
+  color: #1e293b;
+  background-color: #f8fafc;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,8 +22,8 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
-  color: #e2e8f0;
-  background: #020617;
+  color: #1e293b;
+  background: #f8fafc;
 }
 
 #root {
@@ -42,18 +42,353 @@ body {
   }
 }
 
-/* Custom scrollbar for the province drill-down list */
+/* ===== LIGHT THEME OVERRIDES ===== */
+
+/* Background overrides - from dark transparent to light solid */
+.bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+.bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+.hover\:bg-white\/10:hover {
+  background-color: rgba(241, 245, 249, 1) !important;
+}
+.hover\:bg-white\/5:hover {
+  background-color: rgba(248, 250, 252, 1) !important;
+}
+
+/* Border overrides - visible on white */
+.border-white\/10,
+.border-white\/5 {
+  border-color: rgba(226, 232, 240, 1) !important;
+}
+.border-white\/20 {
+  border-color: rgba(203, 213, 225, 1) !important;
+}
+
+/* Text overrides for light mode */
+.text-white {
+  color: #0f172a !important;
+}
+.text-force-white {
+  color: #ffffff !important;
+}
+.text-white\/70 {
+  color: rgba(15, 23, 42, 0.7) !important;
+}
+.text-white\/30,
+.text-white\/20 {
+  color: rgba(100, 116, 139, 0.5) !important;
+}
+
+/* Slate text adjustments - improve contrast on light bg */
+.text-slate-300 {
+  color: #334155 !important;
+}
+.text-slate-400 {
+  color: #475569 !important;
+}
+.text-slate-500 {
+  color: #64748b !important;
+}
+.text-slate-600 {
+  color: #475569 !important;
+}
+.text-slate-700 {
+  color: #334155 !important;
+}
+
+/* ===== KEEP SIDEBAR DARK ===== */
+aside {
+  color: #e2e8f0 !important;
+}
+aside .text-white {
+  color: #ffffff !important;
+}
+aside .text-slate-300,
+aside .text-slate-400,
+aside .text-slate-500 {
+  color: inherit !important;
+}
+aside .border-white\/10,
+aside .border-white\/5 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+aside .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+aside .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+aside .hover\:bg-white\/10:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ===== KEEP MOBILE HEADER DARK ===== */
+.lg\:hidden.bg-brand-900 .text-white {
+  color: #ffffff !important;
+}
+
+/* ===== LOADING SCREEN: KEEP DARK ===== */
+.min-h-screen.bg-white .text-white,
+.min-h-screen.flex.flex-col.items-center .text-white {
+  color: #0f172a !important;
+}
+
+/* ===== HEADER BAR ===== */
+/* Override dark bg-black header to light */
+header.bg-black\/40 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* ===== CHART AND TOOLTIP OVERRIDES ===== */
+/* Keep tooltip text dark */
+.recharts-tooltip-wrapper .text-white {
+  color: #0f172a !important;
+}
+
+/* Keep text in colored buttons white */
+.bg-brand-500 .text-white,
+.bg-brand-600 .text-white,
+.bg-indigo-600 .text-white,
+.bg-emerald-600 .text-white,
+.bg-emerald-500 .text-white,
+.bg-blue-600 .text-white,
+.bg-amber-500 .text-white,
+.bg-rose-500 .text-white {
+  color: #ffffff !important;
+}
+
+/* Keep text in gradient backgrounds readable */
+.bg-gradient-to-br .text-white {
+  color: #0f172a !important;
+}
+.from-slate-900 .text-white,
+.from-brand-950 .text-white,
+.from-indigo-950 .text-white {
+  color: #0f172a !important;
+}
+
+/* Executive Insight Banner - make it contrast well */
+.from-slate-900.via-brand-950 {
+  background: linear-gradient(135deg, #eef2ff 0%, #f0f9ff 50%, #f5f3ff 100%) !important;
+}
+.from-slate-900.via-brand-950 .text-emerald-400 {
+  color: #059669 !important;
+}
+.from-slate-900.via-brand-950 .text-brand-400 {
+  color: #3b82f6 !important;
+}
+.from-slate-900.via-brand-950 .text-slate-300 {
+  color: #475569 !important;
+}
+.from-slate-900.via-brand-950 .text-brand-300 {
+  color: #6366f1 !important;
+}
+.from-slate-900.via-brand-950 .text-amber-300 {
+  color: #d97706 !important;
+}
+
+/* Ring overrides */
+.ring-white\/5,
+.ring-1.ring-white\/5 {
+  --tw-ring-color: rgba(226, 232, 240, 1) !important;
+}
+
+/* Card shadows for light mode */
+.shadow-2xl {
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.06), 0 2px 8px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* ===== FILTER PANEL ===== */
+/* Override dark filter chip/checkbox styles */
+.border-slate-800 {
+  border-color: #cbd5e1 !important;
+}
+.bg-slate-900 {
+  background-color: #f1f5f9 !important;
+}
+/* But keep dropdown option bg dark */
+option.bg-slate-900 {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+/* Backdrop blur background overrides */
+.backdrop-blur-xl,
+.backdrop-blur-3xl,
+.backdrop-blur-2xl {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+}
+
+/* But keep sidebar backdrop dark */
+aside .backdrop-blur-xl,
+aside .backdrop-blur-3xl {
+  background-color: transparent !important;
+}
+
+/* ===== DARK BG OVERRIDES (used in cards) ===== */
+.bg-slate-900\/60 {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+}
+.bg-slate-900\/40 {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+}
+.bg-black\/40 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* ===== IMPROVED CONTRAST: Key colored text ===== */
+.text-brand-400 {
+  color: #2563eb !important;
+}
+.text-brand-500 {
+  color: #1d4ed8 !important;
+}
+.text-emerald-400 {
+  color: #059669 !important;
+}
+.text-amber-400 {
+  color: #d97706 !important;
+}
+.text-amber-300 {
+  color: #b45309 !important;
+}
+.text-blue-400 {
+  color: #2563eb !important;
+}
+.text-indigo-400 {
+  color: #4f46e5 !important;
+}
+.text-rose-400 {
+  color: #e11d48 !important;
+}
+.text-violet-400 {
+  color: #7c3aed !important;
+}
+.text-pink-400 {
+  color: #db2777 !important;
+}
+.text-cyan-400 {
+  color: #0891b2 !important;
+}
+.text-orange-400 {
+  color: #ea580c !important;
+}
+.text-purple-400 {
+  color: #9333ea !important;
+}
+
+/* Keep colored text in sidebar/buttons actual colors */
+aside .text-brand-400 {
+  color: #60a5fa !important;
+}
+aside .text-brand-300 {
+  color: #93c5fd !important;
+}
+aside .text-brand-500 {
+  color: #3b82f6 !important;
+}
+aside .text-emerald-400 {
+  color: #34d399 !important;
+}
+aside .text-amber-400 {
+  color: #fbbf24 !important;
+}
+
+/* Button active states text - keep white */
+button.bg-brand-500 .text-white,
+button.bg-brand-500,
+.bg-brand-500.text-white {
+  color: #ffffff !important;
+}
+
+/* Selected/active buttons need white text */
+button.bg-brand-500 {
+  color: #ffffff !important;
+}
+button.bg-emerald-500 {
+  color: #ffffff !important;
+}
+button.bg-amber-500 {
+  color: #ffffff !important;
+}
+
+/* Pill badges that need white text internally */
+.bg-brand-500 {
+  color: #ffffff !important;
+}
+.bg-emerald-600,
+.bg-blue-600,
+.bg-indigo-600,
+.bg-indigo-500 {
+  color: #ffffff !important;
+}
+
+/* ===== SCROLLBAR LIGHT MODE ===== */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.04);
   border-radius: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.12);
   border-radius: 4px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ===== PURPLE/OPACITY BACKGROUNDS ===== */
+.bg-brand-500\/10 {
+  background-color: rgba(37, 99, 235, 0.08) !important;
+}
+.bg-brand-500\/20 {
+  background-color: rgba(37, 99, 235, 0.12) !important;
+}
+.bg-emerald-500\/10 {
+  background-color: rgba(5, 150, 105, 0.08) !important;
+}
+.bg-emerald-500\/20 {
+  background-color: rgba(5, 150, 105, 0.12) !important;
+}
+.bg-amber-500\/10 {
+  background-color: rgba(217, 119, 6, 0.08) !important;
+}
+.bg-amber-500\/20 {
+  background-color: rgba(217, 119, 6, 0.12) !important;
+}
+.bg-blue-500\/10 {
+  background-color: rgba(37, 99, 235, 0.08) !important;
+}
+.bg-blue-500\/20 {
+  background-color: rgba(37, 99, 235, 0.12) !important;
+}
+.bg-rose-500\/10 {
+  background-color: rgba(225, 29, 72, 0.08) !important;
+}
+.bg-rose-50 {
+  background-color: #fff1f2 !important;
+}
+
+/* ===== ANIMATE PULSE - KEEP COLORED ===== */
+.bg-emerald-400.animate-pulse {
+  background-color: #34d399 !important;
+}
+aside .bg-emerald-400.animate-pulse {
+  background-color: #34d399 !important;
+}
+
+/* ===== GRADIENT TEXT IN CHARTS ===== */
+.recharts-cartesian-grid line {
+  stroke: #e2e8f0 !important;
+}
+.recharts-cartesian-axis-tick text {
+  fill: #64748b !important;
 }

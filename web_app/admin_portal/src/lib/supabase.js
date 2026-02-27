@@ -134,6 +134,19 @@ export async function updateDetailRow(id, payload) {
   return data;
 }
 
+export async function clearDetailRows(daerah, tahun) {
+  console.log(`[Admin] Clearing old detail rows for ${daerah} ${tahun}...`);
+  const { error } = await supabase
+    .from('detail_pad_data')
+    .delete()
+    .eq('daerah', daerah)
+    .eq('tahun', tahun);
+  if (error) {
+    console.error(`[Admin] Clear error:`, error);
+    throw error;
+  }
+}
+
 export async function upsertDetailRows(rows) {
   console.log(`[Admin] Upserting ${rows.length} rows...`);
   const { data, error } = await supabase
@@ -168,10 +181,10 @@ export async function syncPadTotals(daerah, tahun) {
         return { ang: 0, real: 0 };
     };
 
-    const pajak = findValue(['4.1.0.1.0', '4.1.01', '4.1.1']);
-    const retribusi = findValue(['4.1.0.2.0', '4.1.02', '4.1.2']);
-    const pengelolaan = findValue(['4.1.0.3.0', '4.1.03', '4.1.3']);
-    const lain = findValue(['4.1.0.4.0', '4.1.04', '4.1.4']);
+    const pajak = findValue(['PAD-PAJAK']);
+    const retribusi = findValue(['PAD-RETRIBUSI']);
+    const pengelolaan = findValue(['PAD-PENGELOLAAN']);
+    const lain = findValue(['PAD-LAIN']);
 
     const { error: updErr } = await supabase
         .from('pad_data')

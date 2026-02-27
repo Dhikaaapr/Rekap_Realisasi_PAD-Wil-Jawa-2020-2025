@@ -146,6 +146,18 @@ exports.batchImportDetail = async (req, res) => {
       return res.status(400).json({ error: 'No valid pad_data_id found for these regions/years' });
     }
 
+    // 3. Delete existing detail rows for each pad_data_id FIRST to prevent duplicates
+    const uniquePadIds = [...new Set(recordsWithId.map(r => r.pad_data_id))];
+    console.log(`[Backend] Deleting old details for ${uniquePadIds.length} pad_data_id(s) before re-inserting...`);
+    for (const padId of uniquePadIds) {
+      const { error: delError } = await supabase
+        .from('detail_pad_data')
+        .delete()
+        .eq('pad_data_id', padId);
+      if (delError) throw delError;
+    }
+
+    // 4. Insert fresh records
     const { data, error } = await supabase
       .from('detail_pad_data')
       .insert(recordsWithId)

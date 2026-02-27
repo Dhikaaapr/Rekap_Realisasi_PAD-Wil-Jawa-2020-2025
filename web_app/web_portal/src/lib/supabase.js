@@ -377,18 +377,31 @@ export async function fetchSummaryStats(year) {
 export async function fetchDetailDataByCategory(year, categoryKodes = []) {
   if (!categoryKodes || categoryKodes.length === 0) return [];
 
-  let query = supabase
-    .from('detail_pad_data')
-    .select('daerah, tahun, realisasi, anggaran, kategori_kode')
-    .in('kategori_kode', categoryKodes);
+  let allData = [];
+  let from = 0;
+  const pageSize = 1000;
+
+  while (true) {
+    let query = supabase
+      .from('detail_pad_data')
+      .select('daerah, tahun, realisasi, anggaran, kategori_kode')
+      .in('kategori_kode', categoryKodes)
+      .range(from, from + pageSize - 1);
+      
+    if (year && year !== 'all') {
+      query = query.eq('tahun', year);
+    }
+
+    const { data, error } = await query;
+    if (error) throw error;
+    if (!data || data.length === 0) break;
     
-  if (year && year !== 'all') {
-    query = query.eq('tahun', year);
+    allData = allData.concat(data);
+    if (data.length < pageSize) break;
+    from += pageSize;
   }
 
-  const { data, error } = await query;
-  if (error) throw error;
-  return data;
+  return allData;
 }
 
 /**

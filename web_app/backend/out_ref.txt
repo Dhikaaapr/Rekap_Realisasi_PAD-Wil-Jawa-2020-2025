@@ -1,0 +1,22 @@
+[
+  {
+    "kode": "PAD-PAJAK",
+    "parent_kode": null,
+    "tingkat_pemerintahan": "semua"
+  },
+  {
+    "kode": "PAJ-KABKO",
+    "parent_kode": "PAD-PAJAK",
+    "tingkat_pemerintahan": "kabupaten_kota"
+  },
+  {
+    "kode": "PAJ-KK-PBBP2",
+    "parent_kode": "PAJ-KABKO",
+    "tingkat_pemerintahan": "kabupaten_kota"
+  },
+  {
+    "kode": "PBJT-MAKMIN",
+    "parent_kode": "PAJ-KK-PBJT",
+    "tingkat_pemerintahan": "kabupaten_kota"
+  }
+]
