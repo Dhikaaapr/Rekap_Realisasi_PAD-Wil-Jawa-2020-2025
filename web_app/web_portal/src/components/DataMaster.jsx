@@ -6,6 +6,7 @@ import {
   RefreshCw, X, SortAsc, SortDesc, Globe
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import * as XLSX from 'xlsx';
 import { 
   ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell,
   LineChart, Line, Legend
@@ -190,13 +191,51 @@ const DataMaster = ({ allData, onRegionClick, activeMetric = 'rataRataPAD', subD
       d.totalAnggaran, d.totalRealisasi,
       d.capaian.toFixed(1)
     ]);
-    const csv = '\uFEFF' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+    const csv = '\uFEFF' + [headers.join(';'), ...rows.map(r => r.join(';'))].join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = `PAD_Data_${filterYear !== 'all' ? filterYear : 'AllYears'}_${filterType !== 'all' ? filterType : 'All'}.csv`;
     a.click();
+  };
+
+  const handleExportExcel = () => {
+    const exportData = sorted.map((d, i) => ({
+      'No': i + 1,
+      'Wilayah': d.daerah,
+      'Tipe': d.tipe,
+      'Tahun': d.tahun,
+      'Pajak (Realisasi)': d.pajakRealisasi || 0,
+      'Retribusi (Realisasi)': d.retribusiRealisasi || 0,
+      'Pengelolaan (Realisasi)': d.pengelolaanRealisasi || 0,
+      'Lain-lalin (Realisasi)': d.lainPadRealisasi || 0,
+      'Total Anggaran': d.totalAnggaran || 0,
+      'Total Realisasi': d.totalRealisasi || 0,
+      'Capaian (%)': d.capaian.toFixed(2)
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "PAD Data");
+
+    // Auto-width columns
+    const wscols = [
+      { wch: 5 },  // No
+      { wch: 25 }, // Wilayah
+      { wch: 15 }, // Tipe
+      { wch: 10 }, // Tahun
+      { wch: 20 }, // Pajak
+      { wch: 20 }, // Retribusi
+      { wch: 20 }, // Pengelolaan
+      { wch: 20 }, // Lain-lain
+      { wch: 20 }, // Anggaran
+      { wch: 20 }, // Realisasi
+      { wch: 12 }  // Capaian
+    ];
+    worksheet['!cols'] = wscols;
+
+    XLSX.writeFile(workbook, `PAD_Master_Data_${filterYear !== 'all' ? filterYear : 'All_Years'}.xlsx`);
   };
 
   const SortIcon = ({ field }) => {
@@ -280,8 +319,17 @@ const DataMaster = ({ allData, onRegionClick, activeMetric = 'rataRataPAD', subD
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              <button onClick={handleExportCSV} className="flex items-center gap-2 px-4 py-2.5 bg-brand-500 text-white rounded-xl text-xs font-black hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/20">
-                <Download size={13} /> Export CSV
+              <button 
+                onClick={handleExportExcel} 
+                className="flex items-center gap-2 px-4 py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-black hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-500/20"
+              >
+                <FileSpreadsheet size={13} /> Excel
+              </button>
+              <button 
+                onClick={handleExportCSV} 
+                className="flex items-center gap-2 px-4 py-2.5 bg-brand-500 text-white rounded-xl text-xs font-black hover:bg-brand-600 transition-all shadow-lg shadow-brand-500/20"
+              >
+                <Download size={13} /> CSV
               </button>
               {hasActiveFilters && (
                 <button onClick={resetFilters} className="flex items-center gap-1.5 px-3 py-2.5 bg-rose-50 text-rose-600 rounded-xl text-xs font-black hover:bg-rose-100 transition-all">

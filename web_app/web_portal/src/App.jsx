@@ -25,8 +25,11 @@ import {
   Award,
   Filter,
   Layers,
-  AlertTriangle
+  AlertTriangle,
+  FileSpreadsheet,
+  Download
 } from 'lucide-react';
+import * as XLSX from 'xlsx';
 import { fetchPadData, PROVINCE_KABKOTA, fetchKategoriPad, fetchDetailDataByCategory } from './lib/supabase';
 import StatCard from './components/StatCard';
 import RegionCard from './components/RegionCard';
@@ -891,6 +894,108 @@ function App() {
     return categories.find(c => c.kode === codes)?.nama || codes;
   }, [categories, activeMetric]);
 
+  const handleGlobalExport = (type = 'xlsx') => {
+    // Export activeYearData which is already filtered by year and province/kabkota
+    const exportData = filteredData.map((d, index) => ({
+      'No': index + 1,
+      'Wilayah': d.daerah,
+      'Tipe': d.tipe,
+      'Tahun': selectedYear === 'all' ? '2021-2025' : selectedYear,
+      'Pajak (Realisasi)': d.rataRataPajak || 0,
+      'Retribusi (Realisasi)': d.rataRataRetribusi || 0,
+      'Pengelolaan (Realisasi)': d.rataRataPengelolaan || 0,
+      'Lain-lain (Realisasi)': d.rataRataLain || 0,
+      'Total Anggaran': d.rataRataAnggaran || 0,
+      'Total Realisasi': d.rataRataPAD || 0,
+      'Capaian (%)': d.rataRataAnggaran > 0 ? ((d.rataRataPAD / d.rataRataAnggaran) * 100).toFixed(2) : '0.00'
+    }));
+
+    if (exportData.length === 0) return alert('Tidak ada data untuk di-export');
+
+    if (type === 'xlsx') {
+      const worksheet = XLSX.utils.json_to_sheet(exportData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "PAD Data");
+      
+      // Auto-width columns
+      const wscols = [
+        { wch: 5 },  // No
+        { wch: 25 }, // Wilayah
+        { wch: 15 }, // Tipe
+        { wch: 15 }, // Tahun
+        { wch: 20 }, // Pajak
+        { wch: 20 }, // Retribusi
+        { wch: 20 }, // Pengelolaan
+        { wch: 20 }, // Lain-lain
+        { wch: 20 }, // Anggaran
+        { wch: 20 }, // Realisasi
+        { wch: 12 }  // Capaian
+      ];
+      worksheet['!cols'] = wscols;
+
+      XLSX.writeFile(workbook, `PAD_Jawa_Filtered_${selectedYear}.xlsx`);
+    } else {
+      const sep = ';';
+      const headers = Object.keys(exportData[0]).join(sep);
+      const rows = exportData.map(row => 
+        Object.values(row).map(val => (typeof val === 'string' && (val.includes(sep) || val.includes(','))) ? `"${val}"` : val).join(sep)
+      );
+      const csvContent = "\uFEFF" + [headers, ...rows].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `PAD_Jawa_Filtered_${selectedYear}.csv`);
+      link.click();
+    }
+  };
+
+  const handleChartExport = (chartData, title, type = 'xlsx') => {
+    if (!chartData || chartData.length === 0) return alert('Tidak ada data untuk di-export');
+    
+    // Standardize data for export
+    const exportData = chartData.map((d, i) => ({
+      'No': i + 1,
+      'Wilayah': d.daerah || d.name || '',
+      'Tahun': selectedYear === 'all' ? '2021-2025' : selectedYear,
+      'Kategori': title,
+      'Realisasi': d.value || d.compValue || 0,
+      'Capaian (%)': d.capaian ? d.capaian.toFixed(2) : (d.value ? '100' : '0')
+    }));
+
+    if (type === 'xlsx') {
+      const worksheet = XLSX.utils.json_to_sheet(exportData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Chart Data");
+      
+      // Auto-width columns
+      const wscols = [
+        { wch: 5 },  // No
+        { wch: 25 }, // Wilayah
+        { wch: 15 }, // Tahun
+        { wch: 35 }, // Kategori
+        { wch: 20 }, // Realisasi
+        { wch: 15 }  // Capaian
+      ];
+      worksheet['!cols'] = wscols;
+
+      XLSX.writeFile(workbook, `${title.replace(/[:\/\\?*\[\] ]/g, '_')}_${selectedYear}.xlsx`);
+    } else {
+      const sep = ';';
+      const headers = Object.keys(exportData[0]).join(sep);
+      const rows = exportData.map(row => 
+        Object.values(row).map(val => (typeof val === 'string' && (val.includes(sep) || val.includes(','))) ? `"${val}"` : val).join(sep)
+      );
+      const csvContent = "\uFEFF" + [headers, ...rows].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `${title.replace(/[:\/\\?*\[\] ]/g, '_')}_${selectedYear}.csv`);
+      link.click();
+    }
+  };
+
   // =====================
   // LOADING SCREEN
   // =====================
@@ -989,7 +1094,7 @@ function App() {
               <Database size={22} className="text-white" />
             </div>
             <div>
-              <h1 className="font-black text-xl tracking-tight leading-none uppercase">PAD Jawa</h1>
+              <h1 className="font-green text-xl tracking-tight leading-none uppercase">PAD Jawa</h1>
               <p className="text-[9px] text-brand-400 font-bold uppercase tracking-widest mt-0.5">Sistem Rekapitulasi</p>
             </div>
           </div>
@@ -1195,6 +1300,24 @@ function App() {
               )}
 
               {/* Refresh */}
+              <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10">
+                <button 
+                  onClick={() => handleGlobalExport('xlsx')} 
+                  className="px-3 py-1.5 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-all flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider"
+                  title="Export Excel"
+                >
+                  <FileSpreadsheet size={14} /> Excel
+                </button>
+                <div className="w-[1px] h-4 bg-white/10" />
+                <button 
+                  onClick={() => handleGlobalExport('csv')} 
+                  className="px-3 py-1.5 hover:bg-brand-500/20 text-brand-400 rounded-lg transition-all flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider"
+                  title="Export CSV"
+                >
+                  <Download size={14} /> CSV
+                </button>
+              </div>
+
               <button onClick={fetchData} className="p-2.5 bg-white/5 rounded-xl text-slate-400 hover:text-brand-400 hover:bg-white/10 transition-all border border-white/10" title="Refresh Data">
                 <RefreshCw size={16} />
               </button>
@@ -1676,6 +1799,22 @@ function App() {
                               >
                                 Ranking 6 Provinsi: {getCategoryLabel(activeSubMetric)}
                               </h3>
+                              <div className="flex items-center gap-1 ml-auto">
+                                <button
+                                  onClick={() => handleChartExport(provincialRanking, `Ranking 6 Provinsi: ${getCategoryLabel(activeSubMetric)}`, 'xlsx')}
+                                  className="p-1.5 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-all"
+                                  title="Export Excel"
+                                >
+                                  <FileSpreadsheet size={13} />
+                                </button>
+                                <button
+                                  onClick={() => handleChartExport(provincialRanking, `Ranking 6 Provinsi: ${getCategoryLabel(activeSubMetric)}`, 'csv')}
+                                  className="p-1.5 hover:bg-brand-500/20 text-brand-400 rounded-lg transition-all"
+                                  title="Export CSV"
+                                >
+                                  <Download size={13} />
+                                </button>
+                              </div>
                             </div>
 
                             <div className="flex-grow min-h-[300px]">
@@ -1767,13 +1906,26 @@ function App() {
                                 </div>
                                 <h3 
                                   className="text-white font-black text-sm uppercase tracking-widest truncate max-w-[250px] md:max-w-md"
-                                  title={`Analisis Performa: ${getCategoryLabel(activeSubMetric)}`}
                                 >
                                   Analisis Performa: {getCategoryLabel(activeSubMetric)}
                                 </h3>
                               </div>
-                              <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
-                                <span className="text-[10px] font-black text-brand-400 uppercase tracking-tight">{regionalRanking.length} Wilayah Aktif</span>
+                              <div className="flex items-center gap-2">
+                                <button
+                                  onClick={() => handleChartExport(regionalRanking, `Analisis Performa: ${getCategoryLabel(activeSubMetric)}`, 'xlsx')}
+                                  className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600/20 text-emerald-400 border border-emerald-600/30 rounded-xl text-[10px] font-black uppercase hover:bg-emerald-600/30 transition-all"
+                                >
+                                  <FileSpreadsheet size={12} /> Excel
+                                </button>
+                                <button
+                                  onClick={() => handleChartExport(regionalRanking, `Analisis Performa: ${getCategoryLabel(activeSubMetric)}`, 'csv')}
+                                  className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-500/20 text-brand-400 border border-brand-500/30 rounded-xl text-[10px] font-black uppercase hover:bg-brand-500/30 transition-all"
+                                >
+                                  <Download size={12} /> CSV
+                                </button>
+                                <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/5">
+                                  <span className="text-[10px] font-black text-brand-400 uppercase tracking-tight">{regionalRanking.length} Wilayah Aktif</span>
+                                </div>
                               </div>
                             </div>
 
@@ -1955,6 +2107,22 @@ function App() {
                                     {formatCurrencyShort(totalRealisasi)}
                                   </span>
                                 </div>
+                                <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-2">
+                                  <button
+                                    onClick={() => handleChartExport(compTop10, `Top 10: ${compName}`, 'xlsx')}
+                                    className="p-1.5 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-all"
+                                    title="Export Excel"
+                                  >
+                                    <FileSpreadsheet size={12} />
+                                  </button>
+                                  <button
+                                    onClick={() => handleChartExport(compTop10, `Top 10: ${compName}`, 'csv')}
+                                    className="p-1.5 hover:bg-brand-500/20 text-brand-400 rounded-lg transition-all"
+                                    title="Export CSV"
+                                  >
+                                    <Download size={12} />
+                                  </button>
+                                </div>
                               </div>
                               <div className="h-[280px]">
                                 <ResponsiveContainer width="100%" height="100%">
@@ -2011,17 +2179,32 @@ function App() {
                                 }`
                               : `${METRICS.find(m => m.id === activeMetric)?.label}`}
                           >
-                            <BarChart3 size={16} className="text-emerald-500 shrink-0" /> 
-                            <span className="truncate">
-                              Top 10 Kab/Kota: {activeSubMetric !== 'all' 
-                                ? (Array.isArray(activeSubMetric) 
-                                    ? (activeSubMetric.length === 1 
-                                        ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0]) 
-                                        : `${activeSubMetric.length} Komponen`) 
-                                    : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)) 
-                                : METRICS.find(m => m.id === activeMetric)?.label} ({selectedYear === 'all' ? 'Semua Periode' : selectedYear})
-                            </span>
-                          </h3>
+                            <BarChart3 size={16} className="text-emerald-500 shrink-0" />                             <span className="truncate">
+                               Top 10 Kab/Kota: {activeSubMetric !== 'all' 
+                                 ? (Array.isArray(activeSubMetric) 
+                                     ? (activeSubMetric.length === 1 
+                                         ? (categories.find(c => c.kode === activeSubMetric[0])?.nama || activeSubMetric[0]) 
+                                         : `${activeSubMetric.length} Komponen`) 
+                                     : (categories.find(c => c.kode === activeSubMetric)?.nama || activeSubMetric)) 
+                                 : METRICS.find(m => m.id === activeMetric)?.label} ({selectedYear === 'all' ? 'Semua Periode' : selectedYear})
+                             </span>
+                           </h3>
+                          <div className="flex items-center gap-1.5 ml-auto absolute top-6 right-6">
+                            <button
+                              onClick={() => handleChartExport(top10KabKota, `Top 10 KabKota ${activeSubMetric}`, 'xlsx')}
+                              className="p-1.5 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-all"
+                              title="Export Excel"
+                            >
+                              <FileSpreadsheet size={14} />
+                            </button>
+                            <button
+                              onClick={() => handleChartExport(top10KabKota, `Top 10 KabKota ${activeSubMetric}`, 'csv')}
+                              className="p-1.5 hover:bg-brand-500/20 text-brand-400 rounded-lg transition-all"
+                              title="Export CSV"
+                            >
+                              <Download size={14} />
+                            </button>
+                          </div>
                           <div className="h-[280px]">
                             <ResponsiveContainer width="100%" height="100%">
                               <BarChart data={top10KabKota} margin={{ top: 0, right: 0, left: -20, bottom: 40 }}>
@@ -2184,18 +2367,31 @@ function App() {
                             </p>
                           </div>
                           
-                          <div className="flex items-center gap-4 bg-white/5 px-6 py-4 rounded-[2rem] border border-white/5">
-                            <div className="text-right">
-                              <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Realisasi</p>
-                              <p className="text-xl font-black text-white">
-                                {formatCurrencyShort(Object.values(regionalSubData).reduce((acc, d) => acc + (d.realisasi || 0), 0))}
-                              </p>
+                            <div className="flex items-center gap-4 bg-white/5 pl-6 pr-4 py-4 rounded-[2rem] border border-white/5">
+                              <div className="text-right">
+                                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Realisasi</p>
+                                <p className="text-xl font-black text-white">
+                                  {formatCurrencyShort(Object.values(regionalSubData).reduce((acc, d) => acc + (d.realisasi || 0), 0))}
+                                </p>
+                              </div>
+                              <div className="w-px h-10 bg-white/10" />
+                              <div className="flex flex-col gap-1">
+                                <button
+                                  onClick={() => handleChartExport(activeYearData.sort((a,b)=>b[activeMetric]-a[activeMetric]).slice(0, 20).map(d=>({daerah:d.daerah, value:d[activeMetric]})), `${categories.find(c => c.kode === activeSubMetric)?.nama || 'Rincian'}`, 'xlsx')}
+                                  className="p-2 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-all flex items-center justify-center border border-white/5"
+                                  title="Export Excel"
+                                >
+                                  <FileSpreadsheet size={14} />
+                                </button>
+                                <button
+                                  onClick={() => handleChartExport(activeYearData.sort((a,b)=>b[activeMetric]-a[activeMetric]).slice(0, 20).map(d=>({daerah:d.daerah, value:d[activeMetric]})), `${categories.find(c => c.kode === activeSubMetric)?.nama || 'Rincian'}`, 'csv')}
+                                  className="p-2 hover:bg-brand-500/20 text-brand-400 rounded-lg transition-all flex items-center justify-center border border-white/5"
+                                  title="Export CSV"
+                                >
+                                  <Download size={14} />
+                                </button>
+                              </div>
                             </div>
-                            <div className="w-px h-10 bg-white/10" />
-                            <div className="bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-500/30">
-                              <span className="text-[10px] font-black text-emerald-400">DETAIL</span>
-                            </div>
-                          </div>
                         </div>
 
                         <div className="h-[400px] w-full bg-slate-900/40 rounded-[2rem] p-6 border border-white/5 shadow-inner">
@@ -2282,7 +2478,7 @@ function App() {
                         </div>
                       </div>
                     </motion.div>
-                  )}
+                )}
 
                   {/* COLLAPSIBLE DATA SECTIONS */}
                   <div className="space-y-3">

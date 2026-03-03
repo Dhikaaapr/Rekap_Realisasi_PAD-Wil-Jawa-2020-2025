@@ -39,6 +39,7 @@ import {
   Cell
 } from 'recharts';
 import { motion, AnimatePresence } from 'framer-motion';
+import * as XLSX from 'xlsx';
 import { fetchDetailData, fetchKategoriPad } from '../lib/supabase';
 
 const formatCurrency = (val) => {
@@ -293,6 +294,46 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
   const resetComponentFilter = () => {
     setSelectedCodes(null);
     setTempSelectedCodes(new Set());
+  };
+
+  const handleExport = (type = 'xlsx') => {
+    // 1. Prepare data (flat structure for export)
+    const exportData = filteredDetails.map((d, index) => ({
+      'No': index + 1,
+      'Kode': d.kategori_kode,
+      'Komponen': d.ref_kategori_pad?.nama || '',
+      'Kategori Utama': d.ref_kategori_pad?.kategori_utama || '',
+      'Sub Kategori': d.ref_kategori_pad?.sub_kategori || '',
+      'Anggaran': d.anggaran || 0,
+      'Realisasi': d.realisasi || 0,
+      'Capaian (%)': d.anggaran > 0 ? ((d.realisasi / d.anggaran) * 100).toFixed(2) : '0.00'
+    }));
+
+    if (type === 'xlsx') {
+      const worksheet = XLSX.utils.json_to_sheet(exportData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "LRA Detail");
+      
+      // Auto-width for columns
+      const max_width = exportData.reduce((w, r) => Math.max(w, r.Komponen.length), 10);
+      worksheet["!cols"] = [ { wch: 5 }, { wch: 15 }, { wch: max_width + 5 }, { wch: 20 }, { wch: 20 }, { wch: 15 }, { wch: 15 }, { wch: 12 } ];
+      
+      XLSX.writeFile(workbook, `LRA_${region.daerah}_${activeYearTab}.xlsx`);
+    } else {
+      // CSV Export
+      const sep = ';';
+      const headers = Object.keys(exportData[0]).join(sep);
+      const rows = exportData.map(row => 
+        Object.values(row).map(val => (typeof val === 'string' && (val.includes(sep) || val.includes(','))) ? `"${val}"` : val).join(sep)
+      );
+      const csvContent = "\uFEFF" + [headers, ...rows].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `LRA_${region.daerah}_${activeYearTab}.csv`);
+      link.click();
+    }
   };
 
   const leafNodes = React.useMemo(() => {
@@ -788,17 +829,17 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
                           : 'bg-white/5 text-slate-400 border-white/10 hover:bg-white/10'
                       }`}
                     >
-                      <List size={12} /> Filter Komponen {selectedCodes && `(${selectedCodes.size})`}
-                    </button>
+                    <List size={12} /> Filter Komponen {selectedCodes && `(${selectedCodes.size})`}
+                  </button>
 
-                    <AnimatePresence>
-                      {isFilterOpen && (
-                        <motion.div 
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          className="absolute right-0 mt-2 w-72 bg-slate-900 border border-white/10 rounded-2xl shadow-2xl z-50 p-4"
-                        >
+                  <AnimatePresence>
+                    {isFilterOpen && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        className="absolute right-0 mt-2 w-72 bg-slate-900 border border-white/10 rounded-2xl shadow-2xl z-50 p-4"
+                      >
                           <div className="flex items-center justify-between mb-3">
                             <h5 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Pilih Komponen</h5>
                             <button 
@@ -865,6 +906,21 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
                   >
                     {viewMode === 'hierarchy' ? <><LayoutGrid size={12} /> Grid</> : <><List size={12} /> Tree</>}
                   </button>
+
+                  <div className="flex items-center gap-1.5 ml-auto border-l border-white/10 pl-3">
+                    <button 
+                      onClick={() => handleExport('xlsx')}
+                      className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[10px] font-black bg-emerald-600/20 text-emerald-400 border border-emerald-600/30 hover:bg-emerald-600/30 transition-all shadow-lg shadow-emerald-600/5 group"
+                    >
+                      <FileSpreadsheet size={12} className="group-hover:scale-110 transition-transform" /> Excel
+                    </button>
+                    <button 
+                      onClick={() => handleExport('csv')}
+                      className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[10px] font-black bg-brand-500/20 text-brand-400 border border-brand-500/30 hover:bg-brand-500/30 transition-all group"
+                    >
+                      <Download size={12} className="group-hover:translate-y-0.5 transition-transform" /> CSV
+                    </button>
+                  </div>
                 </div>
               </div>
 

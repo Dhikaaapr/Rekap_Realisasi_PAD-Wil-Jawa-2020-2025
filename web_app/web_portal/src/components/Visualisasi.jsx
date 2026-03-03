@@ -19,8 +19,11 @@ import {
   Map, 
   TrendingUp, 
   Sparkles, 
-  ArrowUpRight 
+  ArrowUpRight,
+  FileSpreadsheet,
+  Download
 } from 'lucide-react';
+import * as XLSX from 'xlsx';
 import AiAnalysisPanel from './AiAnalysisPanel';
 
 const Visualisasi = ({ 
@@ -155,14 +158,75 @@ const Visualisasi = ({
 
   const aiData = staticAiData || dynamicAiData;
 
+  const handleChartExport = (chartData, title, type = 'xlsx') => {
+    if (!chartData || chartData.length === 0) return alert('Tidak ada data untuk di-export');
+    
+    const exportData = chartData.map((d, i) => ({
+      'No': i + 1,
+      'Wilayah': d.daerah || d.name || '',
+      'Tahun': selectedYear === 'all' ? '2021-2025' : selectedYear,
+      'Kategori': title,
+      'Realisasi': d.value || 0,
+    }));
+
+    if (type === 'xlsx') {
+      const worksheet = XLSX.utils.json_to_sheet(exportData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Chart Data");
+      
+      // Auto-width columns
+      const wscols = [
+        { wch: 5 },  // No
+        { wch: 25 }, // Wilayah
+        { wch: 15 }, // Tahun
+        { wch: 40 }, // Kategori
+        { wch: 20 }, // Realisasi
+      ];
+      worksheet['!cols'] = wscols;
+
+      XLSX.writeFile(workbook, `${title.replace(/[:\/\\?*\[\] ]/g, '_')}_${selectedYear}.xlsx`);
+    } else {
+      const sep = ';';
+      const headers = Object.keys(exportData[0]).join(sep);
+      const rows = exportData.map(row => 
+        Object.values(row).map(val => (typeof val === 'string' && (val.includes(sep) || val.includes(','))) ? `"${val}"` : val).join(sep)
+      );
+      const csvContent = "\uFEFF" + [headers, ...rows].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `${title.replace(/[:\/\\?*\[\] ]/g, '_')}_${selectedYear}.csv`);
+      link.click();
+    }
+  };
+
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 md:space-y-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
         {/* Top 10 Kab/Kota */}
         <div className="bg-white p-5 md:p-10 rounded-[24px] md:rounded-[32px] shadow-sm ring-1 ring-slate-100 flex flex-col h-full">
-          <h3 className="text-lg md:text-xl font-black text-slate-900 mb-6 md:mb-8 flex items-center gap-3">
-            <BarChart3 className="text-emerald-500" /> Analisis Kab/Kota: {metricLabel}
-          </h3>
+          <div className="flex items-center justify-between mb-6 md:mb-8">
+            <h3 className="text-lg md:text-xl font-black text-slate-900 flex items-center gap-3">
+              <BarChart3 className="text-emerald-500" /> Analisis Kab/Kota: {metricLabel}
+            </h3>
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => handleChartExport(chartDataKabKota, `Top 10 KabKota ${metricLabel}`, 'xlsx')}
+                className="p-1.5 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-all"
+                title="Export Excel"
+              >
+                <FileSpreadsheet size={16} />
+              </button>
+              <button
+                onClick={() => handleChartExport(chartDataKabKota, `Top 10 KabKota ${metricLabel}`, 'csv')}
+                className="p-1.5 hover:bg-slate-100 text-slate-400 rounded-lg transition-all"
+                title="Export CSV"
+              >
+                <Download size={16} />
+              </button>
+            </div>
+          </div>
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-6">Peringkat 10 Wilayah Tertinggi</p>
           <div className="flex-grow min-h-[400px] w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -225,9 +289,27 @@ const Visualisasi = ({
 
         {/* Top Provinces */}
         <div className="bg-white p-5 md:p-10 rounded-[24px] md:rounded-[32px] shadow-sm ring-1 ring-slate-100 flex flex-col h-full">
-          <h3 className="text-lg md:text-xl font-black text-slate-900 mb-6 md:mb-8 flex items-center gap-3">
-            <BarChart3 className="text-blue-500" /> Analisis Provinsi: {metricLabel}
-          </h3>
+          <div className="flex items-center justify-between mb-6 md:mb-8">
+            <h3 className="text-lg md:text-xl font-black text-slate-900 flex items-center gap-3">
+              <BarChart3 className="text-blue-500" /> Analisis Provinsi: {metricLabel}
+            </h3>
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => handleChartExport(chartDataProvinces, `Top 6 Provinsi ${metricLabel}`, 'xlsx')}
+                className="p-1.5 hover:bg-blue-500/20 text-blue-400 rounded-lg transition-all"
+                title="Export Excel"
+              >
+                <FileSpreadsheet size={16} />
+              </button>
+              <button
+                onClick={() => handleChartExport(chartDataProvinces, `Top 6 Provinsi ${metricLabel}`, 'csv')}
+                className="p-1.5 hover:bg-slate-100 text-slate-400 rounded-lg transition-all"
+                title="Export CSV"
+              >
+                <Download size={16} />
+              </button>
+            </div>
+          </div>
            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-6">Peringkat 6 Provinsi se-Jawa</p>
           <div className="flex-grow min-h-[400px] w-full">
             <ResponsiveContainer width="100%" height="100%">
