@@ -895,103 +895,281 @@ function App() {
   }, [categories, activeMetric]);
 
   const handleGlobalExport = (type = 'xlsx') => {
-    // Export activeYearData which is already filtered by year and province/kabkota
-    const exportData = filteredData.map((d, index) => ({
-      'No': index + 1,
-      'Wilayah': d.daerah,
-      'Tipe': d.tipe,
-      'Tahun': selectedYear === 'all' ? '2021-2025' : selectedYear,
-      'Pajak (Realisasi)': d.rataRataPajak || 0,
-      'Retribusi (Realisasi)': d.rataRataRetribusi || 0,
-      'Pengelolaan (Realisasi)': d.rataRataPengelolaan || 0,
-      'Lain-lain (Realisasi)': d.rataRataLain || 0,
-      'Total Anggaran': d.rataRataAnggaran || 0,
-      'Total Realisasi': d.rataRataPAD || 0,
-      'Capaian (%)': d.rataRataAnggaran > 0 ? ((d.rataRataPAD / d.rataRataAnggaran) * 100).toFixed(2) : '0.00'
-    }));
+    const isAllYears = selectedYear === 'all';
+    const tahunLabel = isAllYears ? '2021-2025' : String(selectedYear);
+    const YEARS = [2021, 2022, 2023, 2024, 2025];
+
+    // Helper: ambil nama kategori dari kode
+    const getCodeName = (code) => {
+      const cat = categories.find(c => c.kode === code);
+      return cat ? cat.nama : code;
+    };
+
+    // Helper: buat column widths dari array key nama
+    const buildWscols = (keys) =>
+      keys.map(k => ({ wch: k === 'No' ? 5 : k === 'Wilayah' ? 28 : k === 'Tipe' ? 14 : k === 'Periode' ? 14 : 22 }));
+
+    // Helper: CSV download dari array of objects
+    const downloadCsv = (rows, filename) => {
+      if (!rows || rows.length === 0) return;
+      const sep = ';';
+      const headers = Object.keys(rows[0]).join(sep);
+      const lines = rows.map(row =>
+        Object.values(row).map(val =>
+          (typeof val === 'string' && (val.includes(sep) || val.includes(','))) ? `"${val}"` : val
+        ).join(sep)
+      );
+      const csvContent = '\uFEFF' + [headers, ...lines].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', filename);
+      link.click();
+    };
+
+    // ── CASE 1: Multiple sub-metrics dipilih → multi-sheet / gabungan ────────
+    const activeCodes = Array.isArray(activeSubMetric)
+      ? activeSubMetric
+      : (activeSubMetric !== 'all' ? [activeSubMetric] : []);
+    const hasMultiComp = activeCodes.length > 1 && Object.keys(perComponentSubData).length > 0;
+
+    if (hasMultiComp) {
+      const metricLabel = METRICS.find(m => m.id === activeMetric)?.label || 'Data';
+      const baseName = `${metricLabel.replace(/\s+/g, '_')}_Detail_Jawa_${tahunLabel}`;
+
+      if (filteredData.length === 0) return alert('Tidak ada data untuk di-export');
+
+      // ── Buat baris GABUNGAN: semua wilayah vs semua komponen sebagai kolom ──
+      const summaryRows = filteredData.map((d, index) => {
+        const row = {
+          'No': index + 1,
+          'Wilayah': d.daerah,
+          'Tipe': d.tipe,
+          'Periode': tahunLabel,
+        };
+        let total = 0;
+        activeCodes.forEach(code => {
+          const val = perComponentSubData[code]?.[d.daerah]?.realisasi || 0;
+          row[getCodeName(code)] = val;
+          total += val;
+        });
+        row['Total Gabungan'] = total;
+        return row;
+      });
+
+      if (type === 'xlsx') {
+        const workbook = XLSX.utils.book_new();
+
+        // Sheet 1: Gabungan
+        const wsGab = XLSX.utils.json_to_sheet(summaryRows);
+        wsGab['!cols'] = buildWscols(Object.keys(summaryRows[0]));
+        XLSX.utils.book_append_sheet(workbook, wsGab, 'Gabungan');
+
+        // Sheet 2+: Per komponen
+        activeCodes.forEach(code => {
+          const compMap = perComponentSubData[code] || {};
+          const name = getCodeName(code);
+          // Excel sheet name: max 31 chars, no []:*?/\
+          const safeSheet = name.replace(/[\[\]:*?\/\\]/g, '').substring(0, 31);
+
+          const rows = filteredData.map((d, index) => ({
+            'No': index + 1,
+            'Wilayah': d.daerah,
+            'Tipe': d.tipe,
+            'Periode': tahunLabel,
+            [`Realisasi ${name}`]: compMap[d.daerah]?.realisasi || 0,
+          }));
+
+          const ws = XLSX.utils.json_to_sheet(rows);
+          ws['!cols'] = buildWscols(Object.keys(rows[0]));
+          XLSX.utils.book_append_sheet(workbook, ws, safeSheet);
+        });
+
+        XLSX.writeFile(workbook, `${baseName}.xlsx`);
+      } else {
+        // CSV: export format gabungan (CSV tidak support multi-sheet)
+        downloadCsv(summaryRows, `${baseName}.csv`);
+      }
+      return;
+    }
+
+    // ── CASE 1b: Single sub-metric dipilih → export data rincian komponen itu ──
+    const hasSingleComp = activeCodes.length === 1 && Object.keys(regionalSubData).length > 0;
+
+    if (hasSingleComp) {
+      const code = activeCodes[0];
+      const name = getCodeName(code);
+      const metricLabel = METRICS.find(m => m.id === activeMetric)?.label || 'Data';
+      const baseName = `${name.replace(/\s+/g, '_')}_Jawa_${tahunLabel}`;
+
+      if (filteredData.length === 0) return alert('Tidak ada data untuk di-export');
+
+      const rows = filteredData.map((d, index) => ({
+        'No': index + 1,
+        'Wilayah': d.daerah,
+        'Tipe': d.tipe,
+        'Periode': tahunLabel,
+        [`Realisasi ${name}`]: regionalSubData[d.daerah]?.realisasi || 0,
+        [`Anggaran ${name}`]: regionalSubData[d.daerah]?.anggaran || 0,
+      }));
+
+      const safeSheet = name.replace(/[\[\]:*?\/\\]/g, '').substring(0, 31);
+
+      if (type === 'xlsx') {
+        const workbook = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(rows);
+        ws['!cols'] = buildWscols(Object.keys(rows[0]));
+        XLSX.utils.book_append_sheet(workbook, ws, safeSheet);
+        XLSX.writeFile(workbook, `${baseName}.xlsx`);
+      } else {
+        downloadCsv(rows, `${baseName}.csv`);
+      }
+      return;
+    }
+
+    // ── CASE 2: Tidak ada sub-metric → export berdasarkan tab metric aktif
+    const METRIC_CONFIG = {
+      rataRataPajak: {
+        label: 'Pajak Daerah',
+        fileTag: 'Pajak_Daerah',
+        sheetName: 'Pajak Daerah',
+        realisasiKey: 'rataRataPajak',
+        yearlyKey: 'yearlyPajak',
+        anggaranKey: null,
+      },
+      rataRataRetribusi: {
+        label: 'Retribusi Daerah',
+        fileTag: 'Retribusi_Daerah',
+        sheetName: 'Retribusi Daerah',
+        realisasiKey: 'rataRataRetribusi',
+        yearlyKey: 'yearlyRetribusi',
+        anggaranKey: null,
+      },
+      rataRataPengelolaan: {
+        label: 'Pengelolaan Kekayaan',
+        fileTag: 'Pengelolaan',
+        sheetName: 'Pengelolaan',
+        realisasiKey: 'rataRataPengelolaan',
+        yearlyKey: 'yearlyPengelolaan',
+        anggaranKey: null,
+      },
+      rataRataLain: {
+        label: 'Lain-lain PAD',
+        fileTag: 'Lain-lain_PAD',
+        sheetName: 'Lain-lain PAD',
+        realisasiKey: 'rataRataLain',
+        yearlyKey: 'yearlyLain',
+        anggaranKey: null,
+      },
+      rataRataPAD: {
+        label: 'Total PAD',
+        fileTag: 'Total_PAD',
+        sheetName: 'PAD Data',
+        realisasiKey: 'rataRataPAD',
+        yearlyKey: 'yearly',
+        anggaranKey: 'rataRataAnggaran',
+      },
+    };
+
+    const conf = METRIC_CONFIG[activeMetric] || METRIC_CONFIG['rataRataPAD'];
+    const fileName = `${conf.fileTag}_Jawa_${tahunLabel}`;
+
+    const exportData = filteredData.map((d, index) => {
+      const realisasi = d[conf.realisasiKey] || 0;
+      const anggaran = conf.anggaranKey ? (d[conf.anggaranKey] || 0) : 0;
+      const capaian = anggaran > 0 ? ((realisasi / anggaran) * 100).toFixed(2) : '0.00';
+
+      if (activeMetric === 'rataRataPAD') {
+        const row = {
+          'No': index + 1,
+          'Wilayah': d.daerah,
+          'Tipe': d.tipe,
+          'Periode': tahunLabel,
+          'Pajak Realisasi': d.rataRataPajak || 0,
+          'Retribusi Realisasi': d.rataRataRetribusi || 0,
+          'Pengelolaan Realisasi': d.rataRataPengelolaan || 0,
+          'Lain-lain Realisasi': d.rataRataLain || 0,
+          'Total Realisasi': realisasi,
+          'Total Anggaran': anggaran,
+          'Capaian (%)': capaian,
+        };
+        if (isAllYears && d.yearly) {
+          YEARS.forEach(yr => { row[`Realisasi ${yr}`] = d.yearly[yr] || 0; });
+        }
+        return row;
+      } else {
+        const row = {
+          'No': index + 1,
+          'Wilayah': d.daerah,
+          'Tipe': d.tipe,
+          'Periode': tahunLabel,
+          [`Realisasi ${conf.label}`]: realisasi,
+        };
+        if (isAllYears && d[conf.yearlyKey]) {
+          YEARS.forEach(yr => { row[`${conf.label} ${yr}`] = d[conf.yearlyKey][yr] || 0; });
+        }
+        return row;
+      }
+    });
 
     if (exportData.length === 0) return alert('Tidak ada data untuk di-export');
 
     if (type === 'xlsx') {
-      const worksheet = XLSX.utils.json_to_sheet(exportData);
       const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "PAD Data");
-      
-      // Auto-width columns
-      const wscols = [
-        { wch: 5 },  // No
-        { wch: 25 }, // Wilayah
-        { wch: 15 }, // Tipe
-        { wch: 15 }, // Tahun
-        { wch: 20 }, // Pajak
-        { wch: 20 }, // Retribusi
-        { wch: 20 }, // Pengelolaan
-        { wch: 20 }, // Lain-lain
-        { wch: 20 }, // Anggaran
-        { wch: 20 }, // Realisasi
-        { wch: 12 }  // Capaian
-      ];
-      worksheet['!cols'] = wscols;
-
-      XLSX.writeFile(workbook, `PAD_Jawa_Filtered_${selectedYear}.xlsx`);
+      const worksheet = XLSX.utils.json_to_sheet(exportData);
+      worksheet['!cols'] = buildWscols(Object.keys(exportData[0]));
+      XLSX.utils.book_append_sheet(workbook, worksheet, conf.sheetName);
+      XLSX.writeFile(workbook, `${fileName}.xlsx`);
     } else {
-      const sep = ';';
-      const headers = Object.keys(exportData[0]).join(sep);
-      const rows = exportData.map(row => 
-        Object.values(row).map(val => (typeof val === 'string' && (val.includes(sep) || val.includes(','))) ? `"${val}"` : val).join(sep)
-      );
-      const csvContent = "\uFEFF" + [headers, ...rows].join('\n');
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.setAttribute("href", url);
-      link.setAttribute("download", `PAD_Jawa_Filtered_${selectedYear}.csv`);
-      link.click();
+      downloadCsv(exportData, `${fileName}.csv`);
     }
   };
 
   const handleChartExport = (chartData, title, type = 'xlsx') => {
     if (!chartData || chartData.length === 0) return alert('Tidak ada data untuk di-export');
-    
-    // Standardize data for export
+
+    // Label kolom realisasi sesuai metric yang aktif
+    const METRIC_LABELS = {
+      rataRataPajak:       'Realisasi Pajak Daerah',
+      rataRataRetribusi:   'Realisasi Retribusi Daerah',
+      rataRataPengelolaan: 'Realisasi Pengelolaan',
+      rataRataLain:        'Realisasi Lain-lain PAD',
+      rataRataPAD:         'Realisasi Total PAD',
+    };
+    const realisasiLabel = METRIC_LABELS[activeMetric] || 'Realisasi';
+    const tahunLabel = selectedYear === 'all' ? '2021-2025' : String(selectedYear);
+    const safeTitle = title.replace(/[:\/\\?*\[\] ]/g, '_');
+
     const exportData = chartData.map((d, i) => ({
       'No': i + 1,
       'Wilayah': d.daerah || d.name || '',
-      'Tahun': selectedYear === 'all' ? '2021-2025' : selectedYear,
-      'Kategori': title,
-      'Realisasi': d.value || d.compValue || 0,
-      'Capaian (%)': d.capaian ? d.capaian.toFixed(2) : (d.value ? '100' : '0')
+      'Periode': tahunLabel,
+      [realisasiLabel]: d.value || d.compValue || 0,
     }));
 
     if (type === 'xlsx') {
       const worksheet = XLSX.utils.json_to_sheet(exportData);
       const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Chart Data");
-      
-      // Auto-width columns
-      const wscols = [
-        { wch: 5 },  // No
-        { wch: 25 }, // Wilayah
-        { wch: 15 }, // Tahun
-        { wch: 35 }, // Kategori
-        { wch: 20 }, // Realisasi
-        { wch: 15 }  // Capaian
-      ];
-      worksheet['!cols'] = wscols;
-
-      XLSX.writeFile(workbook, `${title.replace(/[:\/\\?*\[\] ]/g, '_')}_${selectedYear}.xlsx`);
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Chart Data');
+      worksheet['!cols'] = Object.keys(exportData[0]).map(k =>
+        ({ wch: k === 'No' ? 5 : k === 'Wilayah' ? 28 : k === 'Periode' ? 14 : 30 })
+      );
+      XLSX.writeFile(workbook, `${safeTitle}_${tahunLabel}.xlsx`);
     } else {
       const sep = ';';
       const headers = Object.keys(exportData[0]).join(sep);
-      const rows = exportData.map(row => 
-        Object.values(row).map(val => (typeof val === 'string' && (val.includes(sep) || val.includes(','))) ? `"${val}"` : val).join(sep)
+      const rows = exportData.map(row =>
+        Object.values(row).map(val =>
+          (typeof val === 'string' && (val.includes(sep) || val.includes(','))) ? `"${val}"` : val
+        ).join(sep)
       );
-      const csvContent = "\uFEFF" + [headers, ...rows].join('\n');
+      const csvContent = '\uFEFF' + [headers, ...rows].join('\n');
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.setAttribute("href", url);
-      link.setAttribute("download", `${title.replace(/[:\/\\?*\[\] ]/g, '_')}_${selectedYear}.csv`);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `${safeTitle}_${tahunLabel}.csv`);
       link.click();
     }
   };
@@ -1094,7 +1272,7 @@ function App() {
               <Database size={22} className="text-white" />
             </div>
             <div>
-              <h1 className="font-green text-xl tracking-tight leading-none uppercase">PAD Jawa</h1>
+              <h1 className="text-force-white font-black text-xl tracking-tight leading-none uppercase">PAD Jawa</h1>
               <p className="text-[9px] text-brand-400 font-bold uppercase tracking-widest mt-0.5">Sistem Rekapitulasi</p>
             </div>
           </div>

@@ -17,7 +17,8 @@ import {
   Search,
   RefreshCw,
   Download,
-  Maximize2
+  Maximize2,
+  FileSpreadsheet
 } from 'lucide-react';
 import { 
   BarChart, 
