@@ -44,31 +44,24 @@ const Visualisasi = ({
   
   const pieData = useMemo(() => {
     if (!activeInsight || activeInsight.tipe !== 'Provinsi') {
-       return [
-        { name: 'Provinsi', value: data.filter(d => d.tipe === 'Provinsi').length },
-        { name: 'Kabupaten', value: data.filter(d => d.tipe === 'Kabupaten').length },
-        { name: 'Kota', value: data.filter(d => d.tipe === 'Kota').length },
-      ];
+      const sumData = (type) => data.filter(d => d.tipe === type).reduce((acc, d) => acc + (d[activeMetric] || 0), 0);
+      return [
+        { name: 'Pemerintah Provinsi', value: sumData('Provinsi'), color: '#1e1b4b' },
+        { name: 'Pemerintah Kabupaten', value: sumData('Kabupaten'), color: '#10b981' },
+        { name: 'Pemerintah Kota', value: sumData('Kota'), color: '#3b82f6' },
+      ].filter(d => d.value > 0);
     }
     
     // Filter children of the current province
     const children = data.filter(d => d.tipe !== 'Provinsi' && getProvinceName(d.daerah) === currentProvince);
-    const kabCount = children.filter(d => d.tipe === 'Kabupaten').length;
-    const kotaCount = children.filter(d => d.tipe === 'Kota').length;
+    const sumChildren = (type) => children.filter(d => d.tipe === type).reduce((acc, d) => acc + (d[activeMetric] || 0), 0);
     
-    // If no children found (maybe mismatched name), fallback to global view but restricted to that province type if needed, or just 0
-    if (kabCount === 0 && kotaCount === 0) {
-       return [
-        { name: 'Kabupaten', value: 0 },
-        { name: 'Kota', value: 0 }, 
-       ]
-    }
-
     return [
-      { name: 'Kabupaten', value: kabCount },
-      { name: 'Kota', value: kotaCount },
-    ];
-  }, [data, activeInsight, currentProvince, getProvinceName]);
+      { name: `Pemprov ${currentProvince}`, value: activeInsight[activeMetric] || 0, color: '#f59e0b' },
+      { name: 'Seluruh Kabupaten', value: sumChildren('Kabupaten'), color: '#10b981' },
+      { name: 'Seluruh Kota', value: sumChildren('Kota'), color: '#3b82f6' },
+    ].filter(d => d.value > 0);
+  }, [data, activeInsight, currentProvince, getProvinceName, activeMetric]);
 
   // Helper for formatting
   const formatValue = (val) => {
@@ -385,41 +378,29 @@ const Visualisasi = ({
                 <PieChart>
                   <Pie
                     data={pieData}
-                    innerRadius={50}
-                    outerRadius={80}
-                    paddingAngle={5}
+                    innerRadius={60}
+                    outerRadius={90}
+                    paddingAngle={3}
                     dataKey="value"
                   >
-                    {activeInsight?.tipe === 'Provinsi' ? (
-                      <>
-                        <Cell fill="#10b981" />
-                        <Cell fill="#3b82f6" />
-                      </>
-                    ) : (
-                      <>
-                        <Cell fill="#1e1b4b" />
-                        <Cell fill="#10b981" />
-                        <Cell fill="#3b82f6" />
-                      </>
-                    )}
+                    {pieData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
                   </Pie>
-                  <Tooltip />
+                  <Tooltip 
+                    formatter={(val) => [formatValue(val), 'Kontribusi PAD']} 
+                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', fontSize: '11px' }}
+                  />
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-8 mt-4 text-[10px] md:text-xs font-bold uppercase tracking-wider text-slate-500">
-              {activeInsight?.tipe !== 'Provinsi' ? (
-                <>
-                  <span className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-brand-950" /> Provinsi</span>
-                  <span className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Kabupaten</span>
-                  <span className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-blue-500" /> Kota</span>
-                </>
-              ) : (
-                <>
-                    <span className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Kabupaten: {pieData[0].value}</span>
-                    <span className="flex items-center gap-2"><div className="w-2.5 h-2.5 rounded-full bg-blue-500" /> Kota: {pieData[1].value}</span>
-                </>
-              )}
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-4 text-[10px] md:text-[11px] font-bold uppercase tracking-wider text-slate-500">
+              {pieData.map((d, i) => (
+                <span key={i} className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: d.color }} /> 
+                  {d.name} <span className="opacity-50 lowercase ml-1">({formatValue(d.value)})</span>
+                </span>
+              ))}
             </div>
         </div>
 

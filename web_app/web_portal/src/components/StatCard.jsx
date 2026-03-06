@@ -13,10 +13,10 @@ const StatCard = ({ title, value, icon: Icon, description, trend, color = 'brand
   };
 
   return (
-    <div className="bg-white rounded-[24px] md:rounded-[28px] p-5 md:p-7 border border-slate-200 hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 h-full flex flex-col justify-between shadow-sm">
-      <div className="flex items-center justify-between mb-4 md:mb-6">
-        <div className={`p-3 md:p-4 rounded-xl md:rounded-2xl ${getColors()}`}>
-          <Icon size={20} className="md:w-6 md:h-6" />
+    <div className="bg-white rounded-2xl sm:rounded-[24px] md:rounded-[28px] p-3 sm:p-5 md:p-7 border border-slate-200 hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 h-full flex flex-col justify-between shadow-sm">
+      <div className="flex items-center justify-between mb-2 sm:mb-4 md:mb-6">
+        <div className={`p-2 sm:p-3 md:p-4 rounded-lg sm:rounded-xl md:rounded-2xl ${getColors()}`}>
+          <Icon size={16} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </div>
         {trend && (
           <div className={`flex items-center gap-1 px-2 md:px-3 py-1 rounded-full text-[10px] md:text-xs font-black ${trend > 0 ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'}`}>
@@ -25,10 +25,10 @@ const StatCard = ({ title, value, icon: Icon, description, trend, color = 'brand
         )}
       </div>
       <div>
-        <h3 className="text-slate-500 text-[10px] md:text-xs font-black uppercase tracking-widest">{title}</h3>
-        <p className="text-xl md:text-3xl font-black text-slate-900 mt-1 md:mt-2 tracking-tight">{value || '0'}</p>
+        <h3 className="text-slate-500 text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-wider sm:tracking-widest">{title}</h3>
+        <p className="text-base sm:text-xl md:text-3xl font-black text-slate-900 mt-0.5 sm:mt-1 md:mt-2 tracking-tight">{value || '0'}</p>
         {description && (
-          <p className="text-slate-500 text-[8px] md:text-[10px] font-bold mt-3 md:mt-4 uppercase tracking-wider">{description}</p>
+          <p className="text-slate-500 text-[7px] sm:text-[8px] md:text-[10px] font-bold mt-1.5 sm:mt-3 md:mt-4 uppercase tracking-wider">{description}</p>
         )}
       </div>
     </div>

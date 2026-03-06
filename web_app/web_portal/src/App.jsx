@@ -1259,12 +1259,12 @@ function App() {
       {/* Mobile backdrop */}
       <AnimatePresence>
         {isSidebarOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsSidebarOpen(false)} className="fixed inset-0 bg-brand-900/70 backdrop-blur-sm z-40 lg:hidden" />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsSidebarOpen(false)} className="fixed inset-0 bg-brand-900/70 backdrop-blur-sm z-[110] lg:hidden" />
         )}
       </AnimatePresence>
 
       {/* ===== SIDEBAR ===== */}
-      <aside className={`w-72 bg-brand-900 text-white flex flex-col fixed lg:sticky top-0 h-screen z-50 transition-all duration-300 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+      <aside className={`w-72 bg-brand-900 text-white flex flex-col fixed lg:sticky top-0 h-screen z-[120] transition-all duration-300 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
         {/* Sidebar Header */}
         <div className="p-7 border-b border-brand-800/60">
           <div className="flex items-center gap-3 mb-1">
@@ -1281,10 +1281,10 @@ function App() {
         {/* Year Quick Selector */}
         <div className="px-5 py-4 border-b border-brand-800/40">
           <p className="text-[9px] text-brand-500 font-black uppercase tracking-widest mb-2">📅 Periode Data</p>
-          <div className="grid grid-cols-6 gap-1">
+          <div className="flex flex-wrap gap-1.5">
             <button
                onClick={() => setSelectedYear('all')}
-               className={`py-2 rounded-xl text-[10px] font-black transition-all ${
+               className={`py-2 px-3 min-w-[3rem] rounded-xl text-[10px] font-black transition-all ${
                  selectedYear === 'all' 
                    ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/30' 
                    : 'bg-brand-800/60 text-brand-400 hover:bg-brand-700'
@@ -1297,7 +1297,7 @@ function App() {
               <button
                 key={y}
                 onClick={() => setSelectedYear(y)}
-                className={`py-2 rounded-xl text-[10px] font-black transition-all ${
+                className={`py-2 px-3 min-w-[3rem] rounded-xl text-[10px] font-black transition-all ${
                   selectedYear === y 
                     ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/30' 
                     : 'bg-brand-800/60 text-brand-400 hover:bg-brand-700'
@@ -1354,32 +1354,61 @@ function App() {
         
         {/* ===== TOP HEADER ===== */}
         <header className="bg-black/40 border-b border-white/5 sticky top-0 z-20 backdrop-blur-xl">
-          <div className="px-5 md:px-8 py-4 flex flex-col md:flex-row md:items-center gap-4">
-            <div className="flex-grow">
-              <h2 className="font-black text-lg md:text-xl text-white uppercase tracking-tight flex items-center gap-2">
-                {NAV_ITEMS.find(n => n.id === activeTab)?.label || 'Dashboard'}
-              </h2>
-              <p className="text-slate-400 text-xs font-bold mt-0.5 flex items-center gap-2">
-                <span>Data PAD Wilayah Jawa</span>
-                <span className="px-2 py-0.5 bg-brand-500/10 text-brand-400 rounded-full font-black text-[10px]">
-                  {selectedYear === 'all' ? 'Semua Periode' : `Tahun ${selectedYear}`}
-                </span>
-                <span className="px-2 py-0.5 bg-white/5 text-slate-400 rounded-full font-black text-[10px]">
-                  {activeSubMetric !== 'all' 
-                    ? (Array.isArray(activeSubMetric) ? `${activeSubMetric.length} Komponen` : categories.find(c => c.kode === activeSubMetric)?.nama)
-                    : (METRICS.find(m => m.id === activeMetric)?.label || 'PAD Total')}
-                </span>
-              </p>
+          <div className="px-3 sm:px-5 md:px-8 py-3 md:py-4 flex flex-col gap-3 md:gap-4">
+            {/* Row 1: Title + Export/Refresh */}
+            <div className="flex items-center justify-between">
+              <div className="flex-grow min-w-0">
+                <h2 className="font-black text-base sm:text-lg md:text-xl text-white uppercase tracking-tight flex items-center gap-2">
+                  {NAV_ITEMS.find(n => n.id === activeTab)?.label || 'Dashboard'}
+                </h2>
+                <p className="text-slate-400 text-[10px] sm:text-xs font-bold mt-0.5 flex flex-wrap items-center gap-1 sm:gap-2">
+                  <span className="hidden sm:inline">Data PAD Wilayah Jawa</span>
+                  <span className="px-1.5 sm:px-2 py-0.5 bg-brand-500/10 text-brand-400 rounded-full font-black text-[9px] sm:text-[10px]">
+                    {selectedYear === 'all' ? 'Semua Periode' : `Tahun ${selectedYear}`}
+                  </span>
+                  <span className="px-1.5 sm:px-2 py-0.5 bg-white/5 text-slate-400 rounded-full font-black text-[9px] sm:text-[10px] truncate max-w-[120px] sm:max-w-none">
+                    {activeSubMetric !== 'all' 
+                      ? (Array.isArray(activeSubMetric) ? `${activeSubMetric.length} Komponen` : categories.find(c => c.kode === activeSubMetric)?.nama)
+                      : (METRICS.find(m => m.id === activeMetric)?.label || 'PAD Total')}
+                  </span>
+                </p>
+              </div>
+
+              <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+                {/* Export Buttons - icons only on mobile */}
+                <div className="flex items-center gap-0.5 sm:gap-1 bg-white/5 p-0.5 sm:p-1 rounded-lg sm:rounded-xl border border-white/10">
+                  <button 
+                    onClick={() => handleGlobalExport('xlsx')} 
+                    className="px-2 sm:px-3 py-1.5 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-all flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider"
+                    title="Export Excel"
+                  >
+                    <FileSpreadsheet size={14} /> <span className="hidden sm:inline">Excel</span>
+                  </button>
+                  <div className="w-[1px] h-4 bg-white/10" />
+                  <button 
+                    onClick={() => handleGlobalExport('csv')} 
+                    className="px-2 sm:px-3 py-1.5 hover:bg-brand-500/20 text-brand-400 rounded-lg transition-all flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider"
+                    title="Export CSV"
+                  >
+                    <Download size={14} /> <span className="hidden sm:inline">CSV</span>
+                  </button>
+                </div>
+
+                <button onClick={fetchData} className="p-2 sm:p-2.5 bg-white/5 rounded-lg sm:rounded-xl text-slate-400 hover:text-brand-400 hover:bg-white/10 transition-all border border-white/10" title="Refresh Data">
+                  <RefreshCw size={14} className="sm:w-4 sm:h-4" />
+                </button>
+              </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            {/* Row 2: Filters - hidden on smallest mobile when on dashboard (accessible via sidebar instead) */}
+            <div className={`flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 ${activeTab === 'dashboard' ? 'hidden sm:flex' : 'flex'}`}>
               {/* Province Global Filter (Hidden on Dashboard because we have a better UI there) */}
               <div className={`relative hidden ${activeTab === 'dashboard' ? 'lg:hidden' : 'lg:block'}`}>
                 <Globe className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={15} />
                 <select 
                   value={globalProvFilter}
                   onChange={(e) => setGlobalProvFilter(e.target.value)}
-                  className="pl-9 pr-8 py-2.5 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 focus:ring-2 focus:ring-brand-500 w-48 text-[11px] font-black uppercase tracking-widest outline-none appearance-none transition-all text-white cursor-pointer"
+                  className="pl-9 pr-8 py-2.5 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 focus:ring-2 focus:ring-brand-500 w-full sm:w-48 text-[11px] font-black uppercase tracking-widest outline-none appearance-none transition-all text-white cursor-pointer"
                 >
                   <option value="all" className="bg-slate-900 border-none">Semua Provinsi</option>
                   {Object.keys(PROVINCE_KABKOTA).sort().map(p => (
@@ -1399,7 +1428,7 @@ function App() {
                     const sorted = [...activeYearData].sort((a, b) => b[e.target.value] - a[e.target.value]);
                     if (sorted.length > 0) setActiveInsight(sorted[0]);
                   }}
-                  className="pl-9 pr-8 py-2.5 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 focus:ring-2 focus:ring-brand-500 min-w-44 text-[11px] font-black uppercase tracking-widest outline-none appearance-none transition-all text-white cursor-pointer"
+                  className="pl-9 pr-8 py-2.5 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 focus:ring-2 focus:ring-brand-500 w-full sm:min-w-44 text-[11px] font-black uppercase tracking-widest outline-none appearance-none transition-all text-white cursor-pointer"
                 >
                   {METRICS.map(m => (
                     <option key={m.id} value={m.id} className="bg-slate-900 border-none">{m.label}</option>
@@ -1409,16 +1438,16 @@ function App() {
               </div>
 
               {/* Header Province & Kab/Kota Filter (Drilldown) */}
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                 <div className="relative">
                   <Globe className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={15} />
                   <select 
                     value={globalProvFilter}
                     onChange={(e) => {
                       setGlobalProvFilter(e.target.value);
-                      setGlobalKabKotaFilter('all'); // Reset Kab/Kota on Province change
+                      setGlobalKabKotaFilter('all');
                     }}
-                    className="pl-9 pr-8 py-2.5 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 focus:ring-2 focus:ring-brand-500 min-w-[160px] text-[11px] font-black uppercase tracking-widest outline-none appearance-none transition-all text-white cursor-pointer"
+                    className="pl-9 pr-8 py-2.5 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 focus:ring-2 focus:ring-brand-500 w-full sm:min-w-[160px] text-[11px] font-black uppercase tracking-widest outline-none appearance-none transition-all text-white cursor-pointer"
                   >
                     <option value="all" className="bg-slate-900 border-none">Semua Provinsi</option>
                     {Object.keys(PROVINCE_KABKOTA).sort().map(p => (
@@ -1436,15 +1465,15 @@ function App() {
                       exit={{ opacity: 0, x: -10, width: 0 }}
                       className="flex items-center gap-2 overflow-hidden"
                     >
-                      <div className="text-slate-700">
+                      <div className="text-slate-700 hidden sm:block">
                         <ChevronRight size={14} />
                       </div>
-                      <div className="relative">
+                      <div className="relative w-full sm:w-auto">
                         <Map className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-400" size={15} />
                         <select 
                           value={globalKabKotaFilter}
                           onChange={(e) => setGlobalKabKotaFilter(e.target.value)}
-                          className="pl-9 pr-8 py-2.5 bg-brand-500/10 rounded-xl border border-brand-500/20 hover:border-brand-500/40 focus:ring-2 focus:ring-brand-500 min-w-[180px] text-[11px] font-black uppercase tracking-widest outline-none appearance-none transition-all text-brand-400 cursor-pointer"
+                          className="pl-9 pr-8 py-2.5 bg-brand-500/10 rounded-xl border border-brand-500/20 hover:border-brand-500/40 focus:ring-2 focus:ring-brand-500 w-full sm:min-w-[180px] text-[11px] font-black uppercase tracking-widest outline-none appearance-none transition-all text-brand-400 cursor-pointer"
                         >
                           <option value="all" className="bg-slate-900 border-none">Semua Kab/Kota</option>
                           {(PROVINCE_KABKOTA[globalProvFilter] || []).map(k => (
@@ -1465,7 +1494,7 @@ function App() {
                   <input 
                     type="text" 
                     placeholder="Cari wilayah..." 
-                    className="pl-10 pr-4 py-2.5 bg-white/5 rounded-xl border border-white/10 focus:ring-2 focus:ring-brand-500 w-52 text-sm outline-none transition-all text-white placeholder:text-white/20"
+                    className="pl-10 pr-4 py-2.5 bg-white/5 rounded-xl border border-white/10 focus:ring-2 focus:ring-brand-500 w-full sm:w-52 text-sm outline-none transition-all text-white placeholder:text-white/20"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -1476,34 +1505,11 @@ function App() {
                   )}
                 </div>
               )}
-
-              {/* Refresh */}
-              <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10">
-                <button 
-                  onClick={() => handleGlobalExport('xlsx')} 
-                  className="px-3 py-1.5 hover:bg-emerald-500/20 text-emerald-400 rounded-lg transition-all flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider"
-                  title="Export Excel"
-                >
-                  <FileSpreadsheet size={14} /> Excel
-                </button>
-                <div className="w-[1px] h-4 bg-white/10" />
-                <button 
-                  onClick={() => handleGlobalExport('csv')} 
-                  className="px-3 py-1.5 hover:bg-brand-500/20 text-brand-400 rounded-lg transition-all flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider"
-                  title="Export CSV"
-                >
-                  <Download size={14} /> CSV
-                </button>
-              </div>
-
-              <button onClick={fetchData} className="p-2.5 bg-white/5 rounded-xl text-slate-400 hover:text-brand-400 hover:bg-white/10 transition-all border border-white/10" title="Refresh Data">
-                <RefreshCw size={16} />
-              </button>
             </div>
           </div>
         </header>
 
-        <div className="p-4 md:p-8">
+        <div className="p-3 sm:p-4 md:p-8">
           
           {/* ==================== DASHBOARD TAB ==================== */}
           {activeTab === 'dashboard' && (
@@ -1535,11 +1541,11 @@ function App() {
                     y: 0,
                     boxShadow: showCelebrate ? '0 0 80px -10px rgba(59,130,246,0.4)' : '0 25px 50px -12px rgba(0,0,0,0.5)'
                   }}
-                  className={`bg-white/5 backdrop-blur-xl rounded-[32px] p-2 border transition-all duration-700 ${showCelebrate ? 'border-brand-500/50' : 'border-white/10'} relative`}
+                  className={`bg-white/5 backdrop-blur-xl rounded-2xl sm:rounded-[32px] p-1.5 sm:p-2 border transition-all duration-700 ${showCelebrate ? 'border-brand-500/50' : 'border-white/10'} relative`}
                 >
-                  <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                  <div className="flex flex-col lg:flex-row lg:items-center gap-1.5 sm:gap-2">
                     {/* Main Categories Row - Fixed for no overlap */}
-                    <div className="flex flex-wrap lg:flex-nowrap lg:flex-grow gap-1 p-1">
+                    <div className="grid grid-cols-3 sm:grid-cols-5 lg:flex lg:flex-nowrap lg:flex-grow gap-1 p-0.5 sm:p-1">
                       {METRICS.map(m => {
                         const isActive = activeMetric === m.id;
                         const isSubSelected = Array.isArray(activeSubMetric) && activeSubMetric.length > 0 && 
@@ -1567,16 +1573,16 @@ function App() {
                                 setIsDashFilterOpen(true);
                               }
                             }}
-                            className={`flex items-center gap-2 px-3 py-3 lg:px-5 lg:py-4 rounded-2xl transition-all relative overflow-hidden group flex-grow lg:flex-initial min-w-[120px] ${
+                            className={`flex items-center gap-1.5 sm:gap-2 px-2 py-2.5 sm:px-3 sm:py-3 lg:px-5 lg:py-4 rounded-xl sm:rounded-2xl transition-all relative overflow-hidden group lg:flex-initial ${
                               isActive ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/20' : 'bg-white/5 text-slate-400 hover:bg-white/10'
                             }`}
                           >
-                            <m.icon size={18} className={isActive ? 'text-white' : 'text-slate-500 group-hover:text-brand-400'} />
-                            <div className="text-left">
-                              <p className="text-[10px] font-black uppercase tracking-widest leading-none mb-1 opacity-70">
+                            <m.icon size={16} className={`shrink-0 ${isActive ? 'text-white' : 'text-slate-500 group-hover:text-brand-400'}`} />
+                            <div className="text-left min-w-0">
+                              <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-wider sm:tracking-widest leading-none mb-0.5 sm:mb-1 opacity-70">
                                 {m.label.split(' ')[1] || 'Total'}
                               </p>
-                              <p className="text-xs font-black uppercase tracking-tighter truncate max-w-[100px]">
+                              <p className="text-[10px] sm:text-xs font-black uppercase tracking-tighter truncate">
                                 {m.label.split(' ')[0]}
                               </p>
                             </div>
@@ -1591,18 +1597,18 @@ function App() {
                     <div className="h-10 w-px bg-white/10 hidden lg:block mx-2" />
 
                     {/* Advanced Search/Toggle */}
-                    <div className="px-4 py-2 flex items-center gap-3">
+                    <div className="px-2 sm:px-4 py-1.5 sm:py-2 flex items-center gap-2 sm:gap-3">
                       <button 
                          onClick={() => setIsDashFilterOpen(!isDashFilterOpen)}
-                         className={`p-4 rounded-2xl border transition-all ${
+                         className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border transition-all shrink-0 ${
                            isDashFilterOpen ? 'bg-brand-500 border-brand-400 text-white' : 'bg-white/5 border-white/10 text-slate-400 hover:text-white'
                          }`}
                          title="Toggle Advanced Filter"
                       >
-                        <Filter size={18} />
+                        <Filter size={16} className="sm:w-[18px] sm:h-[18px]" />
                       </button>
                       <div className="relative flex-grow lg:w-64">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                        <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
                         <input 
                           type="text"
                           placeholder="Cari rincian..."
@@ -1611,7 +1617,7 @@ function App() {
                             setDashSearchQuery(e.target.value);
                             if (e.target.value !== '') setIsDashFilterOpen(true);
                           }}
-                          className="w-full pl-12 pr-4 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-brand-500/50 transition-all placeholder:text-slate-600"
+                          className="w-full pl-9 sm:pl-12 pr-4 py-3 sm:py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl sm:rounded-2xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-brand-500/50 transition-all placeholder:text-slate-600"
                         />
                       </div>
                     </div>
@@ -1674,9 +1680,9 @@ function App() {
                         initial={{ opacity: 0, y: 20, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.98 }}
-                        className="absolute top-[calc(100%+1rem)] left-0 right-0 z-[110] bg-white rounded-[48px] border border-slate-200 shadow-[0_48px_96px_-24px_rgba(0,0,0,0.15)] overflow-hidden ring-1 ring-slate-100 backdrop-blur-3xl"
+                        className="absolute top-[calc(100%+0.5rem)] sm:top-[calc(100%+1rem)] left-0 right-0 z-[110] bg-white rounded-2xl sm:rounded-[48px] border border-slate-200 shadow-[0_48px_96px_-24px_rgba(0,0,0,0.15)] overflow-hidden ring-1 ring-slate-100 backdrop-blur-3xl max-h-[80vh] overflow-y-auto"
                       >
-                        <div className="p-8 md:p-12 flex flex-col lg:flex-row gap-12">
+                        <div className="p-4 sm:p-8 md:p-12 flex flex-col lg:flex-row gap-6 sm:gap-12">
                           {/* Left Panel: Context */}
                           <div className="lg:w-80 space-y-8 shrink-0">
                               <div className="space-y-4">
@@ -1867,7 +1873,7 @@ function App() {
               </div>
 
               {/* Summary Stats */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4">
                 <StatCard title="Total PAD" value={formatCurrencyShort(stats.totalRealisasi)} icon={TrendingUp} description={selectedYear === 'all' ? 'Akumulasi Semua Tahun' : `Realisasi ${selectedYear}`} color="brand" />
                 <StatCard title="Total Pajak" value={formatCurrencyShort(stats.totalPajak)} icon={BarChart3} description={selectedYear === 'all' ? 'Total Pajak Terkumpul' : 'Kontribusi pajak'} color="indigo" />
                 <StatCard
@@ -1916,12 +1922,12 @@ function App() {
                 <div className="space-y-8">
                   {/* Executive Insight Banner */}
                   <motion.div key={activeMetric} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-br from-slate-900 via-brand-950 to-indigo-950 rounded-3xl p-6 md:p-8 relative overflow-hidden ring-1 ring-white/5"
+                    className="bg-gradient-to-br from-slate-900 via-brand-950 to-indigo-950 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 relative overflow-hidden ring-1 ring-white/5"
                   >
                     <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
                       <Sparkles size={200} className="text-white rotate-12" />
                     </div>
-                    <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-6">
+                    <div className="relative z-10 flex flex-col gap-4 sm:gap-6 md:flex-row md:items-center">
                       <div className="flex-grow">
                         <div className="flex items-center gap-2 mb-3">
                           <div className="bg-amber-400/20 p-1.5 rounded-lg">
@@ -1929,10 +1935,10 @@ function App() {
                           </div>
                           <span className="text-[9px] font-black text-brand-400 uppercase tracking-[0.3em]">Executive Insight</span>
                         </div>
-                        <h3 className="text-white font-black text-xl md:text-2xl uppercase tracking-tight mb-1">
+                        <h3 className="text-white font-black text-base sm:text-xl md:text-2xl uppercase tracking-tight mb-1">
                           {activeInsight?.daerah}
                         </h3>
-                        <p className="text-slate-300 text-sm">
+                        <p className="text-slate-300 text-xs sm:text-sm">
                           Menjadi kontributor tertinggi dengan <span className="text-emerald-400 font-black">
                             {activeInsight?.[activeMetric] >= 1e12 
                               ? `Rp ${(activeInsight[activeMetric] / 1e12).toFixed(2)} Triliun` 
@@ -1942,9 +1948,9 @@ function App() {
                             : `realisasi ${activeSubMetric !== 'all' ? categories.find(c => c.kode === activeSubMetric)?.nama : METRICS.find(m => m.id === activeMetric)?.label} tahun ${selectedYear}.`}
                         </p>
                       </div>
-                      <div className="flex-shrink-0 bg-white/5 rounded-2xl p-5 ring-1 ring-white/5 min-w-[200px]">
+                      <div className="flex-shrink-0 bg-white/5 rounded-xl sm:rounded-2xl p-3 sm:p-5 ring-1 ring-white/5">
                         <p className="text-[9px] text-slate-400 font-black uppercase tracking-widest mb-1">Rata-rata Semua Wilayah</p>
-                        <p className="text-2xl font-black text-white">
+                        <p className="text-lg sm:text-2xl font-black text-white">
                           {formatCurrencyShort(activeYearData.reduce((s, d) => s + d[activeMetric], 0) / (activeYearData.length || 1))}
                         </p>
                         <button onClick={() => setSelectedRegion(activeInsight)} className="mt-3 text-brand-400 text-[10px] font-black uppercase tracking-widest flex items-center gap-1 hover:text-white transition-colors">
@@ -1955,7 +1961,7 @@ function App() {
                   </motion.div>
 
                   {/* RANKING ANALYTICS GRID (New System) */}
-                  <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                  <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 sm:gap-6">
                     {/* Left: Provincial Ranking (30%) */}
                     <div className="xl:col-span-4 h-full">
                       <AnimatePresence mode="wait">
@@ -1965,17 +1971,17 @@ function App() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -20 }}
-                            className="bg-white/5 backdrop-blur-3xl rounded-[40px] p-6 border border-white/10 shadow-2xl h-full flex flex-col"
+                            className="bg-white/5 backdrop-blur-3xl rounded-2xl sm:rounded-[40px] p-4 sm:p-6 border border-white/10 shadow-2xl h-full flex flex-col"
                           >
                             <div className="flex items-center gap-3 mb-6">
                               <div className="p-2 bg-blue-500/20 rounded-xl">
                                 <Award size={18} className="text-blue-400" />
                               </div>
                               <h3 
-                                className="text-white font-black text-xs uppercase tracking-widest truncate"
+                                className="text-white font-black text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest truncate"
                                 title={`Ranking 6 Provinsi: ${getCategoryLabel(activeSubMetric)}`}
                               >
-                                Ranking 6 Provinsi: {getCategoryLabel(activeSubMetric)}
+                                <span className="hidden sm:inline">Ranking 6 Provinsi:</span><span className="sm:hidden">Ranking 6 Prov.</span> {getCategoryLabel(activeSubMetric)}
                               </h3>
                               <div className="flex items-center gap-1 ml-auto">
                                 <button
@@ -1997,7 +2003,7 @@ function App() {
 
                             <div className="flex-grow min-h-[300px]">
                               <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={provincialRanking} layout="vertical" margin={{ top: 0, right: 60, left: 10, bottom: 0 }}>
+                                <BarChart data={provincialRanking} layout="vertical" margin={{ top: 0, right: 70, left: 0, bottom: 0 }}>
                                   <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e2e8f0" opacity={0.6} />
                                   <XAxis type="number" hide />
                                   <YAxis 
@@ -2005,7 +2011,7 @@ function App() {
                                     dataKey="displayName" 
                                     axisLine={false} 
                                     tickLine={false} 
-                                    width={90}
+                                    width={75}
                                     tick={{ fill: '#475569', fontSize: 9, fontWeight: '900' }}
                                   />
                                   <Tooltip 
@@ -2075,20 +2081,20 @@ function App() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
-                            className="bg-white/5 backdrop-blur-3xl rounded-[40px] p-8 border border-white/10 shadow-2xl relative overflow-hidden h-full flex flex-col"
+                            className="bg-white/5 backdrop-blur-3xl rounded-2xl sm:rounded-[40px] p-4 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden h-full flex flex-col"
                           >
-                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-6 mb-4 sm:mb-8">
                               <div className="flex items-center gap-3">
                                 <div className="p-2 bg-emerald-500/20 rounded-xl">
                                   <BarChart2 size={20} className="text-emerald-400" />
                                 </div>
                                 <h3 
-                                  className="text-white font-black text-sm uppercase tracking-widest truncate max-w-[250px] md:max-w-md"
+                                  className="text-white font-black text-[11px] sm:text-sm uppercase tracking-wider sm:tracking-widest truncate max-w-[200px] sm:max-w-[250px] md:max-w-md"
                                 >
-                                  Analisis Performa: {getCategoryLabel(activeSubMetric)}
+                                  <span className="hidden sm:inline">Analisis Performa:</span><span className="sm:hidden">Performa:</span> {getCategoryLabel(activeSubMetric)}
                                 </h3>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                                 <button
                                   onClick={() => handleChartExport(regionalRanking, `Analisis Performa: ${getCategoryLabel(activeSubMetric)}`, 'xlsx')}
                                   className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600/20 text-emerald-400 border border-emerald-600/30 rounded-xl text-[10px] font-black uppercase hover:bg-emerald-600/30 transition-all"
@@ -2113,7 +2119,7 @@ function App() {
                                   <BarChart 
                                     data={regionalRanking} 
                                     layout="vertical" 
-                                    margin={{ top: 0, right: 80, left: 80, bottom: 0 }}
+                                    margin={{ top: 0, right: 50, left: 50, bottom: 0 }}
                                     onClick={(p) => {
                                       if (p?.activePayload?.[0]?.payload) {
                                         setActiveInsight(p.activePayload[0].payload);
@@ -2127,7 +2133,7 @@ function App() {
                                       dataKey="displayName" 
                                       axisLine={false} 
                                       tickLine={false} 
-                                      width={140}
+                                      width={100}
                                       tick={{ fill: '#475569', fontSize: 9, fontWeight: '900' }}
                                     />
                                     <Tooltip 
@@ -2522,7 +2528,7 @@ function App() {
                     <motion.div 
                       initial={{ opacity: 0, y: 20 }} 
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-white/5 backdrop-blur-2xl rounded-[2.5rem] p-8 md:p-10 border border-brand-500/20 shadow-2xl relative overflow-hidden group"
+                      className="bg-white/5 backdrop-blur-2xl rounded-2xl sm:rounded-[2.5rem] p-4 sm:p-8 md:p-10 border border-brand-500/20 shadow-2xl relative overflow-hidden group"
                     >
                       <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 rotate-12 group-hover:rotate-45 transition-transform duration-700 pointer-events-none">
                         <BarChart2 size={240} className="text-brand-400" />
@@ -2537,7 +2543,7 @@ function App() {
                               </div>
                               <span className="text-xs font-black text-brand-400 uppercase tracking-widest">Detail Visualisasi Rincian</span>
                             </div>
-                            <h3 className="text-3xl md:text-4xl font-black text-white tracking-tight">
+                            <h3 className="text-xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
                               {categories.find(c => c.kode === activeSubMetric)?.nama}
                             </h3>
                             <p className="text-slate-400 mt-2 text-sm max-w-xl">
@@ -2572,7 +2578,7 @@ function App() {
                             </div>
                         </div>
 
-                        <div className="h-[400px] w-full bg-slate-900/40 rounded-[2rem] p-6 border border-white/5 shadow-inner">
+                        <div className="h-[600px] sm:h-[800px] w-full bg-slate-900/40 rounded-[2rem] p-4 sm:p-6 border border-white/5 shadow-inner">
                           <ResponsiveContainer width="100%" height="100%">
                             <BarChart 
                               data={activeYearData
@@ -2583,29 +2589,27 @@ function App() {
                                   value: d[activeMetric]
                                 }))
                               } 
-                              margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+                              layout="vertical"
+                              margin={{ top: 20, right: 60, left: 20, bottom: 20 }}
                             >
                               <defs>
-                                <linearGradient id="detailBarGradient" x1="0" y1="0" x2="0" y2="1">
+                                <linearGradient id="detailBarGradient" x1="0" y1="0" x2="1" y2="0">
                                   <stop offset="0%" stopColor="#8b5cf6" />
                                   <stop offset="100%" stopColor="#3b82f6" />
                                 </linearGradient>
                               </defs>
-                              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" opacity={0.6} />
+                              <CartesianGrid strokeDasharray="3 3" horizontal={false} vertical={true} stroke="#e2e8f0" opacity={0.6} />
                               <XAxis 
-                                dataKey="name" 
-                                axisLine={false} 
-                                tickLine={false} 
-                                tick={{ fill: '#475569', fontSize: 10, fontWeight: '900' }} 
-                                angle={-35} 
-                                textAnchor="end"
-                                interval={0}
+                                type="number" 
+                                hide 
                               />
                               <YAxis 
+                                dataKey="name" 
+                                type="category" 
                                 axisLine={false} 
                                 tickLine={false} 
-                                tick={{ fill: '#475569', fontSize: 11, fontWeight: '700' }} 
-                                tickFormatter={v => formatCurrencyShort(v).replace('Rp ', '')}
+                                tick={{ fill: '#94a3b8', fontSize: 10, fontWeight: '900' }}
+                                width={85}
                               />
                               <Tooltip 
                                 cursor={{ fill: 'rgba(59,130,246,0.06)', radius: 16 }}
@@ -2622,12 +2626,12 @@ function App() {
                               />
                               <Bar 
                                 dataKey="value" 
-                                radius={[12, 12, 4, 4]} 
-                                barSize={40}
+                                radius={[0, 12, 12, 0]} 
+                                barSize={16}
                                 fill="url(#detailBarGradient)"
                                 animationDuration={1500}
                               >
-                                {top10KabKota.map((entry, index) => (
+                                {activeYearData.sort((a, b) => b[activeMetric] - a[activeMetric]).slice(0, 20).map((entry, index) => (
                                   <Cell 
                                     key={index} 
                                     className="hover:opacity-80 transition-opacity cursor-pointer"
@@ -2636,17 +2640,17 @@ function App() {
                                 ))}
                                 <LabelList
                                   dataKey="value"
-                                  position="top"
+                                  position="right"
                                   content={(props) => (
                                     <text
-                                      x={props.x + props.width / 2}
-                                      y={props.y - 12}
-                                      fill="#334155"
+                                      x={props.x + props.width + 6}
+                                      y={props.y + props.height / 2 + 4}
+                                      fill="#cbd5e1"
                                       fontSize="10"
                                       fontWeight="bold"
-                                      textAnchor="middle"
+                                      textAnchor="start"
                                     >
-                                      {formatCurrencyShort(props.value)}
+                                      {formatCurrencyShort(props.value).replace('Rp ', '')}
                                     </text>
                                   )}
                                 />

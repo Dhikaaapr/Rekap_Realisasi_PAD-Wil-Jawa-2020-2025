@@ -467,7 +467,7 @@ const DetailModal = ({ region, onClose, selectedYear = 2025 }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-6"
+      className="fixed inset-0 z-[150] flex items-center justify-center p-2 md:p-6"
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-slate-900/70 backdrop-blur-md" onClick={onClose} />
