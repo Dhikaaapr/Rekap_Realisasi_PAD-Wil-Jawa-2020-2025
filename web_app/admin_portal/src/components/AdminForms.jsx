@@ -59,6 +59,7 @@ export const ProvinsiForm = ({ region, year, onSave }) => {
   ]);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
     const load = async () => {
@@ -85,7 +86,6 @@ export const ProvinsiForm = ({ region, year, onSave }) => {
   const handleSubmit = async () => {
     setSaving(true);
     try {
-      await clearDetailRows(region, year);
       const rows = fields.filter(f => f.id).map(f => ({
         id: f.id, anggaran: f.ang, realisasi: f.real, daerah: region, tahun: year, kategori_kode: f.kode
       }));
@@ -109,10 +109,34 @@ export const ProvinsiForm = ({ region, year, onSave }) => {
             {region} • {year}
         </div>
       </div>
+      <div className="mb-8">
+        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4 italic block mb-3">Pilih Jenis Pajak</label>
+        <div className="relative">
+          <select 
+            value={selectedIndex}
+            onChange={(e) => setSelectedIndex(Number(e.target.value))}
+            className="neo-input w-full bg-slate-50 border-slate-200 text-slate-700 font-bold"
+          >
+            {fields.map((f, i) => (
+              <option key={i} value={i}>{f.label}</option>
+            ))}
+          </select>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+            <ChevronRight size={16} className="text-slate-400 rotate-90" />
+          </div>
+        </div>
+      </div>
+
       <div className="space-y-4">
-        {fields.map((f, i) => (
-          <InputRow key={i} index={i} label={f.label} ang={f.ang} real={f.real} onUpdate={handleUpdate} />
-        ))}
+        {fields.length > 0 && (
+          <InputRow 
+            index={selectedIndex} 
+            label={fields[selectedIndex].label} 
+            ang={fields[selectedIndex].ang} 
+            real={fields[selectedIndex].real} 
+            onUpdate={handleUpdate} 
+          />
+        )}
       </div>
       <div className="mt-10 pt-10 border-t border-slate-100 flex justify-end">
         <button onClick={handleSubmit} disabled={saving} className="btn-primary px-12 py-5 flex items-center gap-4">
@@ -139,6 +163,7 @@ export const KabKotaForm = ({ region, year, onSave }) => {
   ]);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
     const load = async () => {
@@ -165,7 +190,6 @@ export const KabKotaForm = ({ region, year, onSave }) => {
   const handleSubmit = async () => {
     setSaving(true);
     try {
-      await clearDetailRows(region, year);
       const rows = fields.filter(f => f.id).map(f => ({
         id: f.id, anggaran: f.ang, realisasi: f.real, daerah: region, tahun: year, kategori_kode: f.kode
       }));
@@ -189,10 +213,34 @@ export const KabKotaForm = ({ region, year, onSave }) => {
                 {region} • {year}
             </div>
         </div>
+      <div className="mb-8">
+        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4 italic block mb-3">Pilih Jenis Pajak</label>
+        <div className="relative">
+          <select 
+            value={selectedIndex}
+            onChange={(e) => setSelectedIndex(Number(e.target.value))}
+            className="neo-input w-full bg-slate-50 border-slate-200 text-slate-700 font-bold"
+          >
+            {fields.map((f, i) => (
+              <option key={i} value={i}>{f.label}</option>
+            ))}
+          </select>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+            <ChevronRight size={16} className="text-slate-400 rotate-90" />
+          </div>
+        </div>
+      </div>
+
       <div className="space-y-4">
-        {fields.map((f, i) => (
-          <InputRow key={i} index={i} label={f.label} ang={f.ang} real={f.real} onUpdate={handleUpdate} />
-        ))}
+        {fields.length > 0 && (
+          <InputRow 
+            index={selectedIndex} 
+            label={fields[selectedIndex].label} 
+            ang={fields[selectedIndex].ang} 
+            real={fields[selectedIndex].real} 
+            onUpdate={handleUpdate} 
+          />
+        )}
       </div>
       <div className="mt-10 pt-10 border-t border-slate-100 flex justify-end">
         <button onClick={handleSubmit} disabled={saving} className="btn-primary px-12 py-5 flex items-center gap-4">
@@ -208,10 +256,31 @@ export const KabKotaForm = ({ region, year, onSave }) => {
 export const RetribusiForm = ({ region, year, onSave }) => {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [data, setData] = useState([
-    { label: 'Retribusi Jasa Umum', keywords: ['Jasa Umum'], ang: 0, real: 0, id: null },
-    { label: 'Retribusi Jasa Usaha', keywords: ['Jasa Usaha'], ang: 0, real: 0, id: null },
-    { label: 'Retribusi Perizinan Tertentu', keywords: ['Perizinan Tertentu'], ang: 0, real: 0, id: null },
+    // JASA UMUM
+    { group: 'Jasa Umum', label: 'Pelayanan Kesehatan', keywords: ['Pelayanan Kesehatan'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Umum', label: 'Pelayanan Kebersihan', keywords: ['Pelayanan Kebersihan', 'Kebersihan'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Umum', label: 'Pelayanan Parkir di Tepi Jalan Umum', keywords: ['Parkir di Tepi Jalan Umum'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Umum', label: 'Pelayanan Pasar', keywords: ['Pelayanan Pasar'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Umum', label: 'Pengendalian Lalu Lintas', keywords: ['Pengendalian Lalu Lintas'], ang: 0, real: 0, id: null },
+    
+    // JASA USAHA
+    { group: 'Jasa Usaha', label: 'Penyediaan Tempat Usaha', keywords: ['Penyediaan Tempat Usaha', 'Penyediaan Tempat', 'Tempat Usaha'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Usaha', label: 'Penyediaan Tempat Pelelangan', keywords: ['Pelelangan'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Usaha', label: 'Tempat Penginapan/Vila', keywords: ['Penginapan', 'Vila'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Usaha', label: 'Rumah Pemotongan Hewan', keywords: ['Pemotongan Hewan', 'RPH'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Usaha', label: 'Jasa Kepelabuhanan', keywords: ['Kepelabuhanan'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Usaha', label: 'Tempat Rekreasi/Pariwisata/Olahraga', keywords: ['Rekreasi', 'Pariwisata', 'Olahraga'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Usaha', label: 'Penyeberangan Orang/Barang di Air', keywords: ['Penyeberangan'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Usaha', label: 'Penjualan Produk Usaha Pemda', keywords: ['Penjualan Produk', 'Produk Usaha'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Usaha', label: 'Pemanfaatan Aset Daerah', keywords: ['Aset Daerah', 'Pemanfaatan Aset'], ang: 0, real: 0, id: null },
+    { group: 'Jasa Usaha', label: 'Tempat Parkir Khusus', keywords: ['Parkir Khusus'], ang: 0, real: 0, id: null },
+    
+    // PERIZINAN TERTENTU
+    { group: 'Perizinan Tertentu', label: 'Persetujuan Bangunan Gedung (PBG)', keywords: ['Persetujuan Bangunan Gedung', 'PBG'], ang: 0, real: 0, id: null },
+    { group: 'Perizinan Tertentu', label: 'Penggunaan Tenaga Kerja Asing', keywords: ['Tenaga Kerja Asing', 'TKA'], ang: 0, real: 0, id: null },
+    { group: 'Perizinan Tertentu', label: 'Pengelolaan Pertambangan Rakyat', keywords: ['Pertambangan Rakyat'], ang: 0, real: 0, id: null },
   ]);
 
   useEffect(() => {
@@ -239,7 +308,6 @@ export const RetribusiForm = ({ region, year, onSave }) => {
   const handleSubmit = async () => {
     setSaving(true);
     try {
-      await clearDetailRows(region, year);
       const rows = data.filter(f => f.id).map(f => ({
         id: f.id, anggaran: f.ang, realisasi: f.real, daerah: region, tahun: year, kategori_kode: f.kode
       }));
@@ -255,10 +323,39 @@ export const RetribusiForm = ({ region, year, onSave }) => {
   return (
     <div className="bg-white border border-slate-200 p-10 rounded-[3rem] shadow-sm">
       <h3 className="text-xl font-black text-slate-900 uppercase italic tracking-tighter mb-8 pb-8 border-b border-slate-100">Entri Retribusi Daerah</h3>
+      
+      <div className="mb-8">
+        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4 italic block mb-3">Pilih Jenis Retribusi</label>
+        <div className="relative">
+          <select 
+            value={selectedIndex}
+            onChange={(e) => setSelectedIndex(Number(e.target.value))}
+            className="neo-input w-full bg-slate-50 border-slate-200 text-slate-700 font-bold"
+          >
+            {[...new Set(data.map(d => d.group))].map(groupName => (
+              <optgroup key={groupName} label={`=== ${groupName.toUpperCase()} ===`}>
+                {data.map((f, i) => f.group === groupName && (
+                   <option key={i} value={i}>{f.label}</option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+            <ChevronRight size={16} className="text-slate-400 rotate-90" />
+          </div>
+        </div>
+      </div>
+
       <div className="space-y-4">
-        {data.map((f, i) => (
-          <InputRow key={i} index={i} label={f.label} ang={f.ang} real={f.real} onUpdate={handleUpdate} />
-        ))}
+        {data.length > 0 && (
+          <InputRow 
+            index={selectedIndex} 
+            label={data[selectedIndex].label} 
+            ang={data[selectedIndex].ang} 
+            real={data[selectedIndex].real} 
+            onUpdate={handleUpdate} 
+          />
+        )}
       </div>
       <div className="mt-8 flex justify-end">
         <button onClick={handleSubmit} disabled={saving} className="px-10 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-[10px] font-black text-blue-700 uppercase tracking-widest hover:bg-white hover:border-blue-400 transition-all shadow-sm">
