@@ -40,6 +40,7 @@ import DataMaster from './components/DataMaster';
 import PetaData from './components/PetaData';
 import JavaMap from './components/JavaMap';
 import Visualisasi from './components/Visualisasi';
+import TrendKomparasi from './components/TrendKomparasi';
 import CollapsibleSubSection from './components/CollapsibleSubSection';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -2753,80 +2754,11 @@ function App() {
 
           {activeTab === 'compare' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-              {/* Dual Year Selector for Comparison */}
-              <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-                <div className="shrink-0">
-                  <h3 className="text-white font-black text-xl uppercase tracking-tight flex items-center gap-3">
-                    <div className="p-2 bg-brand-500/20 rounded-xl">
-                      <TrendingUp className="text-brand-400" />
-                    </div>
-                    Perbandingan Performa
-                  </h3>
-                  <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1">Analisis pertumbuhan antar periode fiskal</p>
-                </div>
-                
-                <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
-                  <div className="relative group">
-                    <p className="absolute -top-6 left-1 text-[10px] font-black text-brand-400 uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">Tahun Dasar (A)</p>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-black text-brand-500 uppercase">Year A:</span>
-                      <select 
-                        value={compareYearA}
-                        onChange={(e) => setCompareYearA(e.target.value)}
-                        className="pl-4 pr-10 py-3 bg-brand-500/10 rounded-2xl border border-brand-500/20 text-white font-black text-sm outline-none appearance-none cursor-pointer hover:bg-brand-500/20 transition-all min-w-[120px]"
-                      >
-                        {[2020, 2021, 2022, 2023, 2024, 2025].map(y => (
-                          <option key={y} value={y} className="bg-slate-900">{y}</option>
-                        ))}
-                      </select>
-                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-400 pointer-events-none" size={16} />
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-4">
-                    <div className="w-4 h-px bg-white/10" />
-                    <span className="text-white/20 font-black text-xs italic tracking-widest">VERSUS</span>
-                    <div className="w-4 h-px bg-white/10" />
-                  </div>
-
-                  <div className="relative group">
-                    <p className="absolute -top-6 left-1 text-[10px] font-black text-emerald-400 uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">Tahun Target (B)</p>
-                    <div className="flex items-center gap-2">
-                       <span className="text-[10px] font-black text-emerald-500 uppercase">Year B:</span>
-                      <select 
-                        value={compareYearB}
-                        onChange={(e) => setCompareYearB(e.target.value)}
-                        className="pl-4 pr-10 py-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-white font-black text-sm outline-none appearance-none cursor-pointer hover:bg-emerald-500/20 transition-all min-w-[120px]"
-                      >
-                        {[2020, 2021, 2022, 2023, 2024, 2025].map(y => (
-                          <option key={y} value={y} className="bg-slate-900">{y}</option>
-                        ))}
-                      </select>
-                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-400 pointer-events-none" size={16} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative z-10">
-                <Visualisasi
-                  data={data}
-                  chartDataProvinces={comparisonData.filter(d => d.tipe === 'Provinsi').slice(0, 6)}
-                  chartDataKabKota={comparisonData.filter(d => d.tipe !== 'Provinsi').slice(0, 10)}
-                  activeInsight={activeInsight}
-                  setActiveInsight={setActiveInsight}
-                  aiAnalysisData={aiAnalysisData}
-                  getProvinceName={getProvinceName}
-                  selectedYear={compareYearB}
-                  activeMetric={activeMetric}
-                  activeSubMetric={activeSubMetric}
-                  metricLabel={getCategoryLabel(activeSubMetric)}
-                  isCompareMode={true}
-                  yearA={compareYearA}
-                  yearB={compareYearB}
-                  comparisonData={comparisonData}
-                />
-              </div>
+              <TrendKomparasi 
+                data={data}
+                getProvinceName={getProvinceName}
+                AVAILABLE_YEARS={[2021, 2022, 2023, 2024, 2025]}
+              />
             </motion.div>
           )}
 
