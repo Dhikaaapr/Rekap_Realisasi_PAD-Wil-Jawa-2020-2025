@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React from 'react';
+console.log('React object:', React);
+const { useState, useEffect, useMemo, useCallback } = React;
 import { 
   BarChart3, 
   TrendingUp, 
@@ -102,6 +104,7 @@ const formatCurrencyShort = (val) => {
 // =====================
 const NAV_ITEMS = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, desc: 'Ringkasan eksekutif' },
+  { id: 'compare', label: 'Komparasi', icon: BarChart3, desc: 'Perbandingan antar tahun' },
   { id: 'charts', label: 'Visualisasi', icon: BarChart2, desc: 'Grafik & analitik' },
   { id: 'peta-data', label: 'Peta Wilayah', icon: Globe, desc: 'Distribusi geografis' },
   { id: 'data-master', label: 'Data Master', icon: Database, desc: 'Tabel lengkap' },
@@ -254,6 +257,8 @@ function App() {
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [activeInsight, setActiveInsight] = useState(null);
   const [selectedYear, setSelectedYear] = useState('all'); // Changed from 2025 to 'all'
+  const [compareYearA, setCompareYearA] = useState('2023');
+  const [compareYearB, setCompareYearB] = useState('2024');
   const [globalProvFilter, setGlobalProvFilter] = useState('all'); // Added new state
   const [globalKabKotaFilter, setGlobalKabKotaFilter] = useState('all');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -315,17 +320,19 @@ function App() {
       }, {});
 
       const processedData = Object.values(grouped).map(group => {
+        if (!group || !group.dataPerTahun) return null;
+        
         const tots = group.dataPerTahun.reduce((acc, d) => ({
-          totalRealisasi: acc.totalRealisasi + d.pajakRealisasi + d.retribusiRealisasi + d.pengelolaanRealisasi + d.lainPadRealisasi,
-          totalAnggaran: acc.totalAnggaran + d.pajakAnggaran + d.retribusiAnggaran + d.pengelolaanAnggaran + d.lainPadAnggaran,
-          totalPajak: acc.totalPajak + d.pajakRealisasi,
-          totalRetribusi: acc.totalRetribusi + d.retribusiRealisasi,
-          totalPengelolaan: acc.totalPengelolaan + d.pengelolaanRealisasi,
-          totalLain: acc.totalLain + d.lainPadRealisasi,
-          totalPajakAnggaran: acc.totalPajakAnggaran + d.pajakAnggaran,
-          totalRetribusiAnggaran: acc.totalRetribusiAnggaran + d.retribusiAnggaran,
-          totalPengelolaanAnggaran: acc.totalPengelolaanAnggaran + d.pengelolaanAnggaran,
-          totalLainAnggaran: acc.totalLainAnggaran + d.lainPadAnggaran,
+          totalRealisasi: acc.totalRealisasi + (d.pajakRealisasi || 0) + (d.retribusiRealisasi || 0) + (d.pengelolaanRealisasi || 0) + (d.lainPadRealisasi || 0),
+          totalAnggaran: acc.totalAnggaran + (d.pajakAnggaran || 0) + (d.retribusiAnggaran || 0) + (d.pengelolaanAnggaran || 0) + (d.lainPadAnggaran || 0),
+          totalPajak: acc.totalPajak + (d.pajakRealisasi || 0),
+          totalRetribusi: acc.totalRetribusi + (d.retribusiRealisasi || 0),
+          totalPengelolaan: acc.totalPengelolaan + (d.pengelolaanRealisasi || 0),
+          totalLain: acc.totalLain + (d.lainPadRealisasi || 0),
+          totalPajakAnggaran: acc.totalPajakAnggaran + (d.pajakAnggaran || 0),
+          totalRetribusiAnggaran: acc.totalRetribusiAnggaran + (d.retribusiAnggaran || 0),
+          totalPengelolaanAnggaran: acc.totalPengelolaanAnggaran + (d.pengelolaanAnggaran || 0),
+          totalLainAnggaran: acc.totalLainAnggaran + (d.lainPadAnggaran || 0),
         }), { 
           totalRealisasi: 0, totalAnggaran: 0, totalPajak: 0, totalRetribusi: 0, totalPengelolaan: 0, totalLain: 0,
           totalPajakAnggaran: 0, totalRetribusiAnggaran: 0, totalPengelolaanAnggaran: 0, totalLainAnggaran: 0 
@@ -341,20 +348,14 @@ function App() {
           rataRataRetribusi: tots.totalRetribusi / n,
           rataRataPengelolaan: tots.totalPengelolaan / n,
           rataRataLain: tots.totalLain / n,
-          yearly: group.dataPerTahun.reduce((acc, d) => {
-            acc[d.tahun] = d.pajakRealisasi + d.retribusiRealisasi + d.pengelolaanRealisasi + d.lainPadRealisasi;
-            return acc;
-          }, {}),
-          yearlyAnggaran: group.dataPerTahun.reduce((acc, d) => {
-            acc[d.tahun] = d.pajakAnggaran + d.retribusiAnggaran + d.pengelolaanAnggaran + d.lainPadAnggaran;
-            return acc;
-          }, {}),
-          yearlyPajak: group.dataPerTahun.reduce((acc, d) => { acc[d.tahun] = d.pajakRealisasi; return acc; }, {}),
-          yearlyRetribusi: group.dataPerTahun.reduce((acc, d) => { acc[d.tahun] = d.retribusiRealisasi; return acc; }, {}),
-          yearlyPengelolaan: group.dataPerTahun.reduce((acc, d) => { acc[d.tahun] = d.pengelolaanRealisasi; return acc; }, {}),
-          yearlyLain: group.dataPerTahun.reduce((acc, d) => { acc[d.tahun] = d.lainPadRealisasi; return acc; }, {}),
+          yearly: group.dataPerTahun.reduce((acc, d) => { if(d.tahun) acc[d.tahun] = (d.pajakRealisasi || 0) + (d.retribusiRealisasi || 0) + (d.pengelolaanRealisasi || 0) + (d.lainPadRealisasi || 0); return acc; }, {}),
+          yearlyAnggaran: group.dataPerTahun.reduce((acc, d) => { if(d.tahun) acc[d.tahun] = (d.pajakAnggaran || 0) + (d.retribusiAnggaran || 0) + (d.pengelolaanAnggaran || 0) + (d.lainPadAnggaran || 0); return acc; }, {}),
+          yearlyPajak: group.dataPerTahun.reduce((acc, d) => { if(d.tahun) acc[d.tahun] = d.pajakRealisasi || 0; return acc; }, {}),
+          yearlyRetribusi: group.dataPerTahun.reduce((acc, d) => { if(d.tahun) acc[d.tahun] = d.retribusiRealisasi || 0; return acc; }, {}),
+          yearlyPengelolaan: group.dataPerTahun.reduce((acc, d) => { if(d.tahun) acc[d.tahun] = d.pengelolaanRealisasi || 0; return acc; }, {}),
+          yearlyLain: group.dataPerTahun.reduce((acc, d) => { if(d.tahun) acc[d.tahun] = d.lainPadRealisasi || 0; return acc; }, {}),
         };
-      });
+      }).filter(Boolean);
 
       processedData.sort((a, b) => b.rataRataPAD - a.rataRataPAD);
       setData(processedData);
@@ -736,11 +737,12 @@ function App() {
 
   // Update insight whenever activeYearData changes to ensure it matches the new filter values
   useEffect(() => {
-    if (activeYearData && activeYearData.length > 0) {
+    if (activeTab !== 'compare' && activeYearData && activeYearData.length > 0) {
       const sorted = [...activeYearData].sort((a, b) => b[activeMetric] - a[activeMetric]);
       if (sorted.length > 0) setActiveInsight(sorted[0]);
     }
-  }, [activeYearData, activeMetric]);
+  }, [activeYearData, activeMetric, activeTab]);
+
 
   const stats = useMemo(() => {
     // We sum the 6 Province entries to get Jawa-wide totals
@@ -754,6 +756,56 @@ function App() {
       totalAnggaran: provinceEntries.reduce((s, d) => s + (d.rataRataAnggaran || 0), 0),
     };
   }, [activeYearData]);
+
+  const comparisonData = useMemo(() => {
+    // Get unique regions across all data for the selected filters (Prov/KabKota)
+    const baseRegions = data.filter(region => {
+      // Province filtering logic
+      if (globalProvFilter !== 'all') {
+        const provName = getProvinceName(region.daerah);
+        if (provName !== PROVINCE_DISPLAY_NAMES[globalProvFilter] && provName !== globalProvFilter) return false;
+      }
+      
+      // Kab/Kota filtering logic
+      if (globalKabKotaFilter !== 'all') {
+        return region.daerah === globalKabKotaFilter;
+      }
+
+      return true;
+    });
+
+    const yearlyKeyMap = {
+      rataRataPajak: 'yearlyPajak',
+      rataRataRetribusi: 'yearlyRetribusi',
+      rataRataPengelolaan: 'yearlyPengelolaan',
+      rataRataLain: 'yearlyLain',
+      rataRataPAD: 'yearly'
+    };
+    const key = yearlyKeyMap[activeMetric] || 'yearly';
+
+    return baseRegions.map(region => {
+      const valA = region[key]?.[compareYearA] || 0;
+      const valB = region[key]?.[compareYearB] || 0;
+      const growth = valA > 0 ? ((valB - valA) / valA) * 100 : valA === 0 && valB > 0 ? 100 : 0;
+      return { 
+        ...region, 
+        name: region.daerah.replace(/^(Prov\.|Kab\.|Kota)\s+/g, ''),
+        valueA: valA, 
+        valueB: valB, 
+        growth 
+      };
+    }).filter(d => d.valueA > 0 || d.valueB > 0).sort((a,b) => b.valueB - a.valueB);
+  }, [data, globalProvFilter, globalKabKotaFilter, compareYearA, compareYearB, activeMetric]);
+
+  // Sync activeInsight for comparison tab
+  useEffect(() => {
+    if (activeTab === 'compare' && comparisonData.length > 0) {
+      const currentId = activeInsight?.id || activeInsight?.daerah;
+      const match = comparisonData.find(d => (d.id || d.daerah) === currentId);
+      if (match) setActiveInsight(match);
+      else setActiveInsight(comparisonData[0]);
+    }
+  }, [activeTab, comparisonData]);
 
   const filteredData = useMemo(() => 
     activeYearData.filter(item => item.daerah.toLowerCase().includes(searchQuery.toLowerCase())),
@@ -1401,7 +1453,7 @@ function App() {
             </div>
 
             {/* Row 2: Filters - hidden on smallest mobile when on dashboard (accessible via sidebar instead) */}
-            <div className={`flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 ${activeTab === 'dashboard' ? 'hidden sm:flex' : 'flex'}`}>
+            <div className={`flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 ${activeTab === 'dashboard' || activeTab === 'compare' ? 'hidden sm:flex' : 'flex'}`}>
               {/* Province Global Filter (Hidden on Dashboard because we have a better UI there) */}
               <div className={`relative hidden ${activeTab === 'dashboard' ? 'lg:hidden' : 'lg:block'}`}>
                 <Globe className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={15} />
@@ -2699,6 +2751,85 @@ function App() {
             </motion.div>
           )}
 
+          {activeTab === 'compare' && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+              {/* Dual Year Selector for Comparison */}
+              <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+                <div className="shrink-0">
+                  <h3 className="text-white font-black text-xl uppercase tracking-tight flex items-center gap-3">
+                    <div className="p-2 bg-brand-500/20 rounded-xl">
+                      <TrendingUp className="text-brand-400" />
+                    </div>
+                    Perbandingan Performa
+                  </h3>
+                  <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1">Analisis pertumbuhan antar periode fiskal</p>
+                </div>
+                
+                <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+                  <div className="relative group">
+                    <p className="absolute -top-6 left-1 text-[10px] font-black text-brand-400 uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">Tahun Dasar (A)</p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-black text-brand-500 uppercase">Year A:</span>
+                      <select 
+                        value={compareYearA}
+                        onChange={(e) => setCompareYearA(e.target.value)}
+                        className="pl-4 pr-10 py-3 bg-brand-500/10 rounded-2xl border border-brand-500/20 text-white font-black text-sm outline-none appearance-none cursor-pointer hover:bg-brand-500/20 transition-all min-w-[120px]"
+                      >
+                        {[2020, 2021, 2022, 2023, 2024, 2025].map(y => (
+                          <option key={y} value={y} className="bg-slate-900">{y}</option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-400 pointer-events-none" size={16} />
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-4">
+                    <div className="w-4 h-px bg-white/10" />
+                    <span className="text-white/20 font-black text-xs italic tracking-widest">VERSUS</span>
+                    <div className="w-4 h-px bg-white/10" />
+                  </div>
+
+                  <div className="relative group">
+                    <p className="absolute -top-6 left-1 text-[10px] font-black text-emerald-400 uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">Tahun Target (B)</p>
+                    <div className="flex items-center gap-2">
+                       <span className="text-[10px] font-black text-emerald-500 uppercase">Year B:</span>
+                      <select 
+                        value={compareYearB}
+                        onChange={(e) => setCompareYearB(e.target.value)}
+                        className="pl-4 pr-10 py-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-white font-black text-sm outline-none appearance-none cursor-pointer hover:bg-emerald-500/20 transition-all min-w-[120px]"
+                      >
+                        {[2020, 2021, 2022, 2023, 2024, 2025].map(y => (
+                          <option key={y} value={y} className="bg-slate-900">{y}</option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-emerald-400 pointer-events-none" size={16} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative z-10">
+                <Visualisasi
+                  data={data}
+                  chartDataProvinces={comparisonData.filter(d => d.tipe === 'Provinsi').slice(0, 6)}
+                  chartDataKabKota={comparisonData.filter(d => d.tipe !== 'Provinsi').slice(0, 10)}
+                  activeInsight={activeInsight}
+                  setActiveInsight={setActiveInsight}
+                  aiAnalysisData={aiAnalysisData}
+                  getProvinceName={getProvinceName}
+                  selectedYear={compareYearB}
+                  activeMetric={activeMetric}
+                  activeSubMetric={activeSubMetric}
+                  metricLabel={getCategoryLabel(activeSubMetric)}
+                  isCompareMode={true}
+                  yearA={compareYearA}
+                  yearB={compareYearB}
+                  comparisonData={comparisonData}
+                />
+              </div>
+            </motion.div>
+          )}
+
           {activeTab === 'peta-data' && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               <PetaData 
@@ -2740,7 +2871,9 @@ function App() {
               metricLabel={getCategoryLabel(activeSubMetric)}
             />
           )}
+          
         </div>
+        
       </main>
 
       {/* ===== DETAIL MODAL ===== */}
@@ -2752,5 +2885,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

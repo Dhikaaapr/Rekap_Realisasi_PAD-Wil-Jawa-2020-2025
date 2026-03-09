@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+const { useState } = React;
 
 const JavaMap = ({ data, onRegionClick }) => {
   const [hoveredRegion, setHoveredRegion] = useState(null);

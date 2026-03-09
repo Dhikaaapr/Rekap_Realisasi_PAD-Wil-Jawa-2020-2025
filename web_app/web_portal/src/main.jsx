@@ -1,4 +1,5 @@
-import { StrictMode } from 'react'
+import React from 'react'
+const { StrictMode } = React;
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'

@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import React from 'react';
+const { useMemo } = React;
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ResponsiveContainer, 
@@ -36,7 +37,11 @@ const Visualisasi = ({
   getProvinceName,
   selectedYear = 2025,
   activeMetric = 'rataRataPAD',
-  metricLabel = 'PAD Total'
+  metricLabel = 'PAD Total',
+  isCompareMode = false,
+  yearA,
+  yearB,
+  comparisonData = []
 }) => {
   
   // Calculate Pie Data
@@ -81,6 +86,52 @@ const Visualisasi = ({
   // =====================
   const generateDynamicAnalysis = (item) => {
     if (!item) return null;
+
+    if (isCompareMode) {
+      const valA = item.valueA || 0;
+      const valB = item.valueB || 0;
+      const growth = item.growth || 0;
+      const diff = valB - valA;
+      
+      return {
+        title: `Analisis Komparatif: ${item.daerah} (${yearA} vs ${yearB})`,
+        sections: [
+          {
+            type: "summary",
+            icon: "📊",
+            title: "Perbandingan Kinerja Fiskal",
+            content: [
+              `Analisis menunjukkan pergerakan nominal dari ${formatValue(valA)} (${yearA}) menjadi ${formatValue(valB)} (${yearB}).`,
+              `Tercatat adanya **${growth >= 0 ? 'kenaikan' : 'penurunan'}** sebesar **${Math.abs(growth).toFixed(1)}%** (${formatValue(Math.abs(diff))}) pada sektor ${metricLabel}.`,
+              `Performa ini mencerminkan ${growth > 10 ? 'ekspansi fiskal yang kuat' : growth > 0 ? 'pertumbuhan yang stabil' : 'tekanan pada sumber pendapatan'} di wilayah tersebut.`
+            ],
+          },
+          {
+            type: "list",
+            icon: "📈",
+            title: "Indikator Pertumbuhan",
+            intro: "Detail perubahan nilai riil antar periode:",
+            items: [
+              { icon: '📅', title: `Realisasi ${yearA}`, details: [`Nilai: ${formatValue(valA)}`, "Tahun dasar perbandingan."] },
+              { icon: '🚀', title: `Realisasi ${yearB}`, details: [`Nilai: ${formatValue(valB)}`, "Tahun target analisis."] },
+              { icon: growth >= 0 ? '✅' : '⚠️', title: "Selisih Pertumbuhan", details: [`Delta: ${formatValue(diff)}`, `Persentase: ${growth.toFixed(1)}%`] },
+            ]
+          },
+          {
+            type: "conclusion",
+            icon: "💡",
+            title: "Rekomendasi Strategis",
+            points: [
+              growth > 0 
+                ? `Mempertahankan momentum pertumbuhan di sektor ${metricLabel} dengan optimalisasi basis data perpajakan baru.` 
+                : `Melakukan evaluasi mendalam terhadap potensi kebocoran atau penurunan objek pajak di sektor ${metricLabel}.`,
+              `Membandingkan tren pertumbuhan ini dengan rata-rata regional untuk melihat daya saing wilayah.`,
+              `Menyesuaikan target anggaran periode berikutnya berdasarkan realitas pertumbuhan **${growth.toFixed(1)}%** ini.`
+            ],
+          },
+        ],
+      };
+    }
 
     const total = item.rataRataPAD || 0;
     const pjk = item.rataRataPajak || 0;
@@ -149,7 +200,7 @@ const Visualisasi = ({
     .trim();
   const staticAiData = aiAnalysisData ? (aiAnalysisData[regionKey] || aiAnalysisData[(activeInsight?.daerah || '').toUpperCase().replace(/\./g, '')]) : null;
 
-  const aiData = staticAiData || dynamicAiData;
+  const aiData = isCompareMode ? dynamicAiData : (staticAiData || dynamicAiData);
 
   const handleChartExport = (chartData, title, type = 'xlsx') => {
     if (!chartData || chartData.length === 0) return alert('Tidak ada data untuk di-export');
@@ -221,12 +272,12 @@ const Visualisasi = ({
             </div>
           </div>
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-6">Peringkat 10 Wilayah Tertinggi</p>
-          <div className="flex-grow min-h-[400px] w-full">
+          <div className="h-[300px] w-full mt-2">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart 
                 data={chartDataKabKota} 
                 layout="vertical"
-                margin={{ top: 0, right: 70, left: 40, bottom: 0 }}
+                margin={{ top: 0, right: 80, left: 20, bottom: 0 }}
               >
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
                 <XAxis type="number" hide />
@@ -241,40 +292,84 @@ const Visualisasi = ({
                 <Tooltip 
                   cursor={{ fill: 'rgba(0,0,0,0.02)', radius: 10 }}
                   contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)', fontSize: '10px' }}
-                  formatter={(val) => [formatValue(val), selectedYear === 'all' ? 'Total' : 'Realisasi']}
-                />
-                <Bar 
-                  dataKey="value" 
-                  radius={[0, 8, 8, 0]} 
-                  barSize={24}
-                  onClick={(payload) => {
-                    if (payload) setActiveInsight(payload);
+                  formatter={(val, name, props) => {
+                    if (isCompareMode) {
+                      const payload = props.payload;
+                      const growth = payload.growth || 0;
+                      return [formatValue(val), `${name} (${growth.toFixed(1)}%)`];
+                    }
+                    return [formatValue(val), selectedYear === 'all' ? 'Total' : 'Realisasi'];
                   }}
-                >
-                  <LabelList 
+                />
+                {!isCompareMode ? (
+                  <Bar 
                     dataKey="value" 
-                    position="right" 
-                    content={(props) => (
-                      <text 
-                        x={props.x + props.width + 8} 
-                        y={props.y + props.height / 2 + 4} 
-                        fill="#10b981" 
-                        fontSize="10" 
-                        fontWeight="900"
-                        className="drop-shadow-sm"
-                      >
-                        {formatShort(props.value)}
-                      </text>
-                    )}
-                  />
-                  {chartDataKabKota.map((entry, index) => (
-                    <Cell 
-                      key={`cell-${index}`} 
-                      fill={activeInsight?.daerah === entry.daerah ? '#ff9800' : (index < 3 ? '#10b981' : '#3949ab')} 
-                      className="cursor-pointer hover:opacity-80 transition-opacity duration-300"
+                    radius={[0, 8, 8, 0]} 
+                    barSize={24}
+                    onClick={(payload) => {
+                      if (payload) setActiveInsight(payload);
+                    }}
+                  >
+                    <LabelList 
+                      dataKey="value" 
+                      position="right" 
+                      content={(props) => (
+                        <text 
+                          x={props.x + props.width + 8} 
+                          y={props.y + props.height / 2 + 4} 
+                          fill="#10b981" 
+                          fontSize="10" 
+                          fontWeight="900"
+                          className="drop-shadow-sm"
+                        >
+                          {formatShort(props.value)}
+                        </text>
+                      )}
                     />
-                  ))}
-                </Bar>
+                    {chartDataKabKota.map((entry, index) => (
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={activeInsight?.daerah === entry.daerah ? '#ff9800' : (index < 3 ? '#10b981' : '#3949ab')} 
+                        className="cursor-pointer hover:opacity-80 transition-opacity duration-300"
+                      />
+                    ))}
+                  </Bar>
+                ) : (
+                  <>
+                    <Bar 
+                      name={yearA}
+                      dataKey="valueA" 
+                      radius={[0, 4, 4, 0]} 
+                      barSize={12}
+                      fill="#6366f1"
+                      onClick={(p) => setActiveInsight(p?.payload)}
+                    />
+                    <Bar 
+                      name={yearB}
+                      dataKey="valueB" 
+                      radius={[0, 4, 4, 0]} 
+                      barSize={12}
+                      fill="#10b981"
+                      onClick={(p) => setActiveInsight(p?.payload)}
+                    >
+                       <LabelList 
+                        dataKey="growth" 
+                        position="right" 
+                        content={(props) => (
+                          <text 
+                            x={props.x + props.width + 5} 
+                            y={props.y + props.height / 2 + 4} 
+                            fill={props.value >= 0 ? '#10b981' : '#f43f5e'} 
+                            fontSize="8" 
+                            fontWeight="900"
+                          >
+                            {props.value >= 0 ? '↑' : '↓'} {Math.abs(props.value).toFixed(0)}%
+                          </text>
+                        )}
+                      />
+                    </Bar>
+                  </>
+                )}
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -304,12 +399,12 @@ const Visualisasi = ({
             </div>
           </div>
            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-6">Peringkat 6 Provinsi se-Jawa</p>
-          <div className="flex-grow min-h-[400px] w-full">
+          <div className="h-[300px] w-full mt-2">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart 
                 data={chartDataProvinces} 
                 layout="vertical"
-                margin={{ top: 0, right: 70, left: 40, bottom: 0 }}
+                margin={{ top: 0, right: 80, left: 20, bottom: 0 }}
               >
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
                 <XAxis type="number" hide />
@@ -324,40 +419,84 @@ const Visualisasi = ({
                 <Tooltip 
                   cursor={{ fill: 'rgba(0,0,0,0.02)', radius: 10 }}
                   contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)', fontSize: '10px' }}
-                  formatter={(val) => [formatValue(val), selectedYear === 'all' ? 'Total' : 'Realisasi']}
-                />
-                <Bar 
-                  dataKey="value" 
-                  radius={[0, 8, 8, 0]} 
-                  barSize={30}
-                  onClick={(payload) => {
-                    if (payload) setActiveInsight(payload);
+                  formatter={(val, name, props) => {
+                    if (isCompareMode) {
+                      const payload = props.payload;
+                      const growth = payload.growth || 0;
+                      return [formatValue(val), `${name} (${growth.toFixed(1)}%)`];
+                    }
+                    return [formatValue(val), selectedYear === 'all' ? 'Total' : 'Realisasi'];
                   }}
-                >
-                  <LabelList 
+                />
+                {!isCompareMode ? (
+                  <Bar 
                     dataKey="value" 
-                    position="right" 
-                    content={(props) => (
-                      <text 
-                        x={props.x + props.width + 8} 
-                        y={props.y + props.height / 2 + 5} 
-                        fill="#3b82f6" 
-                        fontSize="11" 
-                        fontWeight="900"
-                        className="drop-shadow-sm"
-                      >
-                        {formatShort(props.value)}
-                      </text>
-                    )}
-                  />
-                  {chartDataProvinces.map((entry, index) => (
-                    <Cell 
-                      key={`cell-${index}`} 
-                      fill={activeInsight?.daerah === entry.daerah ? '#ff9800' : (index < 3 ? '#3b82f6' : '#6366f1')} 
-                      className="cursor-pointer hover:opacity-80 transition-opacity duration-300"
+                    radius={[0, 8, 8, 0]} 
+                    barSize={30}
+                    onClick={(payload) => {
+                      if (payload) setActiveInsight(payload);
+                    }}
+                  >
+                    <LabelList 
+                      dataKey="value" 
+                      position="right" 
+                      content={(props) => (
+                        <text 
+                          x={props.x + props.width + 8} 
+                          y={props.y + props.height / 2 + 5} 
+                          fill="#3b82f6" 
+                          fontSize="11" 
+                          fontWeight="900"
+                          className="drop-shadow-sm"
+                        >
+                          {formatShort(props.value)}
+                        </text>
+                      )}
                     />
-                  ))}
-                </Bar>
+                    {chartDataProvinces.map((entry, index) => (
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={activeInsight?.daerah === entry.daerah ? '#ff9800' : (index < 3 ? '#3b82f6' : '#6366f1')} 
+                        className="cursor-pointer hover:opacity-80 transition-opacity duration-300"
+                      />
+                    ))}
+                  </Bar>
+                ) : (
+                  <>
+                    <Bar 
+                      name={yearA}
+                      dataKey="valueA" 
+                      radius={[0, 6, 6, 0]} 
+                      barSize={15}
+                      fill="#6366f1"
+                      onClick={(p) => setActiveInsight(p?.payload)}
+                    />
+                    <Bar 
+                      name={yearB}
+                      dataKey="valueB" 
+                      radius={[0, 6, 6, 0]} 
+                      barSize={15}
+                      fill="#3b82f6"
+                      onClick={(p) => setActiveInsight(p?.payload)}
+                    >
+                       <LabelList 
+                        dataKey="growth" 
+                        position="right" 
+                        content={(props) => (
+                          <text 
+                            x={props.x + props.width + 5} 
+                            y={props.y + props.height / 2 + 5} 
+                            fill={props.value >= 0 ? '#10b981' : '#f43f5e'} 
+                            fontSize="9" 
+                            fontWeight="900"
+                          >
+                            {props.value >= 0 ? '↑' : '↓'} {Math.abs(props.value).toFixed(0)}%
+                          </text>
+                        )}
+                      />
+                    </Bar>
+                  </>
+                )}
               </BarChart>
             </ResponsiveContainer>
           </div>

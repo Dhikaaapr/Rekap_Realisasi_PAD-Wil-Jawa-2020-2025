@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
+const { useState, useMemo } = React;
 import { 
   Search, Download, Filter, ArrowUpDown, ChevronLeft, ChevronRight, FileSpreadsheet, 
   TrendingUp, TrendingDown, BarChart3, Calendar, Database, Layers, Eye,
