@@ -46,6 +46,17 @@ const TrendKomparasi = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [activeMetric, setActiveMetric] = useState('yearly'); // yearly, yearlyPajak, etc.
   const [chartType, setChartType] = useState('line'); // line, area
+  const [selectedYears, setSelectedYears] = useState(AVAILABLE_YEARS);
+
+  const toggleYear = (year) => {
+    setSelectedYears(prev => {
+      if (prev.includes(year)) {
+        if (prev.length === 1) return prev; // prevent hiding all years
+        return prev.filter(y => y !== year);
+      }
+      return [...prev, year].sort();
+    });
+  };
 
   const metricsInfo = {
     yearly: { label: 'PAD Total', color: '#10b981' },
@@ -86,7 +97,7 @@ const TrendKomparasi = ({
   // Construct chart data: 
   // [ { year: 2021, "DKI Jakarta": 50000, "Jawa Barat": 30000 }, { year: 2022, ... } ]
   const chartData = useMemo(() => {
-    return AVAILABLE_YEARS.map(year => {
+    return selectedYears.map(year => {
       const yearObj = { year: year.toString() };
       selectedRegions.forEach(regionName => {
         const regionData = data.find(d => d.daerah === regionName);
@@ -98,7 +109,7 @@ const TrendKomparasi = ({
       });
       return yearObj;
     });
-  }, [data, selectedRegions, activeMetric, AVAILABLE_YEARS]);
+  }, [data, selectedRegions, activeMetric, selectedYears]);
 
   // Calculate Growth formatting logic
   const calculateGrowthData = useMemo(() => {
@@ -106,7 +117,7 @@ const TrendKomparasi = ({
       const regionData = data.find(d => d.daerah === regionName);
       if (!regionData) return null;
       
-      const years = AVAILABLE_YEARS.filter(y => regionData[activeMetric]?.[y]);
+      const years = selectedYears.filter(y => regionData[activeMetric]?.[y]);
       const firstYear = Math.min(...years);
       const lastYear = Math.max(...years);
       
@@ -125,7 +136,7 @@ const TrendKomparasi = ({
         avgValue: avg
       };
     }).filter(Boolean).sort((a,b) => b.growthPct - a.growthPct);
-  }, [data, selectedRegions, activeMetric, AVAILABLE_YEARS]);
+  }, [data, selectedRegions, activeMetric, selectedYears]);
 
   const formatValue = (val) => {
     if (val >= 1e12) return `Rp ${(val/1e12).toFixed(2)} T`;
@@ -177,9 +188,23 @@ const TrendKomparasi = ({
             </div>
             <div className="w-full sm:w-auto flex flex-col gap-2">
               <label className="text-[10px] uppercase font-black tracking-widest text-slate-500">Mode Visual</label>
-              <div className="flex bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm w-full sm:w-max">
-                <button onClick={() => setChartType('line')} className={`flex-1 sm:flex-none px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${chartType === 'line' ? 'bg-brand-500 text-white shadow-md' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50'}`}>Garis</button>
-                <button onClick={() => setChartType('area')} className={`flex-1 sm:flex-none px-6 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${chartType === 'area' ? 'bg-brand-500 text-white shadow-md' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50'}`}>Area</button>
+              <div className="flex bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm w-full sm:w-max flex-wrap gap-1">
+                <button onClick={() => setChartType('line')} className={`flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${chartType === 'line' ? 'bg-brand-500 text-white shadow-md' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50'}`}>Garis</button>
+                <button onClick={() => setChartType('area')} className={`flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${chartType === 'area' ? 'bg-brand-500 text-white shadow-md' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50'}`}>Area</button>
+              </div>
+            </div>
+            <div className="w-full sm:w-auto flex flex-col gap-2">
+              <label className="text-[10px] uppercase font-black tracking-widest text-slate-500">Filter Tahun</label>
+              <div className="flex bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm w-full sm:w-max flex-wrap gap-1">
+                {AVAILABLE_YEARS.map(year => (
+                  <button 
+                    key={year}
+                    onClick={() => toggleYear(year)} 
+                    className={`flex-1 sm:flex-none px-3 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${selectedYears.includes(year) ? 'bg-brand-500 text-white shadow-md' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50'}`}
+                  >
+                    {year}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -340,6 +365,29 @@ const TrendKomparasi = ({
                           dot={{ r: 4, strokeWidth: 2, fill: '#fff' }}
                           activeDot={{ r: 7, strokeWidth: 0, fill: CHART_COLORS[idx % CHART_COLORS.length], className: 'drop-shadow-md' }}
                           animationDuration={1500}
+                          label={(props) => {
+                            const { x, y, value, index } = props;
+                            if (index === 0) return null;
+                            const prevVal = chartData[index - 1][region];
+                            if (!prevVal || prevVal === 0) return null;
+                            const growth = ((value - prevVal) / prevVal) * 100;
+                            // Only show label if the change is valid
+                            return (
+                              <g transform={`translate(${x},${y})`}>
+                                <text 
+                                  x={0} 
+                                  y={-12} 
+                                  dy={0}
+                                  textAnchor="middle" 
+                                  fill={growth >= 0 ? '#10b981' : '#f43f5e'} 
+                                  fontSize={10} 
+                                  fontWeight="900"
+                                >
+                                  {growth >= 0 ? '▲' : '▼'}{Math.abs(growth).toFixed(1)}%
+                                </text>
+                              </g>
+                            );
+                          }}
                         />
                       ))}
                     </LineChart>

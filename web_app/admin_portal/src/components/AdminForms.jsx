@@ -11,40 +11,54 @@ const formatCurrency = (val) => {
 };
 
 // --- COMMON INPUT ROW ---
-const InputRow = ({ label, ang, real, onUpdate, index }) => (
-  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-300 hover:bg-white transition-all group">
-    <div className="md:col-span-6">
-      <div className="flex items-center gap-3">
-        <div className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-blue-500 transition-colors" />
-        <p className="text-[12px] font-bold text-slate-700 uppercase tracking-tight">{label}</p>
+const InputRow = ({ label, ang, real, onUpdate, index }) => {
+  const formatVal = (val) => {
+    if (val === 0 || !val) return '';
+    return new Intl.NumberFormat('id-ID').format(val);
+  };
+
+  const handleChange = (field, e) => {
+    const rawValue = e.target.value;
+    const numericStr = rawValue.replace(/\D/g, '');
+    const num = numericStr ? parseInt(numericStr, 10) : 0;
+    onUpdate(index, field, num);
+  };
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-blue-300 hover:bg-white transition-all group">
+      <div className="md:col-span-6">
+        <div className="flex items-center gap-3">
+          <div className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-blue-500 transition-colors" />
+          <p className="text-[12px] font-bold text-slate-700 uppercase tracking-tight">{label}</p>
+        </div>
+      </div>
+      <div className="md:col-span-3">
+          <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-300">Rp</span>
+              <input 
+                  type="text" 
+                  value={formatVal(ang)} 
+                  onChange={e => handleChange('ang', e)} 
+                  className="neo-input w-full !pl-10 text-right bg-white border-slate-200 text-slate-600 focus:bg-white" 
+                  placeholder="0" 
+              />
+          </div>
+      </div>
+      <div className="md:col-span-3">
+          <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-blue-300">Rp</span>
+              <input 
+                  type="text" 
+                  value={formatVal(real)} 
+                  onChange={e => handleChange('real', e)} 
+                  className="neo-input w-full !pl-10 text-right text-blue-700 font-black border-blue-200 bg-blue-50/30 focus:bg-white" 
+                  placeholder="0" 
+              />
+          </div>
       </div>
     </div>
-    <div className="md:col-span-3">
-        <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-300">Rp</span>
-            <input 
-                type="number" 
-                value={ang} 
-                onChange={e => onUpdate(index, 'ang', e.target.value)} 
-                className="neo-input w-full !pl-10 text-right bg-white border-slate-200 text-slate-600 focus:bg-white" 
-                placeholder="0" 
-            />
-        </div>
-    </div>
-    <div className="md:col-span-3">
-        <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-black text-blue-300">Rp</span>
-            <input 
-                type="number" 
-                value={real} 
-                onChange={e => onUpdate(index, 'real', e.target.value)} 
-                className="neo-input w-full !pl-10 text-right text-blue-700 font-black border-blue-200 bg-blue-50/30 focus:bg-white" 
-                placeholder="0" 
-            />
-        </div>
-    </div>
-  </div>
-);
+  );
+};
 
 // --- PROVINSI FORM ---
 export const ProvinsiForm = ({ region, year, onSave }) => {
@@ -68,7 +82,7 @@ export const ProvinsiForm = ({ region, year, onSave }) => {
         const details = await fetchDetailForEdit(region, year);
         const updated = fields.map(f => {
           const row = details.find(d => f.keywords.some(k => (d.ref_kategori_pad?.nama || d.kategori_nama || '').includes(k)));
-          return row ? { ...f, ang: row.anggaran, real: row.realisasi, id: row.id, kode: row.kategori_kode } : f;
+          return row ? { ...f, ang: row.anggaran, real: row.realisasi, id: row.id, kode: row.kategori_kode } : { ...f, ang: 0, real: 0, id: null };
         });
         setFields(updated);
       } catch (err) { console.error(err); }
@@ -172,7 +186,7 @@ export const KabKotaForm = ({ region, year, onSave }) => {
         const details = await fetchDetailForEdit(region, year);
         const updated = fields.map(f => {
           const row = details.find(d => f.keywords.some(k => (d.ref_kategori_pad?.nama || d.kategori_nama || '').includes(k)));
-          return row ? { ...f, ang: row.anggaran, real: row.realisasi, id: row.id, kode: row.kategori_kode } : f;
+          return row ? { ...f, ang: row.anggaran, real: row.realisasi, id: row.id, kode: row.kategori_kode } : { ...f, ang: 0, real: 0, id: null };
         });
         setFields(updated);
       } catch (err) { console.error(err); }
@@ -290,7 +304,7 @@ export const RetribusiForm = ({ region, year, onSave }) => {
         const details = await fetchDetailForEdit(region, year);
         const updated = data.map(f => {
           const row = details.find(d => f.keywords.some(k => (d.ref_kategori_pad?.nama || d.kategori_nama || '').includes(k)));
-          return row ? { ...f, ang: row.anggaran, real: row.realisasi, id: row.id, kode: row.kategori_kode } : f;
+          return row ? { ...f, ang: row.anggaran, real: row.realisasi, id: row.id, kode: row.kategori_kode } : { ...f, ang: 0, real: 0, id: null };
         });
         setData(updated);
       } catch (err) { console.error(err); }

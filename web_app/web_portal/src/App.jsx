@@ -1394,7 +1394,7 @@ function App() {
         <div className="p-5 border-t border-brand-800/60">
           <div className="flex items-center gap-2 mb-1">
             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Supabase Connected</p>
+            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">System Connected</p>
           </div>
           <p className="text-[9px] text-brand-600 font-bold">
             {activeYearData.length} Wilayah • {Math.max(...(data.flatMap(d => d.tahunList) || [2025]))} Ready
